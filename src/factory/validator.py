@@ -1,10 +1,10 @@
 """
-Factory Validator (Blazing Fast RAM-Cached & O(1) Regime Check)
-Ejecuta backtesting Walk-Forward ultra-rápido (< 2 segundos para 5 variantes):
-- Pre-calcula BTC 30d return y Correlación 30d en memoria RAM.
-- Train: 2022-2023, Test: 2024, Validation Out-of-Sample: 2024-2026.
-- Métrica Única de Supervivencia:
-  Validation PF > 1.30 AND Max DD < 15.0% AND Trades >= 100
+Factory Validator (Strict Historical Shift(1) OLS Engine)
+Idéntico a auditoria_walkforward_montecarlo.py:
+- Ventana histórica estricta [t - w : t] usando .shift(1)
+- Filtro de Régimen: BTC -20% en 30d y Correlación 30d < 0.60
+- Métrica de Supervivencia:
+  Validation PF > 1.30 AND Max DD < 12.0% AND Trades >= 100
 """
 
 from typing import Dict, Any, List, Tuple
@@ -31,7 +31,7 @@ class FactoryEvaluationResult:
     verdict: str
 
 class FactoryValidator:
-    """Validador Walk-Forward de alta velocidad con lookup O(1)."""
+    """Validador Walk-Forward de alta fidelidad con ventana shift(1)."""
     
     def __init__(self, data_dir: str = "data/historical"):
         self.data_dir = Path(data_dir)
@@ -39,7 +39,7 @@ class FactoryValidator:
         self.load_cache()
 
     def load_cache(self):
-        """Carga en memoria RAM y pre-calcula métricas de régimen rolling para velocidad O(1)."""
+        """Carga en RAM los CSVs históricos."""
         pairs = [
             ('BTCUSDT', 'ETHUSDT'),
             ('AVAXUSDT', 'SOLUSDT'),
@@ -66,19 +66,18 @@ class FactoryValidator:
                 else:
                     df_merged['close_btc'] = df_merged['close_y']
                     
-                # Pre-cálculo O(1) de métricas de régimen rolling 30 días (720 velas de 1h)
                 df_merged['btc_ret_30d'] = df_merged['close_btc'].pct_change(720).fillna(0.0)
                 df_merged['corr_30d'] = df_merged['close_y'].rolling(720).corr(df_merged['close_x']).fillna(1.0)
                 
                 self.cached_pairs[f"{sym_y}/{sym_x}"] = df_merged
 
-    def simulate_series(self, df: pd.DataFrame, cand: FactoryCandidate, notional: float = 150.0) -> List[Dict[str, Any]]:
-        y = df['close_y'].values
-        x = df['close_x'].values
-        btc_ret_30d = df['btc_ret_30d'].values
-        corr_30d = df['corr_30d'].values
-        n = len(y)
+    def simulate_series(self, df_input: pd.DataFrame, cand: FactoryCandidate, notional: float = 150.0) -> List[Dict[str, Any]]:
         w = cand.lookback_window
+        y = df_input['close_y'].values
+        x = df_input['close_x'].values
+        btc_ret_30d = df_input['btc_ret_30d'].values
+        corr_30d = df_input['corr_30d'].values
+        n = len(y)
         
         trades = []
         in_pos = False
@@ -87,6 +86,7 @@ class FactoryValidator:
         entry_idx = 0
         
         for t in range(w, n):
+            # Ventana histórica estricta [t - w : t]
             y_w = y[t-w : t]
             x_w = x[t-w : t]
             
@@ -106,15 +106,14 @@ class FactoryValidator:
             z = (curr_s - mean_s) / std_s
             
             if not in_pos:
-                # Comprobar si Z está en zona de entrada [Z_entry, Z_entry + 0.9]
                 if not ((cand.z_entry <= z <= cand.z_entry + 0.9) or (-(cand.z_entry + 0.9) <= z <= -cand.z_entry)):
                     continue
                     
-                # Filtro de Régimen O(1): BTC -20% en 30d o Correlación < 0.60
+                # Filtro de Régimen
                 if btc_ret_30d[t] <= -0.20 or corr_30d[t] < 0.60:
                     continue
                     
-                # ADF Check solo para candidatos filtrados
+                # ADF Check
                 try:
                     adf_res = adfuller(spread_w, autolag='AIC')
                     if adf_res[1] >= cand.adf_p_threshold:
@@ -155,7 +154,7 @@ class FactoryValidator:
                         pnl_x = (entry_x - curr_x) * qty_x
                         
                     gross_pnl = pnl_y + pnl_x
-                    fees = (notional + notional * entry_gamma) * 2 * 0.0004 # 0.16% fee roundtrip
+                    fees = (notional + notional * entry_gamma) * 2 * 0.0004
                     net_pnl = gross_pnl - fees
                     trades.append({'net_pnl': net_pnl, 'holding': holding})
                     in_pos = False
@@ -200,15 +199,15 @@ class FactoryValidator:
         test_pf, _, _, _, _, _ = self.evaluate_split(test_trades)
         val_pf, val_cnt, val_wr, val_net, val_exp, val_dd = self.evaluate_split(val_trades)
         
-        # Métrica única de supervivencia: PF > 1.30 AND Max DD < 15.0% AND Trades >= 100
-        passed = (val_pf > 1.30) and (val_dd < 15.0) and (val_cnt >= 100)
+        # Métrica única de supervivencia: PF > 1.30 AND Max DD < 12.0% AND Trades >= 100
+        passed = (val_pf > 1.30) and (val_dd < 12.0) and (val_cnt >= 100)
         
         if passed:
-            verdict = "PROMOTED_TO_PAPER (PF>1.3, DD<15%, Trades>=100)"
+            verdict = "PROMOTED_TO_PAPER (PF>1.3, DD<12%, Trades>=100)"
         else:
             reasons = []
             if val_pf <= 1.30: reasons.append(f"PF={val_pf:.2f}<=1.30")
-            if val_dd >= 15.0: reasons.append(f"DD={val_dd:.1f}%>=15%")
+            if val_dd >= 12.0: reasons.append(f"DD={val_dd:.1f}%>=12%")
             if val_cnt < 100: reasons.append(f"Trades={val_cnt}<100")
             verdict = f"KILLED: {' | '.join(reasons)}"
             

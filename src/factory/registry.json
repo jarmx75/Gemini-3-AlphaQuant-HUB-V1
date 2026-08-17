@@ -1,4 +1,47 @@
 {
-  "active_paper_strategies": [],
+  "active_paper_strategies": [
+    {
+      "id": "Pairs_W90_Z2.5_S3.5_H24",
+      "lookback_window": 90,
+      "z_entry": 2.5,
+      "z_exit": 0.0,
+      "z_stop": 3.5,
+      "max_holding_bars": 24,
+      "eg_p_threshold": 0.03,
+      "adf_p_threshold": 0.05,
+      "metrics": {
+        "val_pf": 1.37,
+        "val_expectancy": 3.46,
+        "val_dd_pct": 6.7,
+        "val_trades": 304,
+        "val_win_rate": 49.67,
+        "val_net_pnl": 1052.87
+      },
+      "promoted_at": "2026-08-17 14:32:09",
+      "status": "PAPER_ACTIVE",
+      "human_approval": "PENDING (Write 'APPROVED' manually to allow Binance Demo/Real)"
+    },
+    {
+      "id": "Pairs_W90_Z2.4_S3.5_H24",
+      "lookback_window": 90,
+      "z_entry": 2.4,
+      "z_exit": 0.0,
+      "z_stop": 3.5,
+      "max_holding_bars": 24,
+      "eg_p_threshold": 0.03,
+      "adf_p_threshold": 0.05,
+      "metrics": {
+        "val_pf": 1.34,
+        "val_expectancy": 3.1,
+        "val_dd_pct": 5.44,
+        "val_trades": 317,
+        "val_win_rate": 50.47,
+        "val_net_pnl": 983.09
+      },
+      "promoted_at": "2026-08-17 14:32:29",
+      "status": "PAPER_ACTIVE",
+      "human_approval": "PENDING (Write 'APPROVED' manually to allow Binance Demo/Real)"
+    }
+  ],
   "human_approved_real_strategies": []
 }
