@@ -27,12 +27,34 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.factory.generator_derivatives_shock import DerivativesShockGenerator, DerivativesShockCandidate
 from src.factory.validator_derivatives_shock import DerivativesShockValidator, DerivativesShockEvaluationResult
+from src.memory.memory_router import AutomatonMemory
+from src.memory.preflight import MemoryPreflight
 
 def run_derivatives_shock_batch_d2():
     start_time = time.time()
     print("=" * 95)
     print("🏭 INICIANDO BATCH D2: STRATEGY_FAMILY = LIQUIDATION_DERIVATIVES_REVERSAL (DERIVATIVES_SHOCK_REVERSAL)")
     print("=" * 95)
+    
+    # 0. PREFLIGHT CHECK
+    memory = AutomatonMemory()
+    preflight = MemoryPreflight(memory)
+    family_name = "LIQUIDATION_DERIVATIVES_REVERSAL"
+    
+    if preflight.is_family_rejected(family_name):
+        print(f"🛑 PREFLIGHT BLOCK: La familia {family_name} está marcada como REJECTED en la memoria CORE.")
+        print("⛔ No se permite repetir la ejecución de estrategias rechazadas sin cambiar el mecanismo fundamental.")
+        memory.close()
+        return
+        
+    # Check hypothesis duplicate risk
+    hypothesis = "Reversión media 1H tras shock conjunto de retorno (Z>=2-3), cambio de Open Interest (|Z|>=2-2.5) y Taker Imbalance (|Z|>=2-2.5)"
+    pf_res = preflight.check_hypothesis(family_name, hypothesis)
+    if pf_res["DUPLICATE_RISK"]:
+        print(f"⚠️ PREFLIGHT WARNING: Alto riesgo de duplicación detectado para esta hipótesis.")
+        # We allow it to continue for testing purposes but in a real fully autonomous mode we might halt.
+        
+    memory.close()
     
     generator = DerivativesShockGenerator()
     validator = DerivativesShockValidator()
