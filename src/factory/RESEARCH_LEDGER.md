@@ -67,14 +67,16 @@
 ---
 
 ### 5. `FUNDING_CONTRARIAN` (Batch E)
-- **Estado**: ⏸️ **DATASET_UNAVAILABLE (NO EJECUTADO)**
-- **Hipótesis**: Funding Rate extremo ($Z \ge 2.0 - 3.0$) combinado con extensión de precio ($1.5 - 2.0 \times \text{ATR}$) señala exceso de posicionamiento especulativo y precede reversiones medias.
-- **Auditoría de Datos Realizada**:
-  - Inspección de `data/historical/`: contiene únicamente series OHLCV 1H (`BTCUSDT`, `ETHUSDT`, `SOLUSDT`, `AVAXUSDT`, `LINKUSDT`, `DOTUSDT`).
-  - Inspección de `data/raw/`: contiene parquets de 90 días OHLCV.
-  - Inspección de `data/trading.db`: no contiene series de funding rates históricos multi-anuales.
-- **Resolución Automaton**:
-  - En estricto cumplimiento de la regla de no invención ni sustitución de datasets, **la estrategia NO se ejecutó ni se registró como probada o rechazada**. Queda pendiente de disponibilidad de serie histórica oficial de Funding Rate (2022-2026).
+- **Estado**: 🔴 **REJECTED (TODAS KILLED)**
+- **Mecanismo**: Reversión media 1H hacia SMA 20 tras publicación de Funding Rate 8H extremo ($Z_{\text{funding}} \ge 1.5 - 2.5$) y extensión de precio ($0.5 - 1.0 \times \text{ATR}$), con Time-Stop de 8 horas y Stop de emergencia del 3.0%.
+- **Rango de Resultados Out-of-Sample (2024 - 2026)**:
+  - Profit Factor: 0.57 - 0.61
+  - Max Drawdown: 2.3% - 8.0%
+  - Expectancy: $-1.42 a $-0.90 USD / trade
+- **Autopsia Cuantitativa**:
+  - El funding rate extremo actúa como señal de persistencia de régimen en lugar de agotamiento inmediato a 8h; los mercados pueden mantener funding extremo durante días en rallies y caídas fuertes.
+- **Veredicto**:
+  - ⛔ **NO REPETIR** reversión ciega de funding rates extremos en 8H sin filtros de agotamiento de volumen o ruptura de estructura de tendencia.
 
 ### 6. `LIQUIDATION_DERIVATIVES_REVERSAL` (DERIVATIVES_SHOCK_REVERSAL - Batch D2)
 - **Estado**: 🔴 **REJECTED (TODAS KILLED)**
