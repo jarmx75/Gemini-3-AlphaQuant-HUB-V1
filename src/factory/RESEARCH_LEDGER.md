@@ -47,3 +47,15 @@
   - El filtro de compresión previa reduce el número de trades pero los falsos rompimientos y trailing stops siguen generando expectativa negativa.
 - **Veredicto**:
   - ⛔ **NO REPETIR** rompimientos de compresión con trailing stops fijos en 4H sin filtros adicionales de régimen direccional macro.
+
+### 4. `EVENT_SHOCK_REVERSAL_1H` (EVENT_SHOCK_PROXY - Batch D)
+- **Estado**: 🔴 **REJECTED (TODAS KILLED)**
+- **Mecanismo**: Entrada en contra de velas de 1H con shock de retorno ($|Z_{\text{ret}}| \ge 2.0 - 3.0$) y pico de volumen ($Z_{\text{vol}} \ge 1.5 - 2.0$) buscando reversión hacia SMA 20 con Time-Stop máximo incondicional de 4 velas (4h).
+- **Rango de Resultados Out-of-Sample (2024 - 2026)**:
+  - Profit Factor: 0.62 - 0.72
+  - Max Drawdown: 35.2% - 51.5%
+  - Expectancy: $-1.13 a $-0.76 USD / trade
+- **Autopsia Cuantitativa**:
+  - Los shocks de precio y volumen en 1H tienden a continuar en cascada direccional a corto plazo (momentum de liquidación); la reversión a 4 barras no compensa las pérdidas en cascadas fuertes.
+- **Veredicto**:
+  - ⛔ **NO REPETIR** reversión ciega de shocks extremos en 1H sin confirmación de agotamiento en libro de órdenes o datos reales de desequilibrio de funding/liquidaciones.
