@@ -75,3 +75,19 @@
   - Inspección de `data/trading.db`: no contiene series de funding rates históricos multi-anuales.
 - **Resolución Automaton**:
   - En estricto cumplimiento de la regla de no invención ni sustitución de datasets, **la estrategia NO se ejecutó ni se registró como probada o rechazada**. Queda pendiente de disponibilidad de serie histórica oficial de Funding Rate (2022-2026).
+
+### 6. `LIQUIDATION_DERIVATIVES_REVERSAL` (DERIVATIVES_SHOCK_REVERSAL - Batch D2)
+- **Estado**: 🔴 **REJECTED (TODAS KILLED)**
+- **Mecanismo**: Reversión 1H hacia SMA 20 con Time-Stop de 4 velas y Stop de emergencia del 3.0%, activada exclusivamente por conjunción estricta de:
+  - Shock de retorno ($|Z_{\text{ret}}| \ge 2.0 - 3.0$)
+  - Shock de Open Interest ($|Z_{\Delta \text{OI}}| \ge 2.0 - 2.5$)
+  - Desequilibrio extremo de flujo Taker ($|Z_{\text{taker}}| \ge 2.0 - 2.5$)
+  - Confirmación de Funding Rate ($Z_{\text{funding}}$)
+- **Rango de Resultados Out-of-Sample (2024 - 2026)**:
+  - Profit Factor: 0.00 - 0.64
+  - Max Drawdown: 0.1% - 0.9%
+  - Expectancy: $-2.21 a $-0.77 USD / trade
+- **Autopsia Cuantitativa**:
+  - El filtro conjunto de OI y Taker Imbalance redujo falsas entradas, pero el número de trades calificados fue insuficiente (<100) y las cascadas fuertes mantuvieron expectativa negativa.
+- **Veredicto**:
+  - ⛔ **NO REPETIR** reversión de derivados con time-stops cortos en 1H sin confirmación de formación de suelo/techo en estructura de precios.
