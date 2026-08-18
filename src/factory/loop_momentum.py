@@ -26,6 +26,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.factory.generator_momentum import MomentumGenerator, MomentumCandidate
 from src.factory.validator_momentum import MomentumValidator, MomentumEvaluationResult
+from src.memory.preflight import enforce_preflight
 
 def run_momentum_batch_b():
     start_time = time.time()
@@ -33,6 +34,12 @@ def run_momentum_batch_b():
     print("🏭 INICIANDO BATCH B: STRATEGY_FAMILY = CROSS_SECTIONAL_MOMENTUM_4H")
     print("=" * 95)
     
+    # 0. PREFLIGHT CHECK
+    family_name = "CROSS_SECTIONAL_MOMENTUM_4H"
+    hypothesis = "Cross-sectional momentum 4H rankeando universo de 6 activos (Long #1, Short #6)"
+    if not enforce_preflight(family_name, hypothesis):
+        return
+        
     generator = MomentumGenerator()
     validator = MomentumValidator()
     

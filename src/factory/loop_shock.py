@@ -27,6 +27,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.factory.generator_shock import ShockGenerator, ShockCandidate
 from src.factory.validator_shock import ShockValidator, ShockEvaluationResult
+from src.memory.preflight import enforce_preflight
 
 def run_shock_batch_d():
     start_time = time.time()
@@ -34,6 +35,12 @@ def run_shock_batch_d():
     print("🏭 INICIANDO BATCH D: STRATEGY_FAMILY = EVENT_SHOCK_REVERSAL_1H (EVENT_SHOCK_PROXY)")
     print("=" * 95)
     
+    # 0. PREFLIGHT CHECK
+    family_name = "EVENT_SHOCK_REVERSAL_1H"
+    hypothesis = "Reversión media rápida tras shock extremo conjunto de retorno y volumen"
+    if not enforce_preflight(family_name, hypothesis):
+        return
+        
     generator = ShockGenerator()
     validator = ShockValidator()
     

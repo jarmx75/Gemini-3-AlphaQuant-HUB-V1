@@ -27,6 +27,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.factory.generator_volatility import VolatilityGenerator, VolatilityCandidate
 from src.factory.validator_volatility import VolatilityValidator, VolatilityEvaluationResult
+from src.memory.preflight import enforce_preflight
 
 def run_volatility_batch_c():
     start_time = time.time()
@@ -34,6 +35,12 @@ def run_volatility_batch_c():
     print("🏭 INICIANDO BATCH C: STRATEGY_FAMILY = VOLATILITY_COMPRESSION_BREAKOUT")
     print("=" * 95)
     
+    # 0. PREFLIGHT CHECK
+    family_name = "VOLATILITY_COMPRESSION_BREAKOUT"
+    hypothesis = "Rompimiento de canales Donchian condicionado a compresión previa de Bollinger Bandwidth"
+    if not enforce_preflight(family_name, hypothesis):
+        return
+        
     generator = VolatilityGenerator()
     validator = VolatilityValidator()
     

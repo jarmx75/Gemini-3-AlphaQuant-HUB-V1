@@ -18,6 +18,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 from src.factory.generator import FactoryGenerator
 from src.factory.validator import FactoryValidator
 from src.factory.killer import FactoryKiller
+from src.memory.preflight import enforce_preflight
 
 def run_factory_cycle(batch_size: int = 5):
     start_time = time.time()
@@ -25,6 +26,12 @@ def run_factory_cycle(batch_size: int = 5):
     print("🏭 INICIANDO CICLO DE FÁBRICA AUTÓNOMA (AUTOMATON FACTORY - TOKEN OPTIMIZED)")
     print("=" * 85)
     
+    # 0. PREFLIGHT CHECK
+    family_name = "MEAN_REVERSION_1H"
+    hypothesis = "Pairs trading estático con Z-score clásico de spread usando rolling window (z_entry=2, z_exit=0)"
+    if not enforce_preflight(family_name, hypothesis):
+        return
+        
     generator = FactoryGenerator()
     validator = FactoryValidator()
     killer = FactoryKiller()

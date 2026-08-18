@@ -26,6 +26,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.factory.generator_trend import TrendGenerator, TrendCandidate
 from src.factory.validator_trend import TrendValidator, TrendEvaluationResult
+from src.memory.preflight import enforce_preflight
 
 def run_trend_batch_a():
     start_time = time.time()
@@ -33,6 +34,12 @@ def run_trend_batch_a():
     print("🏭 INICIANDO BATCH A: STRATEGY_FAMILY = TREND_FOLLOWING_4H")
     print("=" * 95)
     
+    # 0. PREFLIGHT CHECK
+    family_name = "TREND_FOLLOWING_4H"
+    hypothesis = "Donchian channel breakout 4H con trailing ATR stop (N=20/30/40, k=2-3)"
+    if not enforce_preflight(family_name, hypothesis):
+        return
+        
     generator = TrendGenerator()
     validator = TrendValidator()
     

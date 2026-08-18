@@ -27,8 +27,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.factory.generator_funding_momentum import FundingMomentumGenerator, FundingMomentumCandidate
 from src.factory.validator_funding_momentum import FundingMomentumValidator, FundingMomentumEvaluationResult
-from src.memory.memory_router import AutomatonMemory
-from src.memory.preflight import MemoryPreflight
+from src.memory.preflight import enforce_preflight
 
 def run_funding_momentum_batch_f():
     start_time = time.time()
@@ -37,23 +36,12 @@ def run_funding_momentum_batch_f():
     print("=" * 95)
     
     # 0. PREFLIGHT CHECK
-    memory = AutomatonMemory()
-    preflight = MemoryPreflight(memory)
     family_name = "FUNDING_MOMENTUM_1H"
+    hypothesis = "Entrar en la dirección del funding extremo (Z>=0.5-1.5) cuando está alineado con momentum de precio a 12h-24h"
     
-    if preflight.is_family_rejected(family_name):
-        print(f"🛑 PREFLIGHT BLOCK: La familia {family_name} está marcada como REJECTED en la memoria CORE.")
-        print("⛔ No se permite repetir la ejecución de estrategias rechazadas sin cambiar el mecanismo fundamental.")
-        memory.close()
+    if not enforce_preflight(family_name, hypothesis):
         return
         
-    hypothesis = "Entrar en la dirección del funding extremo (Z>=0.5-1.5) cuando está alineado con momentum de precio a 12h-24h"
-    pf_res = preflight.check_hypothesis(family_name, hypothesis)
-    if pf_res["DUPLICATE_RISK"]:
-        print(f"⚠️ PREFLIGHT WARNING: Alto riesgo de duplicación detectado para esta hipótesis.")
-        
-    memory.close()
-    
     generator = FundingMomentumGenerator()
     validator = FundingMomentumValidator()
     

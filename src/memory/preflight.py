@@ -44,6 +44,29 @@ class MemoryPreflight:
         """
         core_records = self.memory.retriever.store.get_all_records("core_memory")
         for rec in core_records:
-            if rec.family == family and "REJECTED_CONSTRAINT" in rec.tags:
+            if (rec.family == family or family in rec.family or rec.family in family) and "REJECTED_CONSTRAINT" in rec.tags:
                 return True
         return False
+
+def enforce_preflight(family: str, hypothesis: str = "") -> bool:
+    """
+    Función obligatoria para todos los loops.
+    Retorna True si puede continuar, False si debe detenerse (MEMORY_BLOCKED).
+    """
+    memory = AutomatonMemory()
+    preflight = MemoryPreflight(memory)
+    
+    if preflight.is_family_rejected(family):
+        print(f"🛑 MEMORY_BLOCKED: La familia {family} está REJECTED en la memoria CORE.")
+        memory.close()
+        return False
+        
+    if hypothesis:
+        pf_res = preflight.check_hypothesis(family, hypothesis)
+        if pf_res["DUPLICATE_RISK"]:
+            print(f"🛑 MEMORY_BLOCKED: Alto riesgo de duplicación detectado para la hipótesis: {hypothesis}")
+            memory.close()
+            return False
+            
+    memory.close()
+    return True
