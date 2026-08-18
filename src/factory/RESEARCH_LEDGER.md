@@ -93,3 +93,15 @@
   - El filtro conjunto de OI y Taker Imbalance redujo falsas entradas, pero el número de trades calificados fue insuficiente (<100) y las cascadas fuertes mantuvieron expectativa negativa.
 - **Veredicto**:
   - ⛔ **NO REPETIR** reversión de derivados con time-stops cortos en 1H sin confirmación de formación de suelo/techo en estructura de precios.
+
+### 7. `FUNDING_MOMENTUM_1H` (Batch F)
+- **Estado**: 🔴 **REJECTED (TODAS KILLED)**
+- **Mecanismo**: Continuación direccional 1H entrando a favor de Funding Rate 8H ($Z_{\text{funding}} \ge 0.5 - 1.5$) confirmado por momentum de precio a 12h o 24h, con salida por neutralidad/inversión y Time-Stop de 24 horas.
+- **Rango de Resultados Out-of-Sample (2024 - 2026)**:
+  - Profit Factor: 0.71 - 0.94
+  - Max Drawdown: 3.6% - 18.5%
+  - Expectancy: $-0.71 a $-0.13 USD / trade
+- **Autopsia Cuantitativa**:
+  - El momentum de funding sufre de 'late entry drag': cuando el funding alcanza Z>=1.0 y el momentum de 12-24h se confirma, el movimiento ya está maduro y propenso a retrocesos inmediatos.
+- **Veredicto**:
+  - ⛔ **NO REPETIR** seguimiento de momentum de funding en 1H sin filtros de punto de entrada temprano o descuento en libro de órdenes.
