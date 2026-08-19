@@ -44,7 +44,8 @@ class MemoryPreflight:
         """
         core_records = self.memory.retriever.store.get_all_records("core_memory")
         for rec in core_records:
-            if (rec.family == family or family in rec.family or rec.family in family) and "REJECTED_CONSTRAINT" in rec.tags:
+            rec_clean = rec.family.split("(")[0].strip()
+            if (rec.family == family or rec_clean == family) and "REJECTED_CONSTRAINT" in rec.tags:
                 return True
         return False
 

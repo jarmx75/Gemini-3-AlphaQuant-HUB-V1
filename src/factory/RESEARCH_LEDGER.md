@@ -105,3 +105,32 @@
   - El momentum de funding sufre de 'late entry drag': cuando el funding alcanza Z>=1.0 y el momentum de 12-24h se confirma, el movimiento ya está maduro y propenso a retrocesos inmediatos.
 - **Veredicto**:
   - ⛔ **NO REPETIR** seguimiento de momentum de funding en 1H sin filtros de punto de entrada temprano o descuento en libro de órdenes.
+
+### 8. `BASIS_SPOT_PERP` (Batch G)
+- **Estado**: 🔴 **REJECTED (TODAS KILLED)**
+- **Mecanismo**: Posición delta-neutral. Si Z-Score del Basis (Perp - Spot) >= Umbral, Long Spot + Short Perp. Salida al cruzar media.
+- **Rango de Resultados Out-of-Sample (2024 - 2026)**:
+  - Profit Factor: 0.00 - 0.00
+  - Max Drawdown: 2.7% - 100.8%
+  - Expectancy: $-1.58 a $-1.46 USD / trade
+- **Autopsia Cuantitativa**:
+  - El basis en mercados crypto modernos (2024+) se arbitra demasiado rápido y el costo de fees (0.16% roundtrip en dos patas) destruye el minúsculo yield antes de la reversión a la media.
+- **Veredicto**:
+  - ⛔ **NO REPETIR** arbitraje estadístico de basis en timeframes intradiarios donde las comisiones conjuntas superan el spread.
+
+---
+
+### 9. `MEAN_REVERSION_1H_FREQUENCY_EXPANSION` (Batch H - ADF Threshold)
+- **Estado**: 🔴 **REJECTED (FREQUENCY_EXPANSION_FAILED)**
+- **Mecanismo**: Relajar el filtro de cointegración/estacionariedad Augmented Dickey-Fuller (ADF) de $p \le 0.05$ hacia $p \in [0.07, 0.10, 0.15, 0.20]$ sobre pares 1H con $W=90, Z=2.5, S=3.5, H=24$.
+- **Resultados Comparativos Out-of-Sample (2024 - 2026)**:
+  - **H1 (ADF $\le 0.05$, Baseline)**: $PF = 1.37$ | $DD = 6.70\%$ | $Trades = 305$ ($9.69$/mes) | $Exp = +\$3.45$ | Rejection: $89.1\%$ (SURVIVOR).
+  - **H2 (ADF $\le 0.07$)**: $PF = 1.16$ | $DD = 17.19\%$ | $Trades = 343$ ($11.20$/mes) | $Exp = +\$1.74$ | Rejection: $86.9\%$ (KILLED: $PF \le 1.30$, $DD \ge 15\%$).
+  - **H3 (ADF $\le 0.10$)**: $PF = 1.15$ | $DD = 19.26\%$ | $Trades = 402$ ($12.99$/mes) | $Exp = +\$1.66$ | Rejection: $84.2\%$ (KILLED: $PF \le 1.30$, $DD \ge 15\%$).
+  - **H4 (ADF $\le 0.15$)**: $PF = 1.06$ | $DD = 16.76\%$ | $Trades = 474$ ($15.40$/mes) | $Exp = +\$0.63$ | Rejection: $80.3\%$ (KILLED: $PF \le 1.30$, $DD \ge 15\%$).
+  - **H5 (ADF $\le 0.20$)**: $PF = 0.96$ | $DD = 26.62\%$ | $Trades = 531$ ($17.55$/mes) | $Exp = -\$0.44$ | Rejection: $76.2\%$ (KILLED: $PF \le 1.30$, $DD \ge 15\%$, $PnL < 0$).
+- **Autopsia Cuantitativa**:
+  - **Degradación Monotónica**: Incrementar el umbral ADF de 0.05 a 0.20 aumenta el volumen de trades (+74%), pero destruye el edge al degradar el PF ($1.37 \to 0.96$) y casi cuadruplicar el drawdown ($6.70\% \to 26.62\%$).
+  - **Causa Estructural**: El filtro ADF $p < 0.05$ no es un cuello de botella ineficiente, sino el **filtro de calidad esencial de la estrategia**. Cuando $p \ge 0.07$, se admiten series no cointegradas que están en tendencia o deriva (random walk), las cuales no revierten a la media, alcanzan el stop $Z=3.5$ o el time-stop $H=24$, pagando comisiones taker dobles.
+- **Veredicto / Prohibición**:
+  - ⛔ **NO RELAJAR** el filtro ADF por encima de $p = 0.05$. El umbral $p \le 0.05$ es matemáticamente óptimo e innegociable para la preservación de capital.

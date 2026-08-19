@@ -48,7 +48,7 @@ def ingest_research_log(memory: AutomatonMemory, csv_path: str):
                     tags=["HYPOTHESIS", family]
                 )
                 
-            if outcome == "REJECTED" and rejection_reason:
+            if outcome in ["REJECTED", "FREQUENCY_EXPANSION_FAILED"] and rejection_reason:
                 memory.write(
                     memory_type=MemoryType.ATOMIC,
                     family=family,
