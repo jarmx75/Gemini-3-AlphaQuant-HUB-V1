@@ -21,6 +21,7 @@ REGISTRY_PATH = PROJECT_ROOT / "src" / "factory" / "registry.json"
 
 class ExecutionMode(str, Enum):
     PAPER = "PAPER"
+    DRY_RUN = "DRY_RUN"
     DEMO = "DEMO"
     REAL = "REAL"
 
@@ -30,6 +31,7 @@ DEMO_REST_URL = "https://testnet.binancefuture.com"
 DEMO_WSS_URL = "wss://stream.binancefuture.com"
 MAINNET_REST_URL = "https://fapi.binance.com"
 MAINNET_WSS_URL = "wss://fstream.binance.com"
+LOCAL_DRY_RUN_URL = "LOCAL_DRY_RUN_NO_NETWORK"
 
 
 def mask_secret(secret: Optional[str]) -> str:
@@ -83,17 +85,22 @@ class ExecutionConfig:
     def validate_environment(self):
         """Enforces fail-closed isolation between environments."""
         # 1. Reject invalid environments
-        if self.env not in (ExecutionMode.PAPER, ExecutionMode.DEMO, ExecutionMode.REAL):
+        if self.env not in (ExecutionMode.PAPER, ExecutionMode.DRY_RUN, ExecutionMode.DEMO, ExecutionMode.REAL):
             raise ValueError(f"CRITICAL SECURITY: Invalid ExecutionMode '{self.env}'. Must fail closed.")
 
-        # 2. DEMO must strictly use Testnet URL
+        # 2. DRY_RUN is completely isolated from network
+        if self.env == ExecutionMode.DRY_RUN:
+            self.base_url = LOCAL_DRY_RUN_URL
+            self.wss_url = LOCAL_DRY_RUN_URL
+
+        # 3. DEMO must strictly use Testnet URL
         if self.env == ExecutionMode.DEMO:
             if "fapi.binance.com" in self.base_url or "api.binance.com" in self.base_url:
                 raise PermissionError("CRITICAL SECURITY BREACH: Mainnet URL detected in DEMO mode! Blocking execution.")
             self.base_url = DEMO_REST_URL
             self.wss_url = DEMO_WSS_URL
 
-        # 3. REAL is strictly guarded
+        # 4. REAL is strictly guarded
         if self.env == ExecutionMode.REAL:
             if not self.real_trading_enabled:
                 raise PermissionError("REAL TRADING BLOCKED: REAL_TRADING_ENABLED is false. Execution failed closed.")
@@ -172,7 +179,12 @@ def load_execution_config_from_env() -> ExecutionConfig:
     real_enabled = os.getenv("REAL_TRADING_ENABLED", "false").lower() == "true"
     kill_switch = os.getenv("KILL_SWITCH", "false").lower() == "true"
 
-    if mode == ExecutionMode.DEMO:
+    if mode == ExecutionMode.DRY_RUN:
+        api_key = "DRY_RUN_LOCAL_KEY"
+        api_secret = "DRY_RUN_LOCAL_SECRET"
+        base_url = LOCAL_DRY_RUN_URL
+        wss_url = LOCAL_DRY_RUN_URL
+    elif mode == ExecutionMode.DEMO:
         api_key = os.getenv("BINANCE_DEMO_KEY") or os.getenv("BINANCE_TEST_KEY") or os.getenv("BINANCE_API_KEY", "")
         api_secret = os.getenv("BINANCE_DEMO_SECRET") or os.getenv("BINANCE_TEST_SECRET") or os.getenv("BINANCE_API_SECRET", "")
         base_url = DEMO_REST_URL
