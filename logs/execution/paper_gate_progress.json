@@ -1,0 +1,91 @@
+{
+  "timestamp": "2026-08-19 03:27:11 UTC",
+  "overall_status": "PAPER_GATE_IN_PROGRESS",
+  "paper_gate_target_trades": 100,
+  "active_strategies_count": 3,
+  "strategies_progress": [
+    {
+      "strategy_id": "Pairs_Stat_Arb_Base",
+      "closed_paper_trades": 0,
+      "progress_pct": 0.0,
+      "remaining_trades": 100,
+      "first_paper_trade": null,
+      "last_paper_trade": null,
+      "paper_PnL": 0.0,
+      "paper_win_rate": 0.0,
+      "paper_PF": 0.0,
+      "paper_DD": 0.0,
+      "max_loss_streak": 0,
+      "avg_trade": 0.0,
+      "avg_holding_time_bars": 0.0,
+      "last_signal": null,
+      "days_running": 2.23,
+      "estimated_days_to_100": "INSUFFICIENT_FORWARD_DATA",
+      "gate_status": "PAPER_ACTIVE",
+      "anomaly_flags": []
+    },
+    {
+      "strategy_id": "Pairs_W90_Z2.5_S3.5_H24",
+      "closed_paper_trades": 0,
+      "progress_pct": 0.0,
+      "remaining_trades": 100,
+      "first_paper_trade": null,
+      "last_paper_trade": null,
+      "paper_PnL": 0.0,
+      "paper_win_rate": 0.0,
+      "paper_PF": 0.0,
+      "paper_DD": 0.0,
+      "max_loss_streak": 0,
+      "avg_trade": 0.0,
+      "avg_holding_time_bars": 0.0,
+      "last_signal": null,
+      "days_running": 1.54,
+      "estimated_days_to_100": "INSUFFICIENT_FORWARD_DATA",
+      "gate_status": "PAPER_ACTIVE",
+      "anomaly_flags": []
+    },
+    {
+      "strategy_id": "Pairs_W90_Z2.4_S3.5_H24",
+      "closed_paper_trades": 0,
+      "progress_pct": 0.0,
+      "remaining_trades": 100,
+      "first_paper_trade": null,
+      "last_paper_trade": null,
+      "paper_PnL": 0.0,
+      "paper_win_rate": 0.0,
+      "paper_PF": 0.0,
+      "paper_DD": 0.0,
+      "max_loss_streak": 0,
+      "avg_trade": 0.0,
+      "avg_holding_time_bars": 0.0,
+      "last_signal": null,
+      "days_running": 1.54,
+      "estimated_days_to_100": "INSUFFICIENT_FORWARD_DATA",
+      "gate_status": "PAPER_ACTIVE",
+      "anomaly_flags": []
+    }
+  ],
+  "portfolio_overlap": {
+    "overlap_Base_vs_Z2.5": {
+      "concurrent_trades": 0,
+      "overlap_pct": 0.0
+    },
+    "overlap_Base_vs_Z2.4": {
+      "concurrent_trades": 0,
+      "overlap_pct": 0.0
+    },
+    "overlap_Z2.5_vs_Z2.4": {
+      "concurrent_trades": 0,
+      "overlap_pct": 0.0
+    },
+    "total_open_trades_logged": 0,
+    "total_closed_trades_logged": 0,
+    "notes": "Report-only metric. Does not block execution."
+  },
+  "security_invariants": {
+    "APPROVED": false,
+    "DEMO_ORDERS": 0,
+    "REAL_ORDERS": 0,
+    "human_approval": "PENDING"
+  }
+}
