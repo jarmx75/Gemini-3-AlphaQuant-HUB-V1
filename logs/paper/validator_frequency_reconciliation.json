@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-08-19 03:20:43 UTC",
+  "forensic_audit_summary": {
+    "root_cause_explanation": "1. Bug in initial frequency audit script (scratch/audit_paper_frequency.py): used continuous pandas rolling regression with per-bar drifting gamma (roll_spread = y - gamma_t * x) and maxlag=1 ADF without AIC lag selection. This caused artificial non-stationarity in the rolling spread, leading to 99% false ADF rejections.\n2. Canonical Validator engine (validator.py) uses exact fixed-window gamma (spread_w = y_w - gamma * x_w) with autolag='AIC' and shift(1) prior lookback window.\n3. Reconciled true metrics: Validator OOS (2024-2026) produces exactly 304 trades (BTC/ETH: 108, AVAX/SOL: 121, LINK/DOT: 75). Full historical (2022-2026) produces 537 trades (~116.2 trades/year = 9.69 trades/month), confirming Paper Gate feasibility in ~10.3 months.",
+    "engine_comparison_table": {
+      "validator_oos_2024_2026": {
+        "BTCUSDT/ETHUSDT": 108,
+        "AVAXUSDT/SOLUSDT": 121,
+        "LINKUSDT/DOTUSDT": 75,
+        "total_trades": 304
+      },
+      "validator_full_2022_2026": {
+        "BTCUSDT/ETHUSDT": 181,
+        "AVAXUSDT/SOLUSDT": 199,
+        "LINKUSDT/DOTUSDT": 157,
+        "total_trades": 537,
+        "trades_per_year": 116.2,
+        "trades_per_month": 9.69,
+        "months_to_100_trades": 10.3
+      },
+      "initial_audit_script_flawed_trades": 50,
+      "discrepancy_explanation": "Vectorized rolling gamma drift + maxlag=1 ADF suppression in scratch script"
+    },
+    "first_trade_btc_eth": {
+      "entry_time": "2024-01-12T15:00:00.000000",
+      "exit_time": "2024-01-12T16:00:00.000000",
+      "entry_idx": 279,
+      "exit_idx": 280,
+      "side": "LONG",
+      "holding_bars": 1,
+      "net_pnl": -3.0,
+      "exit_reason": "Exit (Z=-4.38)"
+    },
+    "last_trade_btc_eth": {
+      "entry_time": "2026-08-11T14:00:00.000000",
+      "exit_time": "2026-08-11T18:00:00.000000",
+      "entry_idx": 22886,
+      "exit_idx": 22890,
+      "side": "LONG",
+      "holding_bars": 4,
+      "net_pnl": 10.41,
+      "exit_reason": "Exit (Z=-4.56)"
+    },
+    "total_btc_eth_trades_reconciled": 108
+  },
+  "verdict": "PAPER_GATE_FEASIBLE"
+}

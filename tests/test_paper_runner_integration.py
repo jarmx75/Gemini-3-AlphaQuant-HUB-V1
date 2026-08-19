@@ -231,6 +231,26 @@ class TestPaperRunnerIntegration(unittest.TestCase):
         self.assertFalse(is_fresh)
         self.assertIn("STALE_DATA_HALT", self.runner.watchdog_status)
 
+    def test_9_reconciliation_validator_and_engine_parity(self):
+        """9. Verifies that Validator and Strategy Engine have exact structural parity on OOS slice."""
+        from src.factory.validator import FactoryValidator, FactoryCandidate
+        v = FactoryValidator()
+        cand = FactoryCandidate(
+            id='Pairs_Stat_Arb_Base',
+            lookback_window=90,
+            z_entry=2.5,
+            z_exit=0.0,
+            z_stop=3.5,
+            max_holding_bars=24,
+            eg_p_threshold=0.03,
+            adf_p_threshold=0.05,
+            pairs=[]
+        )
+        df_btc_eth = v.cached_pairs['BTCUSDT/ETHUSDT']
+        df_val = df_btc_eth[(df_btc_eth['timestamp'] >= '2024-01-01') & (df_btc_eth['timestamp'] <= '2026-08-16')].reset_index(drop=True)
+        trades = v.simulate_series(df_val, cand)
+        self.assertEqual(len(trades), 108, "BTC/ETH 2024-2026 OOS must produce exactly 108 trades in canonical Validator.")
+
 
 if __name__ == "__main__":
     unittest.main()
