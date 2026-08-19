@@ -139,3 +139,8 @@ timestamp,candidate_id,train_pf,test_pf,val_pf,val_trades,val_dd_pct,kill_reason
 2026-08-19 20:00:35,Pair_BTCUSDT_DOTUSDT,0.71,1.63,1.44,69,12551.3,KILLED: Trades=69<100 | UnbalancedNominalScale
 2026-08-19 20:00:35,Pair_AVAXUSDT_DOTUSDT,0.72,1.11,1.22,95,2.7,KILLED: PF=1.22<=1.30 | Trades=95<100
 2026-08-19 20:00:35,Pair_ETHUSDT_DOTUSDT,1.10,0.57,1.31,72,242.7,KILLED: Trades=72<100 | UnbalancedNominalScale
+2026-08-19 20:07:53,Log_StatArb_W60,0.65,0.83,0.79,566,2.9,KILLED: PF=0.79<=1.30 | Exp=$-0.20<=0
+2026-08-19 20:07:53,Log_StatArb_W90,0.74,0.71,0.82,395,2.0,KILLED: PF=0.82<=1.30 | Exp=$-0.17<=0
+2026-08-19 20:07:53,Log_StatArb_W120,0.67,0.66,0.76,350,2.4,KILLED: PF=0.76<=1.30 | Exp=$-0.26<=0
+2026-08-19 20:07:53,Log_StatArb_W180,1.07,0.70,0.82,248,1.4,KILLED: PF=0.82<=1.30 | Exp=$-0.21<=0
+2026-08-19 20:07:53,Log_StatArb_W240,1.19,0.85,1.02,223,0.7,KILLED: PF=1.02<=1.30

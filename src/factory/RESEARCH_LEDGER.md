@@ -151,3 +151,20 @@
   - **Dilución del Portafolio**: Incorporar estos pares al portafolio base no aumenta el rendimiento ajustado por riesgo, sino que diluye el Profit Factor agregado ($1.37 \to 0.95$) e introduce arrastre negativo de comisiones.
 - **Veredicto / Prohibición**:
   - ⛔ **NO AÑADIR** pares cruzados de altcoins/mega-caps al universo de trading sin un filtro previo de cointegración de largo plazo (Engle-Granger macro $\ge 1\text{ año}$) o sin activos de idéntico sector/ecosistema. El portafolio base de 3 pares (`BTC/ETH`, `AVAX/SOL`, `LINK/DOT`) permanece como el único universo cuantitativamente sólido.
+
+---
+
+### 11. `LOG_DOLLAR_NEUTRAL_STAT_ARB_1H` (Batch J - Log-Price Dollar-Neutral)
+- **Estado**: 🔴 **REJECTED (LOG_DOLLAR_NEUTRAL_STAT_ARB_REJECTED)**
+- **Mecanismo**: Arbitraje estadístico en log-precios ($y = \ln P_y, x = \ln P_x$), hedge ratio $\beta = \text{Cov}(x, y)/\text{Var}(x)$, spread logarítmico $s = y - \beta x$, y dimensionamiento delta-neutral en dólares ($\text{notional}_y = \$150, \text{notional}_x = |\beta| \cdot \$150$) evaluado en 5 ventanas lookback ($W \in [60, 90, 120, 180, 240]$) sobre 5 pares asimétricos (`BTC/DOT`, `ETH/DOT`, `BTC/SOL`, `ETH/AVAX`, `BTC/AVAX`).
+- **Resultados Comparativos Out-of-Sample (2024 - 2026)**:
+  - **J1 ($W=60$)**: $PF = 0.79$ | $DD = 2.90\%$ | $Trades = 566$ ($20.38$/mes) | $Exp = -\$0.20$ | $\beta \in [-0.78, 2.54]$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **J2 ($W=90$)**: $PF = 0.82$ | $DD = 1.95\%$ | $Trades = 395$ ($14.22$/mes) | $Exp = -\$0.17$ | $\beta \in [-0.46, 2.46]$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **J3 ($W=120$)**: $PF = 0.76$ | $DD = 2.36\%$ | $Trades = 350$ ($11.56$/mes) | $Exp = -\$0.26$ | $\beta \in [-0.38, 2.03]$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **J4 ($W=180$)**: $PF = 0.82$ | $DD = 1.37\%$ | $Trades = 248$ ($8.21$/mes) | $Exp = -\$0.21$ | $\beta \in [-0.28, 1.77]$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **J5 ($W=240$)**: $PF = 1.02$ | $DD = 0.70\%$ | $Trades = 223$ ($7.12$/mes) | $Exp = +\$0.02$ | $\beta \in [-0.41, 1.75]$ (KILLED: $PF = 1.02 \le 1.30$).
+- **Autopsia Cuantitativa**:
+  - **Éxito en Normalización de Sizing**: La formulación logarítmica resolvió completamente el problema de escala nominal de $\gamma$ (las betas se mantuvieron en el rango acotado de $0.50$ a $0.55$, el drawdown se redujo a $< 3.0\%$ y no hubo explosión de comisiones).
+  - **Falta de Cointegración Fundamental**: A pesar del dimensionamiento matemáticamente exacto, las series entre activos no homogéneos carecen de un mecanismo económico de reversión a la media. Los spreads sufren de 'random walk drift' y la fricción de comisiones ($0.16\%$) destruye el valor esperado en todas las ventanas lookback ($PF \le 1.02$).
+- **Veredicto / Prohibición**:
+  - ⛔ **NO UTILIZAR** modelos de arbitraje estadístico (incluso log-dollar-neutral) sobre pares cruzados sin cointegración estructural económica demostrable.
