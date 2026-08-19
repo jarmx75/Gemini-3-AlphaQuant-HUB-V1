@@ -45,11 +45,15 @@ def compute_paper_metrics_from_df(df_trades: pd.DataFrame) -> Dict[str, Any]:
             "last_trade": None,
         }
 
-    # Ensure net_pnl column
-    pnl_col = 'net_pnl' if 'net_pnl' in df_trades.columns else 'pnl_neto_usdt'
-    if pnl_col not in df_trades.columns:
+    # Filter for closed trades if action column exists
+    if 'action' in df_trades.columns:
+        df_closed = df_trades[df_trades['action'] == 'CLOSE'].copy()
+    else:
+        df_closed = df_trades.copy()
+
+    if df_closed.empty or len(df_closed) == 0:
         return {
-            "paper_trades": len(df_trades),
+            "paper_trades": 0,
             "paper_win_rate": 0.0,
             "paper_PnL": 0.0,
             "paper_PF": 0.0,
@@ -61,20 +65,44 @@ def compute_paper_metrics_from_df(df_trades: pd.DataFrame) -> Dict[str, Any]:
             "last_trade": None,
         }
 
-    df_trades[pnl_col] = pd.to_numeric(df_trades[pnl_col], errors='coerce').fillna(0.0)
-    total_trades = len(df_trades)
-    wins = df_trades[df_trades[pnl_col] > 0]
-    losses = df_trades[df_trades[pnl_col] <= 0]
+    # Identify pnl column
+    if 'pnl' in df_closed.columns:
+        pnl_col = 'pnl'
+    elif 'net_pnl' in df_closed.columns:
+        pnl_col = 'net_pnl'
+    elif 'pnl_neto_usdt' in df_closed.columns:
+        pnl_col = 'pnl_neto_usdt'
+    else:
+        pnl_col = None
+
+    if not pnl_col:
+        return {
+            "paper_trades": len(df_closed),
+            "paper_win_rate": 0.0,
+            "paper_PnL": 0.0,
+            "paper_PF": 0.0,
+            "paper_DD": 0.0,
+            "avg_slippage_bps": 0.0,
+            "avg_latency_ms": 0.0,
+            "max_loss_streak": 0,
+            "last_signal": None,
+            "last_trade": None,
+        }
+
+    df_closed[pnl_col] = pd.to_numeric(df_closed[pnl_col], errors='coerce').fillna(0.0)
+    total_trades = len(df_closed)
+    wins = df_closed[df_closed[pnl_col] > 0]
+    losses = df_closed[df_closed[pnl_col] <= 0]
 
     win_rate = round((len(wins) / total_trades) * 100.0, 2) if total_trades > 0 else 0.0
-    net_pnl = round(float(df_trades[pnl_col].sum()), 2)
+    net_pnl = round(float(df_closed[pnl_col].sum()), 2)
 
     gross_win = float(wins[pnl_col].sum()) if not wins.empty else 0.0
     gross_loss = abs(float(losses[pnl_col].sum())) if not losses.empty else 0.0
     pf = round(gross_win / gross_loss, 2) if gross_loss > 0 else (99.0 if gross_win > 0 else 0.0)
 
     # Drawdown calculation
-    cum_pnl = df_trades[pnl_col].cumsum()
+    cum_pnl = df_closed[pnl_col].cumsum()
     peak = cum_pnl.cummax()
     drawdown = peak - cum_pnl
     max_dd = round(float(drawdown.max()), 2) if not drawdown.empty else 0.0
@@ -82,7 +110,7 @@ def compute_paper_metrics_from_df(df_trades: pd.DataFrame) -> Dict[str, Any]:
     # Max loss streak
     loss_streak = 0
     max_loss_streak = 0
-    for pnl in df_trades[pnl_col]:
+    for pnl in df_closed[pnl_col]:
         if pnl <= 0:
             loss_streak += 1
             if loss_streak > max_loss_streak:
@@ -91,8 +119,8 @@ def compute_paper_metrics_from_df(df_trades: pd.DataFrame) -> Dict[str, Any]:
             loss_streak = 0
 
     # Last trade info
-    last_row = df_trades.iloc[-1]
-    last_trade_time = str(last_row.get('exit_time', last_row.get('fecha_cierre', 'N/A')))
+    last_row = df_closed.iloc[-1]
+    last_trade_time = str(last_row.get('timestamp', last_row.get('exit_time', last_row.get('fecha_cierre', 'N/A'))))
     last_trade_pnl = float(last_row.get(pnl_col, 0.0))
 
     return {

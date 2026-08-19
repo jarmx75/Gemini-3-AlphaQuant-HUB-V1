@@ -11,6 +11,7 @@ Verifies:
 
 import unittest
 import os
+import time
 import json
 import tempfile
 import pandas as pd
@@ -187,6 +188,48 @@ class TestPaperRunnerIntegration(unittest.TestCase):
             # Must reflect real paper log count (0 in production without live closed trades), NOT backtest (>300)
             self.assertEqual(strat_data["paper_trades"], 0, "Demo readiness must not conflate backtest trades with paper trades.")
             self.assertEqual(strat_data["gate_status"], "PAPER_GATE_PENDING")
+
+
+    def test_7_position_state_persists_across_restarts(self):
+        """7. Verifies that open paper positions are saved and restored across runner restarts."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            temp_state = Path(tmpdir) / "test_positions.json"
+            self.runner.state_file_path = temp_state
+
+            pos_key = ("Pairs_Stat_Arb_Base", "BTCUSDT/ETHUSDT")
+            self.runner.open_paper_positions[pos_key] = {
+                'position_id': "pos_test_123",
+                'strategy_id': "Pairs_Stat_Arb_Base",
+                'pair': "BTCUSDT/ETHUSDT",
+                'side': "LONG_SPREAD",
+                'entry_y': 60000.0,
+                'entry_x': 3000.0,
+                'gamma': 20.0,
+                'z_entry': 2.55,
+                'entry_time': "2026-08-18 12:00:00",
+                'entry_timestamp': 1785500000,
+                'entry_fee': 0.12,
+                'reason': "Persistence Test"
+            }
+            self.runner.save_position_state()
+            self.assertTrue(temp_state.exists())
+
+            # Create new runner instance and load state
+            new_runner = PairsTradingPaperRunner(use_binance_client=False)
+            new_runner.state_file_path = temp_state
+            new_runner.load_position_state()
+
+            self.assertIn(pos_key, new_runner.open_paper_positions)
+            loaded_pos = new_runner.open_paper_positions[pos_key]
+            self.assertEqual(loaded_pos["position_id"], "pos_test_123")
+            self.assertEqual(loaded_pos["z_entry"], 2.55)
+
+    def test_8_watchdog_detects_stale_market_data(self):
+        """8. Verifies that watchdog halts new entries if market data latency exceeds 30m buffer."""
+        self.runner.last_market_timestamp_unix = time.time() - 7200.0  # 2 hours old
+        is_fresh = self.runner.check_market_data_freshness()
+        self.assertFalse(is_fresh)
+        self.assertIn("STALE_DATA_HALT", self.runner.watchdog_status)
 
 
 if __name__ == "__main__":
