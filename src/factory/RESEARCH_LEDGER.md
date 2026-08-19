@@ -134,3 +134,20 @@
   - **Causa Estructural**: El filtro ADF $p < 0.05$ no es un cuello de botella ineficiente, sino el **filtro de calidad esencial de la estrategia**. Cuando $p \ge 0.07$, se admiten series no cointegradas que están en tendencia o deriva (random walk), las cuales no revierten a la media, alcanzan el stop $Z=3.5$ o el time-stop $H=24$, pagando comisiones taker dobles.
 - **Veredicto / Prohibición**:
   - ⛔ **NO RELAJAR** el filtro ADF por encima de $p = 0.05$. El umbral $p \le 0.05$ es matemáticamente óptimo e innegociable para la preservación de capital.
+
+---
+
+### 10. `MEAN_REVERSION_1H_UNIVERSE_EXPANSION` (Batch I - Universe Expansion)
+- **Estado**: 🔴 **REJECTED (UNIVERSE_EXPANSION_FAILED)**
+- **Mecanismo**: Búsqueda sistemática de nuevos pares cointegrados entre los 12 pares restantes del universo (`BTC`, `ETH`, `SOL`, `AVAX`, `LINK`, `DOT`), seleccionando en TRAIN (2022-2023) los 5 pares con mayor correlación y señales ADF ($ADF \le 0.05$): `ETH/AVAX`, `BTC/SOL`, `BTC/DOT`, `AVAX/DOT`, `ETH/DOT`.
+- **Resultados Out-of-Sample (2024 - 2026)**:
+  - **ETHUSDT/AVAXUSDT**: $PF = 0.80$ | $DD = 120.4\%$ | $Trades = 83$ | $Exp = -\$38.85$ (KILLED: $PF \le 1.30, Trades < 100$).
+  - **BTCUSDT/SOLUSDT**: $PF = 0.77$ | $DD = 195.3\%$ | $Trades = 97$ | $Exp = -\$97.69$ (KILLED: $PF \le 1.30, Trades < 100$).
+  - **BTCUSDT/DOTUSDT**: $PF = 1.44$ | $Trades = 69$ ($< 100$) | Distorsión de escala nominal $BTC/DOT$ $\gamma \approx 5000$ (KILLED: $Trades < 100$).
+  - **AVAXUSDT/DOTUSDT**: $PF = 1.22$ | $DD = 2.7\%$ | $Trades = 95$ | $Exp = +\$1.45$ (KILLED: $PF \le 1.30, Trades < 100$).
+  - **ETHUSDT/DOTUSDT**: $PF = 1.31$ | $Trades = 72$ ($< 100$) | Distorsión nominal (KILLED: $Trades < 100$).
+- **Autopsia Cuantitativa de Portafolio**:
+  - **Deriva Estructural de Beta Inter-Capa**: Los pares cross-ecosystem (L1 vs DeFi o Altcoin vs Mega-Cap como `BTC/SOL` o `ETH/AVAX`) sufren de divergencias de régimen macro asimétricas en 2024–2026 (e.g. solapamiento de narrativas donde SOL multiplicó por 10x frente a BTC/ETH). Esto rompe la estabilidad del residual cointegrado $y - \gamma x$ en ventanas de 90 barras.
+  - **Dilución del Portafolio**: Incorporar estos pares al portafolio base no aumenta el rendimiento ajustado por riesgo, sino que diluye el Profit Factor agregado ($1.37 \to 0.95$) e introduce arrastre negativo de comisiones.
+- **Veredicto / Prohibición**:
+  - ⛔ **NO AÑADIR** pares cruzados de altcoins/mega-caps al universo de trading sin un filtro previo de cointegración de largo plazo (Engle-Granger macro $\ge 1\text{ año}$) o sin activos de idéntico sector/ecosistema. El portafolio base de 3 pares (`BTC/ETH`, `AVAX/SOL`, `LINK/DOT`) permanece como el único universo cuantitativamente sólido.
