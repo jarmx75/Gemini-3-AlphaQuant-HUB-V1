@@ -9,7 +9,7 @@ import sys
 import json
 import logging
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any, List
 import pandas as pd
 import numpy as np
@@ -180,7 +180,7 @@ def audit_paper_readiness() -> Dict[str, Any]:
         }
 
     report = {
-        "timestamp": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
         "total_active_paper_strategies": len(active_strategies),
         "overall_demo_gate_passed": overall_eligible,
         "demo_gate_rule": "paper_trades >= 100 per strategy",

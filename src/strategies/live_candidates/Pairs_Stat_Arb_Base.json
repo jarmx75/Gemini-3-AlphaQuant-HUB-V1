@@ -1,0 +1,21 @@
+{
+  "id": "Pairs_Stat_Arb_Base",
+  "family": "MEAN_REVERSION_1H",
+  "lookback_window": 90,
+  "z_entry": 2.5,
+  "z_exit": 0.0,
+  "z_stop": 3.5,
+  "max_holding_bars": 24,
+  "adf_p_threshold": 0.05,
+  "metrics": {
+    "val_pf": 1.6,
+    "val_expectancy": 4.77,
+    "val_dd_pct": 6.75,
+    "val_trades": 313,
+    "val_win_rate": 48.9,
+    "val_net_pnl": 1491.59
+  },
+  "promoted_at": "2026-08-16 22:00:00",
+  "status": "PAPER_ACTIVE",
+  "human_approval": "PENDING (Write 'APPROVED' manually to allow Binance Demo/Real)"
+}
