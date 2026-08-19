@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-19 03:27:11 UTC",
+  "timestamp": "2026-08-19 19:32:04 UTC",
   "overall_status": "PAPER_GATE_IN_PROGRESS",
   "paper_gate_target_trades": 100,
   "active_strategies_count": 3,
@@ -19,7 +19,7 @@
       "avg_trade": 0.0,
       "avg_holding_time_bars": 0.0,
       "last_signal": null,
-      "days_running": 2.23,
+      "days_running": 2.9,
       "estimated_days_to_100": "INSUFFICIENT_FORWARD_DATA",
       "gate_status": "PAPER_ACTIVE",
       "anomaly_flags": []
@@ -39,7 +39,7 @@
       "avg_trade": 0.0,
       "avg_holding_time_bars": 0.0,
       "last_signal": null,
-      "days_running": 1.54,
+      "days_running": 2.21,
       "estimated_days_to_100": "INSUFFICIENT_FORWARD_DATA",
       "gate_status": "PAPER_ACTIVE",
       "anomaly_flags": []
@@ -59,7 +59,7 @@
       "avg_trade": 0.0,
       "avg_holding_time_bars": 0.0,
       "last_signal": null,
-      "days_running": 1.54,
+      "days_running": 2.21,
       "estimated_days_to_100": "INSUFFICIENT_FORWARD_DATA",
       "gate_status": "PAPER_ACTIVE",
       "anomaly_flags": []
