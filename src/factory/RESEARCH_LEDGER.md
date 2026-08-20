@@ -203,3 +203,21 @@
   - **Fricción Arancelaria**: La fricción de comisiones ($0.16\%$) y slippage ($0.02\%$) totaliza $\$0.54$ por trade, transformando retornos brutos casi nulos ($\pm 0.05\%$) en pérdidas sistemáticas en todos los sectores.
 - **Veredicto / Prohibición**:
   - ⛔ **NO PERMITIR** estrategias de compra ciega de gaps bajistas en índices/ETFs de acciones sin filtros de régimen direccional macro (e.g. VIX, estacionalidad, o confirmación de order flow en la primera hora de mercado).
+
+---
+
+### 14. `CROSS_ASSET_TSMOM_1D` (Batch M - Cross-Asset Time Series Momentum)
+- **Estado**: 🟢 **SURVIVORS_FOUND (PAPER_CANDIDATE/PENDING)**
+- **Mecanismo**: Estrategia de seguimiento de tendencia diario multi-activo (TSMOM) sobre 8 ETFs líquidos (`SPY`, `QQQ`, `IWM`, `XLF`, `XLK`, `XLE`, `GLD`, `TLT`), tomando posición LONG si el retorno a $N$ días $R_{N, t} > 0$ y CASH si $R_{N, t} \le 0$, con ponderación por paridad de volatilidad inversa a 20 días ($\tilde{w}_i \propto 1/\sigma_{20\text{d}}$) y cap máximo del $25\%$ por activo. Rebalanceo diario al cierre ejecutado en $t+1$.
+- **Resultados Comparativos Out-of-Sample (2024 - 2026)**:
+  - **M1 ($N=21\text{d}$, 1 mes)**: $PF = 1.64$ | $DD = 9.91\%$ | $Trades = 271$ ($95.2$/año) | $Exp = +\$4.92$ | $\text{Net PnL} = +\$1,449.25$ USD | $WR = 36.2\%$ (✅ **PASSED: SURVIVOR**).
+  - **M2 ($N=63\text{d}$, 3 meses)**: $PF = 2.98$ | $DD = 6.55\%$ | $Trades = 127$ ($47.4$/año) | $Exp = +\$14.53$ | $\text{Net PnL} = +\$2,130.25$ USD | $WR = 41.7\%$ (✅ **PASSED: SURVIVOR**).
+  - **M3 ($N=126\text{d}$, 6 meses)**: $PF = 3.26$ | $DD = 9.71\%$ | $Trades = 94$ ($35.5$/año) | $Exp = +\$18.29$ | $\text{Net PnL} = +\$1,943.52$ USD (🔴 **KILLED: Trades=94<100**).
+  - **M4 ($N=189\text{d}$, 9 meses)**: $PF = 5.05$ | $DD = 11.24\%$ | $Trades = 82$ ($27.7$/año) | $Exp = +\$28.61$ | $\text{Net PnL} = +\$2,865.60$ USD (🔴 **KILLED: Trades=82<100**).
+  - **M5 ($N=252\text{d}$, 12 meses)**: $PF = 6.71$ | $DD = 12.47\%$ | $Trades = 53$ ($17.7$/año) | $Exp = +\$45.64$ | $\text{Net PnL} = +\$2,975.62$ USD (🔴 **KILLED: Trades=53<100**).
+- **Análisis Cuantitativo y de Robustez**:
+  - **Edge Persistente y Escalable**: A diferencia de los modelos de reversión a la media intradía, el seguimiento de tendencia a horizontes de 1 a 3 meses ($N=21\text{d}$ y $N=63\text{d}$) captura las grandes tendencias macroeconómicas de equities (`SPY`, `QQQ`, `XLK`, `XLF`) y oro (`GLD`), mientras rota automáticamente hacia CASH cuando la renta fija (`TLT`) o activos cíclicos entran en régimen bajista.
+  - **Diversificación de PnL por Activo**: Las ganancias en M1 y M2 provienen de múltiples clases de activos no correlacionadas (`GLD` $+\$557$, `SPY` $+\$403$, `QQQ` $+\$293$, `XLK` $+\$288$, `IWM` $+\$265$, `XLF` $+\$206$). No hay concentración en un solo ETF.
+  - **Descorrelación Ortogonal con Crypto**: La correlación de los retornos diarios de TSMOM con las estrategias intradía de pares crypto es virtualmente nula ($\rho \approx 0.02 - 0.05$), ofreciendo una fuente genuina de diversificación de portafolio.
+- **Estado de Promoción**:
+  - 🟢 **`TSMOM_1D_M1_N21`** y **`TSMOM_1D_M2_N63`** quedan registradas como **`PAPER_CANDIDATE/PENDING`** para futura expansión de paper trading multiactivo. No se activan en Demo ni Real.

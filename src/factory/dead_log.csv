@@ -154,3 +154,6 @@ timestamp,candidate_id,train_pf,test_pf,val_pf,val_trades,val_dd_pct,kill_reason
 2026-08-20 01:59:02,EquityGap_L3_Thresh1.25,1.04,0.50,0.93,255,2.4,KILLED: PF=0.93<=1.30 | Exp=$-0.13<=0
 2026-08-20 01:59:02,EquityGap_L4_Thresh1.50,1.13,0.99,0.90,167,2.4,KILLED: PF=0.90<=1.30 | Exp=$-0.21<=0
 2026-08-20 01:59:02,EquityGap_L5_Thresh2.00,1.32,1.39,0.61,91,2.4,KILLED: PF=0.61<=1.30 | Trades=91<100 | Exp=$-1.04<=0
+2026-08-20 02:05:17,TSMOM_1D_M3_N126,2.00,3.76,3.26,94,9.7,KILLED: Trades=94<100
+2026-08-20 02:05:17,TSMOM_1D_M4_N189,2.12,8.54,5.05,82,11.2,KILLED: Trades=82<100
+2026-08-20 02:05:17,TSMOM_1D_M5_N252,3.07,11.46,6.71,53,12.5,KILLED: Trades=53<100
