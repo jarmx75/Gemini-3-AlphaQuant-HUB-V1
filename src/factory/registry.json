@@ -3,6 +3,8 @@
     {
       "id": "Pairs_Stat_Arb_Base",
       "family": "MEAN_REVERSION_1H",
+      "market": "CRYPTO_FUTURES",
+      "broker": "BINANCE",
       "lookback_window": 90,
       "z_entry": 2.5,
       "z_exit": 0.0,
@@ -24,6 +26,8 @@
     {
       "id": "Pairs_W90_Z2.5_S3.5_H24",
       "family": "MEAN_REVERSION_1H",
+      "market": "CRYPTO_FUTURES",
+      "broker": "BINANCE",
       "lookback_window": 90,
       "z_entry": 2.5,
       "z_exit": 0.0,
@@ -46,6 +50,8 @@
     {
       "id": "Pairs_W90_Z2.4_S3.5_H24",
       "family": "MEAN_REVERSION_1H",
+      "market": "CRYPTO_FUTURES",
+      "broker": "BINANCE",
       "lookback_window": 90,
       "z_entry": 2.4,
       "z_exit": 0.0,
@@ -66,7 +72,7 @@
       "human_approval": "PENDING (Write 'APPROVED' manually to allow Binance Demo/Real)"
     }
   ],
-  "paper_candidate_strategies": [
+  "active_equity_paper_strategies": [
     {
       "id": "TSMOM_1D_M1_N21",
       "family": "CROSS_ASSET_TSMOM_1D",
@@ -86,9 +92,9 @@
         "val_win_rate": 36.2,
         "val_net_pnl": 1449.25
       },
-      "promoted_at": "2026-08-20 02:05:00",
-      "status": "PAPER_CANDIDATE",
-      "human_approval": "PENDING"
+      "promoted_at": "2026-08-20 02:13:00",
+      "status": "PAPER_ACTIVE",
+      "human_approval": "PENDING (Write 'APPROVED' manually to allow Alpaca Live)"
     },
     {
       "id": "TSMOM_1D_M2_N63",
@@ -109,9 +115,9 @@
         "val_win_rate": 41.7,
         "val_net_pnl": 2130.25
       },
-      "promoted_at": "2026-08-20 02:05:00",
-      "status": "PAPER_CANDIDATE",
-      "human_approval": "PENDING"
+      "promoted_at": "2026-08-20 02:13:00",
+      "status": "PAPER_ACTIVE",
+      "human_approval": "PENDING (Write 'APPROVED' manually to allow Alpaca Live)"
     }
   ],
   "human_approved_real_strategies": []

@@ -14,6 +14,7 @@ import time
 import uuid
 import logging
 import requests
+from pathlib import Path
 from typing import Dict, Any, List, Optional
 
 logger = logging.getLogger(__name__)
@@ -57,6 +58,8 @@ class AlpacaPaperBroker:
         self.portfolio_value = initial_cash
         self.mock_positions: Dict[str, Dict[str, Any]] = {}
         self.mock_orders: Dict[str, Dict[str, Any]] = {}
+        self.mock_state_file = Path(__file__).resolve().parent.parent.parent / "logs" / "execution" / "mock_broker_alpaca.json"
+        self._load_mock_state()
         self.mock_prices: Dict[str, float] = {
             "SPY": 550.0,
             "QQQ": 480.0,
@@ -67,6 +70,30 @@ class AlpacaPaperBroker:
             "GLD": 230.0,
             "TLT": 95.0
         }
+
+    def _load_mock_state(self):
+        if self.mock_mode and self.mock_state_file.exists():
+            try:
+                import json
+                with open(self.mock_state_file, "r") as f:
+                    data = json.load(f)
+                self.cash = data.get("cash", self.cash)
+                self.mock_positions = data.get("mock_positions", {})
+            except Exception:
+                pass
+
+    def _save_mock_state(self):
+        if self.mock_mode:
+            try:
+                import json
+                self.mock_state_file.parent.mkdir(parents=True, exist_ok=True)
+                with open(self.mock_state_file, "w") as f:
+                    json.dump({
+                        "cash": self.cash,
+                        "mock_positions": self.mock_positions
+                    }, f, indent=2)
+            except Exception:
+                pass
 
     def _enforce_security_constraints(self):
         """Validates that under no circumstances is live trading URL or live environment allowed."""
@@ -197,6 +224,7 @@ class AlpacaPaperBroker:
                 "filled_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
             }
             self.mock_orders[cid] = order_data
+            self._save_mock_state()
             logger.info(f"⚡ [ALPACA PAPER MOCK FILL] {side_norm.upper()} {qty} {symbol} @ ${price:.2f} USD (Cash: ${self.cash:.2f})")
             return order_data
 

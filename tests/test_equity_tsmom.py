@@ -95,19 +95,19 @@ class TestEquityTSMOM(unittest.TestCase):
         self.assertEqual(orders[0]["symbol"], "TLT")
 
     def test_5_registry_mapping_for_m1_and_m2(self):
-        """5. Verifies TSMOM M1 and M2 are registered as PAPER_CANDIDATE in registry.json."""
+        """5. Verifies TSMOM M1 and M2 are registered in registry.json."""
         self.assertTrue(REGISTRY_PATH.exists(), "registry.json must exist")
         with open(REGISTRY_PATH, "r") as f:
             data = json.load(f)
 
-        candidates = data.get("paper_candidate_strategies", [])
-        cand_ids = [c["id"] for c in candidates]
+        equity_strats = data.get("active_equity_paper_strategies", []) + data.get("paper_candidate_strategies", [])
+        cand_ids = [c["id"] for c in equity_strats]
         self.assertIn("TSMOM_1D_M1_N21", cand_ids)
         self.assertIn("TSMOM_1D_M2_N63", cand_ids)
 
-        for c in candidates:
-            self.assertEqual(c["status"], "PAPER_CANDIDATE")
-            self.assertEqual(c["human_approval"], "PENDING")
+        for c in equity_strats:
+            self.assertIn(c["status"], ["PAPER_CANDIDATE", "PAPER_ACTIVE"])
+            self.assertIn("PENDING", c["human_approval"])
             self.assertEqual(c["market"], "US_EQUITY_ETF")
             self.assertEqual(c["broker"], "ALPACA")
             self.assertEqual(c["paper_gate"], 100)

@@ -146,7 +146,7 @@ class PairsTradingPaperRunner:
         active_strats = registry_data.get("active_paper_strategies", [])
         for s in active_strats:
             strat_id = s.get("id")
-            if strat_id:
+            if strat_id and ("z_entry" in s or s.get("family") == "MEAN_REVERSION_1H"):
                 adapter = StrategyAdapter(s)
                 self.adapters[strat_id] = adapter
                 self.last_signal_by_strategy[strat_id] = None
