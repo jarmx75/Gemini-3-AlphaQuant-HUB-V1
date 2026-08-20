@@ -118,6 +118,18 @@ class TestAlpacaPaperBroker(unittest.TestCase):
         self.assertEqual(eq_data["broker"], "ALPACA_PAPER_MOCK")
         self.assertTrue(eq_data["total_trades"] > 0)
 
+    def test_7_missing_credentials_fails_closed_in_live_paper_mode(self):
+        """7. Verifies that mock_mode=False without API keys raises ALPACA_PAPER_NOT_CONFIGURED."""
+        with self.assertRaises(ValueError) as ctx:
+            AlpacaPaperBroker(
+                base_url=ALPACA_PAPER_BASE_URL,
+                environment="ALPACA_PAPER",
+                mock_mode=False,
+                api_key="",
+                secret_key=""
+            )
+        self.assertIn("ALPACA_PAPER_NOT_CONFIGURED", str(ctx.exception))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -127,6 +127,7 @@ class TestEquityPaperRunner(unittest.TestCase):
             positions_file=self.equity_positions,
             health_file=self.equity_health
         )
+        runner.broker_mode = "ALPACA_PAPER_FORWARD"
 
         # Open position
         runner._update_position_and_log_trades("TSMOM_1D_M1_N21", "SPY", "BUY", 2.0, 500.0, "ord_buy_1")

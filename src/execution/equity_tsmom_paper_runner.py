@@ -1,14 +1,14 @@
 """
-Equity TSMOM Paper Runner (Alpaca Paper Trading)
-Forward paper execution engine for US Equity ETF Time Series Momentum strategies (M1 & M2).
+Equity TSMOM Paper Runner (Alpaca Paper Trading / Mock Simulation)
+Forward execution engine for US Equity ETF Time Series Momentum strategies (M1 & M2).
 
 STRICT SECURITY INVARIANTS:
 1. ENVIRONMENT == 'ALPACA_PAPER' strictly enforced.
 2. Alpaca Paper REST endpoint (https://paper-api.alpaca.markets) strictly enforced.
 3. Any live endpoint (https://api.alpaca.markets) raises SecurityViolationError and terminates immediately.
 4. APPROVED=false, DEMO_ORDERS=0, REAL_ORDERS=0, ALPACA_LIVE_ORDERS=0 preserved.
-5. Real forward paper trades logged to logs/paper/bitacora_equity_tsmom_paper.csv.
-6. Independent paper gate = 100 closed trades per strategy.
+5. If Alpaca credentials are absent, mode is explicitly marked MOCK_ONLY.
+6. Real forward paper trades logged to logs/paper/bitacora_equity_tsmom_paper.csv.
 """
 
 import os
@@ -49,20 +49,19 @@ EQUITY_HEALTH_FILE = LOGS_PAPER_DIR / "equity_runner_health.json"
 
 class EquityTSMOMPaperRunner:
     """
-    Production-grade Paper Runner executing daily TSMOM rebalancing across US Equity ETFs.
+    Execution engine for daily TSMOM rebalancing across US Equity ETFs.
     """
 
     def __init__(
         self,
         broker: Optional[AlpacaPaperBroker] = None,
-        mock_mode: bool = True,
+        mock_mode: Optional[bool] = None,
         initial_capital: float = 100000.0,
         registry_path: Optional[Path] = None,
         csv_log_path: Optional[Path] = None,
         positions_file: Optional[Path] = None,
         health_file: Optional[Path] = None
     ):
-        self.mock_mode = mock_mode
         self.initial_capital = initial_capital
         self.registry_path = Path(registry_path or REGISTRY_PATH)
         self.csv_log_path = Path(csv_log_path or EQUITY_CSV_LOG)
@@ -72,27 +71,51 @@ class EquityTSMOMPaperRunner:
         # 1. Preflight Enforce
         self._preflight_check()
 
-        # 2. Broker Initialization & Security Enforcement
+        # 2. Detect Credentials and Broker Mode
+        has_paper_keys = bool(
+            os.getenv("ALPACA_PAPER_API_KEY") or os.getenv("APCA_API_KEY_ID")
+        ) and bool(
+            os.getenv("ALPACA_PAPER_SECRET_KEY") or os.getenv("APCA_API_SECRET_KEY")
+        )
+
+        if mock_mode is not None:
+            self.mock_mode = mock_mode
+        else:
+            self.mock_mode = not has_paper_keys
+
+        if self.mock_mode:
+            self.broker_mode = "MOCK_ONLY"
+            if not has_paper_keys:
+                logger.info("ℹ️ [ALPACA PAPER] No API keys detected. Running in MOCK_ONLY mode.")
+        else:
+            self.broker_mode = "ALPACA_PAPER_FORWARD"
+            logger.info("⚡ [ALPACA PAPER] Authenticated paper trading credentials detected.")
+
+        # 3. Broker Initialization & Security Enforcement
         if broker:
             self.broker = broker
+            self.broker_mode = broker.broker_mode
         else:
             self.broker = AlpacaPaperBroker(
                 base_url=ALPACA_PAPER_BASE_URL,
                 environment="ALPACA_PAPER",
-                mock_mode=mock_mode,
-                initial_cash=initial_capital
+                mock_mode=self.mock_mode,
+                initial_cash=initial_capital,
+                mock_state_file=LOGS_EXEC_DIR / "mock_broker_alpaca.json"
             )
 
-        # 3. State structures
+        # 4. State structures
         self.adapters: Dict[str, EquityTSMOMAdapter] = {}
-        self.open_positions: Dict[str, Dict[str, Any]] = {} # position_id -> dict
+        self.open_positions: Dict[str, Dict[str, Any]] = {}
         self.processed_order_ids: set = set()
         self.last_market_date: Optional[str] = None
+        self.current_session_date: Optional[str] = None
         self.last_error: Optional[str] = None
         self.watchdog_status: str = "HEALTHY"
+        self.market_data_source: str = "LOCAL_CSV_CACHE"
         self.reconciliation_status: str = "IN_SYNC"
 
-        # 4. Initialization
+        # 5. Initialization
         self._init_csv()
         self._load_active_strategies()
         self._restore_positions()
@@ -155,6 +178,53 @@ class EquityTSMOMPaperRunner:
         except Exception as e:
             logger.error(f"Failed to persist equity positions: {e}")
 
+    def update_market_data_feed(self) -> bool:
+        """Fetches latest daily bars from live market feed (yfinance) and updates historical CSVs."""
+        try:
+            import yfinance as yf
+            updated_any = False
+            for sym in DEFAULT_UNIVERSE:
+                fpath = DATA_DIR / f"{sym}_1d_2022_2026.csv"
+                if not fpath.exists():
+                    continue
+                df_existing = pd.read_csv(fpath)
+                df_existing['date'] = pd.to_datetime(df_existing['date'])
+                last_dt = df_existing['date'].max()
+
+                # Fetch latest 7 days
+                ticker = yf.Ticker(sym)
+                df_new = ticker.history(period="7d")
+                if df_new.empty:
+                    continue
+
+                df_new = df_new.reset_index()
+                df_new['date'] = pd.to_datetime(df_new['Date']).dt.tz_localize(None).dt.floor('D')
+                df_new = df_new[df_new['date'] > last_dt]
+
+                if not df_new.empty:
+                    records_to_append = []
+                    for _, row in df_new.iterrows():
+                        records_to_append.append({
+                            'date': row['date'].strftime('%Y-%m-%d'),
+                            'open': row['Open'],
+                            'high': row['High'],
+                            'low': row['Low'],
+                            'close': row['Close']
+                        })
+                    df_append = pd.DataFrame(records_to_append)
+                    df_combined = pd.concat([pd.read_csv(fpath), df_append], ignore_index=True).drop_duplicates(subset=['date'])
+                    df_combined.to_csv(fpath, index=False)
+                    updated_any = True
+
+            if updated_any:
+                self.market_data_source = "YAHOO_FINANCE_DAILY_FEED"
+                logger.info("📡 [MARKET DATA] Successfully synced latest daily market sessions.")
+            return True
+        except Exception as e:
+            logger.warning(f"⚠️ Could not update live daily market feed ({e}). Using local CSV cache.")
+            self.market_data_source = "LOCAL_CSV_CACHE"
+            return False
+
     def load_market_data(self, n_bars: int = 100) -> Tuple[pd.DataFrame, Dict[str, float]]:
         """Loads and aligns daily close prices for universe ETFs."""
         close_dict = {}
@@ -174,7 +244,8 @@ class EquityTSMOMPaperRunner:
 
         self.watchdog_status = "HEALTHY"
         latest_prices = df_close.iloc[-1].to_dict()
-        self.last_market_date = df_close.index[-1].strftime("%Y-%m-%d")
+        self.last_market_date = df_close.index[-2].strftime("%Y-%m-%d") if len(df_close) > 1 else df_close.index[-1].strftime("%Y-%m-%d")
+        self.current_session_date = df_close.index[-1].strftime("%Y-%m-%d")
         return df_close.iloc[-n_bars:], latest_prices
 
     def reconcile_positions(self) -> bool:
@@ -202,15 +273,16 @@ class EquityTSMOMPaperRunner:
     def process_session(self) -> Dict[str, Any]:
         """
         Executes one daily session cycle for all active TSMOM strategies:
-        Market Data -> Signals -> Target Weights -> Rebalance Orders -> Execution -> Position Update -> Reconciliation
+        Feed Sync -> Market Data -> Signals -> Target Weights -> Rebalance Orders -> Execution -> Position Update -> Reconciliation
         """
         t0 = time.time()
-        logger.info(f"=== PROCESSING EQUITY PAPER SESSION CYCLE [{datetime.now(timezone.utc).isoformat()}] ===")
+        logger.info(f"=== PROCESSING EQUITY SESSION CYCLE [{datetime.now(timezone.utc).isoformat()}] | MODE: {self.broker_mode} ===")
 
-        # 1. Load Data
+        # 1. Update Market Feed & Load Data
+        self.update_market_data_feed()
         df_close, current_prices = self.load_market_data(n_bars=100)
         self.broker.set_mock_prices(current_prices)
-        logger.info(f"Market Date: {self.last_market_date} | Universe Prices: {current_prices}")
+        logger.info(f"Session Date: {self.current_session_date} | Universe Prices: {current_prices}")
 
         # 2. Reconcile Pre-Execution
         if not self.reconcile_positions():
@@ -246,7 +318,7 @@ class EquityTSMOMPaperRunner:
                 sym = ord_req['symbol']
                 side = ord_req['side']
                 qty = ord_req['qty']
-                cid = f"eq_{strat_id}_{self.last_market_date}_{sym}_{side}"
+                cid = f"eq_{strat_id}_{self.current_session_date}_{sym}_{side}"
 
                 if cid in self.processed_order_ids:
                     logger.warning(f"⚠️ [IDEMPOTENT SKIP] Order {cid} already processed this session.")
@@ -272,7 +344,8 @@ class EquityTSMOMPaperRunner:
         logger.info(f"=== SESSION COMPLETED: {len(session_fills)} orders filled in {time.time()-t0:.2f}s ===")
         return {
             "status": "COMPLETED",
-            "market_date": self.last_market_date,
+            "market_date": self.current_session_date,
+            "broker_mode": self.broker_mode,
             "orders_filled": len(session_fills),
             "open_positions": len(self.open_positions),
             "portfolio_value": float(self.broker.get_account()['portfolio_value'])
@@ -316,10 +389,13 @@ class EquityTSMOMPaperRunner:
                 pnl = round((exit_p - entry_p) * close_qty, 2)
                 fees = round((entry_p + exit_p) * close_qty * 0.0008, 2)
 
-                row = f"{ts_now},{strategy_id},{symbol},SELL,{close_qty:.4f},{entry_p:.2f},{exit_p:.2f},{pnl:.2f},{fees:.2f},{pos_id},{order_id}\n"
-                with open(self.csv_log_path, "a", encoding="utf-8") as f:
-                    f.write(row)
-                logger.info(f"🏁 [EQUITY PAPER CLOSE] [{strategy_id}] {symbol} x {close_qty:.4f} | PnL: ${pnl:.2f} USD | Fees: ${fees:.2f}")
+                if self.broker_mode == "ALPACA_PAPER_FORWARD":
+                    row = f"{ts_now},{strategy_id},{symbol},SELL,{close_qty:.4f},{entry_p:.2f},{exit_p:.2f},{pnl:.2f},{fees:.2f},{pos_id},{order_id}\n"
+                    with open(self.csv_log_path, "a", encoding="utf-8") as f:
+                        f.write(row)
+                    logger.info(f"🏁 [ALPACA PAPER TRADE CLOSE] [{strategy_id}] {symbol} x {close_qty:.4f} | PnL: ${pnl:.2f} USD | Fees: ${fees:.2f}")
+                else:
+                    logger.info(f"ℹ️ [MOCK TRADE CLOSE - NOT COUNTED AS PAPER] [{strategy_id}] {symbol} x {close_qty:.4f} | PnL: ${pnl:.2f} USD | Fees: ${fees:.2f}")
 
                 rem_qty = curr['qty'] - close_qty
                 if rem_qty <= 1e-4:
@@ -328,7 +404,7 @@ class EquityTSMOMPaperRunner:
                     self.open_positions[pos_id]['qty'] = round(rem_qty, 4)
 
     def count_closed_paper_trades(self, strategy_id: str) -> int:
-        """Counts total verified closed paper trades for strategy in CSV log."""
+        """Counts total verified closed trades for strategy in CSV log."""
         if not self.csv_log_path.exists():
             return 0
         try:
@@ -340,14 +416,19 @@ class EquityTSMOMPaperRunner:
             return 0
 
     def _update_health(self):
-        """Writes health status JSON."""
+        """Writes health status JSON conforming strictly to forensic standards."""
         health = {
             "heartbeat": datetime.now(timezone.utc).isoformat(),
+            "runner_pid": os.getpid(),
+            "broker_mode": self.broker_mode,
             "environment": "ALPACA_PAPER",
             "base_url": ALPACA_PAPER_BASE_URL,
-            "last_market_date": self.last_market_date,
+            "last_session": self.last_market_date,
+            "current_session": self.current_session_date,
+            "market_data_source": self.market_data_source,
             "strategies_loaded": list(self.adapters.keys()),
             "open_positions_count": len(self.open_positions),
+            "open_positions": self.open_positions,
             "closed_trades_by_strategy": {s: self.count_closed_paper_trades(s) for s in self.adapters},
             "reconciliation_status": self.reconciliation_status,
             "watchdog_status": self.watchdog_status,
@@ -363,8 +444,8 @@ class EquityTSMOMPaperRunner:
             json.dump(health, f, indent=2)
 
     def run_continuous(self, poll_interval_sec: int = 3600, max_iterations: Optional[int] = None):
-        """Runs continuous forward paper loop for equities."""
-        logger.info(f"🚀 [EQUITY PAPER RUNNER DAEMON START] PID={os.getpid()} | Polling every {poll_interval_sec}s")
+        """Runs continuous forward loop for equities."""
+        logger.info(f"🚀 [EQUITY RUNNER DAEMON START] PID={os.getpid()} | MODE={self.broker_mode} | Polling every {poll_interval_sec}s")
         iterations = 0
         while True:
             try:
@@ -385,11 +466,10 @@ class EquityTSMOMPaperRunner:
 
 
 def main():
-    logger.info("Starting Equity TSMOM Paper Runner (Alpaca Paper)...")
-    runner = EquityTSMOMPaperRunner(mock_mode=True)
+    logger.info("Starting Equity TSMOM Paper Runner...")
+    runner = EquityTSMOMPaperRunner()
     runner.run_continuous(poll_interval_sec=3600)
 
 
 if __name__ == '__main__':
     main()
-

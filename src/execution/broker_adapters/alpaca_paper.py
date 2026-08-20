@@ -2,6 +2,7 @@
 Alpaca Paper Trading Broker Adapter
 Strictly enforces Alpaca Paper endpoints (https://paper-api.alpaca.markets).
 Rejects any live endpoint (https://api.alpaca.markets) or live credentials with SecurityViolationError.
+Fails explicitly with ALPACA_PAPER_NOT_CONFIGURED if paper credentials are missing and mock_mode is False.
 
 STRICT SECURITY INVARIANTS:
 1. APPROVED=false invariant preserved.
@@ -41,24 +42,39 @@ class AlpacaPaperBroker:
         base_url: str = ALPACA_PAPER_BASE_URL,
         environment: str = "ALPACA_PAPER",
         mock_mode: bool = False,
-        initial_cash: float = 100000.0
+        initial_cash: float = 100000.0,
+        mock_state_file: Optional[Path] = None
     ):
         self.environment = environment
         self.mock_mode = mock_mode
         self.base_url = base_url.rstrip("/")
+        self.broker_mode = "MOCK_ONLY" if mock_mode else "ALPACA_PAPER_FORWARD"
+        self.mock_state_file = mock_state_file
         
         # 1. Strict Security Checks
         self._enforce_security_constraints()
 
-        self.api_key = api_key or os.getenv("ALPACA_PAPER_API_KEY", "MOCK_ALPACA_PAPER_KEY")
-        self.secret_key = secret_key or os.getenv("ALPACA_PAPER_SECRET_KEY", "MOCK_ALPACA_PAPER_SECRET")
+        # 2. Resolve credentials
+        self.api_key = (
+            api_key
+            or os.getenv("ALPACA_PAPER_API_KEY")
+            or os.getenv("APCA_API_KEY_ID")
+        )
+        self.secret_key = (
+            secret_key
+            or os.getenv("ALPACA_PAPER_SECRET_KEY")
+            or os.getenv("APCA_API_SECRET_KEY")
+        )
+
+        if not self.mock_mode:
+            if not self.api_key or not self.secret_key:
+                raise ValueError("ALPACA_PAPER_NOT_CONFIGURED: Missing ALPACA_PAPER_API_KEY / ALPACA_PAPER_SECRET_KEY.")
 
         # In-memory state for mock/offline testing
         self.cash = initial_cash
         self.portfolio_value = initial_cash
         self.mock_positions: Dict[str, Dict[str, Any]] = {}
         self.mock_orders: Dict[str, Dict[str, Any]] = {}
-        self.mock_state_file = Path(__file__).resolve().parent.parent.parent / "logs" / "execution" / "mock_broker_alpaca.json"
         self._load_mock_state()
         self.mock_prices: Dict[str, float] = {
             "SPY": 550.0,
@@ -72,7 +88,7 @@ class AlpacaPaperBroker:
         }
 
     def _load_mock_state(self):
-        if self.mock_mode and self.mock_state_file.exists():
+        if self.mock_mode and self.mock_state_file and self.mock_state_file.exists():
             try:
                 import json
                 with open(self.mock_state_file, "r") as f:
@@ -83,7 +99,7 @@ class AlpacaPaperBroker:
                 pass
 
     def _save_mock_state(self):
-        if self.mock_mode:
+        if self.mock_mode and self.mock_state_file:
             try:
                 import json
                 self.mock_state_file.parent.mkdir(parents=True, exist_ok=True)
@@ -110,8 +126,8 @@ class AlpacaPaperBroker:
 
     def _headers(self) -> Dict[str, str]:
         return {
-            "APCA-API-KEY-ID": self.api_key,
-            "APCA-API-SECRET-KEY": self.secret_key,
+            "APCA-API-KEY-ID": self.api_key or "",
+            "APCA-API-SECRET-KEY": self.secret_key or "",
             "Content-Type": "application/json"
         }
 
