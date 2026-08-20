@@ -200,6 +200,18 @@ class TestEquityPaperRunner(unittest.TestCase):
         self.assertIn("TSMOM_1D_M1_N21_QQQ", runner2.open_positions)
         self.assertEqual(runner2.open_positions["TSMOM_1D_M1_N21_QQQ"]["qty"], 3.0)
 
+    def test_7_fails_closed_when_credentials_missing(self):
+        """7. Verifies runner fails closed when paper credentials missing and mock_mode not explicitly True."""
+        with self.assertRaises(PermissionError) as ctx:
+            EquityTSMOMPaperRunner(
+                mock_mode=None,
+                registry_path=self.registry_file,
+                csv_log_path=self.equity_bitacora,
+                positions_file=self.equity_positions,
+                health_file=self.equity_health
+            )
+        self.assertIn("ALPACA_PAPER_CREDENTIALS_MISSING", str(ctx.exception))
+
 
 if __name__ == '__main__':
     unittest.main()

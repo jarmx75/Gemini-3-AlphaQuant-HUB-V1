@@ -78,16 +78,15 @@ class EquityTSMOMPaperRunner:
             os.getenv("ALPACA_PAPER_SECRET_KEY") or os.getenv("APCA_API_SECRET_KEY")
         )
 
-        if mock_mode is not None:
-            self.mock_mode = mock_mode
-        else:
-            self.mock_mode = not has_paper_keys
-
-        if self.mock_mode:
+        if mock_mode is True:
+            self.mock_mode = True
             self.broker_mode = "MOCK_ONLY"
-            if not has_paper_keys:
-                logger.info("ℹ️ [ALPACA PAPER] No API keys detected. Running in MOCK_ONLY mode.")
+            logger.info("ℹ️ [ALPACA PAPER] Explicit mock_mode=True. Running in MOCK_ONLY mode.")
         else:
+            if not has_paper_keys:
+                self.broker_mode = "ALPACA_PAPER_CREDENTIALS_MISSING"
+                raise PermissionError("ALPACA_PAPER_CREDENTIALS_MISSING: Missing ALPACA_PAPER_API_KEY / ALPACA_PAPER_SECRET_KEY in environment. Failing closed.")
+            self.mock_mode = False
             self.broker_mode = "ALPACA_PAPER_FORWARD"
             logger.info("⚡ [ALPACA PAPER] Authenticated paper trading credentials detected.")
 
