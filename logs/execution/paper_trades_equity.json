@@ -1,0 +1,148 @@
+{
+  "market": "US_EQUITY_ETF",
+  "broker": "ALPACA_PAPER_MOCK",
+  "environment": "DRY_RUN",
+  "total_trades": 14,
+  "trades": [
+    {
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "SPY",
+      "side": "BUY",
+      "qty": 24.6026,
+      "price": 776.3400268554688,
+      "notional": 19100.0,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "QQQ",
+      "side": "BUY",
+      "qty": 14.6634,
+      "price": 731.0700073242188,
+      "notional": 10720.0,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "IWM",
+      "side": "BUY",
+      "qty": 54.7379,
+      "price": 305.0899963378906,
+      "notional": 16700.0,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "XLF",
+      "side": "BUY",
+      "qty": 420.564,
+      "price": 58.15999984741211,
+      "notional": 24460.0,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "XLK",
+      "side": "BUY",
+      "qty": 40.4189,
+      "price": 190.0099945068359,
+      "notional": 7680.0,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "XLE",
+      "side": "BUY",
+      "qty": 166.6936,
+      "price": 61.90999984741211,
+      "notional": 10320.0,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "GLD",
+      "side": "BUY",
+      "qty": 27.4733,
+      "price": 401.4800109863281,
+      "notional": 11030.0,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "GLD",
+      "side": "SELL",
+      "qty": 27.4733,
+      "price": 401.4800109863281,
+      "notional": -11029.98,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "SPY",
+      "side": "BUY",
+      "qty": 3.0307,
+      "price": 776.3400268554688,
+      "notional": 2352.84,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "QQQ",
+      "side": "BUY",
+      "qty": 1.8061,
+      "price": 731.0700073242188,
+      "notional": 1320.39,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "IWM",
+      "side": "BUY",
+      "qty": 6.7029,
+      "price": 305.0899963378906,
+      "notional": 2045.0,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "XLF",
+      "side": "BUY",
+      "qty": 8.9407,
+      "price": 58.15999984741211,
+      "notional": 519.99,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "XLK",
+      "side": "BUY",
+      "qty": 4.9634,
+      "price": 190.0099945068359,
+      "notional": 943.1,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "XLE",
+      "side": "BUY",
+      "qty": 20.5252,
+      "price": 61.90999984741211,
+      "notional": 1270.72,
+      "status": "FILLED",
+      "timestamp": "2026-08-20T02:11:46Z"
+    }
+  ]
+}
