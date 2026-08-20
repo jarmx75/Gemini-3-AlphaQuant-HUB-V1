@@ -185,3 +185,21 @@
   - **Barrera Infranqueable de Comisiones Taker**: La señal bruta residual a 5m–60m ($\approx \pm 0.02\%$) es un orden de magnitud inferior al costo mínimo de cruzar el spread y comisiones taker ($0.23\%$ en Binance, $1.23\%$ en Coinbase). Las comisiones consumen más del $100\%$ del edge potencial.
 - **Veredicto / Prohibición**:
   - ⛔ **NO PERMITIR** estrategias de lead-lag cross-exchange en timeframes de velas discretas ($\ge 5\text{m}$) con ejecución taker estándar. Este tipo de alpha requiere necesariamente infraestructura de ultra-baja latencia (sub-100ms) y acuerdos de comisiones VIP/Maker negativo (Rebate).
+
+---
+
+### 13. `EQUITY_OVERNIGHT_GAP_REVERSAL_1D` (Batch L - Equity Overnight Gap Reversal)
+- **Estado**: 🔴 **REJECTED (EQUITY_OVERNIGHT_GAP_REVERSAL_REJECTED)**
+- **Mecanismo**: Estrategia de reversión a la media intradía en 8 ETFs líderes del mercado estadounidense (`SPY`, `QQQ`, `IWM`, `XLF`, `XLK`, `XLE`, `GLD`, `TLT`), comprando en la apertura ($Open_t$) tras un gap bajista nocturno ($\text{Gap} \le -threshold$) y cerrando en el cierre ($Close_t$) del mismo día, evaluado en 5 umbrales ($0.75\%, 1.00\%, 1.25\%, 1.50\%, 2.00\%$) con filtro de seguridad $< 8\%$.
+- **Resultados Comparativos Out-of-Sample (2024 - 2026)**:
+  - **L1 (Gap $\le -0.75\%$)**: $PF = 0.82$ | $DD = 3.94\%$ | $Trades = 576$ ($263.0$/año) | $Exp = -\$0.27$ | Recovery: $6.8\%$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **L2 (Gap $\le -1.00\%$)**: $PF = 0.86$ | $DD = 3.42\%$ | $Trades = 385$ ($172.1$/año) | $Exp = -\$0.23$ | Recovery: $7.3\%$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **L3 (Gap $\le -1.25\%$)**: $PF = 0.93$ | $DD = 2.41\%$ | $Trades = 255$ ($112.3$/año) | $Exp = -\$0.13$ | Recovery: $9.6\%$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **L4 (Gap $\le -1.50\%$)**: $PF = 0.90$ | $DD = 2.38\%$ | $Trades = 167$ ($72.9$/año) | $Exp = -\$0.21$ | Recovery: $7.9\%$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **L5 (Gap $\le -2.00\%$)**: $PF = 0.61$ | $DD = 2.35\%$ | $Trades = 91$ ($34.4$/año) | $Exp = -\$1.04$ | Recovery: $-6.1\%$ (KILLED: $PF \le 1.30, Trades < 100, Exp \le 0$).
+- **Autopsia Cuantitativa**:
+  - **Inercia Macro y Continuación Tendencial**: Los gaps bajistas nocturnos significativos en ETFs líquidos están causados por catalizadores fundamentales (datos macroeconómicos CPI/NFP, decisiones de tipos de interés FOMC, eventos geopolíticos o guidance de mega-caps). El mercado no revierte el gap (la tasa media de llenado intradía es de apenas $6.8\% - 9.6\%$).
+  - **Efecto Momentum en Gaps Severos**: A gaps superiores al $2.0\%$, la tasa de recuperación se vuelve negativa ($-6.1\%$), evidenciando ventas de pánico e inercia bajista intradía (trend continuation) en lugar de rebote.
+  - **Fricción Arancelaria**: La fricción de comisiones ($0.16\%$) y slippage ($0.02\%$) totaliza $\$0.54$ por trade, transformando retornos brutos casi nulos ($\pm 0.05\%$) en pérdidas sistemáticas en todos los sectores.
+- **Veredicto / Prohibición**:
+  - ⛔ **NO PERMITIR** estrategias de compra ciega de gaps bajistas en índices/ETFs de acciones sin filtros de régimen direccional macro (e.g. VIX, estacionalidad, o confirmación de order flow en la primera hora de mercado).
