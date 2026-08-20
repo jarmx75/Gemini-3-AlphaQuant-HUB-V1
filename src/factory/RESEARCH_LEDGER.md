@@ -168,3 +168,20 @@
   - **Falta de Cointegración Fundamental**: A pesar del dimensionamiento matemáticamente exacto, las series entre activos no homogéneos carecen de un mecanismo económico de reversión a la media. Los spreads sufren de 'random walk drift' y la fricción de comisiones ($0.16\%$) destruye el valor esperado en todas las ventanas lookback ($PF \le 1.02$).
 - **Veredicto / Prohibición**:
   - ⛔ **NO UTILIZAR** modelos de arbitraje estadístico (incluso log-dollar-neutral) sobre pares cruzados sin cointegración estructural económica demostrable.
+
+---
+
+### 12. `CROSS_EXCHANGE_LEAD_LAG_5M` (Batch K - Cross-Exchange Lead/Lag)
+- **Estado**: 🔴 **REJECTED (CROSS_EXCHANGE_LEAD_LAG_REJECTED)**
+- **Mecanismo**: Estrategia de arbitraje latente / lead-lag en velas 5m entre los dos mayores exchanges de spot crypto (Binance y Coinbase) para BTC y ETH, evaluando 5 retardos ($k \in [1, 2, 3, 6, 12]$ velas de 5m, es decir 5m a 60m) con filtro de umbral de entrada $\ge 3 \times \text{coste total de transacción round-trip}$.
+- **Resultados Comparativos Out-of-Sample (2024 - 2026)**:
+  - **K1 (Lag=1, 5m)**: $PF = 0.31$ | $DD = 15.77\%$ | $Trades = 949$ ($511.7$/año) | $Exp = -\$0.81$ | $\text{Net Edge} = -0.27\%$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **K2 (Lag=2, 10m)**: $PF = 0.36$ | $DD = 14.42\%$ | $Trades = 835$ ($451.9$/año) | $Exp = -\$0.84$ | $\text{Net Edge} = -0.28\%$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **K3 (Lag=3, 15m)**: $PF = 0.45$ | $DD = 11.51\%$ | $Trades = 761$ ($414.9$/año) | $Exp = -\$0.74$ | $\text{Net Edge} = -0.25\%$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **K4 (Lag=6, 30m)**: $PF = 0.55$ | $DD = 9.66\%$ | $Trades = 673$ ($363.0$/año) | $Exp = -\$0.70$ | $\text{Net Edge} = -0.23\%$ (KILLED: $PF \le 1.30, Exp \le 0$).
+  - **K5 (Lag=12, 60m)**: $PF = 0.58$ | $DD = 9.05\%$ | $Trades = 583$ ($310.4$/año) | $Exp = -\$0.76$ | $\text{Net Edge} = -0.25\%$ (KILLED: $PF \le 1.30, Exp \le 0$).
+- **Autopsia Cuantitativa de Microestructura**:
+  - **Velocidad de Eficiencia de Arbitraje (HFT Dominance)**: En mercados modernos (2022–2026), el arbitraje cross-exchange entre Binance y Coinbase se ejecuta a nivel de milisegundos / subsegundos por creadores de mercado HFT colocalizados. A una escala de muestreo de **5 minutos**, la correlación cruzada de retornos rezagados es prácticamente nula ($|\rho| < 0.026$).
+  - **Barrera Infranqueable de Comisiones Taker**: La señal bruta residual a 5m–60m ($\approx \pm 0.02\%$) es un orden de magnitud inferior al costo mínimo de cruzar el spread y comisiones taker ($0.23\%$ en Binance, $1.23\%$ en Coinbase). Las comisiones consumen más del $100\%$ del edge potencial.
+- **Veredicto / Prohibición**:
+  - ⛔ **NO PERMITIR** estrategias de lead-lag cross-exchange en timeframes de velas discretas ($\ge 5\text{m}$) con ejecución taker estándar. Este tipo de alpha requiere necesariamente infraestructura de ultra-baja latencia (sub-100ms) y acuerdos de comisiones VIP/Maker negativo (Rebate).
