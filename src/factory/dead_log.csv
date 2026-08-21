@@ -158,4 +158,9 @@ timestamp,candidate_id,train_pf,test_pf,val_pf,val_trades,val_dd_pct,kill_reason
 2026-08-20 02:05:17,TSMOM_1D_M4_N189,2.12,8.54,5.05,82,11.2,KILLED: Trades=82<100
 2026-08-20 02:05:17,TSMOM_1D_M5_N252,3.07,11.46,6.71,53,12.5,KILLED: Trades=53<100
 2026-08-20 19:48:00,Futures_Term_Structure_Carry_N1_N5,0.00,0.00,0.00,0,0.0,DATASET_UNAVAILABLE: Futures dual expiration dataset not available in free public feeds
+2026-08-20 19:56:00,SEC_Insider_O1_N2_W5,1.20,1.33,1.33,196,92.5,KILLED: DD=92.5%>=15%
+2026-08-20 19:56:00,SEC_Insider_O2_N2_W10,1.19,1.31,1.31,195,90.8,KILLED: DD=90.8%>=15%
+2026-08-20 19:56:00,SEC_Insider_O3_N2_W20,1.29,1.32,1.32,188,90.5,KILLED: DD=90.5%>=15%
+2026-08-20 19:56:00,SEC_Insider_O4_N3_W10,1.28,1.01,1.01,94,75.7,KILLED: PF=1.01<=1.30 | DD=75.7%>=15% | Trades=94<100
+2026-08-20 19:56:00,SEC_Insider_O5_N3_W20,1.25,0.96,0.96,96,69.0,KILLED: PF=0.96<=1.30 | DD=69.0%>=15% | Trades=96<100 | Exp=-0.19%<=0
 

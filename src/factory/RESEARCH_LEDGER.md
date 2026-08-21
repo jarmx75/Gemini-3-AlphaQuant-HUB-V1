@@ -233,3 +233,30 @@
 - **Veredicto / Prohibición**:
   - 🛑 **BATCH N DETENIDO EN FASE 0** por `DATASET_UNAVAILABLE`. Ninguna variante fue optimizada ni ejecutada.
   - ⛔ **NO PERMITIR** la implementación de modelos de term structure de futuros sin una fuente de datos institucional licenciada (CME DataMine / Refinitiv) que provea settlement prices diarios por cada contrato individual desglosado.
+
+---
+
+### 16. `SEC_INSIDER_CLUSTER_BUYING` (Batch O - SEC Insider Cluster Buying)
+- **Estado**: 🔴 **REJECTED (SEC_INSIDER_CLUSTER_BUYING_REJECTED)**
+- **Mecanismo**: Estrategia de compra en mercado abierto basada en acumulación de insiders (Form 4 `TRANS_CODE == 'P'`, `TRANS_ACQUIRED_DISP_CD == 'A'`, $\text{Price} > \$1.00$) reportados en la SEC. Entrar LONG en `Open_{t+1}` tras detectar un cluster de $\ge N$ insiders distintos (`RPTOWNERCIK`) en una ventana de $W$ días calendario. Holding estricto de 20 sesiones (`Close_{t+20}`).
+- **Dataset SEC Utilizado**: SEC Insider Transactions Data Sets (2022q1 - 2026q1, 17 paquetes trimestrales ZIP, 768,071 Form 4 Submissions, 145,810 compras en mercado abierto registradas sobre 4,701 tickers de acciones US).
+- **Resultados Comparativos Out-of-Sample (2024 - 2026)**:
+  - **O1 ($\ge 2$ Insiders / $W=5\text{d}$)**: $PF = 1.33$ | $DD = 92.49\%$ | $Trades = 196$ | $Exp = +1.51\%$ | (🔴 **KILLED: DD=92.49% >= 15%**).
+  - **O2 ($\ge 2$ Insiders / $W=10\text{d}$)**: $PF = 1.31$ | $DD = 90.81\%$ | $Trades = 195$ | $Exp = +1.50\%$ | (🔴 **KILLED: DD=90.81% >= 15%**).
+  - **O3 ($\ge 2$ Insiders / $W=20\text{d}$)**: $PF = 1.32$ | $DD = 90.49\%$ | $Trades = 188$ | $Exp = +1.49\%$ | (🔴 **KILLED: DD=90.49% >= 15%**).
+  - **O4 ($\ge 3$ Insiders / $W=10\text{d}$)**: $PF = 1.01$ | $DD = 75.73\%$ | $Trades = 94$ | $Exp = +0.04\%$ | (🔴 **KILLED: PF=1.01 <= 1.30, DD=75.73% >= 15%, Trades=94 < 100**).
+  - **O5 ($\ge 3$ Insiders / $W=20\text{d}$)**: $PF = 0.96$ | $DD = 68.99\%$ | $Trades = 96$ | $Exp = -0.19\%$ | (🔴 **KILLED: PF=0.96 <= 1.30, DD=68.99% >= 15%, Trades=96 < 100, Exp <= 0**).
+- **Event Study (Promedio Retornos OOS)**:
+  - $+1\text{d}$: $-0.20\%$ a $+0.05\%$ (Respuesta inmediata nula / plana)
+  - $+5\text{d}$: $+0.29\%$ a $+0.81\%$ (Inicio de deriva positiva)
+  - $+10\text{d}$: $+1.05\%$ a $+1.78\%$ (Pico medio acumulado de acumulación insider)
+  - $+20\text{d}$: $+0.01\%$ a $+1.71\%$ (Degradación en clusters estrictos)
+- **Auditoría de Look-Ahead**:
+  - Auditado $100\%$ limpio (`lookahead_clean: True`, 0 violaciones).
+  - Enfoque estricto `filing_date <= signal_timestamp < entry_timestamp`.
+- **Autopsia Cuantitativa de Riesgo**:
+  - **Ausencia de Control de Riesgo (No Stop Loss)**: Las compras de insiders ocurren frecuentemente en empresas en dificultades financieras o mediana/pequeña capitalización en proceso de reestructuración. Mantener posiciones abiertas 20 días sin stop-loss expone a caídas severas (drawdowns $> 90\%$).
+  - **Falta de Edge Significativo**: La fricción de comisiones y slippage ($20$ bps roundtrip) consume gran parte del modesto beneficio medio a 20 días.
+- **Veredicto / Prohibición**:
+  - 🛑 **BATCH O RECHAZADO** (`SEC_INSIDER_CLUSTER_BUYING = REJECTED`).
+  - ⛔ **NO PERMITIR** la ejecución de estrategias de compras insider sin un sistema de stop loss acotado ($\le 5\%$) y filtros de salud financiera / balance general (e.g. Alt-Z score o market cap $> \$1\text{B}$).
