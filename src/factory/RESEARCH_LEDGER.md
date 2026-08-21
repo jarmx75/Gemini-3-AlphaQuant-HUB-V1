@@ -218,6 +218,18 @@
 - **Análisis Cuantitativo y de Robustez**:
   - **Edge Persistente y Escalable**: A diferencia de los modelos de reversión a la media intradía, el seguimiento de tendencia a horizontes de 1 a 3 meses ($N=21\text{d}$ y $N=63\text{d}$) captura las grandes tendencias macroeconómicas de equities (`SPY`, `QQQ`, `XLK`, `XLF`) y oro (`GLD`), mientras rota automáticamente hacia CASH cuando la renta fija (`TLT`) o activos cíclicos entran en régimen bajista.
   - **Diversificación de PnL por Activo**: Las ganancias en M1 y M2 provienen de múltiples clases de activos no correlacionadas (`GLD` $+\$557$, `SPY` $+\$403$, `QQQ` $+\$293$, `XLK` $+\$288$, `IWM` $+\$265$, `XLF` $+\$206$). No hay concentración en un solo ETF.
-  - **Descorrelación Ortogonal con Crypto**: La correlación de los retornos diarios de TSMOM con las estrategias intradía de pares crypto es virtualmente nula ($\rho \approx 0.02 - 0.05$), ofreciendo una fuente genuina de diversificación de portafolio.
 - **Estado de Promoción**:
   - 🟢 **`TSMOM_1D_M1_N21`** y **`TSMOM_1D_M2_N63`** quedan registradas como **`PAPER_CANDIDATE/PENDING`** para futura expansión de paper trading multiactivo. No se activan en Demo ni Real.
+
+---
+
+### 15. `FUTURES_TERM_STRUCTURE_CARRY` (Batch N - Futures Term Structure / Carry)
+- **Estado**: 🔴 **REJECTED (DATASET_UNAVAILABLE)**
+- **Mecanismo**: Estrategia de captura de carry sobre la estructura a término de futuros de commodities y divisas (`CL`, `GC`, `HG`, `ZC`, `6E`), comparando el precio de liquidación del contrato cercano ($F_{\text{near}}$) contra el segundo vencimiento ($F_{\text{far}}$) para clasificar regímenes de contango ($\text{carry} < 0$) y backwardation ($\text{carry} > 0$), evaluando 5 umbrales de carry anualizado ($2\%, 4\%, 6\%, 8\%, 10\%$).
+- **Auditoría de Feasibility (Fase 0)**:
+  - **Falta de Series Vencimiento a Vencimiento**: Las fuentes públicas de acceso gratuito (Yahoo Finance `yfinance`, FRED, etc.) únicamente suministran series sintéticas de contrato continuo único (`CL=F`, `GC=F`, etc.).
+  - **Contratos Deslistados 404**: Las llamadas históricas a códigos de contratos individuales deslistados (ej. `CLU24.NYM`, `CLZ24.NYM`) retornan `HTTP 404 Not Found` en APIs públicas.
+  - **Imposibilidad de Construcción Sin Look-Ahead**: Sin los datos simultáneos de liquidación diaria de ambos contratos ($F_{\text{near}}$ y $F_{\text{far}}$), no se puede calcular la pendiente de la curva de carry ni el tiempo exacto a vencimiento. La aproximación del segundo contrato mediante la serie continua está estrictamente prohibida por riesgo de look-ahead y distorsión de rollover.
+- **Veredicto / Prohibición**:
+  - 🛑 **BATCH N DETENIDO EN FASE 0** por `DATASET_UNAVAILABLE`. Ninguna variante fue optimizada ni ejecutada.
+  - ⛔ **NO PERMITIR** la implementación de modelos de term structure de futuros sin una fuente de datos institucional licenciada (CME DataMine / Refinitiv) que provea settlement prices diarios por cada contrato individual desglosado.
