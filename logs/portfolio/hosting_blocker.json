@@ -1,0 +1,11 @@
+{
+  "provider_candidates": [
+    "Vercel (Recomendado — Gratuito y de 1-clic)",
+    "Netlify",
+    "GitHub Pages"
+  ],
+  "authentication_missing": "Sin token de despliegue en VERCEL_TOKEN o NETLIFY_AUTH_TOKEN",
+  "exact_auth_action": "Jorge simplemente necesita conectar el repositorio a Vercel/Netlify o ingresar su token VERCEL_TOKEN en config/.env.",
+  "next_command": "npx vercel docs/public_landing --prod",
+  "status": "AWAITING_HOSTING_AUTHORIZATION"
+}

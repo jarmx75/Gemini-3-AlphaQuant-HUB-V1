@@ -4,6 +4,8 @@
   "https": true,
   "sample_url": "docs/public_landing/sample.html",
   "checkout_url": "https://www.paypal.com/checkoutnow",
-  "verified": true,
-  "timestamp": "2026-08-22T13:25:33.217033"
+  "verified": false,
+  "verified_http_status": null,
+  "status": "AWAITING_HOSTING_AUTHORIZATION",
+  "timestamp": "2026-08-22T13:43:35"
 }
