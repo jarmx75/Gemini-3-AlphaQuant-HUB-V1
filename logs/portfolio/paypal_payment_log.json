@@ -1,0 +1,49 @@
+{
+  "payments": [
+    {
+      "payment_id": "PAYPAL-SAND-099240",
+      "provider": "PAYPAL",
+      "mode": "SANDBOX",
+      "customer_id": "TEST_CUST_01",
+      "strategy_name": "Test_Strategy_v1",
+      "amount_usd": 49.0,
+      "currency": "USD",
+      "status": "PAYMENT_PENDING",
+      "pipeline_state": "PAYMENT_PENDING",
+      "checkout_url": "https://www.sandbox.paypal.com/checkoutnow?token=PAYPAL-SAND-099240",
+      "created_at": "2026-08-22T12:59:51.832838",
+      "verification_status": "UNVERIFIED"
+    },
+    {
+      "payment_id": "PAYPAL-SAND-821434",
+      "provider": "PAYPAL",
+      "mode": "SANDBOX",
+      "customer_id": "TEST_CUST_02",
+      "strategy_name": "Test_Strategy_v2",
+      "amount_usd": 49.0,
+      "currency": "USD",
+      "status": "PAYMENT_VERIFIED",
+      "pipeline_state": "PAYMENT_VERIFIED",
+      "checkout_url": "https://www.sandbox.paypal.com/checkoutnow?token=PAYPAL-SAND-821434",
+      "created_at": "2026-08-22T12:59:51.833195",
+      "verification_status": "VERIFIED",
+      "verified_at": "2026-08-22T12:59:51.833480"
+    },
+    {
+      "payment_id": "PAYPAL-SAND-563573",
+      "provider": "PAYPAL",
+      "mode": "SANDBOX",
+      "customer_id": "TEST_CUST_03",
+      "strategy_name": "Test_Strategy_v3",
+      "amount_usd": 49.0,
+      "currency": "USD",
+      "status": "PAYMENT_PENDING",
+      "pipeline_state": "AUDIT_RUNNING",
+      "checkout_url": "https://www.sandbox.paypal.com/checkoutnow?token=PAYPAL-SAND-563573",
+      "created_at": "2026-08-22T12:59:51.833684",
+      "verification_status": "UNVERIFIED"
+    }
+  ],
+  "verified_count": 1,
+  "total_live_revenue_usd": 0
+}

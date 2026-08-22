@@ -1,0 +1,21 @@
+{
+  "outreach_blockers": [
+    {
+      "platform": "Substack / Direct Email",
+      "draft_id": "DRAFT_01",
+      "target_audience": "Substack Financial Quant Authors",
+      "required_authentication": "SMTP Credentials or Substack Author Direct Message Auth Token",
+      "required_permission": "Permission to send external outbound outreach emails on behalf of user",
+      "blocked_reason": "SMTP_CREDENTIALS_MISSING: Automated email sending is safely paused. DRAFT_01 is formatted and approved for manual sending by Jorge."
+    },
+    {
+      "platform": "GitHub Discussions",
+      "draft_id": "DRAFT_02",
+      "target_audience": "GitHub Open Source Quant Backtest Maintainers",
+      "required_authentication": "GitHub OAuth Personal Access Token (GITHUB_TOKEN)",
+      "required_permission": "public_repo permission to post GitHub Discussion / Issue comment",
+      "blocked_reason": "GITHUB_TOKEN_MISSING: Automated GitHub posting is safely paused to prevent API rate limiting. DRAFT_02 is formatted and approved for manual posting by Jorge."
+    }
+  ],
+  "total_blockers": 2
+}
