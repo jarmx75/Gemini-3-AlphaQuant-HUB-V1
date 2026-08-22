@@ -1,0 +1,43 @@
+{
+  "pipeline_stages": [
+    "lead",
+    "contact",
+    "reply",
+    "sample",
+    "paid",
+    "upload_data",
+    "audit",
+    "certificate",
+    "delivery",
+    "testimonial_request"
+  ],
+  "stage_counts": {
+    "lead": 5,
+    "contact": 0,
+    "reply": 0,
+    "sample": 1,
+    "paid": 0,
+    "upload_data": 0,
+    "audit": 1,
+    "certificate": 1,
+    "delivery": 0,
+    "testimonial_request": 0
+  },
+  "active_prospects_in_pipeline": [
+    {
+      "prospect_id": "VERIFIED_PROSPECT_04",
+      "current_stage": "lead",
+      "assigned_draft": "DRAFT_01",
+      "category": "Category A",
+      "next_action_required": "Human approval of outreach draft DRAFT_01"
+    },
+    {
+      "prospect_id": "VERIFIED_PROSPECT_05",
+      "current_stage": "lead",
+      "assigned_draft": "DRAFT_02",
+      "category": "Category A",
+      "next_action_required": "Human approval of outreach draft DRAFT_02"
+    }
+  ],
+  "pipeline_status": "AWAITING_HUMAN_APPROVAL_TO_INITIATE_OUTREACH"
+}

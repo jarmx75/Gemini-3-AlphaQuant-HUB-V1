@@ -1,0 +1,47 @@
+{
+  "category_a_direct_offer_permitted": [
+    {
+      "prospect_id": "VERIFIED_PROSPECT_04",
+      "name": "Substack Financial Quant Authors",
+      "public_url": "https://substack.com/browse/finance",
+      "fit_reason": "Independent authors publishing strategy backtests who need automated PBO and 95% Monte Carlo VaR reports.",
+      "outreach_approach": "Direct email / Substack message offering sample audit certificate for their next newsletter issue."
+    },
+    {
+      "prospect_id": "VERIFIED_PROSPECT_05",
+      "name": "GitHub Open Source Quant Backtest Maintainers",
+      "public_url": "https://github.com/topics/backtesting",
+      "fit_reason": "Maintainers of Python backtest frameworks seeking third-party audit verification tools for their users.",
+      "outreach_approach": "GitHub issue/discussion suggesting automated backtest verification integration."
+    }
+  ],
+  "category_b_community_contribution_first": [
+    {
+      "prospect_id": "VERIFIED_PROSPECT_01",
+      "name": "QuantConnect Forum Community Leads",
+      "public_url": "https://www.quantconnect.com/forum",
+      "fit_reason": "Active algorithmic traders discussing StatArb overfitting and backtest bias.",
+      "outreach_approach": "Share empirical PBO & Monte Carlo methodology thread first; offer free sample audit in comments."
+    },
+    {
+      "prospect_id": "VERIFIED_PROSPECT_02",
+      "name": "Reddit r/algotrading Community Members",
+      "public_url": "https://www.reddit.com/r/algotrading/",
+      "fit_reason": "Active quant developers seeking third-party verification to prove zero lookahead bias.",
+      "outreach_approach": "Post educational case study on detecting lookahead bias; offer sample audit to interested posters."
+    },
+    {
+      "prospect_id": "VERIFIED_PROSPECT_03",
+      "name": "Alpaca Developer Community Forum",
+      "public_url": "https://forum.alpaca.markets/",
+      "fit_reason": "Automated ETF and stock trading algorithm developers looking for fail-closed risk audits.",
+      "outreach_approach": "Post open-source risk auditing script; link to full sample audit certificate."
+    }
+  ],
+  "category_c_do_not_use": [],
+  "summary_counts": {
+    "category_a_count": 2,
+    "category_b_count": 3,
+    "category_c_count": 0
+  }
+}

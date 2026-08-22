@@ -2,29 +2,55 @@
   "outreach_drafts": [
     {
       "draft_id": "DRAFT_01",
-      "prospect_id": "VERIFIED_PROSPECT_01",
-      "prospect_name": "QuantConnect Forum Community Leads",
-      "offer_type": "OFFER_A (Complimentary Sample Audit)",
+      "prospect_id": "VERIFIED_PROSPECT_04",
+      "prospect_name": "Substack Financial Quant Authors",
+      "category": "Category A",
+      "channel": "Email / Substack Contact",
+      "word_count": 64,
       "status": "HUMAN_APPROVAL_REQUIRED",
-      "message_text": "Hi! Noticed your discussion on QuantConnect regarding StatArb backtest overfitting. We built Automaton Quant Audit\u2014it calculates PBO (Probability of Backtest Overfitting) & 95% Monte Carlo VaR in 60 seconds with zero lookahead bias. We would love to run a complimentary sample audit report on one of your strategies. Sample Certificate: file:///Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/docs/LANDING_PAGE_DEMO.html"
+      "message_text": "Hi! Enjoyed your recent quant newsletter. We developed Automaton Quant Audit\u2014an automated engine that checks backtests for look-ahead bias, friction drag, and 1,000-run Monte Carlo tail risk in 60 seconds. We would love to provide a complimentary audit certificate for your next strategy breakdown. Here is a live sample report: docs/LANDING_PAGE_DEMO.html. Let us know if interested!"
     },
     {
       "draft_id": "DRAFT_02",
-      "prospect_id": "VERIFIED_PROSPECT_02",
-      "prospect_name": "Reddit r/algotrading Community Members",
-      "offer_type": "OFFER_B ( Quant Audit Certificate)",
+      "prospect_id": "VERIFIED_PROSPECT_05",
+      "prospect_name": "GitHub Open Source Quant Backtest Maintainers",
+      "category": "Category A",
+      "channel": "GitHub Discussion / Issue",
+      "word_count": 58,
       "status": "HUMAN_APPROVAL_REQUIRED",
-      "message_text": "Hello! Are you looking to verify your algorithm against lookahead bias before going live? Automaton runs independent 1,000-block Monte Carlo stress tests and issues an Institutional Audit Certificate ( USD). Zero return promises, 100% empirical bias audit. Demo: file:///Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/docs/LANDING_PAGE_DEMO.html"
+      "message_text": "Hello! We built an automated zero-bias audit tool for Python backtest frameworks. It checks timestamp alignment (Close[t-1] -> Weight[t]), 16 bps execution friction, and Probability of Backtest Overfitting (PBO). We can provide free verification reports for your framework users. Sample demo: docs/LANDING_PAGE_DEMO.html. Excited to collaborate!"
     },
     {
       "draft_id": "DRAFT_03",
+      "prospect_id": "VERIFIED_PROSPECT_01",
+      "prospect_name": "QuantConnect Forum Community Leads",
+      "category": "Category B",
+      "channel": "QuantConnect Forum Comment",
+      "word_count": 55,
+      "status": "HUMAN_APPROVAL_REQUIRED",
+      "message_text": "Hi everyone! Following the discussion on StatArb backtest overfitting, we shared an empirical audit methodology that stress-tests returns across 1,000 block Monte Carlo regimes and checks look-ahead timestamp alignment. Happy to run a free sample audit for interested community members. Live demo: docs/LANDING_PAGE_DEMO.html."
+    },
+    {
+      "draft_id": "DRAFT_04",
+      "prospect_id": "VERIFIED_PROSPECT_02",
+      "prospect_name": "Reddit r/algotrading Community Members",
+      "category": "Category B",
+      "channel": "Reddit Educational Comment",
+      "word_count": 56,
+      "status": "HUMAN_APPROVAL_REQUIRED",
+      "message_text": "Great thread on detecting curve-fitting! We built an independent auditor that checks zero-lookahead compliance, 95% Monte Carlo VaR, and friction drag to certify strategy robustness before going live. If anyone wants a free sample audit on their return series, happy to help. Sample: docs/LANDING_PAGE_DEMO.html."
+    },
+    {
+      "draft_id": "DRAFT_05",
       "prospect_id": "VERIFIED_PROSPECT_03",
       "prospect_name": "Alpaca Developer Community Forum",
-      "offer_type": "OFFER_A (Complimentary Sample Audit)",
+      "category": "Category B",
+      "channel": "Alpaca Forum Post",
+      "word_count": 53,
       "status": "HUMAN_APPROVAL_REQUIRED",
-      "message_text": "Hey Alpaca developers! We created an automated fail-closed audit tool for Python trading scripts. It verifies 16 bps execution friction, timestamp alignment (Close[t-1] -> Execution[t]), and tail risk. Happy to set up a free pilot audit report for your strategy."
+      "message_text": "Hey Alpaca devs! We built a fail-closed risk auditor that verifies Alpaca Python trading bots for stale data halts, 16 bps friction, and tail risk drawdowns. We are offering free pilot audit reports for Alpaca developers. Check out the demo: docs/LANDING_PAGE_DEMO.html."
     }
   ],
-  "total_drafts": 3,
+  "total_drafts": 5,
   "human_approval_required": true
 }
