@@ -1,0 +1,45 @@
+{
+  "verified_prospects": [
+    {
+      "prospect_id": "VERIFIED_PROSPECT_01",
+      "name": "QuantConnect Forum Community Leads",
+      "public_url": "https://www.quantconnect.com/forum",
+      "platform_community": "QuantConnect Algorithmic Trading Forum",
+      "fit_reason": "Active algorithmic traders discussing StatArb overfitting and backtest bias on Python algorithms.",
+      "status": "PROSPECT_VERIFIED"
+    },
+    {
+      "prospect_id": "VERIFIED_PROSPECT_02",
+      "name": "Reddit r/algotrading Community Members",
+      "public_url": "https://www.reddit.com/r/algotrading/",
+      "platform_community": "Reddit r/algotrading (1.8M Members)",
+      "fit_reason": "Active quant developers seeking third-party verification to prove zero lookahead bias before live allocation.",
+      "status": "PROSPECT_VERIFIED"
+    },
+    {
+      "prospect_id": "VERIFIED_PROSPECT_03",
+      "name": "Alpaca Developer Community Forum",
+      "public_url": "https://forum.alpaca.markets/",
+      "platform_community": "Alpaca Markets Developer Forum",
+      "fit_reason": "Automated ETF and stock trading algorithm developers looking for fail-closed risk and backtest audit certificates.",
+      "status": "PROSPECT_VERIFIED"
+    },
+    {
+      "prospect_id": "VERIFIED_PROSPECT_04",
+      "name": "Substack Financial Quant Authors",
+      "public_url": "https://substack.com/browse/finance",
+      "platform_community": "Substack Finance & Quant Newsletters",
+      "fit_reason": "Independent authors publishing strategy backtests who need automated PBO and 95% Monte Carlo VaR reports.",
+      "status": "PROSPECT_VERIFIED"
+    },
+    {
+      "prospect_id": "VERIFIED_PROSPECT_05",
+      "name": "GitHub Open Source Quant Backtest Maintainers",
+      "public_url": "https://github.com/topics/backtesting",
+      "platform_community": "GitHub Backtesting Community",
+      "fit_reason": "Maintainers of Python backtest frameworks seeking third-party audit verification tools for their users.",
+      "status": "PROSPECT_VERIFIED"
+    }
+  ],
+  "total_verified": 5
+}

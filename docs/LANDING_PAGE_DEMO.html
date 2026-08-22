@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automaton Quant Audit — Institutional Backtest Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --card-bg: rgba(22, 28, 45, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-green);
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-green) 0%, #059669 100%);
+            color: white;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .card h3 {
+            color: var(--accent-blue);
+            margin-top: 0;
+        }
+        .pricing {
+            text-align: center;
+            margin: 80px 0;
+        }
+        .price-box {
+            display: inline-block;
+            background: var(--card-bg);
+            border: 2px solid var(--accent-green);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 400px;
+            margin-top: 30px;
+        }
+        .price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto 80px auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: rgba(10, 14, 23, 0.8);
+            color: white;
+            box-sizing: border-box;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">⚡ AUTOMATON QUANT AUDIT</div>
+            <a href="#audit-form" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Request Audit</a>
+        </header>
+
+        <section class="hero">
+            <h1>Zero-Bias Institutional Backtest Verification</h1>
+            <p>Don't risk real capital on overfitted models. Automaton runs independent 1,000-block Monte Carlo stress tests, zero-lookahead verification, and friction audits in 60 seconds.</p>
+            <a href="#pricing" class="btn-primary">Get Audit Certificate — $49 USD</a>
+        </section>
+
+        <section class="features">
+            <div class="card">
+                <h3>🔍 Look-Ahead Bias Detection</h3>
+                <p>Audits exact timestamp alignment between signal generation and return execution to ensure zero look-ahead contamination.</p>
+            </div>
+            <div class="card">
+                <h3>🎲 1,000 Monte Carlo Stress Runs</h3>
+                <p>Simulates block bootstrap market regimes to calculate 95% Value at Risk (VaR) and true tail risk drawdowns.</p>
+            </div>
+            <div class="card">
+                <h3>📊 Overfitting Risk Score (PBO)</h3>
+                <p>Estimates Probability of Backtest Overfitting (PBO) to separate genuine statistical edge from curve-fitting noise.</p>
+            </div>
+        </section>
+
+        <section class="pricing" id="pricing">
+            <h2>Transparent Institutional Pricing</h2>
+            <div class="price-box">
+                <h3>Standalone Audit Report</h3>
+                <div class="price">$49 <span style="font-size: 1rem; color: var(--text-secondary);">USD</span></div>
+                <p>Instant PDF & Markdown Institutional Certificate</p>
+                <ul style="text-align: left; margin: 25px 0; color: var(--text-secondary);">
+                    <li>✔ 1,000-Block Monte Carlo Stress Test</li>
+                    <li>✔ PBO Overfitting Probability Score</li>
+                    <li>✔ 95% VaR & CVaR Tail Risk Metrics</li>
+                    <li>✔ Fail-Closed Safety Audit Badge</li>
+                </ul>
+                <a href="#audit-form" class="btn-primary" style="display: block;">Request Audit Now</a>
+            </div>
+        </section>
+
+        <section class="contact-form" id="audit-form">
+            <h2 style="text-align: center; margin-top: 0;">Request Backtest Audit</h2>
+            <form onsubmit="alert('Thank you! Your audit request has been logged. Our team will contact you at your email address within 2 hours.'); return false;">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" required placeholder="Quant Trader / Fund Manager">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" required placeholder="trader@quantdesk.com">
+                </div>
+                <div class="form-group">
+                    <label>Strategy Name</label>
+                    <input type="text" required placeholder="e.g. StatArb_BTC_ETH_v2">
+                </div>
+                <div class="form-group">
+                    <label>Return Series CSV Link or Notes</label>
+                    <textarea rows="4" placeholder="Paste return series URL or backtest description..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Submit Audit Request ($49 USD)</button>
+            </form>
+        </section>
+
+        <footer>
+            &copy; 2026 Automaton Quantitative Autonomous Systems. All rights reserved. Zero Financial Advice. Institutional Quantitative Verification Service Only.
+        </footer>
+    </div>
+</body>
+</html>

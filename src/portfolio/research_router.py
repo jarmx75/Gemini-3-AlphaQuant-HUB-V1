@@ -66,11 +66,28 @@ class ResearchRouter:
             "research_score": score
         }
 
+    def calculate_first_revenue_priority(self, candidate_spec: Dict[str, Any]) -> float:
+        """
+        Calculates FIRST_REVENUE Priority Score:
+        RevenueProbability * TimeToRevenue * Automation * Recurrence * CapitalEfficiency
+        """
+        rev_prob = float(candidate_spec.get("revenue_probability", 0.8))
+        time_score = max(1.0, 10.0 - (float(candidate_spec.get("time_to_first_revenue_days", 5)) / 2.0))
+        automation = float(candidate_spec.get("automation_ratio", 0.9)) * 10.0
+        recurrence = float(candidate_spec.get("recurrence_score", 8.0))
+        cap_eff = float(candidate_spec.get("capital_efficiency", 10.0))
+
+        priority = rev_prob * time_score * automation * recurrence * cap_eff
+        return round(float(priority), 2)
+
     def rank_candidates(self, candidates_list: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """
-        Filters out candidates that fail Hard Gates, then ranks remaining candidates by ResearchScore descending.
+        Filters out candidates that fail Hard Gates, then ranks remaining candidates by FIRST_REVENUE priority.
         """
         evaluated = [self.evaluate_hypothesis(c) for c in candidates_list]
         passed = [e for e in evaluated if e["all_gates_passed"]]
-        passed_sorted = sorted(passed, key=lambda x: x["research_score"], reverse=True)
+        for p in passed:
+            p["first_revenue_priority"] = self.calculate_first_revenue_priority(p)
+
+        passed_sorted = sorted(passed, key=lambda x: x["first_revenue_priority"], reverse=True)
         return passed_sorted

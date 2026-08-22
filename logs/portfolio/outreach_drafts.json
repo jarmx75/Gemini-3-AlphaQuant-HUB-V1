@@ -1,0 +1,30 @@
+{
+  "outreach_drafts": [
+    {
+      "draft_id": "DRAFT_01",
+      "prospect_id": "VERIFIED_PROSPECT_01",
+      "prospect_name": "QuantConnect Forum Community Leads",
+      "offer_type": "OFFER_A (Complimentary Sample Audit)",
+      "status": "HUMAN_APPROVAL_REQUIRED",
+      "message_text": "Hi! Noticed your discussion on QuantConnect regarding StatArb backtest overfitting. We built Automaton Quant Audit\u2014it calculates PBO (Probability of Backtest Overfitting) & 95% Monte Carlo VaR in 60 seconds with zero lookahead bias. We would love to run a complimentary sample audit report on one of your strategies. Sample Certificate: file:///Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/docs/LANDING_PAGE_DEMO.html"
+    },
+    {
+      "draft_id": "DRAFT_02",
+      "prospect_id": "VERIFIED_PROSPECT_02",
+      "prospect_name": "Reddit r/algotrading Community Members",
+      "offer_type": "OFFER_B ( Quant Audit Certificate)",
+      "status": "HUMAN_APPROVAL_REQUIRED",
+      "message_text": "Hello! Are you looking to verify your algorithm against lookahead bias before going live? Automaton runs independent 1,000-block Monte Carlo stress tests and issues an Institutional Audit Certificate ( USD). Zero return promises, 100% empirical bias audit. Demo: file:///Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/docs/LANDING_PAGE_DEMO.html"
+    },
+    {
+      "draft_id": "DRAFT_03",
+      "prospect_id": "VERIFIED_PROSPECT_03",
+      "prospect_name": "Alpaca Developer Community Forum",
+      "offer_type": "OFFER_A (Complimentary Sample Audit)",
+      "status": "HUMAN_APPROVAL_REQUIRED",
+      "message_text": "Hey Alpaca developers! We created an automated fail-closed audit tool for Python trading scripts. It verifies 16 bps execution friction, timestamp alignment (Close[t-1] -> Execution[t]), and tail risk. Happy to set up a free pilot audit report for your strategy."
+    }
+  ],
+  "total_drafts": 3,
+  "human_approval_required": true
+}
