@@ -29,6 +29,14 @@ class TestFirstRevenueSprint(unittest.TestCase):
         self.assertGreaterEqual(summary["total_revenue_usd"], 49.0)
         self.assertTrue(summary["first_revenue_achieved"])
 
+        # Cleanup test revenue logs to maintain 0 real payments
+        with open(Path("logs/portfolio/customer_ledger.json"), "w") as f:
+            import json
+            json.dump({"customers": [], "total_customers": 0}, f, indent=2)
+        with open(Path("logs/portfolio/revenue_log.json"), "w") as f:
+            import json
+            json.dump({"revenue_events": [], "total_revenue_usd": 0.0}, f, indent=2)
+
     def test_2_outreach_engine_20_prospects(self):
         engine = OutreachEngine()
         prospects = engine.get_all_prospects()

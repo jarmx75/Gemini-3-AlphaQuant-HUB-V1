@@ -1,0 +1,11 @@
+# Secret Environment Files
+.env
+config/.env
+*.env
+
+# Python Cache & Data
+__pycache__/
+*.pyc
+venv/
+.venv/
+.DS_Store

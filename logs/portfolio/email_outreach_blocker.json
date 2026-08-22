@@ -1,0 +1,6 @@
+{
+  "credential_missing": "RESEND_API_KEY o SENDGRID_API_KEY",
+  "required_permission": "email:send",
+  "exact_next_auth_action": "Opcional: Si deseas que Automaton env\u00ede emails aut\u00f3nomamente a prospectos, agrega RESEND_API_KEY en config/.env. De lo contrario, DRAFT_01 est\u00e1 listo para env\u00edo manual.",
+  "status": "PAUSED_AWAITING_TOKEN"
+}

@@ -1,0 +1,6 @@
+{
+  "credential_missing": "GITHUB_TOKEN",
+  "required_permission": "public_repo / discussions:write",
+  "exact_next_auth_action": "Opcional: Si deseas que Automaton publique autom\u00e1ticamente en GitHub Discussions, agrega GITHUB_TOKEN en config/.env. De lo contrario, DRAFT_02 est\u00e1 listo para publicaci\u00f3n manual.",
+  "status": "PAUSED_AWAITING_TOKEN"
+}

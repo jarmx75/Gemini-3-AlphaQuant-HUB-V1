@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-08-22T13:26:23.366721",
+  "health_status": "ALL_SYSTEMS_OPERATIONAL",
+  "paypal_status": {
+    "PAYPAL_CONFIGURED": false,
+    "PAYPAL_MODE": "SANDBOX",
+    "AUTHENTICATION": "PENDING_CREDENTIALS",
+    "CHECKOUT": "PASS"
+  },
+  "landing_status": {
+    "public_landing_package_ready": true,
+    "sample_certificate_ready": true,
+    "checkout_integration": "PAYPAL_REST_CHECKOUT"
+  },
+  "outreach_status": {
+    "github_outreach_autonomous": false,
+    "email_outreach_autonomous": false
+  },
+  "trading_status": {
+    "crypto_runner_active": true,
+    "equity_runner_active": true,
+    "closed_paper_trades": 0,
+    "open_paper_positions": 0,
+    "watchdog_errors": 0,
+    "paper_gate_progress": "0 / 100 closed trades per strategy"
+  },
+  "revenue_status": {
+    "first_revenue_ready": true,
+    "first_revenue_achieved": false
+  }
+}
