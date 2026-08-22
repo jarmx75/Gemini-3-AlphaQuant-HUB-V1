@@ -1,0 +1,98 @@
+{
+  "reconciliation_status": "RECONCILIATION_FAIL",
+  "portfolio_reality_verdict": "PORTFOLIO_REALITY_UNVERIFIED",
+  "original_vs_reconstructed_metrics": {
+    "annualized_return_pct": {
+      "original": 12.7,
+      "reconstructed": 16.2,
+      "discrepancy": 3.5
+    },
+    "annualized_volatility_pct": {
+      "original": 6.49,
+      "reconstructed": 8.2,
+      "discrepancy": 1.71
+    },
+    "max_drawdown_pct": {
+      "original": 3.31,
+      "reconstructed": 13.45,
+      "discrepancy": 10.14
+    },
+    "sharpe_ratio": {
+      "original": 1.65,
+      "reconstructed": 1.73,
+      "discrepancy": 0.08
+    }
+  },
+  "lookahead_audit": {
+    "status": "LOOKAHEAD_CLEAN",
+    "violations_detected": 0,
+    "tsmom_rule": "Close[t-1] -> Weight[t] -> Return[t]",
+    "crypto_rule": "Close[t-1] -> Signal[t-1] -> Return[t]"
+  },
+  "calendar_alignment_audit": {
+    "total_trading_days": 1080,
+    "crypto_aligned_to_equity_sessions": true,
+    "artificial_volatility_dampening_detected": false
+  },
+  "correlation_audit": {
+    "pearson": -0.0224,
+    "spearman": -0.0428,
+    "yearly_correlations": {
+      "2022": 0.0374,
+      "2023": -0.0129,
+      "2024": -0.0293,
+      "2025": -0.053,
+      "2026": -0.1202
+    }
+  },
+  "stress_test_2x_volatility": {
+    "annualized_return_pct": 32.4,
+    "annualized_volatility_pct": 16.39,
+    "max_drawdown_pct": 25.37,
+    "sharpe_ratio": 1.85
+  },
+  "block_bootstrap_monte_carlo_5000_iters": {
+    "median_cagr_pct": 17.02,
+    "percentile_5th_cagr_pct": 9.55,
+    "percentile_25th_cagr_pct": 13.91,
+    "percentile_95th_dd_pct": 14.2,
+    "percentile_99th_dd_pct": 17.86,
+    "prob_annual_return_negative_pct": 0.02,
+    "prob_dd_greater_15pct": 3.6
+  },
+  "corrected_income_target_requirements": {
+    "5,000 MXN / month": {
+      "target_monthly_income_mxn": 5000,
+      "target_monthly_income_usd": 250.0,
+      "conservative_required_capital_usd": 21567.22,
+      "conservative_required_capital_mxn": 431344.36,
+      "conservative_cagr_used_pct": 13.91,
+      "disclaimer": "MODELLED / NOT GUARANTEED"
+    },
+    "20,000 MXN / month": {
+      "target_monthly_income_mxn": 20000,
+      "target_monthly_income_usd": 1000.0,
+      "conservative_required_capital_usd": 86268.87,
+      "conservative_required_capital_mxn": 1725377.43,
+      "conservative_cagr_used_pct": 13.91,
+      "disclaimer": "MODELLED / NOT GUARANTEED"
+    },
+    "50,000 MXN / month": {
+      "target_monthly_income_mxn": 50000,
+      "target_monthly_income_usd": 2500.0,
+      "conservative_required_capital_usd": 215672.18,
+      "conservative_required_capital_mxn": 4313443.57,
+      "conservative_cagr_used_pct": 13.91,
+      "disclaimer": "MODELLED / NOT GUARANTEED"
+    },
+    "100,000 MXN / month": {
+      "target_monthly_income_mxn": 100000,
+      "target_monthly_income_usd": 5000.0,
+      "conservative_required_capital_usd": 431344.36,
+      "conservative_required_capital_mxn": 8626887.13,
+      "conservative_cagr_used_pct": 13.91,
+      "disclaimer": "MODELLED / NOT GUARANTEED"
+    }
+  },
+  "confidence_level_pct": 98.5
+}
