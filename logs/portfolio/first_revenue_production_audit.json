@@ -1,0 +1,17 @@
+{
+  "payment_link": "PASS",
+  "checkout": "PASS",
+  "payment_verification": "PASS",
+  "merchant_reconciliation": "PASS",
+  "upload": "PASS",
+  "audit": "PASS",
+  "certificate": "PASS",
+  "email": "BLOCKED",
+  "first_revenue": "FAIL",
+  "real_public_frontend_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+  "paypal_payment_link": "https://www.paypal.com/checkoutnow?token=74674682EE061051P",
+  "upload_endpoint": "https://automaton-quant-audit-api.vercel.app/api/upload-audit",
+  "audit_endpoint": "https://automaton-quant-audit-api.vercel.app/api/create-order",
+  "email_provider": "RESEND_TRANSACTIONAL_LOGGING_ENGINE (BLOCKED_AWAITING_API_KEY)",
+  "current_blocker": "AWAITING_FIRST_COMPLETED_EXTERNAL_CUSTOMER_PAYMENT"
+}

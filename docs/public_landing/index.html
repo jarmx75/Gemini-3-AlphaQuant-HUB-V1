@@ -552,7 +552,7 @@
                 <li><a href="sample.html">Sample Audit</a></li>
                 <li><a href="#pricing">Pricing</a></li>
             </ul>
-            <button class="btn btn-primary cta-paypal-btn">Audit My Strategy — $49</button>
+            <a href="https://www.paypal.com/checkoutnow?token=74674682EE061051P" class="btn btn-primary cta-paypal-btn" target="_blank">Audit My Strategy — $49</a>
         </div>
     </nav>
 
@@ -562,7 +562,7 @@
             <h1 class="hero-headline">Know if your backtest is real.</h1>
             <p class="hero-sub">Independent verification for quantitative strategies before you risk real capital.</p>
             <div class="hero-actions">
-                <button class="btn btn-primary cta-paypal-btn" style="font-size: 17px; padding: 14px 32px;">Audit My Strategy — $49</button>
+                <a href="https://www.paypal.com/checkoutnow?token=74674682EE061051P" class="btn btn-primary cta-paypal-btn" style="font-size: 17px; padding: 14px 32px;" target="_blank">Audit My Strategy — $49</a>
                 <a href="sample.html" class="btn btn-secondary" style="font-size: 17px; padding: 14px 28px;">View Sample Audit</a>
             </div>
 
@@ -727,7 +727,7 @@
                     <li>Institutional Verification Certificate</li>
                 </ul>
 
-                <button class="btn btn-primary cta-paypal-btn" style="width: 100%; font-size: 17px; padding: 15px;">Get Your Quant Audit — $49</button>
+                <a href="https://www.paypal.com/checkoutnow?token=74674682EE061051P" class="btn btn-primary cta-paypal-btn" style="width: 100%; font-size: 17px; padding: 15px;" target="_blank">Get Your Quant Audit — $49</a>
             </div>
         </div>
     </section>
@@ -737,7 +737,7 @@
         <div class="final-cta">
             <h2>Before you put capital behind a backtest, audit it.</h2>
             <p>Get instant statistical verification for $49 USD in 60 seconds.</p>
-            <button class="btn btn-primary cta-paypal-btn" style="background-color: #ffffff; color: #1d1d1f; font-size: 17px; padding: 16px 36px;">Audit My Strategy — $49</button>
+            <a href="https://www.paypal.com/checkoutnow?token=74674682EE061051P" class="btn btn-primary cta-paypal-btn" style="background-color: #ffffff; color: #1d1d1f; font-size: 17px; padding: 16px 36px;" target="_blank">Audit My Strategy — $49</a>
         </div>
     </section>
 
@@ -769,48 +769,6 @@
                 toast.style.color = '#991b1b';
                 toast.innerHTML = '🛑 PayPal checkout error. Please refresh and try again.';
             }
-
-            // Real Serverless Backend API URL
-            const BACKEND_URL = 'https://automaton-quant-audit-api.vercel.app/api/create-order';
-            const FALLBACK_PAYPAL_URL = 'https://www.paypal.com/checkoutnow?token=91B68265YW143030K';
-
-            async function triggerPayPalCheckout(btn) {
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '⚡ Preparing Secure PayPal Checkout...';
-                btn.disabled = true;
-
-                toast.style.display = 'block';
-                toast.style.background = '#e0f2fe';
-                toast.style.borderColor = '#7dd3fc';
-                toast.style.color = '#0369a1';
-                toast.innerHTML = '⚡ Creating secure PayPal LIVE order ($49.00 USD)...';
-
-                try {
-                    const resp = await fetch(BACKEND_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
-                    });
-                    if (resp.ok) {
-                        const data = await resp.json();
-                        if (data.approvalUrl) {
-                            toast.innerHTML = '🚀 Order created! Redirecting to PayPal Checkout...';
-                            window.location.href = data.approvalUrl;
-                            return;
-                        }
-                    }
-                } catch (e) {
-                    console.warn('Vercel backend fetch note:', e);
-                }
-
-                // Redirect to verified PayPal LIVE Checkout Order
-                toast.innerHTML = '🚀 Opening PayPal LIVE Checkout ($49.00 USD)...';
-                window.location.href = FALLBACK_PAYPAL_URL;
-            }
-
-            const ctaButtons = document.querySelectorAll('.cta-paypal-btn');
-            ctaButtons.forEach(btn => {
-                btn.addEventListener('click', () => triggerPayPalCheckout(btn));
-            });
         });
     </script>
 </body>
