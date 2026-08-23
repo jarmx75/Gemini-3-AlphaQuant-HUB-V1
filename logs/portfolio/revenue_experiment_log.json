@@ -1,0 +1,26 @@
+{
+  "first_revenue_ready": true,
+  "first_revenue_achieved": false,
+  "ready_checks": {
+    "mvp_functional": true,
+    "demo_functional": true,
+    "pricing_defined": true,
+    "target_customer_defined": true,
+    "prospect_list_prepared": true,
+    "payment_path_defined": true
+  },
+  "revenue_summary": {
+    "total_revenue_usd": 0.0,
+    "total_revenue_events": 0,
+    "total_registered_customers": 0,
+    "total_paying_customers": 0,
+    "first_revenue_achieved": false
+  },
+  "prospect_funnel": {
+    "prospects_identified": 20,
+    "pitches_approved_for_sending": 3,
+    "contacted": 0,
+    "responded": 0,
+    "converted_paid": 0
+  }
+}

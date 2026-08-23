@@ -1,0 +1,2 @@
+{"action": "OPEN", "position_id": "Pairs_Stat_Arb_Base_BTCUSDT/ETHUSDT_1787110294", "pair": "BTCUSDT/ETHUSDT", "side": "SHORT_SPREAD", "gamma": 20.0, "_logged_at": "2026-08-19T03:31:34.417689+00:00"}
+{"action": "CLOSE", "position_id": "Pairs_Stat_Arb_Base_BTCUSDT/ETHUSDT_1787110294", "pair": "BTCUSDT/ETHUSDT", "realized_pnl": 1.1004999999999912, "reason": "Target Mean-Reverted", "_logged_at": "2026-08-19T03:31:34.418164+00:00"}

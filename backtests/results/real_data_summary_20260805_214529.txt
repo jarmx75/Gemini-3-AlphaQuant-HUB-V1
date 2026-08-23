@@ -1,0 +1,57 @@
+BACKTEST RESULTS - REAL DATA
+================================================================================
+
+BTC/USDT
+--------------------------------------------------------------------------------
+Grid Trading:
+  Trades: 13
+  Win Rate: 53.8%
+  Return: -0.13%
+  Sharpe: -0.28
+  Max DD: 0.00%
+  P&L: $-12.91
+
+RSI + SMA:
+  Trades: 20
+  Win Rate: 50.0%
+  Return: -2.40%
+  Sharpe: -1.16
+  Max DD: 0.00%
+  P&L: $-240.42
+
+ETH/USDT
+--------------------------------------------------------------------------------
+Grid Trading:
+  Trades: 26
+  Win Rate: 38.5%
+  Return: -21.96%
+  Sharpe: -0.56
+  Max DD: 0.00%
+  P&L: $-2195.51
+
+RSI + SMA:
+  Trades: 25
+  Win Rate: 44.0%
+  Return: -7.48%
+  Sharpe: -0.93
+  Max DD: 0.00%
+  P&L: $-747.93
+
+BNB/USDT
+--------------------------------------------------------------------------------
+Grid Trading:
+  Trades: 12
+  Win Rate: 50.0%
+  Return: 4.36%
+  Sharpe: -0.20
+  Max DD: 0.00%
+  P&L: $435.88
+
+RSI + SMA:
+  Trades: 26
+  Win Rate: 30.8%
+  Return: -6.28%
+  Sharpe: -0.98
+  Max DD: 0.00%
+  P&L: $-627.99
+

@@ -1,0 +1,150 @@
+{
+  "heartbeat": "2026-08-23T02:22:55.010674+00:00",
+  "runner_pid": 22364,
+  "broker_mode": "MOCK_ONLY",
+  "environment": "ALPACA_PAPER",
+  "base_url": "https://paper-api.alpaca.markets",
+  "last_session": "2026-08-20",
+  "current_session": "2026-08-21",
+  "market_data_source": "YAHOO_FINANCE_DAILY_FEED",
+  "strategies_loaded": [
+    "TSMOM_1D_M1_N21",
+    "TSMOM_1D_M2_N63"
+  ],
+  "open_positions_count": 15,
+  "open_positions": {
+    "TSMOM_1D_M1_N21_SPY": {
+      "position_id": "TSMOM_1D_M1_N21_SPY",
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "SPY",
+      "qty": 12.6418,
+      "entry_price": 776.14,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M1_N21_QQQ": {
+      "position_id": "TSMOM_1D_M1_N21_QQQ",
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "QQQ",
+      "qty": 7.7305,
+      "entry_price": 730.3,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M1_N21_IWM": {
+      "position_id": "TSMOM_1D_M1_N21_IWM",
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "IWM",
+      "qty": 29.6067,
+      "entry_price": 304.84,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M1_N21_XLF": {
+      "position_id": "TSMOM_1D_M1_N21_XLF",
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "XLF",
+      "qty": 201.7368,
+      "entry_price": 58.16,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M1_N21_XLK": {
+      "position_id": "TSMOM_1D_M1_N21_XLK",
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "XLK",
+      "qty": 21.4653,
+      "entry_price": 189.64,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M1_N21_XLE": {
+      "position_id": "TSMOM_1D_M1_N21_XLE",
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "XLE",
+      "qty": 82.8222,
+      "entry_price": 61.91,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M1_N21_GLD": {
+      "position_id": "TSMOM_1D_M1_N21_GLD",
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "GLD",
+      "qty": 12.0121,
+      "entry_price": 401.48,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M2_N63_SPY": {
+      "position_id": "TSMOM_1D_M2_N63_SPY",
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "SPY",
+      "qty": 10.3096,
+      "entry_price": 776.34,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M2_N63_QQQ": {
+      "position_id": "TSMOM_1D_M2_N63_QQQ",
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "QQQ",
+      "qty": 6.3002,
+      "entry_price": 731.07,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M2_N63_IWM": {
+      "position_id": "TSMOM_1D_M2_N63_IWM",
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "IWM",
+      "qty": 24.1258,
+      "entry_price": 305.09,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M2_N63_XLF": {
+      "position_id": "TSMOM_1D_M2_N63_XLF",
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "XLF",
+      "qty": 164.449,
+      "entry_price": 58.16,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M2_N63_XLK": {
+      "position_id": "TSMOM_1D_M2_N63_XLK",
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "XLK",
+      "qty": 17.4932,
+      "entry_price": 190.01,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M2_N63_XLE": {
+      "position_id": "TSMOM_1D_M2_N63_XLE",
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "XLE",
+      "qty": 67.4993,
+      "entry_price": 61.91,
+      "entry_time": "2026-08-20 02:16:34"
+    },
+    "TSMOM_1D_M2_N63_GLD": {
+      "position_id": "TSMOM_1D_M2_N63_GLD",
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "GLD",
+      "qty": 9.7907,
+      "entry_price": 413.84,
+      "entry_time": "2026-08-20 02:20:08"
+    },
+    "TSMOM_1D_M2_N63_TLT": {
+      "position_id": "TSMOM_1D_M2_N63_TLT",
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "TLT",
+      "qty": 111.2707,
+      "entry_price": 83.02,
+      "entry_time": "2026-08-20 02:20:08"
+    }
+  },
+  "closed_trades_by_strategy": {
+    "TSMOM_1D_M1_N21": 0,
+    "TSMOM_1D_M2_N63": 0
+  },
+  "reconciliation_status": "MISMATCH_IWM",
+  "watchdog_status": "HEALTHY",
+  "last_error": null,
+  "security_invariants": {
+    "APPROVED": false,
+    "DEMO_ORDERS": 0,
+    "REAL_ORDERS": 0,
+    "ALPACA_LIVE_ORDERS": 0
+  }
+}

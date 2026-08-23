@@ -1,6 +1,6 @@
 # Automaton Quant Audit Certificate
 
-**Certificate ID**: `AUDIT-023599`  
+**Certificate ID**: `AUDIT-311513`  
 **Client ID**: `PILOT_USER_01`  
 **Strategy Name**: `Test_Strategy`  
 **Verdict**: **`PASSED_INSTITUTIONAL_VERIFICATION`**  
@@ -10,13 +10,13 @@
 
 ## 1. Verified Performance & Risk Metrics
 
-- **Annualized Return**: `19.77%`
-- **Annualized Volatility**: `8.01%`
-- **Sharpe Ratio (Rf=2%)**: `2.22`
-- **Max Drawdown**: `2.3%`
-- **Monte Carlo 95% Max DD**: `5.88%`
+- **Annualized Return**: `17.56%`
+- **Annualized Volatility**: `7.93%`
+- **Sharpe Ratio (Rf=2%)**: `1.96`
+- **Max Drawdown**: `3.62%`
+- **Monte Carlo 95% Max DD**: `6.24%`
 - **Lookahead Bias Violations**: `0`
-- **Probability of Backtest Overfitting (PBO)**: `0.11`
+- **Probability of Backtest Overfitting (PBO)**: `0.22`
 
 ---
 

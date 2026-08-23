@@ -1,0 +1,53 @@
+{
+  "cash": -1031.2986749080562,
+  "mock_positions": {
+    "SPY": {
+      "symbol": "SPY",
+      "qty": 22.7648,
+      "avg_entry_price": 731.78,
+      "market_value": 11382.4
+    },
+    "QQQ": {
+      "symbol": "QQQ",
+      "qty": 12.6893,
+      "avg_entry_price": 730.7,
+      "market_value": 9086.55
+    },
+    "IWM": {
+      "symbol": "IWM",
+      "qty": 48.5922,
+      "avg_entry_price": 304.97,
+      "market_value": 14661.24
+    },
+    "XLF": {
+      "symbol": "XLF",
+      "qty": 331.2194,
+      "avg_entry_price": 58.16,
+      "market_value": 19038.49
+    },
+    "XLK": {
+      "symbol": "XLK",
+      "qty": 35.2334,
+      "avg_entry_price": 189.83,
+      "market_value": 6470.26
+    },
+    "XLE": {
+      "symbol": "XLE",
+      "qty": 135.9515,
+      "avg_entry_price": 61.91,
+      "market_value": 8643.8
+    },
+    "GLD": {
+      "symbol": "GLD",
+      "qty": 19.7197,
+      "avg_entry_price": 374.01,
+      "market_value": 8160.8
+    },
+    "TLT": {
+      "symbol": "TLT",
+      "qty": 224.1122,
+      "avg_entry_price": 83.02,
+      "market_value": 18605.79
+    }
+  }
+}

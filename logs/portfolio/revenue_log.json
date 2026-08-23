@@ -1,19 +1,4 @@
 {
-  "revenue_events": [
-    {
-      "event_id": "REV-0001",
-      "customer_id": "CUST-0001",
-      "amount_usd": 49.0,
-      "description": "Audit Certificate CERT-929303",
-      "timestamp": "2026-08-21T22:37:14.139462"
-    },
-    {
-      "event_id": "REV-0002",
-      "customer_id": "CUST-0003",
-      "amount_usd": 49.0,
-      "description": "Audit Certificate CERT-632986",
-      "timestamp": "2026-08-21T22:39:56.303792"
-    }
-  ],
-  "total_revenue_usd": 98.0
+  "revenue_events": [],
+  "total_revenue_usd": 0.0
 }

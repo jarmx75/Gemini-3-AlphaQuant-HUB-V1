@@ -1,6 +1,6 @@
 # Monitor de Progreso del Paper Gate (100 Trades Forward)
 
-**Última Actualización**: `2026-08-20 17:29:52 UTC`  
+**Última Actualización**: `2026-08-23 02:41:59 UTC`  
 **Estado General del Gate**: `PAPER_GATE_IN_PROGRESS`  
 **Meta Cuantitativa**: **100 trades cerrados forward** por estrategia antes de evaluar Demo / Live.  
 **Invariantes de Seguridad**: `APPROVED=false` | `DEMO_ORDERS=0` | `REAL_ORDERS=0` | `ALPACA_LIVE_ORDERS=0`
@@ -11,11 +11,11 @@
 
 | Estrategia ID | Mercado | Broker | Trades Cerrados | Progreso (%) | Restantes | Win Rate (%) | PnL Paper | PF Paper | Max DD (%) | Días Activo | Est. Días a 100 | Estado del Gate |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `Pairs_Stat_Arb_Base` | `CRYPTO_FUTURES` | `BINANCE` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 3.81 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
-| `Pairs_W90_Z2.5_S3.5_H24` | `CRYPTO_FUTURES` | `BINANCE` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 3.12 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
-| `Pairs_W90_Z2.4_S3.5_H24` | `CRYPTO_FUTURES` | `BINANCE` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 3.12 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
-| `TSMOM_1D_M1_N21` | `US_EQUITY_ETF` | `ALPACA` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 0.64 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
-| `TSMOM_1D_M2_N63` | `US_EQUITY_ETF` | `ALPACA` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 0.64 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
+| `Pairs_Stat_Arb_Base` | `CRYPTO_FUTURES` | `BINANCE` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 6.2 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
+| `Pairs_W90_Z2.5_S3.5_H24` | `CRYPTO_FUTURES` | `BINANCE` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 5.51 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
+| `Pairs_W90_Z2.4_S3.5_H24` | `CRYPTO_FUTURES` | `BINANCE` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 5.51 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
+| `TSMOM_1D_M1_N21` | `US_EQUITY_ETF` | `ALPACA` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 3.02 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
+| `TSMOM_1D_M2_N63` | `US_EQUITY_ETF` | `ALPACA` | **0 / 100** | **0.0%** | 100 | 0.0% | $0.00 | 0.00 | 0.0% | 3.02 | INSUFFICIENT_FORWARD_DATA | `PAPER_ACTIVE` |
 
 ---
 

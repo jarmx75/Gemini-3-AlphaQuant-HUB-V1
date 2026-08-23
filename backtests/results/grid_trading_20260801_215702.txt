@@ -1,0 +1,21 @@
+BACKTEST RESULTS: Grid Trading Strategy
+==================================================
+Symbol: BTC/USDT
+Period: 2024-01-01 00:00:00 to 2024-01-30 23:00:00
+
+Trading Metrics:
+  Total Trades: 1
+  Winning Trades: 1
+  Losing Trades: 0
+  Win Rate: 100.00%
+
+Financial Metrics:
+  Total P&L: $210.33
+  Total Fees: $19.23
+  Final Capital: $10210.33
+  Return: 2.10%
+
+Risk Metrics:
+  Max Drawdown: 0.00%
+  Sharpe Ratio: -0.04
+  Profit Factor: 0.00

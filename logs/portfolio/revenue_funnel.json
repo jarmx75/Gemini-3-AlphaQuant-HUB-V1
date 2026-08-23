@@ -1,18 +1,18 @@
 {
   "funnel_metrics": {
-    "PROSPECT_VERIFIED": 5,
-    "MESSAGE_READY": 3,
-    "HUMAN_APPROVED": 0,
-    "CONTACTED": 0,
-    "REPLIED": 0,
-    "DEMO_OFFERED": 0,
-    "TRIAL": 0,
-    "PAYMENT_REQUESTED": 0,
-    "PAID": 0,
-    "DELIVERED": 0,
-    "REPEAT_CUSTOMER": 0
+    "lead": 5,
+    "contact": 0,
+    "reply": 0,
+    "sample": 1,
+    "paid": 0,
+    "data_received": 0,
+    "audit_running": 0,
+    "certificate_ready": 1,
+    "delivered": 0,
+    "repeat_customer": 0
   },
   "first_revenue_ready": true,
   "first_revenue_achieved": false,
-  "payment_path_status": "CONFIGURED_TEST"
+  "payment_path_status": "CONFIGURED_TEST",
+  "outreach_status": "DRAFT_01_AND_DRAFT_02_APPROVED_AWAITING_MANUAL_SENDING_OR_CREDENTIALS"
 }

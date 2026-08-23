@@ -1,0 +1,1 @@
+{"event": "PRE_TRADE_RISK_REJECTED", "strategy_id": "Pairs_Stat_Arb_Base", "pair": "BTCUSDT/ETHUSDT", "reason": "PRE-TRADE RISK BREACH: Order notional $3150.00 exceeds max_position_per_strategy $300.00", "_logged_at": "2026-08-19T03:31:27.179701+00:00"}

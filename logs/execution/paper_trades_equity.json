@@ -8,141 +8,141 @@
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "SPY",
       "side": "BUY",
-      "qty": 24.6026,
-      "price": 776.3400268554688,
-      "notional": 19100.0,
+      "qty": 26.5605,
+      "price": 764.6699829101562,
+      "notional": 20310.0,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "QQQ",
       "side": "BUY",
-      "qty": 14.6634,
-      "price": 731.0700073242188,
-      "notional": 10720.0,
+      "qty": 16.3733,
+      "price": 709.6901245117188,
+      "notional": 11620.0,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "IWM",
       "side": "BUY",
-      "qty": 54.7379,
-      "price": 305.0899963378906,
-      "notional": 16700.0,
+      "qty": 57.1744,
+      "price": 298.55999755859375,
+      "notional": 17070.0,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "XLF",
       "side": "BUY",
-      "qty": 420.564,
-      "price": 58.15999984741211,
-      "notional": 24460.0,
+      "qty": 399.9653,
+      "price": 57.60499954223633,
+      "notional": 23040.0,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "XLK",
       "side": "BUY",
-      "qty": 40.4189,
-      "price": 190.0099945068359,
-      "notional": 7680.0,
+      "qty": 43.3947,
+      "price": 182.0500030517578,
+      "notional": 7900.0,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "XLE",
       "side": "BUY",
-      "qty": 166.6936,
-      "price": 61.90999984741211,
-      "notional": 10320.0,
+      "qty": 157.6193,
+      "price": 64.01499938964844,
+      "notional": 10090.0,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "GLD",
       "side": "BUY",
-      "qty": 27.4733,
-      "price": 401.4800109863281,
-      "notional": 11030.0,
+      "qty": 23.6452,
+      "price": 421.6499938964844,
+      "notional": 9970.0,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
-      "symbol": "GLD",
+      "symbol": "QQQ",
       "side": "SELL",
-      "qty": 27.4733,
-      "price": 401.4800109863281,
-      "notional": -11029.98,
+      "qty": 16.3733,
+      "price": 709.6901245117188,
+      "notional": -11619.97,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "SPY",
       "side": "BUY",
-      "qty": 3.0307,
-      "price": 776.3400268554688,
-      "notional": 2352.84,
+      "qty": 3.4676,
+      "price": 764.6699829101562,
+      "notional": 2651.6,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
-    },
-    {
-      "strategy_id": "TSMOM_1D_M2_N63",
-      "symbol": "QQQ",
-      "side": "BUY",
-      "qty": 1.8061,
-      "price": 731.0700073242188,
-      "notional": 1320.39,
-      "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "IWM",
       "side": "BUY",
-      "qty": 6.7029,
-      "price": 305.0899963378906,
-      "notional": 2045.0,
+      "qty": 7.4844,
+      "price": 298.55999755859375,
+      "notional": 2234.56,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "XLF",
       "side": "BUY",
-      "qty": 8.9407,
-      "price": 58.15999984741211,
-      "notional": 519.99,
+      "qty": 33.6777,
+      "price": 57.60499954223633,
+      "notional": 1940.0,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "XLK",
       "side": "BUY",
-      "qty": 4.9634,
-      "price": 190.0099945068359,
-      "notional": 943.1,
+      "qty": 5.6185,
+      "price": 182.0500030517578,
+      "notional": 1022.85,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "XLE",
       "side": "BUY",
-      "qty": 20.5252,
-      "price": 61.90999984741211,
-      "notional": 1270.72,
+      "qty": 20.4776,
+      "price": 64.01499938964844,
+      "notional": 1310.87,
       "status": "FILLED",
-      "timestamp": "2026-08-20T02:11:46Z"
+      "timestamp": "2026-08-23T02:41:59Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "GLD",
+      "side": "BUY",
+      "qty": 3.0854,
+      "price": 421.6499938964844,
+      "notional": 1300.98,
+      "status": "FILLED",
+      "timestamp": "2026-08-23T02:41:59Z"
     }
   ]
 }

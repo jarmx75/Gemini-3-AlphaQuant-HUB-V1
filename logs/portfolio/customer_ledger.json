@@ -1,29 +1,4 @@
 {
-  "customers": [
-    {
-      "customer_id": "CUST-0001",
-      "name": "Test Quant Trader",
-      "email": "trader@test.com",
-      "company": "Prop Desk",
-      "registered_at": "2026-08-21T22:37:14.115975",
-      "status": "REGISTERED_LEAD"
-    },
-    {
-      "customer_id": "CUST-0002",
-      "name": "SAMPLE_PROSPECT_PRO_TRADER",
-      "email": "prospect@quantdesk.com",
-      "company": "AlphaLab Quant",
-      "registered_at": "2026-08-21T22:39:34.775487",
-      "status": "REGISTERED_LEAD"
-    },
-    {
-      "customer_id": "CUST-0003",
-      "name": "Test Quant Trader",
-      "email": "trader@test.com",
-      "company": "Prop Desk",
-      "registered_at": "2026-08-21T22:39:56.279502",
-      "status": "REGISTERED_LEAD"
-    }
-  ],
-  "total_customers": 3
+  "customers": [],
+  "total_customers": 0
 }
