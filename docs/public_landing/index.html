@@ -151,9 +151,24 @@
             font-weight: 500;
         }
 
+        /* Status Toast Alert */
+        .status-toast {
+            display: none;
+            background: #e0f2fe;
+            border: 1px solid #7dd3fc;
+            color: #0369a1;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 12px;
+            margin: 16px auto 0 auto;
+            max-width: 600px;
+        }
+
         /* Hero Section */
         .hero {
-            padding: 96px 0 64px 0;
+            padding: 80px 0 64px 0;
             text-align: center;
         }
 
@@ -240,7 +255,6 @@
             font-weight: 700;
             color: var(--text-title);
             letter-spacing: -0.03em;
-
         }
 
         .mockup-stat-lbl {
@@ -524,6 +538,8 @@
         <strong>MODELLED / NOT GUARANTEED</strong> — Independent Quantitative Verification Service. Zero financial advice. Zero profit guarantees.
     </div>
 
+    <div id="status-toast" class="status-toast"></div>
+
     <!-- Sticky Navbar -->
     <nav>
         <div class="container nav-inner">
@@ -536,7 +552,7 @@
                 <li><a href="sample.html">Sample Audit</a></li>
                 <li><a href="#pricing">Pricing</a></li>
             </ul>
-            <a href="https://www.paypal.com/checkoutnow" class="btn btn-primary">Audit My Strategy — $49</a>
+            <a href="https://www.paypal.com/checkoutnow?token=91B68265YW143030K" class="btn btn-primary cta-paypal-link">Audit My Strategy — $49</a>
         </div>
     </nav>
 
@@ -546,7 +562,7 @@
             <h1 class="hero-headline">Know if your backtest is real.</h1>
             <p class="hero-sub">Independent verification for quantitative strategies before you risk real capital.</p>
             <div class="hero-actions">
-                <a href="https://www.paypal.com/checkoutnow" class="btn btn-primary" style="font-size: 17px; padding: 14px 32px;">Audit My Strategy — $49</a>
+                <a href="https://www.paypal.com/checkoutnow?token=91B68265YW143030K" class="btn btn-primary cta-paypal-link" style="font-size: 17px; padding: 14px 32px;">Audit My Strategy — $49</a>
                 <a href="sample.html" class="btn btn-secondary" style="font-size: 17px; padding: 14px 28px;">View Sample Audit</a>
             </div>
 
@@ -711,7 +727,7 @@
                     <li>Institutional Verification Certificate</li>
                 </ul>
 
-                <a href="https://www.paypal.com/checkoutnow" class="btn btn-primary" style="width: 100%; font-size: 17px; padding: 15px;">Get Your Quant Audit — $49</a>
+                <a href="https://www.paypal.com/checkoutnow?token=91B68265YW143030K" class="btn btn-primary cta-paypal-link" style="width: 100%; font-size: 17px; padding: 15px;">Get Your Quant Audit — $49</a>
             </div>
         </div>
     </section>
@@ -721,7 +737,7 @@
         <div class="final-cta">
             <h2>Before you put capital behind a backtest, audit it.</h2>
             <p>Get instant statistical verification for $49 USD in 60 seconds.</p>
-            <a href="https://www.paypal.com/checkoutnow" class="btn btn-primary" style="background-color: #ffffff; color: #1d1d1f; font-size: 17px; padding: 16px 36px;">Audit My Strategy — $49</a>
+            <a href="https://www.paypal.com/checkoutnow?token=91B68265YW143030K" class="btn btn-primary cta-paypal-link" style="background-color: #ffffff; color: #1d1d1f; font-size: 17px; padding: 16px 36px;">Audit My Strategy — $49</a>
         </div>
     </section>
 
@@ -734,5 +750,36 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+            const toast = document.getElementById('status-toast');
+
+            if (status === 'cancelled') {
+                toast.style.display = 'block';
+                toast.style.background = '#fef2f2';
+                toast.style.borderColor = '#fca5a5';
+                toast.style.color = '#991b1b';
+                toast.innerHTML = '⚠️ Payment was cancelled. You can try again whenever you are ready.';
+            } else if (status === 'error') {
+                toast.style.display = 'block';
+                toast.style.background = '#fef2f2';
+                toast.style.borderColor = '#fca5a5';
+                toast.style.color = '#991b1b';
+                toast.innerHTML = '🛑 PayPal checkout error. Please refresh and try again.';
+            }
+
+            // CTA Button Redirect Handler
+            const ctaButtons = document.querySelectorAll('.cta-paypal-link');
+            ctaButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Update button UI state
+                    btn.innerHTML = 'Redirecting to PayPal Checkout...';
+                    btn.style.opacity = '0.85';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

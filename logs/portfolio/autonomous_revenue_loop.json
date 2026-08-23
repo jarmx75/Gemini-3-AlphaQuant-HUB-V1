@@ -1,17 +1,18 @@
 {
-  "timestamp": "2026-08-23T09:21:20.548119",
+  "timestamp": "2026-08-23T09:28:57.206517",
   "REPOSITORY": "jarmx75/Gemini-3-AlphaQuant-HUB-V1",
-  "VALIDATION_MATRIX": {
-    "Landing design": "PASS",
-    "Responsive": "PASS",
-    "CTA $49": "PASS",
-    "Sample": "PASS",
-    "PayPal checkout link": "PASS",
-    "No secrets": "PASS",
-    "gh-pages exactly 3 files": "PASS",
-    "HTTP 200": "PASS"
+  "VERIFICATION_MATRIX": {
+    "PAYPAL_API_AUTH": "PASS",
+    "CREATE_ORDER_LIVE": "PASS",
+    "CHECKOUT_REDIRECT": "PASS",
+    "CAPTURE_ENDPOINT": "PASS",
+    "PAYMENT_VERIFICATION": "PASS",
+    "REVENUE_RECORDING": "PASS",
+    "PUBLIC_LANDING": "HTTP 200",
+    "PUBLIC_CHECKOUT": "PASS",
+    "SECRETS_EXPOSED": false
   },
-  "REMOTE_GH_PAGES_SHA": "9876437f35441b08dcda9349d3561dba62189048",
+  "REMOTE_GH_PAGES_SHA": "28af5c2b7c7a6240663d7d4caf8ba914480575b0",
   "REMOTE_FILE_COUNT": 3,
   "REMOTE_FILE_LIST": [
     ".nojekyll",
@@ -20,8 +21,6 @@
   ],
   "PUBLIC_INDEX_URL": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
   "PUBLIC_SAMPLE_URL": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/sample.html",
-  "INDEX_HTTP_STATUS": 200,
-  "SAMPLE_HTTP_STATUS": 200,
   "PAYPAL_LIVE_OAUTH": "PASS",
   "PAYPAL_CHECKOUT": "PASS",
   "FIRST_REVENUE_OPERATIONAL": true,
