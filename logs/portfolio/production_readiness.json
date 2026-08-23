@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-08-23T21:28:50Z",
+  "paypal_environment_verified": "PASS",
+  "return_url_verified": "PASS",
+  "cancel_url_verified": "PASS",
+  "payment_server_verification": "PASS",
+  "customer_identity": "PASS",
+  "secure_upload": "PASS",
+  "real_audit": "PASS",
+  "certificate_generation": "PASS",
+  "email_provider": "BLOCKED",
+  "email_delivery_test": "BLOCKED",
+  "sandbox_e2e": "PASS",
+  "live_payment_link": "PASS",
+  "first_revenue_achieved": false,
+  "exact_blockers": [
+    "RESEND_API_KEY_MISSING",
+    "AWAITING_FIRST_REAL_EXTERNAL_CUSTOMER_PAYMENT_IN_PAYPAL_BUSINESS"
+  ]
+}
