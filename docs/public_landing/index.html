@@ -3,245 +3,736 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automaton Quant Audit — Institutional Backtest Verification</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Automaton Quant Audit — Know if your backtest is real.</title>
+    <meta name="description" content="Independent verification for quantitative strategies before you risk real capital. 1,000-block Monte Carlo stress testing and PBO overfitting analysis.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0a0e17;
-            --card-bg: rgba(22, 28, 45, 0.7);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --accent-green: #10b981;
-            --accent-blue: #3b82f6;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
+            --bg-page: #fbfbfd;
+            --bg-card: #ffffff;
+            --text-title: #1d1d1f;
+            --text-body: #515154;
+            --text-muted: #86868b;
+            --accent: #0071e3;
+            --accent-hover: #0077ed;
+            --accent-green: #34c759;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --border-subtle: rgba(0, 0, 0, 0.04);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.08);
+            --radius-main: 20px;
+            --radius-btn: 980px;
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
         }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-page);
+            color: var(--text-title);
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
         .container {
-            max-width: 1100px;
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 24px;
         }
-        header {
+
+        /* Sticky Glass Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            transition: background 0.3s ease;
+        }
+
+        .nav-inner {
+            height: 60px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-color);
+            justify-content: space-between;
         }
-        .logo {
+
+        .nav-logo {
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text-title);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.03em;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
             font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--accent-green);
         }
-        .hero {
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: var(--text-body);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-weight: 400;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 11px 22px;
+            border-radius: var(--radius-btn);
+            text-decoration: none;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(0, 113, 227, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: rgba(0, 113, 227, 0.08);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 113, 227, 0.14);
+            transform: scale(1.02);
+        }
+
+        /* Disclaimer Strip */
+        .disclaimer-strip {
+            background: #fff8eb;
+            border-bottom: 1px solid #fde68a;
+            color: #b45309;
+            font-size: 13px;
             text-align: center;
-            padding: 80px 20px;
+            padding: 10px 16px;
+            font-weight: 500;
         }
-        .hero h1 {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        /* Hero Section */
+        .hero {
+            padding: 96px 0 64px 0;
+            text-align: center;
+        }
+
+        .hero-headline {
+            font-size: 64px;
+            line-height: 1.0625;
+            font-weight: 700;
+            letter-spacing: -0.035em;
+            color: var(--text-title);
+            margin-bottom: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-sub {
+            font-size: 23px;
+            line-height: 1.3913;
+            font-weight: 400;
+            color: var(--text-body);
+            max-width: 680px;
+            margin: 0 auto 40px auto;
+            letter-spacing: -0.016em;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 64px;
+        }
+
+        /* Mockup Card */
+        .hero-mockup {
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+            padding: 40px;
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 28px;
+        }
+
+        .mockup-badge {
+            background: rgba(52, 199, 89, 0.12);
+            color: var(--accent-green);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: var(--radius-btn);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .mockup-stat {
+            background: var(--bg-page);
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .mockup-stat-val {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-title);
+            letter-spacing: -0.03em;
+
+        }
+
+        .mockup-stat-lbl {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Trust Value Strip */
+        .trust-section {
+            padding: 48px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            margin: 40px 0 80px 0;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .trust-item h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-title);
+            margin-bottom: 6px;
+        }
+
+        .trust-item p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        /* Section Titles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-tag {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 40px;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--text-title);
+        }
+
+        /* How It Works (3 Steps) */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 110px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-main);
+            padding: 36px 30px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .step-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 113, 227, 0.08);
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .step-card h3 {
+            font-size: 21px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .step-card p {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.5;
+        }
+
+        /* Feature Grid (6 Cards) */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 110px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-main);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -0.015em;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.48;
+        }
+
+        /* Sample Section */
+        .sample-box {
+            background: linear-gradient(180deg, #ffffff 0%, #f4f4f7 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 56px 40px;
+            text-align: center;
+            margin-bottom: 110px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .sample-box h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .sample-box p {
+            font-size: 17px;
+            color: var(--text-body);
+            max-width: 600px;
+            margin: 0 auto 32px auto;
+        }
+
+        /* Pricing Card */
+        .pricing-card {
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            border-radius: 28px;
+            padding: 56px 48px;
+            max-width: 500px;
+            margin: 0 auto 110px auto;
+            text-align: center;
+            box-shadow: 0 16px 48px rgba(0, 113, 227, 0.12);
+        }
+
+        .price-val {
+            font-size: 72px;
+            font-weight: 800;
+            color: var(--text-title);
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin: 20px 0 8px 0;
+        }
+
+        .price-val span {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 36px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            padding: 24px 0;
+        }
+
+        .pricing-features li {
+            font-size: 15px;
+            color: var(--text-body);
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--accent-green);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            padding: 96px 0;
+            background: #1d1d1f;
+            color: #ffffff;
+            border-radius: 32px;
+            margin-bottom: 80px;
+        }
+
+        .final-cta h2 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
             margin-bottom: 20px;
         }
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 700px;
+
+        .final-cta p {
+            font-size: 20px;
+            color: #a1a1a6;
+            max-width: 580px;
             margin: 0 auto 40px auto;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-green) 0%, #059669 100%);
-            color: white;
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s;
-            display: inline-block;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-        }
-        .btn-secondary {
-            background: rgba(59, 130, 246, 0.2);
-            color: var(--accent-blue);
-            border: 1px solid var(--accent-blue);
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-left: 15px;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 60px 0;
-        }
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-        .card h3 {
-            color: var(--accent-blue);
-            margin-top: 0;
-        }
-        .disclaimer-banner {
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.4);
-            color: #fca5a5;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            text-align: center;
-            font-size: 0.95rem;
-        }
-        .pricing {
-            text-align: center;
-            margin: 80px 0;
-        }
-        .price-box {
-            display: inline-block;
-            background: var(--card-bg);
-            border: 2px solid var(--accent-green);
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 400px;
-            margin-top: 30px;
-        }
-        .price {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--accent-green);
-        }
-        .contact-form {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 40px;
-            max-width: 600px;
-            margin: 0 auto 80px auto;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background: rgba(10, 14, 23, 0.8);
-            color: white;
-            box-sizing: border-box;
-        }
+
+        /* Footer */
         footer {
+            border-top: 1px solid var(--border-light);
+            padding: 48px 0 64px 0;
             text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        footer p {
+            margin-bottom: 12px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .hero-headline { font-size: 42px; }
+            .hero-sub { font-size: 19px; }
+            .mockup-grid { grid-template-columns: 1fr; }
+            .trust-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid, .feature-grid { grid-template-columns: 1fr; }
+            .final-cta h2 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">⚡ AUTOMATON QUANT AUDIT</div>
-            <div>
-                <a href="sample.html" class="btn-secondary">View Sample Audit</a>
-                <a href="#audit-form" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Request Audit</a>
-            </div>
-        </header>
 
-        <section class="hero">
-            <div class="disclaimer-banner">
-                ⚠️ <strong>MODELLED / NOT GUARANTEED</strong> — Quantitative Audit & Verification Engine. Zero financial advice. Zero return guarantees.
-            </div>
-            <h1>Zero-Bias Institutional Backtest Verification</h1>
-            <p>Don't risk real capital on overfitted models. Automaton runs independent 1,000-block Monte Carlo stress tests, zero-lookahead verification, and friction audits in 60 seconds.</p>
-            <a href="#pricing" class="btn-primary">Get Your Quant Audit — $49</a>
-            <a href="sample.html" class="btn-secondary">Inspect Sample Certificate</a>
-        </section>
-
-        <section class="features">
-            <div class="card">
-                <h3>🔍 Look-Ahead Bias Detection</h3>
-                <p>Audits exact timestamp alignment between signal generation and return execution (Signal[t-1] -> Execution[t]) to ensure zero look-ahead contamination.</p>
-            </div>
-            <div class="card">
-                <h3>🎲 1,000 Monte Carlo Stress Runs</h3>
-                <p>Simulates block bootstrap market regimes to calculate 95% Value at Risk (VaR) and true tail risk drawdowns.</p>
-            </div>
-            <div class="card">
-                <h3>📊 Overfitting Risk Score (PBO)</h3>
-                <p>Estimates Probability of Backtest Overfitting (PBO) to separate genuine statistical edge from curve-fitting noise.</p>
-            </div>
-        </section>
-
-        <section class="pricing" id="pricing">
-            <h2>Transparent Institutional Pricing</h2>
-            <div class="price-box">
-                <h3>Standalone Audit Report</h3>
-                <div class="price">$49 <span style="font-size: 1rem; color: var(--text-secondary);">USD</span></div>
-                <p>Instant PDF & Markdown Institutional Certificate</p>
-                <ul style="text-align: left; margin: 25px 0; color: var(--text-secondary);">
-                    <li>✔ 1,000-Block Monte Carlo Stress Test</li>
-                    <li>✔ PBO Overfitting Probability Score</li>
-                    <li>✔ 95% VaR & CVaR Tail Risk Metrics</li>
-                    <li>✔ 16 bps Execution Friction Deduction</li>
-                    <li>✔ Fail-Closed Safety Audit Badge</li>
-                </ul>
-                <a href="#audit-form" class="btn-primary" style="display: block;">Request Audit Now ($49 USD)</a>
-            </div>
-        </section>
-
-        <section class="contact-form" id="audit-form">
-            <h2 style="text-align: center; margin-top: 0;">Request Backtest Audit</h2>
-            <form onsubmit="alert('Thank you! Your audit request has been logged. Our team will contact you at your email address within 2 hours to confirm your PayPal payment and data upload.'); return false;">
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" required placeholder="Quant Trader / Fund Manager">
-                </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" required placeholder="trader@quantdesk.com">
-                </div>
-                <div class="form-group">
-                    <label>Strategy Name</label>
-                    <input type="text" required placeholder="e.g. StatArb_BTC_ETH_v2">
-                </div>
-                <div class="form-group">
-                    <label>Return Series CSV Link or Notes</label>
-                    <textarea rows="4" placeholder="Paste return series URL or backtest description..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Submit Audit Request ($49 USD)</button>
-            </form>
-        </section>
-
-        <footer>
-            &copy; 2026 Automaton Quantitative Autonomous Systems. All rights reserved. Zero Financial Advice. Institutional Quantitative Verification Service Only.
-        </footer>
+    <!-- Disclaimer Banner -->
+    <div class="disclaimer-strip">
+        <strong>MODELLED / NOT GUARANTEED</strong> — Independent Quantitative Verification Service. Zero financial advice. Zero profit guarantees.
     </div>
+
+    <!-- Sticky Navbar -->
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="nav-logo">
+                <span>⚡</span> Automaton <strong>Quant Audit</strong>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Diagnostics</a></li>
+                <li><a href="sample.html">Sample Audit</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+            <a href="https://www.paypal.com/checkoutnow" class="btn btn-primary">Audit My Strategy — $49</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-headline">Know if your backtest is real.</h1>
+            <p class="hero-sub">Independent verification for quantitative strategies before you risk real capital.</p>
+            <div class="hero-actions">
+                <a href="https://www.paypal.com/checkoutnow" class="btn btn-primary" style="font-size: 17px; padding: 14px 32px;">Audit My Strategy — $49</a>
+                <a href="sample.html" class="btn btn-secondary" style="font-size: 17px; padding: 14px 28px;">View Sample Audit</a>
+            </div>
+
+            <!-- Visual Dashboard Mockup -->
+            <div class="hero-mockup">
+                <div class="mockup-header">
+                    <div>
+                        <div style="font-weight: 700; font-size: 18px; color: var(--text-title);">Quantitative Audit Certificate</div>
+                        <div style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Verification ID: CERT-LIVE-948210 &bull; Automated Analysis</div>
+                    </div>
+                    <div class="mockup-badge">
+                        ✓ VERIFIED VALIDATED
+                    </div>
+                </div>
+
+                <div class="mockup-grid">
+                    <div class="mockup-stat">
+                        <div class="mockup-stat-val" style="color: var(--accent-green);">1.84</div>
+                        <div class="mockup-stat-lbl">Friction-Adjusted Sharpe</div>
+                    </div>
+                    <div class="mockup-stat">
+                        <div class="mockup-stat-val">12.5%</div>
+                        <div class="mockup-stat-lbl">PBO Overfitting Risk</div>
+                    </div>
+                    <div class="mockup-stat">
+                        <div class="mockup-stat-val">0.00%</div>
+                        <div class="mockup-stat-lbl">Look-Ahead Contamination</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Value Strip -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <h4>Look-Ahead Bias</h4>
+                    <p>Timestamp alignment check</p>
+                </div>
+                <div class="trust-item">
+                    <h4>Execution Friction</h4>
+                    <p>16 bps slippage deduction</p>
+                </div>
+                <div class="trust-item">
+                    <h4>Drawdown Risk</h4>
+                    <p>Underwater duration audit</p>
+                </div>
+                <div class="trust-item">
+                    <h4>Monte Carlo Risk</h4>
+                    <p>1,000 block bootstrap runs</p>
+                </div>
+                <div class="trust-item">
+                    <h4>Overfitting Score</h4>
+                    <p>PBO statistical evaluation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" style="padding: 40px 0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Process</span>
+                <h2 class="section-title">Three steps to clarity.</h2>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3>Upload</h3>
+                    <p>Provide your strategy return series CSV or backtest trade log safely via secure checkout.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h3>Audit</h3>
+                    <p>Our autonomous engine executes 1,000 Monte Carlo resamples, PBO analysis, and fee deductions.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h3>Certificate</h3>
+                    <p>Receive your institutional audit certificate detailing exact tail risk and statistical validity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagnostics Feature Grid -->
+    <section id="features" style="padding: 40px 0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Diagnostics</span>
+                <h2 class="section-title">Institutional verification suite.</h2>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Zero-Lookahead Audit</h3>
+                    <p>Strict timestamp verification ensuring signals execution occurs exclusively on t+1 price bars.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎲</div>
+                    <h3>Monte Carlo Stress</h3>
+                    <p>1,000-block bootstrap simulations to calculate 95% Value at Risk (VaR) and CVaR tail risk.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💸</div>
+                    <h3>Execution Friction</h3>
+                    <p>Applies institutional spread, exchange fee schedules, and 16 bps friction stress tests.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Risk Diagnostics</h3>
+                    <p>Evaluates maximum drawdown, underwater duration, and Sortino downside risk ratios.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Independent Verification</h3>
+                    <p>Unbiased 3rd-party quantitative score completely separated from strategy developers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3>Machine Certificate</h3>
+                    <p>Delivers tamper-proof PDF and Markdown institutional certificate with fail-closed verdict.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Certificate Section -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <div class="sample-box">
+                <h3>See what an audit report looks like.</h3>
+                <p>Inspect an authentic sample certificate generated by our autonomous verification engine.</p>
+                <a href="sample.html" class="btn btn-secondary" style="font-size: 16px;">View Sample Audit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" style="padding: 40px 0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Pricing</span>
+                <h2 class="section-title">Simple, transparent audit pricing.</h2>
+            </div>
+
+            <div class="pricing-card">
+                <div style="font-weight: 600; font-size: 18px; color: var(--accent);">Quant Strategy Audit</div>
+                <div class="price-val">$49 <span>USD</span></div>
+                <div style="font-size: 14px; color: var(--text-muted);">One-time payment &bull; No subscription required</div>
+
+                <ul class="pricing-features">
+                    <li>One Strategy Backtest Audit</li>
+                    <li>1,000-Block Monte Carlo Stress Test</li>
+                    <li>PBO Overfitting Risk Score</li>
+                    <li>Independent Tail-Risk Diagnostics</li>
+                    <li>Institutional Verification Certificate</li>
+                </ul>
+
+                <a href="https://www.paypal.com/checkoutnow" class="btn btn-primary" style="width: 100%; font-size: 17px; padding: 15px;">Get Your Quant Audit — $49</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="container">
+        <div class="final-cta">
+            <h2>Before you put capital behind a backtest, audit it.</h2>
+            <p>Get instant statistical verification for $49 USD in 60 seconds.</p>
+            <a href="https://www.paypal.com/checkoutnow" class="btn btn-primary" style="background-color: #ffffff; color: #1d1d1f; font-size: 17px; padding: 16px 36px;">Audit My Strategy — $49</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Automaton Quant Audit</strong> &bull; Independent Quantitative Strategy Verification</p>
+            <p>MODELLED / NOT GUARANTEED &bull; Zero Financial Advice &bull; Statistical Verification Engine Only</p>
+            <p style="margin-top: 16px; font-size: 12px; color: #a1a1a6;">&copy; 2026 Automaton Quantitative Autonomous Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>

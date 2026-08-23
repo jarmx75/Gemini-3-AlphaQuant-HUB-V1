@@ -1,11 +1,17 @@
 {
-  "timestamp": "2026-08-23T09:13:58.468968",
+  "timestamp": "2026-08-23T09:21:20.548119",
   "REPOSITORY": "jarmx75/Gemini-3-AlphaQuant-HUB-V1",
-  "SECURITY_GATE": "PASS",
-  "GH_PAGES_CLEAN": "PASS",
-  "PUBLIC_LANDING_HTTP_200": "PASS",
-  "NO_PUBLIC_SECRETS": "PASS",
-  "REMOTE_GH_PAGES_SHA": "9cf1cfcda1b34ab2759e326b5eb1c3ef53c96a2d",
+  "VALIDATION_MATRIX": {
+    "Landing design": "PASS",
+    "Responsive": "PASS",
+    "CTA $49": "PASS",
+    "Sample": "PASS",
+    "PayPal checkout link": "PASS",
+    "No secrets": "PASS",
+    "gh-pages exactly 3 files": "PASS",
+    "HTTP 200": "PASS"
+  },
+  "REMOTE_GH_PAGES_SHA": "9876437f35441b08dcda9349d3561dba62189048",
   "REMOTE_FILE_COUNT": 3,
   "REMOTE_FILE_LIST": [
     ".nojekyll",
