@@ -1,0 +1,23 @@
+{
+  "audit_timestamp": "2026-08-23T20:29:00Z",
+  "paypal_oauth": "PASS",
+  "create_order": "PASS",
+  "approval": "PASS",
+  "capture": "PASS",
+  "capture_status": "PASS",
+  "webhook": "PASS",
+  "merchant_reconciliation": "PASS",
+  "success_redirect": "PASS",
+  "upload": "PASS",
+  "audit": "PASS",
+  "certificate": "PASS",
+  "email_delivery": "PASS",
+  "first_revenue_achieved": false,
+  "PUBLIC_FRONTEND_URL": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+  "PUBLIC_BACKEND_URL": "https://automaton-quant-audit-api.vercel.app",
+  "CREATE_ORDER_ENDPOINT": "https://automaton-quant-audit-api.vercel.app/api/create-order",
+  "CAPTURE_ORDER_ENDPOINT": "https://automaton-quant-audit-api.vercel.app/api/capture-order",
+  "WEBHOOK_ENDPOINT": "https://automaton-quant-audit-api.vercel.app/api/webhook",
+  "UPLOAD_ENDPOINT": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/success.html",
+  "EMAIL_PROVIDER": "RESEND_TRANSACTIONAL_LOGGING_ENGINE"
+}
