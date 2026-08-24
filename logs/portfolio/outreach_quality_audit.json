@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-08-24T18:05:34.364581",
+  "comments_reviewed": 5,
+  "duplicates_found": 2,
+  "duplicates_removed": 2,
+  "irrelevant_comments_found": 2,
+  "irrelevant_comments_removed": 2,
+  "comments_kept": 1,
+  "future_publications_blocked": 5,
+  "average_context_score": 85.0,
+  "average_promotion_score": 15.0,
+  "real_replies": 0,
+  "real_clicks": 0,
+  "real_visits": 0,
+  "real_leads": 0,
+  "real_checkouts": 0,
+  "real_payments": 0,
+  "revenue_usd": 0.0,
+  "FIRST_REVENUE_ACHIEVED": false,
+  "remediation_status": "REMEDIATION_COMPLETE_HIGH_QUALITY_ENFORCED",
+  "publication_log": [
+    {
+      "lead_id": "gh_issue_5123204414",
+      "target_url": "https://github.com/alex-place/lantern-os/issues/3254",
+      "status": "BLOCKED \u2014 LOW_CONTEXT_RELEVANCE",
+      "gate_score": {
+        "context_score": 60,
+        "intent_score": 55,
+        "risk_score": 10,
+        "passed_gate": false
+      }
+    },
+    {
+      "lead_id": "gh_issue_5183152091",
+      "target_url": "https://github.com/gotibhai/quant-backtest-platform/issues/18",
+      "status": "BLOCKED \u2014 LOW_CONTEXT_RELEVANCE",
+      "gate_score": {
+        "context_score": 40,
+        "intent_score": 30,
+        "risk_score": 10,
+        "passed_gate": false
+      }
+    },
+    {
+      "lead_id": "gh_issue_5123205031",
+      "target_url": "https://github.com/alex-place/lantern-os/issues/3257",
+      "status": "BLOCKED \u2014 LOW_CONTEXT_RELEVANCE",
+      "gate_score": {
+        "context_score": 60,
+        "intent_score": 55,
+        "risk_score": 10,
+        "passed_gate": false
+      }
+    },
+    {
+      "lead_id": "gh_issue_5051320665",
+      "target_url": "https://github.com/NishikawaButterfly/quant-risk-engine/issues/15",
+      "status": "BLOCKED \u2014 LOW_CONTEXT_RELEVANCE",
+      "gate_score": {
+        "context_score": 40,
+        "intent_score": 30,
+        "risk_score": 45,
+        "passed_gate": false
+      }
+    },
+    {
+      "lead_id": "gh_issue_4833903338",
+      "target_url": "https://github.com/xozai/quant_app/issues/33",
+      "status": "BLOCKED \u2014 LOW_CONTEXT_RELEVANCE",
+      "gate_score": {
+        "context_score": 60,
+        "intent_score": 55,
+        "risk_score": 10,
+        "passed_gate": false
+      }
+    }
+  ]
+}
