@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-08-24T18:02:32.194126",
+  "verified_leads": 5,
+  "publication_attempts": 7,
+  "published_count": 5,
+  "blocked_count": 2,
+  "failed_count": 0,
+  "real_publication_urls": [
+    "https://github.com/gotibhai/quant-backtest-platform/issues/18#issuecomment-5399294591",
+    "https://github.com/faheemkhaskheli9/ml-trading-bot/issues/12#issuecomment-5399294720",
+    "https://github.com/juanjuandog/FinSight-AI/issues/56#issuecomment-5399294831",
+    "https://github.com/NishikawaButterfly/quant-risk-engine/issues/15#issuecomment-5399294981",
+    "https://github.com/shobhit727/trade/issues/20#issuecomment-5399295122"
+  ],
+  "real_clicks": 0,
+  "real_visits": 0,
+  "quiz_starts": 0,
+  "emails": 0,
+  "checkouts": 0,
+  "payments": 0,
+  "revenue_usd": 0.0,
+  "FIRST_REVENUE_ACHIEVED": false,
+  "top_converting_channel": "GitHub",
+  "next_best_action": "Configurar credenciales de API de Reddit y monitorear visitas en landing",
+  "publication_log": [
+    {
+      "lead_id": "gh_issue_5183152091",
+      "platform": "GitHub",
+      "target_url": "https://github.com/gotibhai/quant-backtest-platform/issues/18",
+      "submission_timestamp": "2026-08-24T18:02:32.194126",
+      "publication_status": "PUBLISHED",
+      "evidence_url": "https://github.com/gotibhai/quant-backtest-platform/issues/18#issuecomment-5399294591",
+      "error": null
+    },
+    {
+      "lead_id": "gh_issue_5198502068",
+      "platform": "GitHub",
+      "target_url": "https://github.com/faheemkhaskheli9/ml-trading-bot/issues/12",
+      "submission_timestamp": "2026-08-24T18:02:32.194126",
+      "publication_status": "PUBLISHED",
+      "evidence_url": "https://github.com/faheemkhaskheli9/ml-trading-bot/issues/12#issuecomment-5399294720",
+      "error": null
+    },
+    {
+      "lead_id": "gh_issue_5139306806",
+      "platform": "GitHub",
+      "target_url": "https://github.com/juanjuandog/FinSight-AI/issues/56",
+      "submission_timestamp": "2026-08-24T18:02:32.194126",
+      "publication_status": "PUBLISHED",
+      "evidence_url": "https://github.com/juanjuandog/FinSight-AI/issues/56#issuecomment-5399294831",
+      "error": null
+    },
+    {
+      "lead_id": "gh_issue_5051320665",
+      "platform": "GitHub",
+      "target_url": "https://github.com/NishikawaButterfly/quant-risk-engine/issues/15",
+      "submission_timestamp": "2026-08-24T18:02:32.194126",
+      "publication_status": "PUBLISHED",
+      "evidence_url": "https://github.com/NishikawaButterfly/quant-risk-engine/issues/15#issuecomment-5399294981",
+      "error": null
+    },
+    {
+      "lead_id": "gh_issue_5221211058",
+      "platform": "GitHub",
+      "target_url": "https://github.com/shobhit727/trade/issues/20",
+      "submission_timestamp": "2026-08-24T18:02:32.194126",
+      "publication_status": "PUBLISHED",
+      "evidence_url": "https://github.com/shobhit727/trade/issues/20#issuecomment-5399295122",
+      "error": null
+    },
+    {
+      "lead_id": "lead_reddit_quant_01",
+      "platform": "Reddit",
+      "target_url": "https://www.reddit.com/r/algotrading/",
+      "submission_timestamp": "2026-08-24T18:02:32.194126",
+      "publication_status": "BLOCKED",
+      "evidence_url": null,
+      "error": "BLOCKED \u2014 AUTHENTICATION_NOT_AVAILABLE (Required: REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET)"
+    },
+    {
+      "lead_id": "lead_quantconnect_03",
+      "platform": "QuantConnect",
+      "target_url": "https://www.quantconnect.com/forum",
+      "submission_timestamp": "2026-08-24T18:02:32.194126",
+      "publication_status": "BLOCKED",
+      "evidence_url": null,
+      "error": "BLOCKED \u2014 AUTHENTICATION_NOT_AVAILABLE (Required: QUANTCONNECT_USER_ID, QUANTCONNECT_API_TOKEN)"
+    }
+  ]
+}
