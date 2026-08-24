@@ -158,7 +158,9 @@ class PayPalPaymentGateway:
         if not target:
             return {"status": "PAYMENT_NOT_FOUND", "verified": False}
 
-        if self.mode == "LIVE":
+        if mock_verification_token in ["CANCELLED_TOKEN", "PENDING_TOKEN", "INVALID", "NONE"]:
+            verified = False
+        elif self.mode == "LIVE":
             if mock_verification_token in ["PAYPAL_LIVE_VERIFIED_TOKEN", "SANDBOX_OK_TOKEN"]:
                 verified = True
             else:
