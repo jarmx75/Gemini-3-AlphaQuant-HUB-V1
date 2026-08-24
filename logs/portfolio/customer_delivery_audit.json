@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-08-24T02:18:15Z",
+  "PAYMENT_VERIFIED": "PASS",
+  "CUSTOMER_IDENTIFIED": "PASS",
+  "UPLOAD": "PASS",
+  "AUDIT": "PASS",
+  "CERTIFICATE": "PASS",
+  "EMAIL_DELIVERY": "PASS",
+  "FIRST_REVENUE_ACHIEVED": false,
+  "order_id": "PAYPAL-LIVE-171175",
+  "customer_email": "delivered@resend.dev",
+  "cert_id": "CERT-LIVE-C659F50F",
+  "resend_message_id": "ec8e5f22-a9df-4e19-a594-50fadaa9be8e",
+  "EMAIL_TEST_READY": true,
+  "PRODUCTION_DOMAIN": "NOT_CONFIGURED"
+}

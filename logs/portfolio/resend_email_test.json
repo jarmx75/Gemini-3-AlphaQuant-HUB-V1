@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-08-24T02:18:15Z",
+  "EMAIL_AUTH": "PASS",
+  "EMAIL_SEND_TEST": "PASS",
+  "MESSAGE_ID": "ec8e5f22-a9df-4e19-a594-50fadaa9be8e",
+  "sender": "onboarding@resend.dev",
+  "recipient": "delivered@resend.dev",
+  "EMAIL_TEST_READY": true,
+  "PRODUCTION_DOMAIN": "NOT_CONFIGURED"
+}
