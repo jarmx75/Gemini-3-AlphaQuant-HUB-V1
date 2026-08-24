@@ -1,0 +1,32 @@
+[
+  {
+    "content_id": "content_b87e9a5b",
+    "topic": "pbo_overfitting",
+    "title": "Why Most High Sharpe Backtests Fail Out-of-Sample: The Probability of Backtest Overfitting (PBO)",
+    "body": "Quantitative backtests frequently suffer from selection bias when multiple parameters are tested on historical data.\n\nKey Takeaways:\n1. Searching across N parameter combinations inflates in-sample Sharpe ratio by ~sqrt(2 * log(N)).\n2. Without PBO combinatorial cross-validation (CSCV), a 2.5 Sharpe backtest often collapses to negative expected return live.\n3. Solution: Apply 1,000-block bootstrap resamples and strict friction (16 bps roundtrip) before committing capital.\n\nAutomaton Quant Audit provides independent 3rd-party PBO evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+    "tag": "Overfitting & PBO",
+    "cta_link": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+    "price": "$49 USD",
+    "created_at": "2026-08-24T02:21:57.093314"
+  },
+  {
+    "content_id": "content_eb80b98f",
+    "topic": "pbo_overfitting",
+    "title": "Why Most High Sharpe Backtests Fail Out-of-Sample: The Probability of Backtest Overfitting (PBO)",
+    "body": "Quantitative backtests frequently suffer from selection bias when multiple parameters are tested on historical data.\n\nKey Takeaways:\n1. Searching across N parameter combinations inflates in-sample Sharpe ratio by ~sqrt(2 * log(N)).\n2. Without PBO combinatorial cross-validation (CSCV), a 2.5 Sharpe backtest often collapses to negative expected return live.\n3. Solution: Apply 1,000-block bootstrap resamples and strict friction (16 bps roundtrip) before committing capital.\n\nAutomaton Quant Audit provides independent 3rd-party PBO evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+    "tag": "Overfitting & PBO",
+    "cta_link": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+    "price": "$49 USD",
+    "created_at": "2026-08-24T02:22:12.666030"
+  },
+  {
+    "content_id": "content_8d22932c",
+    "topic": "pbo_overfitting",
+    "title": "Why Most High Sharpe Backtests Fail Out-of-Sample: The Probability of Backtest Overfitting (PBO)",
+    "body": "Quantitative backtests frequently suffer from selection bias when multiple parameters are tested on historical data.\n\nKey Takeaways:\n1. Searching across N parameter combinations inflates in-sample Sharpe ratio by ~sqrt(2 * log(N)).\n2. Without PBO combinatorial cross-validation (CSCV), a 2.5 Sharpe backtest often collapses to negative expected return live.\n3. Solution: Apply 1,000-block bootstrap resamples and strict friction (16 bps roundtrip) before committing capital.\n\nAutomaton Quant Audit provides independent 3rd-party PBO evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+    "tag": "Overfitting & PBO",
+    "cta_link": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+    "price": "$49 USD",
+    "created_at": "2026-08-24T02:22:12.666974"
+  }
+]

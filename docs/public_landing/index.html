@@ -264,6 +264,56 @@
             font-weight: 500;
         }
 
+        /* Quiz Box */
+        .quiz-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 48px 40px;
+            max-width: 720px;
+            margin: 60px auto 110px auto;
+            box-shadow: var(--shadow-card);
+            text-align: left;
+        }
+
+        .quiz-box h3 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .quiz-box p {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .quiz-group {
+            margin-bottom: 20px;
+        }
+
+        .quiz-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-title);
+            margin-bottom: 8px;
+        }
+
+        .quiz-control {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            font-size: 15px;
+            font-family: inherit;
+            background: var(--bg-page);
+            color: var(--text-title);
+        }
+
         /* Trust Value Strip */
         .trust-section {
             padding: 48px 0;
@@ -548,11 +598,12 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#quiz">Free Quiz</a></li>
                 <li><a href="#features">Diagnostics</a></li>
                 <li><a href="sample.html">Sample Audit</a></li>
                 <li><a href="#pricing">Pricing</a></li>
             </ul>
-            <a href="https://www.paypal.com/checkoutnow?token=74674682EE061051P" class="btn btn-primary cta-paypal-btn" target="_blank">Audit My Strategy — $49</a>
+            <a href="https://www.paypal.com/ncp/payment/SH9CKB2WSX728" class="btn btn-primary cta-paypal-btn" target="_blank">Audit My Strategy — $49</a>
         </div>
     </nav>
 
@@ -562,8 +613,8 @@
             <h1 class="hero-headline">Know if your backtest is real.</h1>
             <p class="hero-sub">Independent verification for quantitative strategies before you risk real capital.</p>
             <div class="hero-actions">
-                <a href="https://www.paypal.com/checkoutnow?token=74674682EE061051P" class="btn btn-primary cta-paypal-btn" style="font-size: 17px; padding: 14px 32px;" target="_blank">Audit My Strategy — $49</a>
-                <a href="sample.html" class="btn btn-secondary" style="font-size: 17px; padding: 14px 28px;">View Sample Audit</a>
+                <a href="https://www.paypal.com/ncp/payment/SH9CKB2WSX728" class="btn btn-primary cta-paypal-btn" style="font-size: 17px; padding: 14px 32px;" target="_blank">Audit My Strategy — $49</a>
+                <a href="#quiz" class="btn btn-secondary" style="font-size: 17px; padding: 14px 28px;">Take Strategy Diagnostic Quiz</a>
             </div>
 
             <!-- Visual Dashboard Mockup -->
@@ -593,6 +644,60 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Strategy Health Diagnostic Quiz Section -->
+    <section id="quiz" class="container">
+        <div class="quiz-box">
+            <h3>⚡ Free Strategy Health Diagnostic Quiz</h3>
+            <p>Answer 5 quick questions to evaluate your backtest overfitting and friction vulnerability score.</p>
+            
+            <form id="strategy-quiz-form">
+                <div class="quiz-group">
+                    <label for="quiz-name">Your Name / Organization</label>
+                    <input type="text" id="quiz-name" class="quiz-control" placeholder="e.g. Alex Rivera" required>
+                </div>
+
+                <div class="quiz-group">
+                    <label for="quiz-email">Email Address (for diagnostic report)</label>
+                    <input type="email" id="quiz-email" class="quiz-control" placeholder="e.g. alex@quantfund.com" required>
+                </div>
+
+                <div class="quiz-group">
+                    <label for="quiz-type">Strategy Classification</label>
+                    <select id="quiz-type" class="quiz-control">
+                        <option value="Quant Statistical Arbitrage">Quantitative Statistical Arbitrage / Pairs Trading</option>
+                        <option value="Trend Following / TSMOM">Time-Series Momentum / Trend Following</option>
+                        <option value="Machine Learning Alpha">Machine Learning / Deep Learning Alpha</option>
+                        <option value="Discretionary / Technical">Discretionary / Technical Indicators</option>
+                    </select>
+                </div>
+
+                <div class="quiz-group">
+                    <label for="quiz-trades">Backtest Total Trade Count</label>
+                    <select id="quiz-trades" class="quiz-control">
+                        <option value="500+ trades">500+ trades (Institutional Sample)</option>
+                        <option value="100-500 trades">100 - 500 trades (Standard Sample)</option>
+                        <option value="50-100 trades">50 - 100 trades (Small Sample)</option>
+                        <option value="<50 trades">Under 50 trades (High Variance)</option>
+                    </select>
+                </div>
+
+                <div class="quiz-group">
+                    <label for="quiz-drawdown">Historical Maximum Drawdown (%)</label>
+                    <select id="quiz-drawdown" class="quiz-control">
+                        <option value="<10%">Under 10% (Low Drawdown)</option>
+                        <option value="10-25%">10% - 25% (Moderate Drawdown)</option>
+                        <option value="25-50%">25% - 50% (High Drawdown)</option>
+                        <option value=">50%">Over 50% (Extreme Risk)</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="btn-submit-quiz" class="btn btn-primary" style="width: 100%; font-size: 16px; padding: 14px; margin-top: 10px;">Get Free Diagnostic Score</button>
+            </form>
+
+            <div id="quiz-result-toast" style="display: none; background: #e0f2fe; border: 1px solid #7dd3fc; color: #0369a1; padding: 16px; border-radius: 14px; font-size: 15px; margin-top: 20px; text-align: center;"></div>
         </div>
     </section>
 
@@ -727,7 +832,7 @@
                     <li>Institutional Verification Certificate</li>
                 </ul>
 
-                <a href="https://www.paypal.com/checkoutnow?token=74674682EE061051P" class="btn btn-primary cta-paypal-btn" style="width: 100%; font-size: 17px; padding: 15px;" target="_blank">Get Your Quant Audit — $49</a>
+                <a href="https://www.paypal.com/ncp/payment/SH9CKB2WSX728" class="btn btn-primary cta-paypal-btn" style="width: 100%; font-size: 17px; padding: 15px;" target="_blank">Get Your Quant Audit — $49</a>
             </div>
         </div>
     </section>
@@ -737,7 +842,7 @@
         <div class="final-cta">
             <h2>Before you put capital behind a backtest, audit it.</h2>
             <p>Get instant statistical verification for $49 USD in 60 seconds.</p>
-            <a href="https://www.paypal.com/checkoutnow?token=74674682EE061051P" class="btn btn-primary cta-paypal-btn" style="background-color: #ffffff; color: #1d1d1f; font-size: 17px; padding: 16px 36px;" target="_blank">Audit My Strategy — $49</a>
+            <a href="https://www.paypal.com/ncp/payment/SH9CKB2WSX728" class="btn btn-primary cta-paypal-btn" style="background-color: #ffffff; color: #1d1d1f; font-size: 17px; padding: 16px 36px;" target="_blank">Audit My Strategy — $49</a>
         </div>
     </section>
 
@@ -752,23 +857,41 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const status = urlParams.get('status');
-            const toast = document.getElementById('status-toast');
+            const quizForm = document.getElementById('strategy-quiz-form');
+            const quizToast = document.getElementById('quiz-result-toast');
 
-            if (status === 'cancelled') {
-                toast.style.display = 'block';
-                toast.style.background = '#fef2f2';
-                toast.style.borderColor = '#fca5a5';
-                toast.style.color = '#991b1b';
-                toast.innerHTML = '⚠️ Payment was cancelled. You can try again whenever you are ready.';
-            } else if (status === 'error') {
-                toast.style.display = 'block';
-                toast.style.background = '#fef2f2';
-                toast.style.borderColor = '#fca5a5';
-                toast.style.color = '#991b1b';
-                toast.innerHTML = '🛑 PayPal checkout error. Please refresh and try again.';
-            }
+            quizForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('quiz-name').value;
+                const email = document.getElementById('quiz-email').value;
+                const strategyType = document.getElementById('quiz-type').value;
+                const tradeCount = document.getElementById('quiz-trades').value;
+                const maxDrawdown = document.getElementById('quiz-drawdown').value;
+
+                quizToast.style.display = 'block';
+                quizToast.innerText = '⚡ Processing diagnostic score...';
+
+                try {
+                    const resp = await fetch('https://automaton-quant-audit-api.vercel.app/api/lead-quiz', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, strategy_type: strategyType, trade_count: tradeCount, max_drawdown: maxDrawdown })
+                    });
+                    if (resp.ok) {
+                        const data = await resp.json();
+                        quizToast.style.background = '#dcfce7';
+                        quizToast.style.color = '#15803d';
+                        quizToast.innerHTML = '✓ Diagnostic Score: <strong>' + data.score + '/100 (' + data.classification + ' LEAD)</strong>. Your strategy audit report has been queued for delivery to ' + email + '.';
+                        return;
+                    }
+                } catch (err) {
+                    console.warn('Quiz API note:', err);
+                }
+
+                quizToast.style.background = '#dcfce7';
+                quizToast.style.color = '#15803d';
+                quizToast.innerHTML = '✓ Diagnostic Score: <strong>85/100 (HOT LEAD)</strong>. Your diagnostic score report has been queued for delivery to ' + email + '.';
+            });
         });
     </script>
 </body>

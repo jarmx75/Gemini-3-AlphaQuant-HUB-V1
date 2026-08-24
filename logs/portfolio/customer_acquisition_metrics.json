@@ -1,0 +1,66 @@
+{
+  "timestamp": "2026-08-24T02:21:57.092288",
+  "leads_found": 6,
+  "qualified_leads": 6,
+  "content_published": 3,
+  "engagements": 6,
+  "landing_visits": 0,
+  "quiz_started": 0,
+  "emails_captured": 0,
+  "checkout_started": 0,
+  "payments_completed": 0,
+  "audits_completed": 0,
+  "certificates_delivered": 0,
+  "revenue_usd": 0.0,
+  "FIRST_REVENUE_ACHIEVED": false,
+  "qualified_leads_pool": [
+    {
+      "lead_id": "lead_reddit_quant_01",
+      "source": "r/algotrading",
+      "title": "My StatArb strategy has 2.4 Sharpe over 3 years, how do I know if it's overfitted?",
+      "total_score": 97,
+      "classification": "HOT",
+      "is_qualified": true,
+      "breakdown": {
+        "problem_intent": 24,
+        "quant_relevance": 20,
+        "backtest_present": 20,
+        "risk_overfitting": 15,
+        "purchase_intent": 8,
+        "channel_permission": 10
+      }
+    },
+    {
+      "lead_id": "lead_github_issue_02",
+      "source": "GitHub Discussions (backtrader)",
+      "title": "Looking for independent 3rd party backtest audit tools before live trading",
+      "total_score": 96,
+      "classification": "HOT",
+      "is_qualified": true,
+      "breakdown": {
+        "problem_intent": 25,
+        "quant_relevance": 20,
+        "backtest_present": 18,
+        "risk_overfitting": 14,
+        "purchase_intent": 9,
+        "channel_permission": 10
+      }
+    },
+    {
+      "lead_id": "lead_quantconnect_03",
+      "source": "QuantConnect Forum",
+      "title": "Difference between backtest Sharpe vs live execution friction",
+      "total_score": 76,
+      "classification": "WARM",
+      "is_qualified": true,
+      "breakdown": {
+        "problem_intent": 18,
+        "quant_relevance": 18,
+        "backtest_present": 15,
+        "risk_overfitting": 12,
+        "purchase_intent": 5,
+        "channel_permission": 8
+      }
+    }
+  ]
+}
