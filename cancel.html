@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled — Automaton Quant Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #fbfbfd;
+            --bg-card: #ffffff;
+            --text-title: #1d1d1f;
+            --text-body: #515154;
+            --text-muted: #86868b;
+            --accent: #0071e3;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-page);
+            color: var(--text-title);
+            padding: 60px 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 48px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .icon-box {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(255, 149, 0, 0.12);
+            color: #ff9500;
+            font-size: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-body);
+            font-size: 17px;
+            margin-bottom: 32px;
+        }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 980px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-home:hover {
+            background: #0077ed;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-box">⚠️</div>
+        <h1>Payment Cancelled</h1>
+        <p>Your PayPal checkout session was cancelled. No charges were made to your account.</p>
+        <a href="index.html" class="btn-home">← Return to Automaton Quant Audit Homepage</a>
+    </div>
+</body>
+</html>

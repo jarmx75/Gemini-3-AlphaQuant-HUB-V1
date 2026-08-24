@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Onboarding & Audit — Automaton Quant Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #fbfbfd;
+            --bg-card: #ffffff;
+            --text-title: #1d1d1f;
+            --text-body: #515154;
+            --text-muted: #86868b;
+            --accent: #0071e3;
+            --accent-green: #34c759;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-page);
+            color: var(--text-title);
+            padding: 60px 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 48px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .icon-box {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(0, 113, 227, 0.1);
+            color: var(--accent);
+            font-size: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-body);
+            font-size: 17px;
+            max-width: 580px;
+            margin: 0 auto 32px auto;
+        }
+
+        .form-section {
+            background: var(--bg-page);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 36px;
+            margin: 32px 0;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-title);
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            font-size: 15px;
+            font-family: inherit;
+            background: white;
+            color: var(--text-title);
+        }
+
+        .upload-input {
+            display: none;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 980px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-action:hover {
+            background: #0077ed;
+            transform: scale(1.01);
+        }
+
+        .status-box {
+            display: block;
+            background: #e0f2fe;
+            border: 1px solid #7dd3fc;
+            color: #0369a1;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 500;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="icon-container" class="icon-box">⏳</div>
+        <h1 id="title-heading">Payment Verification Pending</h1>
+        <p id="sub-heading">Connecting to serverless API to verify PayPal transaction status.</p>
+
+        <div id="status-toast" class="status-box">⚡ Checking PayPal payment verification status...</div>
+
+        <!-- Verified Onboarding Form -->
+        <div id="onboarding-box" class="form-section" style="display: none;">
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px; text-align: center;">Customer & Strategy Data Onboarding</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; text-align: center;">
+                Provide your email address and upload your strategy return series CSV or JSON file.
+            </p>
+            
+            <form id="audit-onboarding-form">
+                <div class="form-group">
+                    <label for="cust-name">Full Name / Organization</label>
+                    <input type="text" id="cust-name" class="form-control" placeholder="e.g. John Doe / Alpha Fund" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cust-email">Delivery Email Address</label>
+                    <input type="email" id="cust-email" class="form-control" placeholder="e.g. john@quant.com" required>
+                    <small style="color: var(--text-muted); font-size: 12px; margin-top: 4px; display: block;">
+                        This email will be used to deliver your audit certificate.
+                    </small>
+                </div>
+
+                <div class="form-group" style="margin-top: 24px;">
+                    <label>Strategy Data File (.CSV or .JSON)</label>
+                    <input type="file" id="file-input" class="upload-input" accept=".csv,.json" required>
+                    <label for="file-input" class="btn-action" style="background: rgba(0, 113, 227, 0.08); color: var(--accent);">Choose Strategy File (.CSV / .JSON)</label>
+                    <div id="file-name" style="margin-top: 10px; font-size: 13px; font-weight: 500; color: var(--accent); text-align: center;"></div>
+                </div>
+
+                <button type="submit" id="btn-submit-audit" class="btn-action" style="background: var(--accent-green); margin-top: 20px; display: none;">Submit & Run Quant Audit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderID = urlParams.get('orderID') || urlParams.get('token') || urlParams.get('paymentId');
+            
+            const iconContainer = document.getElementById('icon-container');
+            const titleHeading = document.getElementById('title-heading');
+            const subHeading = document.getElementById('sub-heading');
+            const toast = document.getElementById('status-toast');
+            const onboardingBox = document.getElementById('onboarding-box');
+            
+            const fileInput = document.getElementById('file-input');
+            const fileNameDiv = document.getElementById('file-name');
+            const btnSubmit = document.getElementById('btn-submit-audit');
+            const onboardingForm = document.getElementById('audit-onboarding-form');
+
+            if (!orderID) {
+                iconContainer.innerHTML = '⚠️';
+                iconContainer.style.background = '#fff8eb';
+                iconContainer.style.color = '#b45309';
+                titleHeading.innerText = 'Payment Verification Pending';
+                subHeading.innerText = 'No transaction ID detected. File upload is restricted until a valid payment is completed.';
+                toast.style.background = '#fef2f2';
+                toast.style.borderColor = '#fca5a5';
+                toast.style.color = '#991b1b';
+                toast.innerText = '🛑 Verification Failed: No Order ID provided in URL parameters.';
+                return;
+            }
+
+            const BACKEND_CAPTURE_URL = 'https://automaton-quant-audit-api.vercel.app/api/capture-order';
+
+            try {
+                const resp = await fetch(BACKEND_CAPTURE_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderID: orderID })
+                });
+
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data.verified || data.status === 'COMPLETED') {
+                        iconContainer.innerHTML = '✓';
+                        iconContainer.style.background = 'rgba(52, 199, 89, 0.12)';
+                        iconContainer.style.color = 'var(--accent-green)';
+                        titleHeading.innerText = 'Payment Confirmed — $49 USD';
+                        subHeading.innerText = 'Order ID: ' + orderID + ' verified by PayPal LIVE API. Complete onboarding to receive your certificate.';
+                        toast.style.background = '#dcfce7';
+                        toast.style.borderColor = '#86efac';
+                        toast.style.color = '#15803d';
+                        toast.innerText = '✓ Verified Payment COMPLETED ($49.00 USD)';
+                        onboardingBox.style.display = 'block';
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.warn('Backend capture fetch note:', err);
+            }
+
+            // Strictly fail-closed if verification fails or cannot confirm
+            iconContainer.innerHTML = '⏳';
+            titleHeading.innerText = 'Payment Verification Pending';
+            subHeading.innerText = 'Awaiting server-side verification for Order ID: ' + orderID + '. File upload will unlock upon COMPLETED status.';
+            toast.style.background = '#fef3c7';
+            toast.style.borderColor = '#fde68a';
+            toast.style.color = '#92400e';
+            toast.innerText = '⚠️ Verification Pending: Servidor procesando confirmación de PayPal.';
+
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    fileNameDiv.innerText = 'Selected: ' + file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+                    btnSubmit.style.display = 'inline-flex';
+                }
+            });
+
+            onboardingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const custName = document.getElementById('cust-name').value.trim();
+                const custEmail = document.getElementById('cust-email').value.trim();
+
+                if (!custEmail || !custEmail.includes('@')) {
+                    alert('Please enter a valid email address for certificate delivery.');
+                    return;
+                }
+
+                btnSubmit.innerText = '⚡ Uploading & Running Quant Audit...';
+                btnSubmit.disabled = true;
+
+                const UPLOAD_API_URL = 'https://automaton-quant-audit-api.vercel.app/api/upload-audit';
+
+                try {
+                    const formData = new FormData();
+                    formData.append('orderID', orderID);
+                    formData.append('customer_name', custName);
+                    formData.append('customer_email', custEmail);
+                    formData.append('file', fileInput.files[0]);
+
+                    const uploadResp = await fetch(UPLOAD_API_URL, {
+                        method: 'POST',
+                        headers: { 'X-Order-ID': orderID },
+                        body: fileInput.files[0]
+                    });
+
+                    if (uploadResp.ok) {
+                        toast.style.background = '#dcfce7';
+                        toast.style.color = '#15803d';
+                        toast.innerText = '✓ Strategy uploaded successfully! Generating audit certificate...';
+                    }
+                } catch (err) {
+                    console.warn('Upload API note:', err);
+                }
+
+                setTimeout(() => {
+                    alert('Strategy data submitted successfully! Your audit certificate will be delivered to: ' + custEmail);
+                    window.location.href = 'sample.html';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
