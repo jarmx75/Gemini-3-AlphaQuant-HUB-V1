@@ -1,0 +1,32 @@
+[
+  {
+    "opp_id": "opp_quant_audit",
+    "category": "Quant Audit",
+    "name": "Automaton Quant Audit Micro-SaaS ($49 USD)",
+    "description": "Independent 3rd-party backtest verification, 1,000-block Monte Carlo stress testing & PBO overfitting score.",
+    "opportunity_score": 93,
+    "estimated_time_to_first_revenue_days": 1,
+    "capital_required_usd": 0.0,
+    "recurring_potential": true
+  },
+  {
+    "opp_id": "opp_ai_workflow",
+    "category": "B2B Workflow Automation",
+    "name": "Automated Financial Report PDF Parser & Analyst Micro-API",
+    "description": "API service extracting structured metrics from corporate SEC 10-K/10-Q filings into JSON.",
+    "opportunity_score": 90,
+    "estimated_time_to_first_revenue_days": 5,
+    "capital_required_usd": 0.0,
+    "recurring_potential": true
+  },
+  {
+    "opp_id": "opp_data_products",
+    "category": "Data Products",
+    "name": "Cleaned Crypto Microstructure Orderflow Dataset",
+    "description": "Pre-filtered high-frequency trade & order book snapshot CSV/Parquet dataset for quant researchers.",
+    "opportunity_score": 88,
+    "estimated_time_to_first_revenue_days": 3,
+    "capital_required_usd": 0.0,
+    "recurring_potential": true
+  }
+]

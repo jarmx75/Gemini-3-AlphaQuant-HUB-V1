@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-08-24T18:28:11.090166",
+  "first_real_customer": false,
+  "first_real_payment": false,
+  "first_certificate_delivered": false,
+  "hot_leads": 2,
+  "qualified_leads": 3,
+  "landing_visits": 0,
+  "quiz_starts": 0,
+  "email_captures": 0,
+  "checkout_starts": 0,
+  "payments_completed": 0,
+  "revenue_usd": 0.0,
+  "best_channel": "GitHub",
+  "best_revenue_opportunity": "Automaton Quant Audit Micro-SaaS ($49 USD)",
+  "top_opportunity_score": 93,
+  "next_action": "Monitorear adquisici\u00f3n en gotibhai/quant-backtest-platform #18 y evaluar oportunidad Data Products",
+  "FIRST_REVENUE_ACHIEVED": false
+}
