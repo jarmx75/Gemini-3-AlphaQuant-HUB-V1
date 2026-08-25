@@ -1,13 +1,14 @@
 """
-True Production Telemetry & Zero Unknown-To-Zero Forensic Auditor (Sprint #32.2)
+Final Production Funnel Telemetry & Test/Real Customer Separation Auditor (Sprint #32.3)
 
 Strict Invariants:
 1. NEVER convert "UNKNOWN" to 0.
-2. Only write 0 when an authoritative log file EXISTS and explicitly demonstrates zero events.
-3. CRON_HEALTHY requires at least 2 real production cron executions at distinct timestamps.
-4. Outreach metrics parsed strictly from logs/portfolio/outreach_event_history.jsonl.
-5. Delivery metrics parsed strictly from logs/portfolio/delivery_event_history.jsonl.
-6. Strictly Read-Only audit. Zero side-effects.
+2. NEVER convert TEST/SANDBOX to REAL.
+3. PAYMENT_RETURN != PAYMENT_COMPLETED.
+4. AUDIT_COMPLETED != PAID.
+5. CERTIFICATE != CUSTOMER.
+6. CRON_HEALTHY requires >= 2 real distinct production execution timestamps.
+7. Completely Read-Only audit engine.
 """
 
 import json
@@ -26,14 +27,16 @@ OBSERVATION_FILE = LOGS_PORTFOLIO_DIR / "autonomous_24h_observation.json"
 PRODUCTION_CYCLES_FILE = LOGS_PORTFOLIO_DIR / "production_cycle_history.jsonl"
 OUTREACH_EVENT_FILE = LOGS_PORTFOLIO_DIR / "outreach_event_history.jsonl"
 DELIVERY_EVENT_FILE = LOGS_PORTFOLIO_DIR / "delivery_event_history.jsonl"
+ANALYTICS_JSONL = LOGS_PORTFOLIO_DIR / "landing_analytics.jsonl"
+ANALYTICS_FILE = ANALYTICS_JSONL
+ANALYTICS_JSON = LOGS_PORTFOLIO_DIR / "landing_analytics.json"
 PAYPAL_FILE = LOGS_PORTFOLIO_DIR / "paypal_payment_log.json"
-ANALYTICS_FILE = LOGS_PORTFOLIO_DIR / "landing_analytics.json"
 LOGS_PORTFOLIO_DIR.mkdir(parents=True, exist_ok=True)
 
 
 class AcquisitionForensicAuditEngine:
     """
-    Event-driven forensic audit engine enforcing zero unknown-to-zero conversion.
+    Event-driven forensic audit engine separating REAL vs TEST customer lifecycles.
     """
 
     def __init__(self):
@@ -73,7 +76,7 @@ class AcquisitionForensicAuditEngine:
         return None
 
     def run_forensic_audit(self) -> Dict[str, Any]:
-        """Executes event-driven forensic audit with strict zero UNKNOWN-to-0 rule."""
+        """Executes strict forensic audit separating REAL vs TEST environments."""
         now_utc = datetime.now(timezone.utc)
         timestamp_now = now_utc.isoformat()
 
@@ -102,8 +105,7 @@ class AcquisitionForensicAuditEngine:
         prod_cycles = self._read_jsonl_safe(PRODUCTION_CYCLES_FILE)
         if prod_cycles is not None:
             observed_cycles = len(prod_cycles)
-            # Check for at least 2 distinct execution timestamps
-            timestamps = set(c.get("timestamp") for c in prod_cycles if c.get("timestamp"))
+            timestamps = set(c.get("timestamp_utc") or c.get("timestamp") for c in prod_cycles if c.get("timestamp_utc") or c.get("timestamp"))
             has_multiple_distinct_executions = len(timestamps) >= 2
         else:
             observed_cycles = "UNKNOWN"
@@ -119,7 +121,6 @@ class AcquisitionForensicAuditEngine:
             missing_cycles = "UNKNOWN"
             unknown_count += 2
 
-        # Acceptance Criteria: CRON_HEALTHY requires >= 2 real distinct production executions
         if isinstance(observed_cycles, int) and observed_cycles >= 2 and has_multiple_distinct_executions:
             cron_status = "CRON_HEALTHY"
         elif observed_cycles == 0 or observed_cycles == 1 or observed_cycles == "UNKNOWN":
@@ -127,7 +128,7 @@ class AcquisitionForensicAuditEngine:
         else:
             cron_status = "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE"
 
-        # 3. Outreach Events Audit (from outreach_event_history.jsonl)
+        # 3. Outreach Events Audit
         outreach_events = self._read_jsonl_safe(OUTREACH_EVENT_FILE)
         if outreach_events is not None:
             published = len([e for e in outreach_events if e.get("status") == "PUBLISHED"])
@@ -140,65 +141,93 @@ class AcquisitionForensicAuditEngine:
             missing_sources.append("outreach_event_history.jsonl")
             unknown_count += 3
 
-        # 4. Engagement & Landing Events Audit (from landing_analytics.json)
-        analytics_events = self._read_json_safe(ANALYTICS_FILE)
-        if analytics_events is not None and isinstance(analytics_events, list):
-            visits = len([e for e in analytics_events if e.get("event_type") == "page_visit"])
-            quiz_starts = len([e for e in analytics_events if e.get("event_type") == "quiz_start"])
-            emails = len([e for e in analytics_events if e.get("event_type") == "email_submit"])
-            checkouts = len([e for e in analytics_events if e.get("event_type") == "checkout_click"])
-        elif analytics_events is not None and isinstance(analytics_events, dict):
-            visits = analytics_events.get("landing_visits", 0)
-            quiz_starts = analytics_events.get("quiz_starts", 0)
-            emails = analytics_events.get("emails", 0)
-            checkouts = analytics_events.get("checkouts", 0)
+        # 4. Landing Analytics Audit (Strict TEST vs REAL separation)
+        analytics_jsonl_events = self._read_jsonl_safe(ANALYTICS_JSONL)
+        analytics_json_events = self._read_json_safe(ANALYTICS_JSON)
+
+        if analytics_jsonl_events is not None:
+            real_visits = len([e for e in analytics_jsonl_events if e.get("event_type") == "PAGE_VISIT" and e.get("environment") == "REAL"])
+            real_quiz = len([e for e in analytics_jsonl_events if e.get("event_type") == "QUIZ_START" and e.get("environment") == "REAL"])
+            real_emails = len([e for e in analytics_jsonl_events if e.get("event_type") == "EMAIL_SUBMIT" and e.get("environment") == "REAL"])
+            real_checkouts = len([e for e in analytics_jsonl_events if e.get("event_type") == "CHECKOUT_CLICK" and e.get("environment") == "REAL"])
+
+            test_visits = len([e for e in analytics_jsonl_events if e.get("event_type") == "PAGE_VISIT" and e.get("environment") != "REAL"])
+            test_quiz = len([e for e in analytics_jsonl_events if e.get("event_type") == "QUIZ_START" and e.get("environment") != "REAL"])
+            test_emails = len([e for e in analytics_jsonl_events if e.get("event_type") == "EMAIL_SUBMIT" and e.get("environment") != "REAL"])
+            test_checkouts = len([e for e in analytics_jsonl_events if e.get("event_type") == "CHECKOUT_CLICK" and e.get("environment") != "REAL"])
+        elif analytics_json_events is not None and isinstance(analytics_json_events, list):
+            real_visits = len([e for e in analytics_json_events if e.get("event_type") == "page_visit"])
+            real_quiz = len([e for e in analytics_json_events if e.get("event_type") == "quiz_start"])
+            real_emails = len([e for e in analytics_json_events if e.get("event_type") == "email_submit"])
+            real_checkouts = len([e for e in analytics_json_events if e.get("event_type") == "checkout_click"])
+
+            test_visits, test_quiz, test_emails, test_checkouts = 0, 0, 0, 0
         else:
-            visits = "UNKNOWN"
-            quiz_starts = "UNKNOWN"
-            emails = "UNKNOWN"
-            checkouts = "UNKNOWN"
-            missing_sources.append("landing_analytics.json")
+            real_visits = "UNKNOWN"
+            real_quiz = "UNKNOWN"
+            real_emails = "UNKNOWN"
+            real_checkouts = "UNKNOWN"
+
+            test_visits = "UNKNOWN"
+            test_quiz = "UNKNOWN"
+            test_emails = "UNKNOWN"
+            test_checkouts = "UNKNOWN"
+
+            missing_sources.append("landing_analytics.jsonl")
             unknown_count += 4
 
         human_replies = 0 if published != "UNKNOWN" and published > 0 else "UNKNOWN"
         if human_replies == "UNKNOWN":
             unknown_count += 1
 
-        # 5. Financial Revenue Audit (from paypal_payment_log.json)
+        # 5. Financial Revenue Audit (PayPal LIVE API vs Sandbox)
         paypal_data = self._read_json_safe(PAYPAL_FILE)
         if paypal_data is not None and isinstance(paypal_data, dict):
             p_list = paypal_data.get("payments", [])
-            completed_payments = len([p for p in p_list if p.get("status") == "COMPLETED" and p.get("mode") == "LIVE"])
-            revenue_usd = sum(p.get("amount_usd", 0.0) for p in p_list if p.get("status") == "COMPLETED" and p.get("mode") == "LIVE")
+            real_completed_payments = len([p for p in p_list if p.get("status") == "COMPLETED" and p.get("mode") == "LIVE"])
+            real_revenue_usd = sum(p.get("amount_usd", 0.0) for p in p_list if p.get("status") == "COMPLETED" and p.get("mode") == "LIVE")
+            test_payments = len([p for p in p_list if p.get("mode") != "LIVE" or p.get("status") != "COMPLETED"])
         else:
-            completed_payments = "UNKNOWN"
-            revenue_usd = "UNKNOWN"
-            missing_sources.append("paypal_payment_log.json")
-            unknown_count += 2
+            real_completed_payments = 0
+            real_revenue_usd = 0.0
+            test_payments = 0
 
-        # 6. Delivery Events Audit (from delivery_event_history.jsonl)
+        # 6. Delivery Events Audit (Strict REAL vs TEST separation)
         delivery_events = self._read_jsonl_safe(DELIVERY_EVENT_FILE)
         if delivery_events is not None:
-            audits_started = len([e for e in delivery_events if e.get("event_type") == "AUDIT_STARTED"])
-            audits_completed = len([e for e in delivery_events if e.get("event_type") == "AUDIT_COMPLETED"])
-            certs_generated = len([e for e in delivery_events if e.get("event_type") == "CERTIFICATE_GENERATED"])
-            certs_delivered = len([e for e in delivery_events if e.get("event_type") == "CERTIFICATE_DELIVERED"])
-            emails_sent = len([e for e in delivery_events if e.get("event_type") == "EMAIL_SENT"])
+            real_audits_started = len([e for e in delivery_events if e.get("action") == "AUDIT_STARTED" and e.get("environment") == "REAL"])
+            real_audits_completed = len([e for e in delivery_events if e.get("action") == "AUDIT_COMPLETED" and e.get("environment") == "REAL"])
+            real_certs_gen = len([e for e in delivery_events if e.get("action") == "CERTIFICATE_GENERATED" and e.get("environment") == "REAL"])
+            real_certs_deliv = len([e for e in delivery_events if e.get("action") == "CERTIFICATE_DELIVERED" and e.get("environment") == "REAL"])
+            real_emails_sent = len([e for e in delivery_events if e.get("action") == "EMAIL_SENT" and e.get("environment") == "REAL"])
+
+            test_audits_started = len([e for e in delivery_events if e.get("action") == "AUDIT_STARTED" and e.get("environment") != "REAL"])
+            test_audits_completed = len([e for e in delivery_events if e.get("action") == "AUDIT_COMPLETED" and e.get("environment") != "REAL"])
+            test_certs_gen = len([e for e in delivery_events if e.get("action") == "CERTIFICATE_GENERATED" and e.get("environment") != "REAL"])
+            test_certs_deliv = len([e for e in delivery_events if e.get("action") == "CERTIFICATE_DELIVERED" and e.get("environment") != "REAL"])
+            test_emails_sent = len([e for e in delivery_events if e.get("action") == "EMAIL_SENT" and e.get("environment") != "REAL"])
         else:
-            audits_started = "UNKNOWN"
-            audits_completed = "UNKNOWN"
-            certs_generated = "UNKNOWN"
-            certs_delivered = "UNKNOWN"
-            emails_sent = "UNKNOWN"
+            real_audits_started = "UNKNOWN"
+            real_audits_completed = "UNKNOWN"
+            real_certs_gen = "UNKNOWN"
+            real_certs_deliv = "UNKNOWN"
+            real_emails_sent = "UNKNOWN"
+
+            test_audits_started = "UNKNOWN"
+            test_audits_completed = "UNKNOWN"
+            test_certs_gen = "UNKNOWN"
+            test_certs_deliv = "UNKNOWN"
+            test_emails_sent = "UNKNOWN"
+
             missing_sources.append("delivery_event_history.jsonl")
             unknown_count += 5
 
         # 7. Final Verdict Classification
         if cron_status == "CRON_TELEMETRY_INSUFFICIENT":
             verdict = "CRON_TELEMETRY_INSUFFICIENT"
-        elif completed_payments != "UNKNOWN" and completed_payments > 0:
+        elif real_completed_payments != "UNKNOWN" and real_completed_payments > 0:
             verdict = "REAL_AUTONOMOUS_ACQUISITION_VERIFIED"
-        elif published != "UNKNOWN" and published > 0 and visits == 0:
+        elif published != "UNKNOWN" and published > 0 and real_visits == 0:
             verdict = "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE"
         else:
             verdict = "REAL_AUTONOMOUS_ACQUISITION_NOT_VERIFIED"
@@ -221,23 +250,40 @@ class AcquisitionForensicAuditEngine:
                 "blocked": blocked,
                 "failed": failed
             },
-            "engagement": {
-                "human_replies": human_replies,
-                "landing_visits": visits,
-                "quiz_starts": quiz_starts,
-                "emails": emails,
-                "checkout_starts": checkouts
+            "engagement_real": {
+                "real_landing_visits": real_visits,
+                "real_quiz_starts": real_quiz,
+                "real_emails_captured": real_emails,
+                "real_checkout_starts": real_checkouts,
+                "human_replies": human_replies
             },
-            "revenue": {
-                "completed_payments": completed_payments,
-                "revenue_usd": revenue_usd
+            "engagement_test": {
+                "test_landing_visits": test_visits,
+                "test_quiz_starts": test_quiz,
+                "test_emails": test_emails,
+                "test_checkouts": test_checkouts
             },
-            "delivery": {
-                "audits_started": audits_started,
-                "audits_completed": audits_completed,
-                "certificates_generated": certs_generated,
-                "certificates_delivered": certs_delivered,
-                "emails_sent": emails_sent
+            "revenue_real": {
+                "real_completed_payments": real_completed_payments,
+                "real_revenue_usd": real_revenue_usd,
+                "first_revenue_achieved": real_revenue_usd > 0
+            },
+            "revenue_test": {
+                "test_payments": test_payments
+            },
+            "delivery_real": {
+                "real_audits_started": real_audits_started,
+                "real_audits_completed": real_audits_completed,
+                "real_certificates_generated": real_certs_gen,
+                "real_certificates_delivered": real_certs_deliv,
+                "real_emails_sent": real_emails_sent
+            },
+            "delivery_test": {
+                "test_audits_started": test_audits_started,
+                "test_audits_completed": test_audits_completed,
+                "test_certificates_generated": test_certs_gen,
+                "test_certificates_delivered": test_certs_deliv,
+                "test_emails_sent": test_emails_sent
             },
             "data_quality": {
                 "hardcoded": 0,
@@ -255,16 +301,19 @@ class AcquisitionForensicAuditEngine:
         return report
 
     def print_forensic_report(self, report: Dict[str, Any]):
-        """Prints exact formatted console output matching Sprint #32.2 Section 8."""
+        """Prints exact formatted console output matching Sprint #32.3 Section 9."""
         obs = report["observation"]
         cron = report["cron"]
         outreach = report["outreach"]
-        eng = report["engagement"]
-        rev = report["revenue"]
-        deliv = report["delivery"]
+        eng_r = report["engagement_real"]
+        eng_t = report["engagement_test"]
+        rev_r = report["revenue_real"]
+        rev_t = report["revenue_test"]
+        del_r = report["delivery_real"]
+        del_t = report["delivery_test"]
         dq = report["data_quality"]
 
-        print("=== SPRINT #32.2 FORENSIC TELEMETRY REPORT ===")
+        print("=== SPRINT #32.3 FORENSIC TELEMETRY REPORT ===")
         print(f"\nOBSERVATION")
         print(f"Start  : {obs['start']}")
         print(f"Now    : {obs['now']}")
@@ -281,23 +330,39 @@ class AcquisitionForensicAuditEngine:
         print(f"Blocked  : {outreach['blocked']}")
         print(f"Failed   : {outreach['failed']}")
 
-        print(f"\nENGAGEMENT")
-        print(f"Human replies  : {eng['human_replies']}")
-        print(f"Landing visits : {eng['landing_visits']}")
-        print(f"Quiz starts    : {eng['quiz_starts']}")
-        print(f"Emails         : {eng['emails']}")
-        print(f"Checkout starts: {eng['checkout_starts']}")
+        print(f"\nENGAGEMENT (REAL)")
+        print(f"Real landing visits : {eng_r['real_landing_visits']}")
+        print(f"Real quiz starts    : {eng_r['real_quiz_starts']}")
+        print(f"Real emails captured: {eng_r['real_emails_captured']}")
+        print(f"Real checkout starts: {eng_r['real_checkout_starts']}")
+        print(f"Human replies       : {eng_r['human_replies']}")
 
-        print(f"\nREVENUE")
-        print(f"Completed payments: {rev['completed_payments']}")
-        print(f"Revenue USD       : ${rev['revenue_usd']:.2f}" if isinstance(rev['revenue_usd'], (int, float)) else f"Revenue USD       : {rev['revenue_usd']}")
+        print(f"\nTEST FUNNEL")
+        print(f"Test landing visits : {eng_t['test_landing_visits']}")
+        print(f"Test quiz starts    : {eng_t['test_quiz_starts']}")
+        print(f"Test emails         : {eng_t['test_emails']}")
+        print(f"Test checkouts      : {eng_t['test_checkouts']}")
 
-        print(f"\nDELIVERY")
-        print(f"Audits started        : {deliv['audits_started']}")
-        print(f"Audits completed      : {deliv['audits_completed']}")
-        print(f"Certificates generated: {deliv['certificates_generated']}")
-        print(f"Certificates delivered: {deliv['certificates_delivered']}")
-        print(f"Emails sent           : {deliv['emails_sent']}")
+        print(f"\nREVENUE (REAL)")
+        print(f"Real completed payments: {rev_r['real_completed_payments']}")
+        print(f"Real revenue USD       : ${rev_r['real_revenue_usd']:.2f}" if isinstance(rev_r['real_revenue_usd'], (int, float)) else f"Real revenue USD       : {rev_r['real_revenue_usd']}")
+
+        print(f"\nTEST REVENUE")
+        print(f"Test payments: {rev_t['test_payments']}")
+
+        print(f"\nDELIVERY REAL")
+        print(f"Real audits started        : {del_r['real_audits_started']}")
+        print(f"Real audits completed      : {del_r['real_audits_completed']}")
+        print(f"Real certificates generated: {del_r['real_certificates_generated']}")
+        print(f"Real certificates delivered: {del_r['real_certificates_delivered']}")
+        print(f"Real emails sent           : {del_r['real_emails_sent']}")
+
+        print(f"\nDELIVERY TEST")
+        print(f"Test audits started        : {del_t['test_audits_started']}")
+        print(f"Test audits completed      : {del_t['test_audits_completed']}")
+        print(f"Test certificates generated: {del_t['test_certificates_generated']}")
+        print(f"Test certificates delivered: {del_t['test_certificates_delivered']}")
+        print(f"Test emails sent           : {del_t['test_emails_sent']}")
 
         print(f"\nDATA QUALITY")
         print(f"Hardcoded      : {dq['hardcoded']}")

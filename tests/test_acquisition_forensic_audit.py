@@ -1,10 +1,10 @@
 """
-Unit Test Suite for True Production Telemetry / Zero Unknown-To-Zero Conversion (Sprint #32.2)
+Unit Test Suite for True Production Telemetry / Zero Unknown-To-Zero Conversion (Sprint #32.3)
 """
 
 import unittest
 from unittest.mock import patch
-from src.economics.acquisition_forensic_audit import AcquisitionForensicAuditEngine, ANALYTICS_FILE
+from src.economics.acquisition_forensic_audit import AcquisitionForensicAuditEngine, ANALYTICS_JSONL
 
 
 class TestAcquisitionForensicAudit(unittest.TestCase):
@@ -13,32 +13,31 @@ class TestAcquisitionForensicAudit(unittest.TestCase):
         self.engine = AcquisitionForensicAuditEngine()
 
     def test_1_unknown_never_converted_to_zero(self):
-        # Mock _read_json_safe to return None when reading ANALYTICS_FILE
-        orig_read = self.engine._read_json_safe
+        orig_read = self.engine._read_jsonl_safe
 
         def mock_read(path):
-            if path == ANALYTICS_FILE:
+            if path == ANALYTICS_JSONL:
                 return None
             return orig_read(path)
 
-        with patch.object(self.engine, "_read_json_safe", side_effect=mock_read):
+        with patch.object(self.engine, "_read_jsonl_safe", side_effect=mock_read):
             rep = self.engine.run_forensic_audit()
-            eng = rep["engagement"]
-            self.assertEqual(eng["landing_visits"], "UNKNOWN")
-            self.assertEqual(eng["quiz_starts"], "UNKNOWN")
-            self.assertEqual(eng["emails"], "UNKNOWN")
+            eng_r = rep["engagement_real"]
+            self.assertEqual(eng_r["real_landing_visits"], "UNKNOWN")
+            self.assertEqual(eng_r["real_quiz_starts"], "UNKNOWN")
+            self.assertEqual(eng_r["real_emails_captured"], "UNKNOWN")
 
     def test_2_delivery_metrics_parsed_individually_not_inferred(self):
         rep = self.engine.run_forensic_audit()
-        deliv = rep["delivery"]
-        self.assertIn("audits_started", deliv)
-        self.assertIn("audits_completed", deliv)
-        self.assertIn("certificates_generated", deliv)
-        self.assertIn("certificates_delivered", deliv)
-        self.assertIn("emails_sent", deliv)
+        deliv_r = rep["delivery_real"]
+        self.assertIn("real_audits_started", deliv_r)
+        self.assertIn("real_audits_completed", deliv_r)
+        self.assertIn("real_certificates_generated", deliv_r)
+        self.assertIn("real_certificates_delivered", deliv_r)
+        self.assertIn("real_emails_sent", deliv_r)
 
     def test_3_cron_telemetry_insufficient_if_observed_under_two(self):
-        with patch.object(self.engine, "_read_jsonl_safe", return_value=[{"timestamp": "2026-08-25T00:00:00Z"}]):
+        with patch.object(self.engine, "_read_jsonl_safe", return_value=[{"timestamp_utc": "2026-08-25T00:00:00Z"}]):
             rep = self.engine.run_forensic_audit()
             self.assertEqual(rep["cron"]["status"], "CRON_TELEMETRY_INSUFFICIENT")
 

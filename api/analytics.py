@@ -1,68 +1,92 @@
-import os
+"""
+Landing Analytics Vercel Serverless Endpoint (Sprint #32.3)
+
+POST /api/analytics
+Accepts landing events (PAGE_VISIT, QUIZ_START, EMAIL_SUBMIT, CHECKOUT_CLICK, PAYMENT_RETURN, UPLOAD_SUBMIT)
+Appends events to logs/portfolio/landing_analytics.jsonl
+"""
+
 import json
+import logging
 import uuid
 from pathlib import Path
+from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler
 
-LOGS_PORTFOLIO_DIR = Path('/tmp/portfolio_logs')
+logger = logging.getLogger(__name__)
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+LOGS_PORTFOLIO_DIR = PROJECT_ROOT / "logs" / "portfolio"
+ANALYTICS_JSONL = LOGS_PORTFOLIO_DIR / "landing_analytics.jsonl"
 LOGS_PORTFOLIO_DIR.mkdir(parents=True, exist_ok=True)
-ANALYTICS_FILE = LOGS_PORTFOLIO_DIR / 'landing_analytics.json'
+
+ALLOWED_EVENT_TYPES = {
+    "PAGE_VISIT",
+    "QUIZ_START",
+    "EMAIL_SUBMIT",
+    "CHECKOUT_CLICK",
+    "PAYMENT_RETURN",
+    "UPLOAD_SUBMIT"
+}
+
+
+def process_analytics_event(body_dict: dict) -> dict:
+    """Processes, validates, and appends landing analytics event."""
+    raw_event_type = body_dict.get("event_type", "").upper()
+    if raw_event_type not in ALLOWED_EVENT_TYPES:
+        return {"status": "error", "message": f"Invalid event_type: {raw_event_type}"}
+
+    event_id = f"evt_{uuid.uuid4().hex[:12]}"
+    now_iso = datetime.now(timezone.utc).isoformat()
+    environment = body_dict.get("environment", "REAL").upper()
+    if environment not in {"REAL", "TEST", "SANDBOX"}:
+        environment = "REAL"
+
+    event_entry = {
+        "event_id": event_id,
+        "timestamp_utc": now_iso,
+        "environment": environment,
+        "session_id": body_dict.get("session_id", f"sess_{uuid.uuid4().hex[:8]}"),
+        "event_type": raw_event_type,
+        "source": body_dict.get("source", "landing_direct"),
+        "referrer": body_dict.get("referrer", "direct"),
+        "user_agent_hash": body_dict.get("user_agent_hash", "anon")
+    }
+
+    try:
+        with open(ANALYTICS_JSONL, "a", encoding="utf-8") as f:
+            f.write(json.dumps(event_entry) + "\n")
+    except Exception as e:
+        logger.error(f"Failed to append to landing_analytics.jsonl: {e}")
+        return {"status": "error", "message": "Failed to persist analytics event"}
+
+    return {"status": "success", "event_id": event_id, "recorded_at": now_iso}
+
 
 class handler(BaseHTTPRequestHandler):
-    def do_OPTIONS(self):
-        self.send_response(200)
-        self.send_header('Access-Control-Allow-Origin', 'https://jarmx75.github.io')
-        self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
-        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
-        self.end_headers()
-
     def do_POST(self):
-        content_length = int(self.headers.get('Content-Length', 0))
-        post_data = self.rfile.read(content_length) if content_length > 0 else b'{}'
-
         try:
-            event_data = json.loads(post_data.decode('utf-8'))
-            event_type = event_data.get('event_type', 'page_visit')
-            page_url = event_data.get('page_url', 'https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/')
-            referrer = event_data.get('referrer', '')
-            user_agent = self.headers.get('User-Agent', '')
+            content_length = int(self.headers.get("Content-Length", 0))
+            body_bytes = self.rfile.read(content_length)
+            body_dict = json.loads(body_bytes.decode("utf-8")) if body_bytes else {}
 
-            event_id = f"evt_{uuid.uuid4().hex[:8]}"
+            res = process_analytics_event(body_dict)
+            status_code = 200 if res.get("status") == "success" else 400
 
-            record = {
-                'event_id': event_id,
-                'event_type': event_type,
-                'page_url': page_url,
-                'referrer': referrer,
-                'timestamp': '2026-08-24T02:37:50Z'
-            }
-
-            existing = []
-            if ANALYTICS_FILE.exists():
-                try:
-                    with open(ANALYTICS_FILE, 'r', encoding='utf-8') as f:
-                        existing = json.load(f)
-                except Exception:
-                    existing = []
-
-            existing.append(record)
-            with open(ANALYTICS_FILE, 'w', encoding='utf-8') as f:
-                json.dump(existing, f, indent=2)
-
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Access-Control-Allow-Origin', 'https://jarmx75.github.io')
+            self.send_response(status_code)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
-            self.wfile.write(json.dumps({
-                'success': True,
-                'event_id': event_id,
-                'event_type': event_type,
-                'total_events': len(existing)
-            }).encode())
-
+            self.wfile.write(json.dumps(res).encode("utf-8"))
         except Exception as e:
             self.send_response(500)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Access-Control-Allow-Origin', 'https://jarmx75.github.io')
+            self.send_header("Content-Type", "application/json")
             self.end_headers()
-            self.wfile.write(json.dumps({'error': str(e)}).encode())
+            self.wfile.write(json.dumps({"status": "error", "message": str(e)}).encode("utf-8"))
+
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
