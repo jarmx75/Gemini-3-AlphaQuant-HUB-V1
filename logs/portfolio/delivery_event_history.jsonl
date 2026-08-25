@@ -1,0 +1,5 @@
+{"timestamp": "2026-08-23T20:15:00Z", "event_type": "AUDIT_STARTED", "customer_id": "cust_test_sandbox_01", "order_id": "ord_test_sandbox_01", "status": "SUCCESS"}
+{"timestamp": "2026-08-23T20:15:30Z", "event_type": "AUDIT_COMPLETED", "customer_id": "cust_test_sandbox_01", "order_id": "ord_test_sandbox_01", "status": "SUCCESS"}
+{"timestamp": "2026-08-23T20:16:00Z", "event_type": "CERTIFICATE_GENERATED", "customer_id": "cust_test_sandbox_01", "order_id": "ord_test_sandbox_01", "certificate_id": "cert_test_sandbox_01", "status": "SUCCESS"}
+{"timestamp": "2026-08-23T20:16:15Z", "event_type": "EMAIL_SENT", "customer_id": "cust_test_sandbox_01", "recipient": "test_sandbox@example.com", "status": "DELIVERED"}
+{"timestamp": "2026-08-23T20:16:20Z", "event_type": "CERTIFICATE_DELIVERED", "customer_id": "cust_test_sandbox_01", "order_id": "ord_test_sandbox_01", "certificate_id": "cert_test_sandbox_01", "status": "SUCCESS"}

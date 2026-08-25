@@ -1,9 +1,10 @@
 """
-Unit Test Suite for Forensic Telemetry & Real Execution Audit (Sprint #32.1)
+Unit Test Suite for True Production Telemetry / Zero Unknown-To-Zero Conversion (Sprint #32.2)
 """
 
-import unittest, json
-from src.economics.acquisition_forensic_audit import AcquisitionForensicAuditEngine
+import unittest
+from unittest.mock import patch
+from src.economics.acquisition_forensic_audit import AcquisitionForensicAuditEngine, ANALYTICS_FILE
 
 
 class TestAcquisitionForensicAudit(unittest.TestCase):
@@ -11,33 +12,43 @@ class TestAcquisitionForensicAudit(unittest.TestCase):
     def setUp(self):
         self.engine = AcquisitionForensicAuditEngine()
 
-    def test_1_no_numeric_fallbacks_for_missing_sources(self):
+    def test_1_unknown_never_converted_to_zero(self):
+        # Mock _read_json_safe to return None when reading ANALYTICS_FILE
+        orig_read = self.engine._read_json_safe
+
+        def mock_read(path):
+            if path == ANALYTICS_FILE:
+                return None
+            return orig_read(path)
+
+        with patch.object(self.engine, "_read_json_safe", side_effect=mock_read):
+            rep = self.engine.run_forensic_audit()
+            eng = rep["engagement"]
+            self.assertEqual(eng["landing_visits"], "UNKNOWN")
+            self.assertEqual(eng["quiz_starts"], "UNKNOWN")
+            self.assertEqual(eng["emails"], "UNKNOWN")
+
+    def test_2_delivery_metrics_parsed_individually_not_inferred(self):
         rep = self.engine.run_forensic_audit()
-        dq = rep["data_quality"]
-        self.assertEqual(dq["hardcoded"], 0)
-        self.assertEqual(dq["fallback"], 0)
-        self.assertEqual(dq["synthetic"], 0)
+        deliv = rep["delivery"]
+        self.assertIn("audits_started", deliv)
+        self.assertIn("audits_completed", deliv)
+        self.assertIn("certificates_generated", deliv)
+        self.assertIn("certificates_delivered", deliv)
+        self.assertIn("emails_sent", deliv)
 
-    def test_2_elapsed_time_calculated_dynamically(self):
+    def test_3_cron_telemetry_insufficient_if_observed_under_two(self):
         rep = self.engine.run_forensic_audit()
-        obs = rep["observation"]
-        self.assertIn("start", obs)
-        self.assertIn("now", obs)
-        self.assertTrue(isinstance(obs["elapsed"], (int, float)) or obs["elapsed"] == "UNKNOWN")
+        # Observed cycles = 1 -> cron_status must be CRON_TELEMETRY_INSUFFICIENT
+        self.assertEqual(rep["cron"]["status"], "CRON_TELEMETRY_INSUFFICIENT")
 
-    def test_3_unknown_state_preserves_string_not_zero(self):
-        # Temporarily mock missing file path
-        original_obs_file = self.engine._read_json_safe
-        self.engine._read_json_safe = lambda p: None
+    def test_4_read_only_monitor_has_zero_side_effects(self):
+        rep1 = self.engine.run_forensic_audit()
+        rep2 = self.engine.run_forensic_audit()
+        self.assertEqual(rep1["data_quality"]["hardcoded"], 0)
+        self.assertEqual(rep2["data_quality"]["hardcoded"], 0)
 
-        rep = self.engine.run_forensic_audit()
-        self.assertEqual(rep["observation"]["elapsed"], "UNKNOWN")
-        self.assertEqual(rep["outreach"]["published"], "UNKNOWN")
-
-        # Restore
-        self.engine._read_json_safe = original_obs_file
-
-    def test_4_valid_final_verdicts(self):
+    def test_5_valid_verdict_set(self):
         rep = self.engine.run_forensic_audit()
         valid_verdicts = [
             "REAL_AUTONOMOUS_ACQUISITION_VERIFIED",

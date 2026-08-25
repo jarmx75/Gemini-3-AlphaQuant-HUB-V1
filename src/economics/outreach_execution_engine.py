@@ -38,6 +38,47 @@ class RealOutreachExecutionEngine:
         self.github_token = os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN")
         self.posted_hashes = set()
 
+    def record_outreach(self, item: Dict[str, Any]):
+        outreach_file = LOGS_PORTFOLIO_DIR / "real_outreach_execution.json"
+        event_history_file = LOGS_PORTFOLIO_DIR / "outreach_event_history.jsonl"
+
+        data = {"published_count": 0, "blocked_count": 0, "failed_count": 0, "items": []}
+        if outreach_file.exists():
+            try:
+                with open(outreach_file, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            except Exception:
+                pass
+
+        data["items"].append(item)
+        status = item.get("status", "PUBLISHED")
+        if status == "PUBLISHED":
+            data["published_count"] += 1
+        elif status == "BLOCKED":
+            data["blocked_count"] += 1
+        else:
+            data["failed_count"] += 1
+
+        with open(outreach_file, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+
+        # Append to individual event history JSONL
+        event_entry = {
+            "timestamp": item.get("timestamp", datetime.now(datetime.UTC).isoformat() if hasattr(datetime, 'UTC') else datetime.utcnow().isoformat()),
+            "channel": item.get("channel", "GitHub"),
+            "lead_id": item.get("lead_id", "unknown"),
+            "target_url": item.get("url", ""),
+            "action": item.get("action", "OUTREACH"),
+            "publication_id": item.get("comment_id", ""),
+            "status": status,
+            "error": item.get("error", None)
+        }
+        try:
+            with open(event_history_file, "a", encoding="utf-8") as f:
+                f.write(json.dumps(event_entry) + "\n")
+        except Exception:
+            pass
+
     def _load_env(self):
         if self.env_file.exists():
             with open(self.env_file, "r", encoding="utf-8") as f:

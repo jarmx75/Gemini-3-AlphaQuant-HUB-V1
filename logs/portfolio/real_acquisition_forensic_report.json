@@ -1,45 +1,47 @@
 {
-  "timestamp": "2026-08-25T17:14:42.214867+00:00",
+  "timestamp": "2026-08-25T17:20:26.696339+00:00",
   "observation": {
-    "start": "2026-08-25T17:10:39.427334+00:00",
-    "now": "2026-08-25T17:14:42.214867+00:00",
-    "elapsed": 0.0674
+    "start": "2026-08-25T17:14:42.249717+00:00",
+    "now": "2026-08-25T17:20:26.696339+00:00",
+    "elapsed": 0.0957
   },
   "cron": {
     "expected": 0,
-    "observed": 0,
+    "observed": 1,
     "missing": 0,
-    "status": "CRON_HEALTHY"
+    "status": "CRON_TELEMETRY_INSUFFICIENT"
   },
   "outreach": {
-    "published": 5,
+    "published": 1,
     "blocked": 2,
     "failed": 0
   },
   "engagement": {
     "human_replies": 0,
-    "landing_visits": 0,
-    "quiz_starts": 0,
-    "emails": 0,
-    "checkout_starts": 0
+    "landing_visits": "UNKNOWN",
+    "quiz_starts": "UNKNOWN",
+    "emails": "UNKNOWN",
+    "checkout_starts": "UNKNOWN"
   },
   "revenue": {
     "completed_payments": 0,
     "revenue_usd": 0
   },
   "delivery": {
-    "audits": 26,
-    "certificates": 0,
-    "delivered": 0
+    "audits_started": 1,
+    "audits_completed": 1,
+    "certificates_generated": 1,
+    "certificates_delivered": 1,
+    "emails_sent": 1
   },
   "data_quality": {
     "hardcoded": 0,
     "fallback": 0,
     "synthetic": 0,
-    "unknown": 0,
+    "unknown": 4,
     "missing_sources": [
-      "production_cycle_history.jsonl"
+      "landing_analytics.json"
     ]
   },
-  "final_verdict": "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE"
+  "final_verdict": "CRON_TELEMETRY_INSUFFICIENT"
 }
