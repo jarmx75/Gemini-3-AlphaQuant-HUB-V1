@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-08-25T17:10:39.394668+00:00",
+  "cron": {
+    "expected_cycles": 0,
+    "observed_cycles": 1,
+    "missing_cycles": 0,
+    "cron_telemetry_mismatch": false,
+    "cron_status": "CRON_HEALTHY",
+    "elapsed_hours": 0.07
+  },
+  "outreach": {
+    "real_publications": 5,
+    "blocked": 2,
+    "failed": 0
+  },
+  "engagement": {
+    "human_replies": 0,
+    "landing_visits": 0,
+    "quiz_starts": 0,
+    "emails": 0
+  },
+  "revenue": {
+    "checkout_starts": 0,
+    "completed_payments": 0,
+    "revenue_usd": 0,
+    "first_revenue_achieved": false
+  },
+  "delivery": {
+    "audits_completed": 0,
+    "certificates_generated": 0,
+    "delivered": 0
+  },
+  "data_quality": {
+    "hardcoded_metrics": 0,
+    "synthetic_metrics": 0,
+    "unknown_metrics": 0,
+    "auditability_status": "PASS"
+  },
+  "final_verdict": "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE"
+}
