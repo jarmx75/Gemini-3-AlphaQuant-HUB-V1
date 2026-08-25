@@ -38,9 +38,9 @@ class TestAcquisitionForensicAudit(unittest.TestCase):
         self.assertIn("emails_sent", deliv)
 
     def test_3_cron_telemetry_insufficient_if_observed_under_two(self):
-        rep = self.engine.run_forensic_audit()
-        # Observed cycles = 1 -> cron_status must be CRON_TELEMETRY_INSUFFICIENT
-        self.assertEqual(rep["cron"]["status"], "CRON_TELEMETRY_INSUFFICIENT")
+        with patch.object(self.engine, "_read_jsonl_safe", return_value=[{"timestamp": "2026-08-25T00:00:00Z"}]):
+            rep = self.engine.run_forensic_audit()
+            self.assertEqual(rep["cron"]["status"], "CRON_TELEMETRY_INSUFFICIENT")
 
     def test_4_read_only_monitor_has_zero_side_effects(self):
         rep1 = self.engine.run_forensic_audit()
