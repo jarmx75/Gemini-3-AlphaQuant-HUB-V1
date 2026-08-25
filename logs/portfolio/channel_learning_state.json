@@ -1,0 +1,38 @@
+{
+  "updated_at": "2026-08-25T00:05:20.727938",
+  "best_channel": "SEO_Technical_Content",
+  "channel_weights": {
+    "GitHub": {
+      "exposures": 5,
+      "leads": 0,
+      "checkouts": 0,
+      "revenue": 0.0,
+      "weight": 0.4,
+      "channel_score": 0.0
+    },
+    "Reddit": {
+      "exposures": 0,
+      "leads": 0,
+      "checkouts": 0,
+      "revenue": 0.0,
+      "weight": 0.3,
+      "channel_score": 0.0
+    },
+    "QuantConnect": {
+      "exposures": 0,
+      "leads": 0,
+      "checkouts": 0,
+      "revenue": 0.0,
+      "weight": 0.15,
+      "channel_score": 0.0
+    },
+    "SEO_Technical_Content": {
+      "exposures": 10,
+      "leads": 1,
+      "checkouts": 0,
+      "revenue": 0.0,
+      "weight": 0.15,
+      "channel_score": 0.9091
+    }
+  }
+}
