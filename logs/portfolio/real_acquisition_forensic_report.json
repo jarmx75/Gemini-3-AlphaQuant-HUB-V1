@@ -1,15 +1,18 @@
 {
-  "timestamp": "2026-08-25T17:10:39.394668+00:00",
+  "timestamp": "2026-08-25T17:14:42.214867+00:00",
+  "observation": {
+    "start": "2026-08-25T17:10:39.427334+00:00",
+    "now": "2026-08-25T17:14:42.214867+00:00",
+    "elapsed": 0.0674
+  },
   "cron": {
-    "expected_cycles": 0,
-    "observed_cycles": 1,
-    "missing_cycles": 0,
-    "cron_telemetry_mismatch": false,
-    "cron_status": "CRON_HEALTHY",
-    "elapsed_hours": 0.07
+    "expected": 0,
+    "observed": 0,
+    "missing": 0,
+    "status": "CRON_HEALTHY"
   },
   "outreach": {
-    "real_publications": 5,
+    "published": 5,
     "blocked": 2,
     "failed": 0
   },
@@ -17,24 +20,26 @@
     "human_replies": 0,
     "landing_visits": 0,
     "quiz_starts": 0,
-    "emails": 0
+    "emails": 0,
+    "checkout_starts": 0
   },
   "revenue": {
-    "checkout_starts": 0,
     "completed_payments": 0,
-    "revenue_usd": 0,
-    "first_revenue_achieved": false
+    "revenue_usd": 0
   },
   "delivery": {
-    "audits_completed": 0,
-    "certificates_generated": 0,
+    "audits": 26,
+    "certificates": 0,
     "delivered": 0
   },
   "data_quality": {
-    "hardcoded_metrics": 0,
-    "synthetic_metrics": 0,
-    "unknown_metrics": 0,
-    "auditability_status": "PASS"
+    "hardcoded": 0,
+    "fallback": 0,
+    "synthetic": 0,
+    "unknown": 0,
+    "missing_sources": [
+      "production_cycle_history.jsonl"
+    ]
   },
   "final_verdict": "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE"
 }

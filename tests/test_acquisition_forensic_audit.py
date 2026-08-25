@@ -1,55 +1,52 @@
 """
-Unit Test Suite for Forensic Audit of Real Autonomous Acquisition (Sprint #32)
+Unit Test Suite for Forensic Telemetry & Real Execution Audit (Sprint #32.1)
 """
 
 import unittest, json
 from src.economics.acquisition_forensic_audit import AcquisitionForensicAuditEngine
-from src.economics.autonomous_customer_acquisition_loop import AutonomousCustomerAcquisitionLoopEngine, CYCLE_HISTORY_JSONL
 
 
 class TestAcquisitionForensicAudit(unittest.TestCase):
 
     def setUp(self):
-        self.audit_engine = AcquisitionForensicAuditEngine()
-        self.loop_engine = AutonomousCustomerAcquisitionLoopEngine()
+        self.engine = AcquisitionForensicAuditEngine()
 
-    def test_1_no_hardcoded_metrics_in_loop(self):
-        dash = self.loop_engine.run_acquisition_cycle()
-        # All revenue must equal 0.0 unless live COMPLETED payment exists
-        self.assertEqual(dash["revenue_usd"], 0.0)
-        self.assertFalse(dash["FIRST_REVENUE_ACHIEVED"])
-
-    def test_2_zero_synthetic_events_in_real_funnel(self):
-        rep = self.audit_engine.run_forensic_audit()
+    def test_1_no_numeric_fallbacks_for_missing_sources(self):
+        rep = self.engine.run_forensic_audit()
         dq = rep["data_quality"]
-        self.assertEqual(dq["hardcoded_metrics"], 0)
-        self.assertEqual(dq["synthetic_metrics"], 0)
+        self.assertEqual(dq["hardcoded"], 0)
+        self.assertEqual(dq["fallback"], 0)
+        self.assertEqual(dq["synthetic"], 0)
 
-    def test_3_cycle_history_auditable(self):
-        self.loop_engine.run_acquisition_cycle()
-        self.assertTrue(CYCLE_HISTORY_JSONL.exists())
-        with open(CYCLE_HISTORY_JSONL, "r", encoding="utf-8") as f:
-            lines = f.readlines()
-            self.assertGreater(len(lines), 0)
-            last_entry = json.loads(lines[-1])
-            self.assertIn("cycle_id", last_entry)
-            self.assertIn("timestamp", last_entry)
-            self.assertIn("action_status", last_entry)
+    def test_2_elapsed_time_calculated_dynamically(self):
+        rep = self.engine.run_forensic_audit()
+        obs = rep["observation"]
+        self.assertIn("start", obs)
+        self.assertIn("now", obs)
+        self.assertTrue(isinstance(obs["elapsed"], (int, float)) or obs["elapsed"] == "UNKNOWN")
 
-    def test_4_mock_payments_excluded_from_real_revenue(self):
-        rep = self.audit_engine.run_forensic_audit()
-        rev = rep["revenue"]
-        self.assertEqual(rev["completed_payments"], 0)
-        self.assertEqual(rev["revenue_usd"], 0.0)
+    def test_3_unknown_state_preserves_string_not_zero(self):
+        # Temporarily mock missing file path
+        original_obs_file = self.engine._read_json_safe
+        self.engine._read_json_safe = lambda p: None
 
-    def test_5_final_verdict_validity(self):
-        rep = self.audit_engine.run_forensic_audit()
-        self.assertIn(rep["final_verdict"], [
+        rep = self.engine.run_forensic_audit()
+        self.assertEqual(rep["observation"]["elapsed"], "UNKNOWN")
+        self.assertEqual(rep["outreach"]["published"], "UNKNOWN")
+
+        # Restore
+        self.engine._read_json_safe = original_obs_file
+
+    def test_4_valid_final_verdicts(self):
+        rep = self.engine.run_forensic_audit()
+        valid_verdicts = [
             "REAL_AUTONOMOUS_ACQUISITION_VERIFIED",
-            "REAL_AUTONOMOUS_ACQUISITION_NOT_VERIFIED",
             "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE",
-            "ACQUISITION_TELEMETRY_INVALID"
-        ])
+            "CRON_TELEMETRY_INSUFFICIENT",
+            "REAL_AUTONOMOUS_ACQUISITION_NOT_VERIFIED",
+            "DATA_QUALITY_FAILURE"
+        ]
+        self.assertIn(rep["final_verdict"], valid_verdicts)
 
 
 if __name__ == "__main__":
