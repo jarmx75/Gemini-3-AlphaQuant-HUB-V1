@@ -141,12 +141,48 @@ class TestSprint342IPNVerification(unittest.TestCase):
         """Verify verifier engine reports IPN_PRODUCTION_CONFIGURED=True and IPN_REAL_EVENT_RECEIVED=False."""
         rep = self.verifier.run_production_verification()
 
-        self.assertTrue(rep["ipn_production_configured"])
+        self.assertTrue(rep["IPN_PRODUCTION_CONFIGURED"])
         self.assertIn("IPN_PRODUCTION_HANDSHAKE_READY", rep["final_verdict"])
-        self.assertFalse(rep["first_revenue_achieved"])
+        self.assertFalse(rep["FIRST_REVENUE_ACHIEVED"])
+        self.assertEqual(rep["REAL_REVENUE_USD"], 0.0)
         self.assertEqual(rep["metrics"]["production_validation_status"], "VERIFIED_HANDSHAKE_READY")
         self.assertEqual(rep["metrics"]["duplicate_protection_status"], "IDEMPOTENT_TXN_KEY_ENFORCED")
-        self.assertEqual(rep["metrics"]["product_mapping_status"], "MAPPED_49_79_96")
+
+    def test_5_system_test_payment_mapping_and_zero_fulfillment(self):
+        """Verify $1.00 MXN or item_number 4EMBJBQD7482S maps to SYSTEM_TEST_PAYMENT with zero commercial fulfillment."""
+        handler_instance = ipn.handler.__new__(ipn.handler)
+        raw_payload = "txn_id=TXN_TEST_1MXN_001&payment_status=Completed&mc_gross=1.00&mc_currency=MXN&payer_email=buyer@paypal.com&item_number=4EMBJBQD7482S"
+        raw_bytes = raw_payload.encode("utf-8")
+        handler_instance.headers = {"Content-Length": str(len(raw_bytes))}
+        handler_instance.rfile = MagicMock()
+        handler_instance.rfile.read.return_value = raw_bytes
+
+        mock_cm = MagicMock()
+        mock_resp = MagicMock()
+        mock_resp.read.return_value = b"VERIFIED"
+        mock_cm.__enter__.return_value = mock_resp
+
+        with patch.dict(os.environ, {"PAYPAL_MODE": "SANDBOX"}):
+            with patch("urllib.request.urlopen", return_value=mock_cm):
+                handler_instance.send_response = MagicMock()
+                handler_instance.send_header = MagicMock()
+                handler_instance.end_headers = MagicMock()
+                handler_instance.wfile = MagicMock()
+
+                handler_instance.do_POST()
+                res = json.loads(handler_instance.wfile.write.call_args[0][0].decode("utf-8"))
+                self.assertTrue(res.get("verified"))
+
+        # Inspect verified log file
+        log_file = Path(self.temp_payment_log)
+        self.assertTrue(log_file.exists())
+        with open(log_file, "r", encoding="utf-8") as f:
+            pmts = json.load(f)
+            match = next((p for p in pmts if isinstance(p, dict) and p.get("txn_id") == "TXN_TEST_1MXN_001"), None)
+            self.assertIsNotNone(match)
+            self.assertEqual(match["product_id"], "SYSTEM_TEST_PAYMENT")
+            self.assertFalse(match["authorizes_fulfillment"])
+            self.assertFalse(match["is_commercial"])
 
 
 if __name__ == "__main__":

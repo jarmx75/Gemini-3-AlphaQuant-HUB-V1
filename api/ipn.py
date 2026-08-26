@@ -36,14 +36,6 @@ class handler(BaseHTTPRequestHandler):
             mc_currency = ipn_dict.get('mc_currency', 'USD')
             payer_email = ipn_dict.get('payer_email', 'unknown@customer.com')
 
-            # Determine product matching based on exact amount
-            amount_str = str(mc_gross).strip()
-            product_id = 'QUANT_AUDIT_49'
-            if amount_str in ['79.00', '79']:
-                product_id = 'QUANT_EXECUTION_REALITY_AUDIT_79'
-            elif amount_str in ['96.00', '96']:
-                product_id = 'COMPLETE_QUANT_VALIDATION_BUNDLE_96'
-
             # Prepare validation request back to PayPal
             validate_body = b'cmd=_notify-validate&' + post_body
             mode = os.environ.get('PAYPAL_MODE', 'LIVE')
@@ -79,13 +71,34 @@ class handler(BaseHTTPRequestHandler):
                         except Exception as net_err:
                             print(f"[IPN WARNING] Handshake error: {net_err}")
 
+            # Determine product matching based on exact amount and item number
+            amount_str = str(mc_gross).strip()
+            item_num = str(ipn_dict.get('item_number', '')).strip()
+
+            authorizes_fulfillment = True
+            is_commercial = True
+
+            if amount_str in ['1.00', '1', '1.0', '1.000'] or mc_currency == 'MXN' or item_num == '4EMBJBQD7482S':
+                product_id = 'SYSTEM_TEST_PAYMENT'
+                authorizes_fulfillment = False
+                is_commercial = False
+            elif amount_str in ['79.00', '79']:
+                product_id = 'QUANT_EXECUTION_REALITY_AUDIT_79'
+            elif amount_str in ['96.00', '96']:
+                product_id = 'COMPLETE_QUANT_VALIDATION_BUNDLE_96'
+            elif amount_str in ['49.00', '49']:
+                product_id = 'QUANT_AUDIT_49'
+            else:
+                product_id = 'UNRECOGNIZED_TEST_PAYMENT'
+                authorizes_fulfillment = False
+                is_commercial = False
+
             # Directories & files for logging
             log_dir = os.environ.get('PAYPAL_LOG_DIR') or os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
             os.makedirs(log_dir, exist_ok=True)
             events_log_file = os.path.join(log_dir, 'paypal_ipn_events.jsonl')
             verified_pmt_file = os.path.join(log_dir, 'paypal_payment_log.json')
 
-            # Check existing payments for primary txn_id idempotency
             # Check existing payments for primary txn_id idempotency
             existing_pmts = []
             if os.path.exists(verified_pmt_file):
@@ -95,7 +108,7 @@ class handler(BaseHTTPRequestHandler):
                         if isinstance(loaded, list):
                             existing_pmts = loaded
                         elif isinstance(loaded, dict) and loaded:
-                            existing_pmts = [loaded]
+                            existing_pmts = loaded.get('payments', [loaded])
                 except Exception:
                     existing_pmts = []
 
@@ -118,6 +131,8 @@ class handler(BaseHTTPRequestHandler):
                         'currency': mc_currency,
                         'payer_email': payer_email,
                         'product_id': product_id,
+                        'authorizes_fulfillment': authorizes_fulfillment,
+                        'is_commercial': is_commercial,
                         'timestamp_utc': timestamp_utc
                     })
                     with open(verified_pmt_file, 'w', encoding='utf-8') as f:
@@ -133,6 +148,8 @@ class handler(BaseHTTPRequestHandler):
                 'currency': mc_currency,
                 'payer_email': payer_email,
                 'product_id': product_id,
+                'authorizes_fulfillment': authorizes_fulfillment,
+                'is_commercial': is_commercial,
                 'idempotency_status': idempotency_status,
                 'mode': mode
             }
@@ -147,7 +164,8 @@ class handler(BaseHTTPRequestHandler):
                 'received': True,
                 'verified': is_verified,
                 'txn_id': txn_id,
-                'idempotency_status': idempotency_status
+                'idempotency_status': idempotency_status,
+                'product_id': product_id
             }).encode())
 
         except Exception as e:
