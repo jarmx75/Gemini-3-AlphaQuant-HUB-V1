@@ -100,7 +100,7 @@ class TestSprint34SecondProductValidation(unittest.TestCase):
             self.assertIn("$79 USD", content)
 
     def test_5_paypal_create_order_pricing_routing(self):
-        """Verify api/create-order.py routes $79 USD for QUANT_EXECUTION_REALITY_AUDIT and $49 USD default."""
+        """Verify api/create-order.py returns Hosted Payment Link mapping without requiring Orders API credentials."""
         import importlib.util
         file_path = Path(__file__).resolve().parent.parent / "api" / "create-order.py"
         spec = importlib.util.spec_from_file_location("create_order", file_path)
@@ -108,45 +108,24 @@ class TestSprint34SecondProductValidation(unittest.TestCase):
         spec.loader.exec_module(create_order)
         
         handler_instance = create_order.handler.__new__(create_order.handler)
-        handler_instance.headers = {"Content-Length": "45"}
+        handler_instance.headers = {"Content-Length": "48"}
         
-        body_data = json.dumps({"product_id": "QUANT_EXECUTION_REALITY_AUDIT"}).encode("utf-8")
+        body_data = json.dumps({"product_id": "QUANT_EXECUTION_REALITY_AUDIT_79"}).encode("utf-8")
         handler_instance.rfile = MagicMock()
         handler_instance.rfile.read.return_value = body_data
 
-        with patch.dict(os.environ, {"PAYPAL_CLIENT_ID": "mock_id", "PAYPAL_CLIENT_SECRET": "mock_secret"}):
-            with patch("urllib.request.urlopen") as mock_urlopen:
-                # Mock token response
-                mock_token_resp = MagicMock()
-                mock_token_resp.read.return_value = json.dumps({"access_token": "mock_token"}).encode("utf-8")
-                
-                # Mock order response
-                mock_order_resp = MagicMock()
-                mock_order_resp.read.return_value = json.dumps({
-                    "id": "ORDER_79_TEST",
-                    "status": "CREATED",
-                    "links": [{"rel": "approve", "href": "https://www.paypal.com/approve"}]
-                }).encode("utf-8")
+        handler_instance.send_response = MagicMock()
+        handler_instance.send_header = MagicMock()
+        handler_instance.end_headers = MagicMock()
+        handler_instance.wfile = MagicMock()
 
-                mock_urlopen.side_effect = [
-                    MagicMock(__enter__=MagicMock(return_value=mock_token_resp)),
-                    MagicMock(__enter__=MagicMock(return_value=mock_order_resp))
-                ]
+        handler_instance.do_POST()
 
-                handler_instance.send_response = MagicMock()
-                handler_instance.send_header = MagicMock()
-                handler_instance.end_headers = MagicMock()
-                handler_instance.wfile = MagicMock()
+        written_bytes = handler_instance.wfile.write.call_args[0][0]
+        payload_json = json.loads(written_bytes.decode("utf-8"))
 
-                handler_instance.do_POST()
-                
-                # Verify order creation call payload
-                order_req_args = mock_urlopen.call_args_list[1][0][0]
-                payload_str = order_req_args.data.decode("utf-8")
-                payload_json = json.loads(payload_str)
-                
-                self.assertEqual(payload_json["purchase_units"][0]["amount"]["value"], "79.00")
-                self.assertIn("Quant Execution Reality Audit", payload_json["purchase_units"][0]["description"])
+        self.assertEqual(payload_json["status"], "DEPRECATED_MIGRATED_TO_HOSTED_LINKS")
+        self.assertIn("https://www.paypal.com/ncp/payment/", payload_json["approvalUrl"])
 
     def test_6_quant_audit_49_and_monitor_backward_compatibility(self):
         """Verify Quant Audit $49 and Read-Only Monitor maintain 100% backward compatibility."""
