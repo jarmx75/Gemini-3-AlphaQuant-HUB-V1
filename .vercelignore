@@ -15,3 +15,4 @@ tests/
 .DS_Store
 *.pyc
 __pycache__/
+api/*.js

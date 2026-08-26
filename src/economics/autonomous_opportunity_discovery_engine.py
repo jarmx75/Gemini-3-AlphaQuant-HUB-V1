@@ -10,6 +10,7 @@ Features:
 - Append-only opportunity pool log: logs/portfolio/opportunity_pool.jsonl
 """
 
+import os
 import json
 import logging
 import time
@@ -22,10 +23,19 @@ from typing import Dict, Any, List, Optional, Tuple
 logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-LOGS_PORTFOLIO_DIR = PROJECT_ROOT / "logs" / "portfolio"
+
+def _get_log_dir() -> Path:
+    d = Path(os.environ.get('PAYPAL_LOG_DIR') or ('/tmp/logs/portfolio' if os.environ.get('VERCEL') or not os.access(PROJECT_ROOT, os.W_OK) else PROJECT_ROOT / 'logs' / 'portfolio'))
+    try:
+        d.mkdir(parents=True, exist_ok=True)
+    except OSError:
+        d = Path('/tmp/logs/portfolio')
+        d.mkdir(parents=True, exist_ok=True)
+    return d
+
+LOGS_PORTFOLIO_DIR = _get_log_dir()
 OPPORTUNITY_POOL_FILE = LOGS_PORTFOLIO_DIR / "opportunity_pool.jsonl"
 COOLDOWN_REGISTRY_FILE = LOGS_PORTFOLIO_DIR / "cooldown_registry.json"
-LOGS_PORTFOLIO_DIR.mkdir(parents=True, exist_ok=True)
 
 
 class BaseChannelAdapter:

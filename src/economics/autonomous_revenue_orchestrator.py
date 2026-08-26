@@ -22,14 +22,23 @@ from typing import Dict, Any, List, Optional, Tuple
 logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-LOGS_PORTFOLIO_DIR = PROJECT_ROOT / "logs" / "portfolio"
+
+def _get_log_dir() -> Path:
+    d = Path(os.environ.get('PAYPAL_LOG_DIR') or ('/tmp/logs/portfolio' if os.environ.get('VERCEL') or not os.access(PROJECT_ROOT, os.W_OK) else PROJECT_ROOT / 'logs' / 'portfolio'))
+    try:
+        d.mkdir(parents=True, exist_ok=True)
+    except OSError:
+        d = Path('/tmp/logs/portfolio')
+        d.mkdir(parents=True, exist_ok=True)
+    return d
+
+LOGS_PORTFOLIO_DIR = _get_log_dir()
 HEARTBEAT_FILE = LOGS_PORTFOLIO_DIR / "autonomous_revenue_heartbeat.json"
 DAILY_REPORT_FILE = LOGS_PORTFOLIO_DIR / "autonomous_revenue_daily.json"
 DASHBOARD_FILE = LOGS_PORTFOLIO_DIR / "autonomous_revenue_dashboard.json"
 TASK_QUEUE_FILE = LOGS_PORTFOLIO_DIR / "task_queue_registry.json"
 RUNTIME_PROOF_FILE = LOGS_PORTFOLIO_DIR / "autonomous_runtime_proof.json"
 PRODUCTION_CYCLES_FILE = LOGS_PORTFOLIO_DIR / "production_cycle_history.jsonl"
-LOGS_PORTFOLIO_DIR.mkdir(parents=True, exist_ok=True)
 
 from src.economics.autonomous_opportunity_discovery_engine import AutonomousOpportunityDiscoveryEngine
 from src.economics.autonomous_revenue_portfolio import AutonomousRevenuePortfolio

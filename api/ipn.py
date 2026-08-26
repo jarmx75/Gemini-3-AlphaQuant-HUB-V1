@@ -102,8 +102,17 @@ class handler(BaseHTTPRequestHandler):
                 is_commercial = False
 
             # Directories & files for logging
-            log_dir = os.environ.get('PAYPAL_LOG_DIR') or os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
-            os.makedirs(log_dir, exist_ok=True)
+            if os.environ.get('PAYPAL_LOG_DIR'):
+                log_dir = os.environ['PAYPAL_LOG_DIR']
+            elif os.environ.get('VERCEL') or os.path.exists('/tmp'):
+                log_dir = '/tmp/logs/portfolio'
+            else:
+                log_dir = os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
+            try:
+                os.makedirs(log_dir, exist_ok=True)
+            except OSError:
+                log_dir = '/tmp/logs/portfolio'
+                os.makedirs(log_dir, exist_ok=True)
             events_log_file = os.path.join(log_dir, 'paypal_ipn_events.jsonl')
             verified_pmt_file = os.path.join(log_dir, 'paypal_payment_log.json')
 

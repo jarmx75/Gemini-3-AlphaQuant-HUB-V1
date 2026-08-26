@@ -6,6 +6,7 @@ Accepts landing events (PAGE_VISIT, QUIZ_START, EMAIL_SUBMIT, CHECKOUT_CLICK, PA
 Appends events to logs/portfolio/landing_analytics.jsonl
 """
 
+import os
 import json
 import logging
 import uuid
@@ -16,9 +17,18 @@ from http.server import BaseHTTPRequestHandler
 logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-LOGS_PORTFOLIO_DIR = PROJECT_ROOT / "logs" / "portfolio"
+
+def get_log_dir() -> Path:
+    d = Path(os.environ.get('PAYPAL_LOG_DIR') or ('/tmp/logs/portfolio' if os.environ.get('VERCEL') or not os.access(PROJECT_ROOT, os.W_OK) else PROJECT_ROOT / 'logs' / 'portfolio'))
+    try:
+        d.mkdir(parents=True, exist_ok=True)
+    except OSError:
+        d = Path('/tmp/logs/portfolio')
+        d.mkdir(parents=True, exist_ok=True)
+    return d
+
+LOGS_PORTFOLIO_DIR = get_log_dir()
 ANALYTICS_JSONL = LOGS_PORTFOLIO_DIR / "landing_analytics.jsonl"
-LOGS_PORTFOLIO_DIR.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_EVENT_TYPES = {
     "PAGE_VISIT",

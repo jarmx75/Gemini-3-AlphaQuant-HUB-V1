@@ -32,8 +32,17 @@ class handler(BaseHTTPRequestHandler):
 
             if event_type in accepted_events:
                 # Save event to local audit log
-                log_dir = os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
-                os.makedirs(log_dir, exist_ok=True)
+                if os.environ.get('PAYPAL_LOG_DIR'):
+                    log_dir = os.environ['PAYPAL_LOG_DIR']
+                elif os.environ.get('VERCEL') or os.path.exists('/tmp'):
+                    log_dir = '/tmp/logs/portfolio'
+                else:
+                    log_dir = os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
+                try:
+                    os.makedirs(log_dir, exist_ok=True)
+                except OSError:
+                    log_dir = '/tmp/logs/portfolio'
+                    os.makedirs(log_dir, exist_ok=True)
                 log_file = os.path.join(log_dir, 'paypal_webhooks.json')
                 pmt_file = os.path.join(log_dir, 'paypal_payment_log.json')
                 
