@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-25T17:06:33.387626+00:00",
+  "timestamp": "2026-08-26T00:02:09.692415+00:00",
   "monitor_integrity": {
     "MONITOR_MODE": "READ_ONLY",
     "CRON_TRIGGERED_BY_MONITOR": false,
@@ -11,130 +11,55 @@
     "SIDE_EFFECTS": 0,
     "CRON_UNTOUCHED": true
   },
-  "observation_window": {
-    "observation_start_utc": "2026-08-25T17:06:31.006261+00:00",
-    "actual_elapsed_hours": 0.0007,
-    "remaining_hours_to_24h": 23.9993,
-    "cron_cycles_observed": 1,
-    "successful_cycles": 1,
-    "failed_cycles": 0,
-    "retries": 0,
-    "first_heartbeat": "2026-08-25T17:06:31.006261+00:00",
-    "last_heartbeat": "2026-08-25T17:06:31.006257+00:00",
-    "PRODUCTION_RUNTIME_24H_PROVEN": false,
-    "AUTONOMOUS_ACQUISITION_PROVEN": false,
-    "FIRST_REVENUE_ACHIEVED": false
+  "observation": {
+    "start": "2026-08-26T00:02:07.329511+00:00",
+    "now": "2026-08-26T00:02:09.692415+00:00",
+    "elapsed": 0.0007
   },
-  "full_funnel": {
-    "Traffic": {
-      "real": 0,
-      "test_sandbox": 0,
-      "source": "landing_analytics.json"
-    },
-    "Interest": {
-      "real": 0,
-      "test_sandbox": 0,
-      "source": "outreach_execution_engine"
-    },
-    "Qualified Leads": {
-      "real": 3,
-      "test_sandbox": 0,
-      "source": "customer_acquisition_metrics.json"
-    },
-    "Outreach Attempts": {
-      "real": 5,
-      "test_sandbox": 2,
-      "source": "outreach_quality_audit.json"
-    },
-    "Messages Sent": {
-      "real": 1,
-      "test_sandbox": 0,
-      "source": "real_outreach_execution.json"
-    },
-    "Human Replies": {
-      "real": 0,
-      "test_sandbox": 0,
-      "source": "GitHub API"
-    },
-    "Landing Visits": {
-      "real": 0,
-      "test_sandbox": 0,
-      "source": "landing_analytics.json"
-    },
-    "Quiz Starts": {
-      "real": 0,
-      "test_sandbox": 0,
-      "source": "landing_analytics.json"
-    },
-    "Emails Captured": {
-      "real": 0,
-      "test_sandbox": 1,
-      "source": "resend_email_test.json"
-    },
-    "Checkout Started": {
-      "real": 0,
-      "test_sandbox": 0,
-      "source": "landing_analytics.json"
-    },
-    "Payments Completed": {
-      "real": 0,
-      "test_sandbox": 39,
-      "source": "paypal_payment_log.json"
-    },
-    "Revenue USD": {
-      "real": 0,
-      "test_sandbox": 0.0,
-      "source": "paypal_payment_log.json"
-    },
-    "Audits Completed": {
-      "real": 0,
-      "test_sandbox": 1,
-      "source": "quant_audits_executed.json"
-    },
-    "Certificates Delivered": {
-      "real": 0,
-      "test_sandbox": 1,
-      "source": "customer_delivery_audit.json"
-    }
+  "cron": {
+    "expected": 0,
+    "observed": 10,
+    "missing": 0,
+    "status": "CRON_HEALTHY"
   },
-  "conversion_rates": {
-    "Outreach -> Reply": "0.0%",
-    "Reply -> Landing": "N/A",
-    "Landing -> Quiz": "N/A",
-    "Quiz -> Email": "N/A",
-    "Email -> Checkout": "N/A",
-    "Checkout -> Paid": "N/A"
+  "outreach": {
+    "published": 1,
+    "blocked": 2,
+    "failed": 0
   },
-  "revenue_summary": {
-    "REAL_REVENUE_USD": 0,
-    "COMPLETED_PAYMENTS_COUNT": 0,
-    "FIRST_REVENUE_CONFIRMED": "NO",
-    "FIRST_REVENUE_ACHIEVED": false
+  "external_customer_funnel": {
+    "landing_visits": 0,
+    "quiz_starts": 0,
+    "emails": 0,
+    "checkout_starts": 5,
+    "payment_returns": 5,
+    "completed_payments": 0,
+    "revenue_usd": 0,
+    "audits_completed": 0,
+    "certificates_delivered": 0,
+    "emails_delivered": 0,
+    "human_replies": 0
   },
-  "channel_performance": {
-    "GitHub": {
-      "exposures": 5,
-      "replies": 0,
-      "revenue_usd": 0.0,
-      "sample_status": "Insufficient Sample"
-    },
-    "Reddit": {
-      "exposures": 0,
-      "replies": 0,
-      "revenue_usd": 0.0,
-      "sample_status": "Auth Pending"
-    },
-    "QuantConnect": {
-      "exposures": 0,
-      "replies": 0,
-      "revenue_usd": 0.0,
-      "sample_status": "Auth Pending"
-    }
+  "owner_test_funnel": {
+    "owner_landing_visits": 11,
+    "owner_quiz_starts": 0,
+    "owner_checkout_starts": 1,
+    "owner_payment_returns": 0,
+    "test_payments": 145,
+    "test_audits": 1,
+    "test_certificates": 1
   },
-  "alerts": [
-    "\ud83d\udfe2 AUTONOMOUS RUNTIME HEALTHY (Vercel Cron Active)",
-    "\ud83d\udfe2 PAYMENT FLOW HEALTHY (PayPal Live Link SH9CKB2WSX728 Active)",
-    "\ud83d\udfe2 EMAIL DELIVERY HEALTHY (Resend API Verified)",
-    "\ud83d\udfe1 NO HUMAN TRAFFIC YET (Organic exposure in progress)"
-  ]
+  "conversion": {
+    "landing_to_checkout": "UNKNOWN",
+    "checkout_to_payment": "0.0%",
+    "landing_to_payment": "UNKNOWN"
+  },
+  "data_quality": {
+    "hardcoded": 0,
+    "fallback": 0,
+    "synthetic": 0,
+    "unknown": 0,
+    "missing_sources": []
+  },
+  "final_verdict": "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE"
 }

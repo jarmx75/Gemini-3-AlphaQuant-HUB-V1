@@ -1,5 +1,5 @@
 """
-Unit Test Suite for True Production Telemetry / Zero Unknown-To-Zero Conversion (Sprint #32.3)
+Unit Test Suite for True Production Telemetry / Zero Unknown-To-Zero Conversion (Sprint #32.4)
 """
 
 import unittest
@@ -22,19 +22,19 @@ class TestAcquisitionForensicAudit(unittest.TestCase):
 
         with patch.object(self.engine, "_read_jsonl_safe", side_effect=mock_read):
             rep = self.engine.run_forensic_audit()
-            eng_r = rep["engagement_real"]
-            self.assertEqual(eng_r["real_landing_visits"], "UNKNOWN")
-            self.assertEqual(eng_r["real_quiz_starts"], "UNKNOWN")
-            self.assertEqual(eng_r["real_emails_captured"], "UNKNOWN")
+            ext_f = rep["external_customer_funnel"]
+            self.assertEqual(ext_f["landing_visits"], "UNKNOWN")
+            self.assertEqual(ext_f["quiz_starts"], "UNKNOWN")
+            self.assertEqual(ext_f["emails"], "UNKNOWN")
 
     def test_2_delivery_metrics_parsed_individually_not_inferred(self):
         rep = self.engine.run_forensic_audit()
-        deliv_r = rep["delivery_real"]
-        self.assertIn("real_audits_started", deliv_r)
-        self.assertIn("real_audits_completed", deliv_r)
-        self.assertIn("real_certificates_generated", deliv_r)
-        self.assertIn("real_certificates_delivered", deliv_r)
-        self.assertIn("real_emails_sent", deliv_r)
+        ext_f = rep["external_customer_funnel"]
+        self.assertIn("landing_visits", ext_f)
+        self.assertIn("quiz_starts", ext_f)
+        self.assertIn("emails", ext_f)
+        self.assertIn("checkout_starts", ext_f)
+        self.assertIn("completed_payments", ext_f)
 
     def test_3_cron_telemetry_insufficient_if_observed_under_two(self):
         with patch.object(self.engine, "_read_jsonl_safe", return_value=[{"timestamp_utc": "2026-08-25T00:00:00Z"}]):

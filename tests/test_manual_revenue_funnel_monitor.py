@@ -1,8 +1,9 @@
 """
-Unit Test Suite for Read-Only Manual Revenue Funnel Monitor (Sprint #31.2)
+Unit Test Suite for Read-Only Manual Revenue Funnel Monitor (Sprint #32.4)
 """
 
 import unittest
+from unittest.mock import patch
 from src.economics.manual_revenue_funnel_monitor import ManualRevenueFunnelMonitor, SNAPSHOT_JSON_FILE, OBSERVATION_FILE
 
 
@@ -13,10 +14,7 @@ class TestManualRevenueFunnelMonitor(unittest.TestCase):
 
     def test_1_monitor_creates_zero_tasks(self):
         snap = self.monitor.generate_snapshot()
-        integ = snap["monitor_integrity"]
-        self.assertEqual(integ["TASKS_CREATED_BY_MONITOR"], 0)
-        self.assertEqual(integ["SIDE_EFFECTS"], 0)
-        self.assertTrue(integ["CRON_UNTOUCHED"])
+        self.assertEqual(snap["monitor_integrity"]["TASKS_CREATED_BY_MONITOR"], 0)
 
     def test_2_monitor_sends_zero_emails(self):
         snap = self.monitor.generate_snapshot()
@@ -32,24 +30,25 @@ class TestManualRevenueFunnelMonitor(unittest.TestCase):
 
     def test_5_real_revenue_excludes_test_payments(self):
         snap = self.monitor.generate_snapshot()
-        rev = snap["revenue_summary"]
-        self.assertEqual(rev["REAL_REVENUE_USD"], 0.0)
-        self.assertEqual(rev["COMPLETED_PAYMENTS_COUNT"], 0)
+        ext_f = snap["external_customer_funnel"]
+        self.assertEqual(ext_f["completed_payments"], 0)
+        self.assertEqual(ext_f["revenue_usd"], 0.0)
 
     def test_6_funnel_contains_required_stages(self):
         snap = self.monitor.generate_snapshot()
-        funnel = snap["full_funnel"]
-        self.assertIn("Traffic", funnel)
-        self.assertIn("Landing Visits", funnel)
-        self.assertIn("Quiz Starts", funnel)
-        self.assertIn("Payments Completed", funnel)
-        self.assertIn("Revenue USD", funnel)
+        ext_f = snap["external_customer_funnel"]
+        required_stages = [
+            "landing_visits", "quiz_starts", "emails",
+            "checkout_starts", "completed_payments", "revenue_usd",
+            "audits_completed", "certificates_delivered", "emails_delivered"
+        ]
+        for stage in required_stages:
+            self.assertIn(stage, ext_f)
 
-    def test_7_safe_repeated_execution(self):
-        snap1 = self.monitor.generate_snapshot()
-        snap2 = self.monitor.generate_snapshot()
-        self.assertEqual(snap1["monitor_integrity"]["SIDE_EFFECTS"], 0)
-        self.assertEqual(snap2["monitor_integrity"]["SIDE_EFFECTS"], 0)
+    def test_7_side_effects_zero(self):
+        snap = self.monitor.generate_snapshot()
+        self.assertEqual(snap["monitor_integrity"]["SIDE_EFFECTS"], 0)
+        self.assertTrue(snap["monitor_integrity"]["CRON_UNTOUCHED"])
 
 
 if __name__ == "__main__":

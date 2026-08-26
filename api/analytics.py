@@ -42,10 +42,21 @@ def process_analytics_event(body_dict: dict) -> dict:
     if environment not in {"REAL", "TEST", "SANDBOX"}:
         environment = "REAL"
 
+    # Identify actor_type strictly
+    actor_type = body_dict.get("actor_type", "").upper()
+    if not actor_type or actor_type not in {"EXTERNAL_HUMAN", "OWNER", "INTERNAL_TEST", "UNKNOWN"}:
+        if environment in {"TEST", "SANDBOX"}:
+            actor_type = "INTERNAL_TEST"
+        elif body_dict.get("source") in {"owner_test", "localhost", "devin"}:
+            actor_type = "OWNER"
+        else:
+            actor_type = "UNKNOWN"
+
     event_entry = {
         "event_id": event_id,
         "timestamp_utc": now_iso,
         "environment": environment,
+        "actor_type": actor_type,
         "session_id": body_dict.get("session_id", f"sess_{uuid.uuid4().hex[:8]}"),
         "event_type": raw_event_type,
         "source": body_dict.get("source", "landing_direct"),
