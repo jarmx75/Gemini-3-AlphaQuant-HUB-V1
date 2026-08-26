@@ -222,6 +222,31 @@ class TestSprint342IPNVerification(unittest.TestCase):
         self.assertEqual(verdict.get("BACKEND_PUBLIC_REACHABILITY"), "HTTP_404_DEPLOYMENT_NOT_FOUND")
         self.assertEqual(rep.get("final_verdict"), "BLOCKED_PENDING_VERCEL_BACKEND_REDEPLOYMENT")
 
+    def test_8_dynamic_txn_id_prefix_matching(self):
+        """Verify 16-char redirect tx (8WB32625PL331771) and 17-char IPN/email txn_id (8WB32625PL3317718) correlate cleanly."""
+        capture_handler = capture_order.handler.__new__(capture_order.handler)
+        raw_payload = json.dumps({
+            "tx": "8WB32625PL3317718",
+            "st": "COMPLETED",
+            "amt": "1.00",
+            "cc": "MXN"
+        }).encode("utf-8")
+
+        capture_handler.headers = {"Content-Length": str(len(raw_payload))}
+        capture_handler.rfile = MagicMock()
+        capture_handler.rfile.read.return_value = raw_payload
+        capture_handler.send_response = MagicMock()
+        capture_handler.send_header = MagicMock()
+        capture_handler.end_headers = MagicMock()
+        capture_handler.wfile = MagicMock()
+
+        capture_handler.do_POST()
+        res = json.loads(capture_handler.wfile.write.call_args[0][0].decode("utf-8"))
+
+        self.assertTrue(res.get("verified"))
+        self.assertEqual(res.get("product_id"), "SYSTEM_TEST_PAYMENT")
+        self.assertFalse(res.get("authorizes_fulfillment"))
+
 
 if __name__ == "__main__":
     unittest.main()

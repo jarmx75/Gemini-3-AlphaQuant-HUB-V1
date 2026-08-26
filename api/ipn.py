@@ -10,6 +10,14 @@ PAYPAL_LIVE_IPN_FALLBACK_URL = "https://www.paypal.com/cgi-bin/webscr"
 PAYPAL_SANDBOX_IPN_URL = "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr"
 
 
+def is_matching_txn_id(val1, val2):
+    """Helper function to dynamically match transaction IDs handling truncation discrepancies (e.g. 8WB32625PL331771 vs 8WB32625PL3317718)."""
+    if not val1 or not val2:
+        return False
+    v1, v2 = str(val1).strip(), str(val2).strip()
+    return v1 == v2 or v1.startswith(v2) or v2.startswith(v1)
+
+
 class handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
         self.send_response(200)
@@ -71,14 +79,14 @@ class handler(BaseHTTPRequestHandler):
                         except Exception as net_err:
                             print(f"[IPN WARNING] Handshake error: {net_err}")
 
-            # Determine product matching based on exact amount and item number
+            # Determine product matching based on exact amount, item number, and txn_id matching
             amount_str = str(mc_gross).strip()
             item_num = str(ipn_dict.get('item_number', '')).strip()
 
             authorizes_fulfillment = True
             is_commercial = True
 
-            if amount_str in ['1.00', '1', '1.0', '1.000'] or mc_currency == 'MXN' or item_num == '25GRGEEFTJ2QL' or txn_id == '8WB32625PL331771':
+            if amount_str in ['1.00', '1', '1.0', '1.000'] or mc_currency == 'MXN' or item_num == '25GRGEEFTJ2QL' or is_matching_txn_id(txn_id, '8WB32625PL331771') or is_matching_txn_id(txn_id, '8WB32625PL3317718'):
                 product_id = 'SYSTEM_TEST_PAYMENT'
                 authorizes_fulfillment = False
                 is_commercial = False
@@ -113,7 +121,7 @@ class handler(BaseHTTPRequestHandler):
                     existing_pmts = []
 
             is_duplicate = False
-            if txn_id and any(isinstance(x, dict) and x.get('txn_id') == txn_id for x in existing_pmts):
+            if txn_id and any(isinstance(x, dict) and is_matching_txn_id(x.get('txn_id'), txn_id) for x in existing_pmts):
                 is_duplicate = True
 
             idempotency_status = 'REJECTED'

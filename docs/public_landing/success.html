@@ -174,7 +174,7 @@
 
                 if (resp.ok) {
                     const data = await resp.json();
-                    if (data.product_id === 'SYSTEM_TEST_PAYMENT' || amt === '1.00' || cc === 'MXN' || orderID === '8WB32625PL331771') {
+                    if (data.product_id === 'SYSTEM_TEST_PAYMENT' || amt === '1.00' || cc === 'MXN' || (orderID && orderID.startsWith('8WB32625PL331771'))) {
                         titleHeading.innerText = 'System Test Payment Verified ($1.00 MXN)';
                         subHeading.innerText = 'Transaction Ref: ' + orderID + ' (Status: ' + (st || 'COMPLETED') + ').';
                         toast.style.background = '#e0f2fe';
