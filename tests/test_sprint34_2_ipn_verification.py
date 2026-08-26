@@ -14,6 +14,10 @@ import importlib.util
 from src.economics.paypal_ipn_production_verifier import PayPalIPNProductionVerifier
 from api import ipn
 
+spec_capture = importlib.util.spec_from_file_location("capture_order", Path(__file__).resolve().parent.parent / "api" / "capture-order.py")
+capture_order = importlib.util.module_from_spec(spec_capture)
+spec_capture.loader.exec_module(capture_order)
+
 
 class TestSprint342IPNVerification(unittest.TestCase):
 
@@ -142,7 +146,7 @@ class TestSprint342IPNVerification(unittest.TestCase):
         rep = self.verifier.run_production_verification()
 
         self.assertTrue(rep["IPN_PRODUCTION_CONFIGURED"])
-        self.assertIn("IPN_PRODUCTION_HANDSHAKE_READY", rep["final_verdict"])
+        self.assertIn("BLOCKED_PENDING_VERCEL_BACKEND_REDEPLOYMENT", rep["final_verdict"])
         self.assertFalse(rep["FIRST_REVENUE_ACHIEVED"])
         self.assertEqual(rep["REAL_REVENUE_USD"], 0.0)
         self.assertEqual(rep["metrics"]["production_validation_status"], "VERIFIED_HANDSHAKE_READY")
@@ -183,6 +187,40 @@ class TestSprint342IPNVerification(unittest.TestCase):
             self.assertEqual(match["product_id"], "SYSTEM_TEST_PAYMENT")
             self.assertFalse(match["authorizes_fulfillment"])
             self.assertFalse(match["is_commercial"])
+
+    def test_6_hosted_payment_link_return_parameter_mapping(self):
+        """Verify transaction 8WB32625PL331771 and return params tx, st, amt, cc map to SYSTEM_TEST_PAYMENT in capture-order handler."""
+        capture_handler = capture_order.handler.__new__(capture_order.handler)
+        raw_payload = json.dumps({
+            "tx": "8WB32625PL331771",
+            "st": "COMPLETED",
+            "amt": "1.00",
+            "cc": "MXN"
+        }).encode("utf-8")
+
+        capture_handler.headers = {"Content-Length": str(len(raw_payload))}
+        capture_handler.rfile = MagicMock()
+        capture_handler.rfile.read.return_value = raw_payload
+        capture_handler.send_response = MagicMock()
+        capture_handler.send_header = MagicMock()
+        capture_handler.end_headers = MagicMock()
+        capture_handler.wfile = MagicMock()
+
+        capture_handler.do_POST()
+        res = json.loads(capture_handler.wfile.write.call_args[0][0].decode("utf-8"))
+
+        self.assertTrue(res.get("verified"))
+        self.assertEqual(res.get("product_id"), "SYSTEM_TEST_PAYMENT")
+        self.assertFalse(res.get("authorizes_fulfillment"))
+
+    def test_7_end_to_end_ready_blocked_when_vercel_endpoints_return_404(self):
+        """Verify END_TO_END_READY_FOR_CUSTOMER is False when backend endpoints return HTTP 404."""
+        rep = self.verifier.run_production_verification()
+        verdict = rep.get("verdict_fields", {})
+
+        self.assertFalse(verdict.get("END_TO_END_READY_FOR_CUSTOMER"))
+        self.assertEqual(verdict.get("BACKEND_PUBLIC_REACHABILITY"), "HTTP_404_DEPLOYMENT_NOT_FOUND")
+        self.assertEqual(rep.get("final_verdict"), "BLOCKED_PENDING_VERCEL_BACKEND_REDEPLOYMENT")
 
 
 if __name__ == "__main__":

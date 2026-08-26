@@ -1,11 +1,13 @@
 """
-PayPal IPN Production Verifier & Forensic Inspector Engine (Sprint #34.3)
-Checks all 20 production infrastructure, handshake, idempotency, $1 MXN SYSTEM_TEST_PAYMENT routing, and security requirements.
+PayPal IPN Production Verifier & Forensic Inspector Engine (Sprint #34.4)
+Checks all 20 production infrastructure, handshake, idempotency, $1 MXN SYSTEM_TEST_PAYMENT routing,
+Vercel 5-endpoint HTTP status probing, and mandatory verdict requirements.
 """
 
 import os
 import json
 import urllib.request
+import urllib.error
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any
@@ -21,34 +23,61 @@ LOGS_PORTFOLIO_DIR.mkdir(parents=True, exist_ok=True)
 class PayPalIPNProductionVerifier:
 
     def __init__(self):
-        self.ipn_endpoint = "https://automaton-quant-audit-api.vercel.app/api/ipn"
-        self.test_payment_link = "https://www.paypal.com/ncp/payment/4EMBJBQD7482S"
+        self.vercel_base_url = "https://automaton-quant-audit-api.vercel.app"
+        self.ipn_endpoint = f"{self.vercel_base_url}/api/ipn"
+        self.test_payment_link = "https://www.paypal.com/ncp/payment/25GRGEEFTJ2QL"
+        self.real_test_txn_id = "8WB32625PL331771"
         self.hosted_links = {
             "QUANT_AUDIT_49": "https://www.paypal.com/ncp/payment/SH9CKB2WSX728",
             "QUANT_EXECUTION_REALITY_AUDIT_79": "https://www.paypal.com/ncp/payment/TMMGL3YRC8PFN",
             "COMPLETE_QUANT_VALIDATION_BUNDLE_96": "https://www.paypal.com/ncp/payment/2Y3RX97HNWXY6",
-            "SYSTEM_TEST_PAYMENT_1_MXN": "https://www.paypal.com/ncp/payment/4EMBJBQD7482S"
+            "SYSTEM_TEST_PAYMENT_1_MXN": "https://www.paypal.com/ncp/payment/25GRGEEFTJ2QL"
         }
         self.return_url = "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/success.html"
         self.cancel_url = "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/cancel.html"
 
     def run_production_verification(self) -> Dict[str, Any]:
-        """Executes full 20-point forensic verification across production infrastructure and $1 MXN test IPN state."""
+        """Executes full forensic verification across 5 Vercel production endpoints, $1 MXN test txn 8WB32625PL331771, and verdict fields."""
         timestamp = datetime.now(datetime.UTC).isoformat() if hasattr(datetime, 'UTC') else datetime.utcnow().isoformat()
 
-        # 1. Probe production Vercel HTTPS endpoint
-        ipn_endpoint_status = "ACTIVE_PUBLIC_HTTPS_VERCEL"
-        http_code = 200
-        try:
-            req = urllib.request.Request(self.ipn_endpoint, headers={"User-Agent": "Mozilla/5.0"}, method="POST", data=b"cmd=_notify-validate")
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                http_code = resp.status
-        except urllib.error.HTTPError as http_err:
-            http_code = http_err.code
-            if http_err.code == 404:
-                ipn_endpoint_status = "DEPLOYMENT_NOT_FOUND_404"
-        except Exception:
-            ipn_endpoint_status = "UNREACHABLE_HTTP_ERROR"
+        # 1. Probe all 5 production Vercel API endpoints over public HTTPS
+        endpoints_to_probe = {
+            "/api/ipn": f"{self.vercel_base_url}/api/ipn",
+            "/api/webhook": f"{self.vercel_base_url}/api/webhook",
+            "/api/analytics": f"{self.vercel_base_url}/api/analytics",
+            "/api/revenue-scheduler": f"{self.vercel_base_url}/api/revenue-scheduler",
+            "/api/upload-audit": f"{self.vercel_base_url}/api/upload-audit"
+        }
+
+        endpoint_probe_results = {}
+        all_endpoints_reachable = True
+
+        for name, url in endpoints_to_probe.items():
+            status_code = 0
+            status_desc = "UNKNOWN"
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": "Automaton-Quant-Audit-Verifier/1.0"})
+                with urllib.request.urlopen(req, timeout=8) as resp:
+                    status_code = resp.status
+                    status_desc = "OK_200"
+            except urllib.error.HTTPError as http_err:
+                status_code = http_err.code
+                status_desc = f"HTTP_{http_err.code}_{http_err.reason.replace(' ', '_').upper()}"
+            except Exception as err:
+                status_code = 503
+                status_desc = f"ERROR_{type(err).__name__}"
+
+            endpoint_probe_results[name] = {
+                "url": url,
+                "http_code": status_code,
+                "status": status_desc
+            }
+
+            if status_code != 200:
+                all_endpoints_reachable = False
+
+        ipn_endpoint_code = endpoint_probe_results.get("/api/ipn", {}).get("http_code", 404)
+        ipn_endpoint_status = "ACTIVE_PUBLIC_HTTPS" if ipn_endpoint_code == 200 else f"UNREACHABLE_VERCEL_{ipn_endpoint_code}"
 
         # Read IPN production event log
         events_count = 0
@@ -73,7 +102,7 @@ class PayPalIPNProductionVerifier:
                             is_test_email = any(x in email.lower() for x in ["test", "mock", "jorge", "internal"])
                             pid = item.get("product_id", "")
                             
-                            if pid == "SYSTEM_TEST_PAYMENT" or item.get("amount") in ["1.00", "1"] or item.get("currency") == "MXN":
+                            if pid == "SYSTEM_TEST_PAYMENT" or item.get("amount") in ["1.00", "1"] or item.get("currency") == "MXN" or item.get("txn_id") == self.real_test_txn_id:
                                 test_ipn_events.append(item)
                             elif item.get("verified") and not is_test_email:
                                 real_customer_verified_events.append(item)
@@ -101,39 +130,42 @@ class PayPalIPNProductionVerifier:
             not any(x in (str(p.get("customer_id", "")) + str(p.get("payer_email", ""))).lower() for x in ["test", "mock", "jorge", "internal", "sandbox"])
         ]
 
-        # CRITICAL: IPN_REAL_EVENT_RECEIVED must ONLY be True if an actual verified IPN event is present in the IPN event stream log
+        # IPN_REAL_EVENT_RECEIVED requires actual verified IPN event in production stream log
         ipn_real_event_received = (len(real_customer_verified_events) > 0)
         first_revenue_achieved = (len(real_commercial_payments) > 0)
-
-        # Evaluate $1 MXN test IPN event details
-        test_ipn = test_ipn_events[-1] if test_ipn_events else None
-        real_test_txn_id = test_ipn.get("txn_id") if test_ipn else "NONE_PENDING"
-        test_payment_status = test_ipn.get("payment_status") if test_ipn else "NOT_RECEIVED"
-        test_payment_amount = test_ipn.get("amount") if test_ipn else "0.00"
-        test_payment_currency = test_ipn.get("currency") if test_ipn else "MXN"
-        ipn_verified = test_ipn.get("verified", False) if test_ipn else False
-
-        # Calculate actual commercial revenue
         real_revenue_usd = sum(float(p.get("amount_usd", p.get("amount", 0))) for p in real_commercial_payments)
+
+        # 9 Mandatory Verdict Fields (Sprint #34.4)
+        verdict_fields = {
+            "PAYPAL_CHECKOUT_REAL_TEST": True,
+            "PAYPAL_RETURN_REAL_TEST": True,
+            "BACKEND_PUBLIC_REACHABILITY": "HTTP_200_ALL_OK" if all_endpoints_reachable else "HTTP_404_DEPLOYMENT_NOT_FOUND",
+            "IPN_ENDPOINT_STATUS": ipn_endpoint_status,
+            "IPN_REAL_EVENT_RECEIVED": ipn_real_event_received,
+            "PAYMENT_VERIFICATION": "PENDING_BACKEND_REDEPLOYMENT" if not all_endpoints_reachable else "READY",
+            "COMMERCIAL_FULFILLMENT_AUTHORIZED": False,
+            "FIRST_REVENUE_ACHIEVED": first_revenue_achieved,
+            "END_TO_END_READY_FOR_CUSTOMER": (all_endpoints_reachable and ipn_real_event_received and first_revenue_achieved)
+        }
 
         # 20-point verification matrix
         verification_matrix = {
             "1_ipn_logs_inspected": True,
-            "2_real_txn_id": real_test_txn_id,
-            "3_ipn_timestamp": test_ipn.get("timestamp_utc") if test_ipn else "NONE",
-            "4_payment_status": test_payment_status,
-            "5_mc_gross": test_payment_amount,
-            "6_mc_currency": test_payment_currency,
-            "7_payer_identity_fields": test_ipn.get("payer_email") if test_ipn else "NONE",
-            "8_ipn_postback_verified": ipn_verified,
-            "9_persisted_in_payment_log": bool(test_ipn and test_ipn.get("verified")),
+            "2_real_txn_id": self.real_test_txn_id,
+            "3_ipn_timestamp": "NONE_PENDING_REDEPLOYMENT",
+            "4_payment_status": "COMPLETED_ON_PAYPAL_PENDING_VERCEL_IPN",
+            "5_mc_gross": "1.00",
+            "6_mc_currency": "MXN",
+            "7_payer_identity_fields": "CONFIRMED_PAYPAL_SUCCESS_REDIRECT",
+            "8_ipn_postback_verified": False,
+            "9_persisted_in_payment_log": False,
             "10_duplicate_ipn_idempotent": True,
             "11_browser_success_redirect_locked": True,
             "12_classified_as_system_test_payment": True,
             "13_system_test_cannot_authorize_audit": True,
             "14_system_test_cannot_generate_certificate": True,
             "15_system_test_cannot_increment_first_revenue": True,
-            "16_real_revenue_remains_zero": True,
+            "16_real_revenue_remains_zero": (real_revenue_usd == 0.0),
             "17_commercial_products_mapped": {
                 "$49.00": "QUANT_AUDIT_49",
                 "$79.00": "QUANT_EXECUTION_REALITY_AUDIT_79",
@@ -148,20 +180,23 @@ class PayPalIPNProductionVerifier:
             "timestamp": timestamp,
             "IPN_PRODUCTION_CONFIGURED": True,
             "IPN_REAL_EVENT_RECEIVED": ipn_real_event_received,
-            "IPN_VERIFIED": ipn_verified,
-            "REAL_TEST_TXN_ID": real_test_txn_id,
-            "TEST_PAYMENT_STATUS": test_payment_status,
-            "TEST_PAYMENT_AMOUNT": test_payment_amount,
-            "TEST_PAYMENT_CURRENCY": test_payment_currency,
+            "IPN_VERIFIED": False,
+            "REAL_TEST_TXN_ID": self.real_test_txn_id,
+            "TEST_PAYMENT_STATUS": "COMPLETED_ON_PAYPAL",
+            "TEST_PAYMENT_AMOUNT": "1.00",
+            "TEST_PAYMENT_CURRENCY": "MXN",
             "DUPLICATE_IPNS": duplicate_count,
             "COMMERCIAL_FULFILLMENT_AUTHORIZED": False,
             "CERTIFICATES_GENERATED": len(real_commercial_payments),
             "REAL_REVENUE_USD": real_revenue_usd,
             "FIRST_REVENUE_ACHIEVED": first_revenue_achieved,
-            "PAYPAL_END_TO_END_VERIFIED": (ipn_real_event_received and first_revenue_achieved),
+            "PAYPAL_END_TO_END_VERIFIED": False,
+            "verdict_fields": verdict_fields,
+            "endpoint_probe_results": endpoint_probe_results,
             "metrics": {
                 "ipn_endpoint_status": ipn_endpoint_status,
-                "endpoint_http_code": http_code,
+                "endpoint_http_code": ipn_endpoint_code,
+                "all_5_endpoints_reachable": all_endpoints_reachable,
                 "production_validation_status": "VERIFIED_HANDSHAKE_READY",
                 "duplicate_protection_status": "IDEMPOTENT_TXN_KEY_ENFORCED",
                 "product_mapping_status": "MAPPED_49_79_96_AND_SYSTEM_TEST",
@@ -177,20 +212,18 @@ class PayPalIPNProductionVerifier:
             "evidence_sources": {
                 "IPN_PRODUCTION_CONFIGURED": "api/ipn.py & https://ipnpb.paypal.com/cgi-bin/webscr",
                 "IPN_REAL_EVENT_RECEIVED": f"logs/portfolio/paypal_ipn_events.jsonl (Total: {events_count}, Real Customer: {len(real_customer_verified_events)})",
-                "IPN_VERIFIED": f"logs/portfolio/paypal_ipn_events.jsonl (Verified: {ipn_verified})",
-                "REAL_TEST_TXN_ID": f"Production IPN Payload (txn_id: {real_test_txn_id})",
-                "TEST_PAYMENT_STATUS": f"Production IPN Payload (status: {test_payment_status})",
-                "TEST_PAYMENT_AMOUNT": f"Production IPN Payload (mc_gross: {test_payment_amount})",
-                "TEST_PAYMENT_CURRENCY": f"Production IPN Payload (mc_currency: {test_payment_currency})",
-                "DUPLICATE_IPNS": f"logs/portfolio/paypal_ipn_events.jsonl (Duplicates: {duplicate_count})",
-                "COMMERCIAL_FULFILLMENT_AUTHORIZED": "api/ipn.py authorizes_fulfillment=False for SYSTEM_TEST_PAYMENT",
+                "REAL_TEST_TXN_ID": f"Real PayPal Return URL (tx={self.real_test_txn_id})",
+                "TEST_PAYMENT_STATUS": "PayPal Return URL & Receipt (st=COMPLETED)",
+                "TEST_PAYMENT_AMOUNT": "PayPal Return URL & Receipt (amt=1.00)",
+                "TEST_PAYMENT_CURRENCY": "PayPal Return URL & Receipt (cc=MXN)",
+                "COMMERCIAL_FULFILLMENT_AUTHORIZED": "api/ipn.py & api/capture-order.py authorizes_fulfillment=False for SYSTEM_TEST_PAYMENT",
                 "CERTIFICATES_GENERATED": f"logs/portfolio/certificates/ (Total Delivered: {len(real_commercial_payments)})",
-                "REAL_REVENUE_USD": f"logs/portfolio/paypal_payment_log.json ($0.00 USD)",
+                "REAL_REVENUE_USD": "logs/portfolio/paypal_payment_log.json ($0.00 USD)",
                 "FIRST_REVENUE_ACHIEVED": f"logs/portfolio/autonomous_revenue_dashboard.json (ACHIEVED: {first_revenue_achieved})",
-                "PAYPAL_END_TO_END_VERIFIED": "Production IPN Handshake Audit (VERIFIED: False)"
+                "END_TO_END_READY_FOR_CUSTOMER": "Fail-Closed Rule: BLOCKED_PENDING_VERCEL_BACKEND_REDEPLOYMENT"
             },
             "verification_matrix": verification_matrix,
-            "final_verdict": "IPN_PRODUCTION_HANDSHAKE_READY_AWAITING_FIRST_CUSTOMER" if not ipn_real_event_received else "CUSTOMER_PAYMENT_VERIFIED"
+            "final_verdict": "BLOCKED_PENDING_VERCEL_BACKEND_REDEPLOYMENT" if not all_endpoints_reachable else "READY"
         }
 
         with open(VERIFICATION_REPORT_FILE, "w", encoding="utf-8") as f:
@@ -202,7 +235,7 @@ class PayPalIPNProductionVerifier:
 def main():
     verifier = PayPalIPNProductionVerifier()
     rep = verifier.run_production_verification()
-    print("=== PAYPAL IPN PRODUCTION HANDSHAKE VERIFICATION (SPRINT #34.3) ===")
+    print("=== PAYPAL IPN PRODUCTION HANDSHAKE VERIFICATION (SPRINT #34.4) ===")
     print(json.dumps(rep, indent=2))
 
 

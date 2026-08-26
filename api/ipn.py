@@ -78,7 +78,7 @@ class handler(BaseHTTPRequestHandler):
             authorizes_fulfillment = True
             is_commercial = True
 
-            if amount_str in ['1.00', '1', '1.0', '1.000'] or mc_currency == 'MXN' or item_num == '4EMBJBQD7482S':
+            if amount_str in ['1.00', '1', '1.0', '1.000'] or mc_currency == 'MXN' or item_num == '25GRGEEFTJ2QL' or txn_id == '8WB32625PL331771':
                 product_id = 'SYSTEM_TEST_PAYMENT'
                 authorizes_fulfillment = False
                 is_commercial = False

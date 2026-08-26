@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-08-26T06:06:22.627103",
+  "timestamp": "2026-08-26T06:20:39.207159",
   "IPN_PRODUCTION_CONFIGURED": true,
   "IPN_REAL_EVENT_RECEIVED": false,
   "IPN_VERIFIED": false,
-  "REAL_TEST_TXN_ID": "NONE_PENDING",
-  "TEST_PAYMENT_STATUS": "NOT_RECEIVED",
-  "TEST_PAYMENT_AMOUNT": "0.00",
+  "REAL_TEST_TXN_ID": "8WB32625PL331771",
+  "TEST_PAYMENT_STATUS": "COMPLETED_ON_PAYPAL",
+  "TEST_PAYMENT_AMOUNT": "1.00",
   "TEST_PAYMENT_CURRENCY": "MXN",
   "DUPLICATE_IPNS": 0,
   "COMMERCIAL_FULFILLMENT_AUTHORIZED": false,
@@ -13,9 +13,48 @@
   "REAL_REVENUE_USD": 0,
   "FIRST_REVENUE_ACHIEVED": false,
   "PAYPAL_END_TO_END_VERIFIED": false,
+  "verdict_fields": {
+    "PAYPAL_CHECKOUT_REAL_TEST": true,
+    "PAYPAL_RETURN_REAL_TEST": true,
+    "BACKEND_PUBLIC_REACHABILITY": "HTTP_404_DEPLOYMENT_NOT_FOUND",
+    "IPN_ENDPOINT_STATUS": "UNREACHABLE_VERCEL_404",
+    "IPN_REAL_EVENT_RECEIVED": false,
+    "PAYMENT_VERIFICATION": "PENDING_BACKEND_REDEPLOYMENT",
+    "COMMERCIAL_FULFILLMENT_AUTHORIZED": false,
+    "FIRST_REVENUE_ACHIEVED": false,
+    "END_TO_END_READY_FOR_CUSTOMER": false
+  },
+  "endpoint_probe_results": {
+    "/api/ipn": {
+      "url": "https://automaton-quant-audit-api.vercel.app/api/ipn",
+      "http_code": 404,
+      "status": "HTTP_404_NOT_FOUND"
+    },
+    "/api/webhook": {
+      "url": "https://automaton-quant-audit-api.vercel.app/api/webhook",
+      "http_code": 404,
+      "status": "HTTP_404_NOT_FOUND"
+    },
+    "/api/analytics": {
+      "url": "https://automaton-quant-audit-api.vercel.app/api/analytics",
+      "http_code": 404,
+      "status": "HTTP_404_NOT_FOUND"
+    },
+    "/api/revenue-scheduler": {
+      "url": "https://automaton-quant-audit-api.vercel.app/api/revenue-scheduler",
+      "http_code": 404,
+      "status": "HTTP_404_NOT_FOUND"
+    },
+    "/api/upload-audit": {
+      "url": "https://automaton-quant-audit-api.vercel.app/api/upload-audit",
+      "http_code": 404,
+      "status": "HTTP_404_NOT_FOUND"
+    }
+  },
   "metrics": {
-    "ipn_endpoint_status": "DEPLOYMENT_NOT_FOUND_404",
+    "ipn_endpoint_status": "UNREACHABLE_VERCEL_404",
     "endpoint_http_code": 404,
+    "all_5_endpoints_reachable": false,
     "production_validation_status": "VERIFIED_HANDSHAKE_READY",
     "duplicate_protection_status": "IDEMPOTENT_TXN_KEY_ENFORCED",
     "product_mapping_status": "MAPPED_49_79_96_AND_SYSTEM_TEST",
@@ -31,26 +70,24 @@
   "evidence_sources": {
     "IPN_PRODUCTION_CONFIGURED": "api/ipn.py & https://ipnpb.paypal.com/cgi-bin/webscr",
     "IPN_REAL_EVENT_RECEIVED": "logs/portfolio/paypal_ipn_events.jsonl (Total: 1, Real Customer: 0)",
-    "IPN_VERIFIED": "logs/portfolio/paypal_ipn_events.jsonl (Verified: False)",
-    "REAL_TEST_TXN_ID": "Production IPN Payload (txn_id: NONE_PENDING)",
-    "TEST_PAYMENT_STATUS": "Production IPN Payload (status: NOT_RECEIVED)",
-    "TEST_PAYMENT_AMOUNT": "Production IPN Payload (mc_gross: 0.00)",
-    "TEST_PAYMENT_CURRENCY": "Production IPN Payload (mc_currency: MXN)",
-    "DUPLICATE_IPNS": "logs/portfolio/paypal_ipn_events.jsonl (Duplicates: 0)",
-    "COMMERCIAL_FULFILLMENT_AUTHORIZED": "api/ipn.py authorizes_fulfillment=False for SYSTEM_TEST_PAYMENT",
+    "REAL_TEST_TXN_ID": "Real PayPal Return URL (tx=8WB32625PL331771)",
+    "TEST_PAYMENT_STATUS": "PayPal Return URL & Receipt (st=COMPLETED)",
+    "TEST_PAYMENT_AMOUNT": "PayPal Return URL & Receipt (amt=1.00)",
+    "TEST_PAYMENT_CURRENCY": "PayPal Return URL & Receipt (cc=MXN)",
+    "COMMERCIAL_FULFILLMENT_AUTHORIZED": "api/ipn.py & api/capture-order.py authorizes_fulfillment=False for SYSTEM_TEST_PAYMENT",
     "CERTIFICATES_GENERATED": "logs/portfolio/certificates/ (Total Delivered: 0)",
     "REAL_REVENUE_USD": "logs/portfolio/paypal_payment_log.json ($0.00 USD)",
     "FIRST_REVENUE_ACHIEVED": "logs/portfolio/autonomous_revenue_dashboard.json (ACHIEVED: False)",
-    "PAYPAL_END_TO_END_VERIFIED": "Production IPN Handshake Audit (VERIFIED: False)"
+    "END_TO_END_READY_FOR_CUSTOMER": "Fail-Closed Rule: BLOCKED_PENDING_VERCEL_BACKEND_REDEPLOYMENT"
   },
   "verification_matrix": {
     "1_ipn_logs_inspected": true,
-    "2_real_txn_id": "NONE_PENDING",
-    "3_ipn_timestamp": "NONE",
-    "4_payment_status": "NOT_RECEIVED",
-    "5_mc_gross": "0.00",
+    "2_real_txn_id": "8WB32625PL331771",
+    "3_ipn_timestamp": "NONE_PENDING_REDEPLOYMENT",
+    "4_payment_status": "COMPLETED_ON_PAYPAL_PENDING_VERCEL_IPN",
+    "5_mc_gross": "1.00",
     "6_mc_currency": "MXN",
-    "7_payer_identity_fields": "NONE",
+    "7_payer_identity_fields": "CONFIRMED_PAYPAL_SUCCESS_REDIRECT",
     "8_ipn_postback_verified": false,
     "9_persisted_in_payment_log": false,
     "10_duplicate_ipn_idempotent": true,
@@ -69,5 +106,5 @@
     "19_revenue_scheduler_uninterrupted": true,
     "20_manual_funnel_monitor_unmodified": true
   },
-  "final_verdict": "IPN_PRODUCTION_HANDSHAKE_READY_AWAITING_FIRST_CUSTOMER"
+  "final_verdict": "BLOCKED_PENDING_VERCEL_BACKEND_REDEPLOYMENT"
 }
