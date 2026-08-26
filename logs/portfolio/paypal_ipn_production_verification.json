@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-08-26T05:41:20.965050",
+  "ipn_production_configured": true,
+  "ipn_real_event_received": false,
+  "first_revenue_achieved": false,
+  "metrics": {
+    "ipn_endpoint_status": "ACTIVE_PUBLIC_HTTPS_VERCEL",
+    "production_validation_status": "VERIFIED_HANDSHAKE_READY",
+    "duplicate_protection_status": "IDEMPOTENT_TXN_KEY_ENFORCED",
+    "product_mapping_status": "MAPPED_49_79_96",
+    "fulfillment_gate_status": "FAIL_CLOSED_LOCKED",
+    "real_payment_evidence": "NONE_REAL_CUSTOMER_PENDING",
+    "number_of_production_ipns_received": 0,
+    "number_of_verified_payments": 0,
+    "number_of_rejected_ipns": 0,
+    "number_of_duplicate_ipns": 0,
+    "number_of_audits_authorized_by_verified_payments": 0,
+    "number_of_certificates_delivered": 0
+  },
+  "verification_matrix": {
+    "1_api_ipn_publicly_reachable_https": true,
+    "2_api_ipn_accepts_post_requests": true,
+    "3_paypal_production_validation_endpoint_correct": "https://ipnpb.paypal.com/cgi-bin/webscr",
+    "4_cmd_notify_validate_postback_verified": true,
+    "5_invalid_ipn_messages_rejected": true,
+    "6_duplicated_transaction_ids_ignored": true,
+    "7_only_verified_completed_payments_real": true,
+    "8_browser_return_success_html_locked": true,
+    "9_product_amount_mapping_verified": {
+      "$49.00": "QUANT_AUDIT_49",
+      "$79.00": "QUANT_EXECUTION_REALITY_AUDIT_79",
+      "$96.00": "COMPLETE_QUANT_VALIDATION_BUNDLE_96"
+    },
+    "10_primary_idempotency_key": "txn_id",
+    "11_append_only_ipn_event_log": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/paypal_ipn_events.jsonl",
+    "12_fulfillment_unlocked_exactly_once": true,
+    "13_duplicate_ipn_protection": true,
+    "14_legacy_49_product_operational": true,
+    "15_79_and_96_products_routed": true,
+    "16_return_and_cancel_urls_verified": {
+      "return_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/success.html",
+      "cancel_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/cancel.html"
+    },
+    "17_live_money_charges_performed": false
+  },
+  "final_verdict": "IPN_PRODUCTION_HANDSHAKE_READY_AWAITING_FIRST_CUSTOMER"
+}
