@@ -100,32 +100,21 @@ class TestSprint34SecondProductValidation(unittest.TestCase):
             self.assertIn("$79 USD", content)
 
     def test_5_paypal_create_order_pricing_routing(self):
-        """Verify api/create-order.py returns Hosted Payment Link mapping without requiring Orders API credentials."""
-        import importlib.util
-        file_path = Path(__file__).resolve().parent.parent / "api" / "create-order.py"
-        spec = importlib.util.spec_from_file_location("create_order", file_path)
-        create_order = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(create_order)
-        
-        handler_instance = create_order.handler.__new__(create_order.handler)
-        handler_instance.headers = {"Content-Length": "48"}
-        
-        body_data = json.dumps({"product_id": "QUANT_EXECUTION_REALITY_AUDIT_79"}).encode("utf-8")
-        handler_instance.rfile = MagicMock()
-        handler_instance.rfile.read.return_value = body_data
+        """Verify api/create-order.py and api/create-order.js are removed and Hosted Payment Links are canonical."""
+        api_dir = Path(__file__).resolve().parent.parent / "api"
+        py_create_order = api_dir / "create-order.py"
+        js_create_order = api_dir / "create-order.js"
+        js_capture_order = api_dir / "capture-order.js"
 
-        handler_instance.send_response = MagicMock()
-        handler_instance.send_header = MagicMock()
-        handler_instance.end_headers = MagicMock()
-        handler_instance.wfile = MagicMock()
+        self.assertFalse(py_create_order.exists(), "api/create-order.py must be removed")
+        self.assertFalse(js_create_order.exists(), "api/create-order.js must be removed")
+        self.assertFalse(js_capture_order.exists(), "api/capture-order.js must be removed")
 
-        handler_instance.do_POST()
-
-        written_bytes = handler_instance.wfile.write.call_args[0][0]
-        payload_json = json.loads(written_bytes.decode("utf-8"))
-
-        self.assertEqual(payload_json["status"], "DEPRECATED_MIGRATED_TO_HOSTED_LINKS")
-        self.assertIn("https://www.paypal.com/ncp/payment/", payload_json["approvalUrl"])
+        # Verify portfolio contains canonical products
+        portfolio_state = self.portfolio_engine.load_portfolio()
+        prods = portfolio_state.get("products", {})
+        self.assertIn("QUANT_EXECUTION_REALITY_AUDIT_79", prods)
+        self.assertEqual(prods["QUANT_EXECUTION_REALITY_AUDIT_79"].get("price"), 79.00)
 
     def test_6_quant_audit_49_and_monitor_backward_compatibility(self):
         """Verify Quant Audit $49 and Read-Only Monitor maintain 100% backward compatibility."""
