@@ -31,29 +31,66 @@ class handler(BaseHTTPRequestHandler):
             ]
 
             if event_type in accepted_events:
-                # Save event to local audit log if applicable
+                # Save event to local audit log
                 log_dir = os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
                 os.makedirs(log_dir, exist_ok=True)
                 log_file = os.path.join(log_dir, 'paypal_webhooks.json')
+                pmt_file = os.path.join(log_dir, 'paypal_payment_log.json')
                 
-                existing = []
+                amount_val = resource.get('amount', {}).get('value') or '0.00'
+                product_id = 'QUANT_AUDIT_49'
+                if str(amount_val).strip() in ['79.00', '79']:
+                    product_id = 'QUANT_EXECUTION_REALITY_AUDIT_79'
+                elif str(amount_val).strip() in ['96.00', '96']:
+                    product_id = 'COMPLETE_QUANT_VALIDATION_BUNDLE_96'
+
+                payer_email = resource.get('payer', {}).get('email_address') or resource.get('payer_email') or 'unknown@customer.com'
+                resource_id = resource.get('id') or event.get('id') or 'MOCK_WH_ID'
+
+                existing_wh = []
                 if os.path.exists(log_file):
                     try:
                         with open(log_file, 'r', encoding='utf-8') as f:
-                            existing = json.load(f)
+                            existing_wh = json.load(f)
                     except Exception:
-                        existing = []
+                        existing_wh = []
                         
-                existing.append({
+                existing_wh.append({
                     'event_type': event_type,
-                    'resource_id': resource.get('id'),
+                    'resource_id': resource_id,
                     'status': resource.get('status'),
-                    'amount': resource.get('amount', {}).get('value'),
-                    'currency': resource.get('amount', {}).get('currency_code')
+                    'amount': amount_val,
+                    'currency': resource.get('amount', {}).get('currency_code', 'USD'),
+                    'product_id': product_id,
+                    'payer_email': payer_email
                 })
                 
                 with open(log_file, 'w', encoding='utf-8') as f:
-                    json.dump(existing, f, indent=2)
+                    json.dump(existing_wh, f, indent=2)
+
+                # If completed payment, log to payment log as well
+                if event_type in ['PAYMENT.CAPTURE.COMPLETED', 'CHECKOUT.ORDER.APPROVED']:
+                    existing_pmt = []
+                    if os.path.exists(pmt_file):
+                        try:
+                            with open(pmt_file, 'r', encoding='utf-8') as f:
+                                existing_pmt = json.load(f)
+                        except Exception:
+                            existing_pmt = []
+                    
+                    if not any(x.get('txn_id') == resource_id for x in existing_pmt if isinstance(x, dict)):
+                        existing_pmt.append({
+                            'source': 'PAYPAL_WEBHOOK',
+                            'verified': True,
+                            'txn_id': resource_id,
+                            'payment_status': resource.get('status', 'COMPLETED'),
+                            'amount': amount_val,
+                            'currency': resource.get('amount', {}).get('currency_code', 'USD'),
+                            'payer_email': payer_email,
+                            'product_id': product_id
+                        })
+                        with open(pmt_file, 'w', encoding='utf-8') as f:
+                            json.dump(existing_pmt, f, indent=2)
 
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')

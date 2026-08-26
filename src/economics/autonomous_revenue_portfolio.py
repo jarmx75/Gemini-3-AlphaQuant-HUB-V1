@@ -40,11 +40,11 @@ class AutonomousRevenuePortfolio:
         if not PORTFOLIO_STATE_FILE.exists():
             initial_state = {
                 "last_updated": datetime.now(timezone.utc).isoformat(),
-                "active_product_count": 4,
+                "active_product_count": 5,
                 "products": {
-                    "QUANT_AUDIT": {
-                        "product_id": "QUANT_AUDIT",
-                        "name": "Quant Audit Micro-SaaS",
+                    "QUANT_AUDIT_49": {
+                        "product_id": "QUANT_AUDIT_49",
+                        "name": "Quant Audit Micro-SaaS ($49)",
                         "category": "SAAS_AUDIT",
                         "price": 49.00,
                         "margin": 0.95,
@@ -57,12 +57,13 @@ class AutonomousRevenuePortfolio:
                         "customers": 0,
                         "retention_rate": "UNKNOWN",
                         "status": "ACQUISITION",
-                        "effort_allocation_weight": 0.60,
-                        "deployed_in_production": True
+                        "effort_allocation_weight": 0.50,
+                        "deployed_in_production": True,
+                        "paypal_link": "https://www.paypal.com/ncp/payment/SH9CKB2WSX728"
                     },
-                    "QUANT_EXECUTION_REALITY_AUDIT": {
-                        "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
-                        "name": "Quant Execution Reality Audit",
+                    "QUANT_EXECUTION_REALITY_AUDIT_79": {
+                        "product_id": "QUANT_EXECUTION_REALITY_AUDIT_79",
+                        "name": "Quant Execution Reality Audit ($79)",
                         "category": "EXECUTION_AUDIT",
                         "price": 79.00,
                         "margin": 0.92,
@@ -77,7 +78,26 @@ class AutonomousRevenuePortfolio:
                         "status": "VALIDATING",
                         "effort_allocation_weight": 0.20,
                         "deployed_in_production": True,
-                        "validation_gate_passed": True
+                        "paypal_link": "https://www.paypal.com/ncp/payment/TMMGL3YRC8PFN"
+                    },
+                    "COMPLETE_QUANT_VALIDATION_BUNDLE_96": {
+                        "product_id": "COMPLETE_QUANT_VALIDATION_BUNDLE_96",
+                        "name": "Complete Quant Validation Bundle ($96)",
+                        "category": "FULL_BUNDLE",
+                        "price": 96.00,
+                        "margin": 0.94,
+                        "recurring": False,
+                        "automation_score": 95,
+                        "conversion_rate": "UNKNOWN",
+                        "revenue_usd": 0.0,
+                        "traffic_visits": 0,
+                        "qualified_leads": 0,
+                        "customers": 0,
+                        "retention_rate": "UNKNOWN",
+                        "status": "VALIDATING",
+                        "effort_allocation_weight": 0.20,
+                        "deployed_in_production": True,
+                        "paypal_link": "https://www.paypal.com/ncp/payment/2Y3RX97HNWXY6"
                     },
                     "DATA_PRODUCTS": {
                         "product_id": "DATA_PRODUCTS",
@@ -94,7 +114,7 @@ class AutonomousRevenuePortfolio:
                         "customers": 0,
                         "retention_rate": "UNKNOWN",
                         "status": "VALIDATION",
-                        "effort_allocation_weight": 0.10,
+                        "effort_allocation_weight": 0.05,
                         "deployed_in_production": True
                     },
                     "PROP_VERIFICATION": {
@@ -112,35 +132,55 @@ class AutonomousRevenuePortfolio:
                         "customers": 0,
                         "retention_rate": "UNKNOWN",
                         "status": "DISCOVERY",
-                        "effort_allocation_weight": 0.10,
+                        "effort_allocation_weight": 0.05,
                         "deployed_in_production": False
                     }
                 }
             }
+            # Maintain backward compatibility aliases
+            initial_state["products"]["QUANT_AUDIT"] = initial_state["products"]["QUANT_AUDIT_49"]
+            initial_state["products"]["QUANT_EXECUTION_REALITY_AUDIT"] = initial_state["products"]["QUANT_EXECUTION_REALITY_AUDIT_79"]
             self.save_portfolio(initial_state)
         else:
-            # Ensure existing state contains QUANT_EXECUTION_REALITY_AUDIT
+            # Ensure existing state contains all canonical products
             state = self.load_portfolio()
-            if "QUANT_EXECUTION_REALITY_AUDIT" not in state.get("products", {}):
-                state.setdefault("products", {})["QUANT_EXECUTION_REALITY_AUDIT"] = {
-                    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
-                    "name": "Quant Execution Reality Audit",
-                    "category": "EXECUTION_AUDIT",
-                    "price": 79.00,
-                    "margin": 0.92,
-                    "recurring": False,
-                    "automation_score": 92,
-                    "conversion_rate": "UNKNOWN",
-                    "revenue_usd": 0.0,
-                    "traffic_visits": 0,
-                    "qualified_leads": 0,
-                    "customers": 0,
-                    "retention_rate": "UNKNOWN",
-                    "status": "VALIDATING",
-                    "effort_allocation_weight": 0.20,
-                    "deployed_in_production": True,
-                    "validation_gate_passed": True
+            prods = state.setdefault("products", {})
+            updated = False
+            if "QUANT_AUDIT_49" not in prods:
+                prods["QUANT_AUDIT_49"] = {
+                    "product_id": "QUANT_AUDIT_49", "name": "Quant Audit Micro-SaaS ($49)", "category": "SAAS_AUDIT",
+                    "price": 49.00, "margin": 0.95, "recurring": False, "automation_score": 95, "conversion_rate": "UNKNOWN",
+                    "revenue_usd": 0.0, "traffic_visits": 0, "qualified_leads": 0, "customers": 0, "retention_rate": "UNKNOWN",
+                    "status": "ACQUISITION", "effort_allocation_weight": 0.50, "deployed_in_production": True,
+                    "paypal_link": "https://www.paypal.com/ncp/payment/SH9CKB2WSX728"
                 }
+                updated = True
+            if "QUANT_EXECUTION_REALITY_AUDIT_79" not in prods:
+                prods["QUANT_EXECUTION_REALITY_AUDIT_79"] = {
+                    "product_id": "QUANT_EXECUTION_REALITY_AUDIT_79", "name": "Quant Execution Reality Audit ($79)", "category": "EXECUTION_AUDIT",
+                    "price": 79.00, "margin": 0.92, "recurring": False, "automation_score": 92, "conversion_rate": "UNKNOWN",
+                    "revenue_usd": 0.0, "traffic_visits": 0, "qualified_leads": 0, "customers": 0, "retention_rate": "UNKNOWN",
+                    "status": "VALIDATING", "effort_allocation_weight": 0.20, "deployed_in_production": True,
+                    "paypal_link": "https://www.paypal.com/ncp/payment/TMMGL3YRC8PFN"
+                }
+                updated = True
+            if "COMPLETE_QUANT_VALIDATION_BUNDLE_96" not in prods:
+                prods["COMPLETE_QUANT_VALIDATION_BUNDLE_96"] = {
+                    "product_id": "COMPLETE_QUANT_VALIDATION_BUNDLE_96", "name": "Complete Quant Validation Bundle ($96)", "category": "FULL_BUNDLE",
+                    "price": 96.00, "margin": 0.94, "recurring": False, "automation_score": 95, "conversion_rate": "UNKNOWN",
+                    "revenue_usd": 0.0, "traffic_visits": 0, "qualified_leads": 0, "customers": 0, "retention_rate": "UNKNOWN",
+                    "status": "VALIDATING", "effort_allocation_weight": 0.20, "deployed_in_production": True,
+                    "paypal_link": "https://www.paypal.com/ncp/payment/2Y3RX97HNWXY6"
+                }
+                updated = True
+            if "QUANT_AUDIT" not in prods:
+                prods["QUANT_AUDIT"] = prods["QUANT_AUDIT_49"]
+                updated = True
+            if "QUANT_EXECUTION_REALITY_AUDIT" not in prods:
+                prods["QUANT_EXECUTION_REALITY_AUDIT"] = prods["QUANT_EXECUTION_REALITY_AUDIT_79"]
+                updated = True
+
+            if updated:
                 state["active_product_count"] = len(state["products"])
                 self.save_portfolio(state)
 
@@ -149,26 +189,15 @@ class AutonomousRevenuePortfolio:
             try:
                 with open(PORTFOLIO_STATE_FILE, "r", encoding="utf-8") as f:
                     data = json.load(f)
-                    if "QUANT_EXECUTION_REALITY_AUDIT" not in data.get("products", {}):
-                        data.setdefault("products", {})["QUANT_EXECUTION_REALITY_AUDIT"] = {
-                            "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
-                            "name": "Quant Execution Reality Audit",
-                            "category": "EXECUTION_AUDIT",
-                            "price": 79.00,
-                            "margin": 0.92,
-                            "recurring": False,
-                            "automation_score": 92,
-                            "conversion_rate": "UNKNOWN",
-                            "revenue_usd": 0.0,
-                            "traffic_visits": 0,
-                            "qualified_leads": 0,
-                            "customers": 0,
-                            "retention_rate": "UNKNOWN",
-                            "status": "VALIDATING",
-                            "effort_allocation_weight": 0.20,
-                            "deployed_in_production": True,
-                            "validation_gate_passed": True
-                        }
+                    prods = data.setdefault("products", {})
+                    if "QUANT_AUDIT_49" not in prods and "QUANT_AUDIT" in prods:
+                        prods["QUANT_AUDIT_49"] = prods["QUANT_AUDIT"]
+                    if "QUANT_EXECUTION_REALITY_AUDIT_79" not in prods and "QUANT_EXECUTION_REALITY_AUDIT" in prods:
+                        prods["QUANT_EXECUTION_REALITY_AUDIT_79"] = prods["QUANT_EXECUTION_REALITY_AUDIT"]
+                    if "QUANT_AUDIT" not in prods and "QUANT_AUDIT_49" in prods:
+                        prods["QUANT_AUDIT"] = prods["QUANT_AUDIT_49"]
+                    if "QUANT_EXECUTION_REALITY_AUDIT" not in prods and "QUANT_EXECUTION_REALITY_AUDIT_79" in prods:
+                        prods["QUANT_EXECUTION_REALITY_AUDIT"] = prods["QUANT_EXECUTION_REALITY_AUDIT_79"]
                     return data
             except Exception:
                 pass
