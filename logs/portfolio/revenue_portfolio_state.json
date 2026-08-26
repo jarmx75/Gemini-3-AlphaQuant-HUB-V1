@@ -1,0 +1,60 @@
+{
+  "last_updated": "2026-08-26T00:10:32.323921+00:00",
+  "active_product_count": 3,
+  "products": {
+    "QUANT_AUDIT": {
+      "product_id": "QUANT_AUDIT",
+      "name": "Quant Audit Micro-SaaS",
+      "category": "SAAS_AUDIT",
+      "price": 49.0,
+      "margin": 0.95,
+      "recurring": false,
+      "automation_score": 95,
+      "conversion_rate": "UNKNOWN",
+      "revenue_usd": 0.0,
+      "traffic_visits": 0,
+      "qualified_leads": 0,
+      "customers": 0,
+      "retention_rate": "UNKNOWN",
+      "status": "ACQUISITION",
+      "effort_allocation_weight": 0.7,
+      "deployed_in_production": true
+    },
+    "DATA_PRODUCTS": {
+      "product_id": "DATA_PRODUCTS",
+      "name": "Crypto Orderflow Datasets",
+      "category": "DATA_FEED",
+      "price": 29.0,
+      "margin": 0.9,
+      "recurring": true,
+      "automation_score": 90,
+      "conversion_rate": "UNKNOWN",
+      "revenue_usd": 0.0,
+      "traffic_visits": 0,
+      "qualified_leads": 0,
+      "customers": 0,
+      "retention_rate": "UNKNOWN",
+      "status": "VALIDATION",
+      "effort_allocation_weight": 0.2,
+      "deployed_in_production": true
+    },
+    "PROP_VERIFICATION": {
+      "product_id": "PROP_VERIFICATION",
+      "name": "Institutional Alpha Verification",
+      "category": "ENTERPRISE_AUDIT",
+      "price": 299.0,
+      "margin": 0.85,
+      "recurring": false,
+      "automation_score": 80,
+      "conversion_rate": "UNKNOWN",
+      "revenue_usd": 0.0,
+      "traffic_visits": 0,
+      "qualified_leads": 0,
+      "customers": 0,
+      "retention_rate": "UNKNOWN",
+      "status": "DISCOVERY",
+      "effort_allocation_weight": 0.1,
+      "deployed_in_production": false
+    }
+  }
+}

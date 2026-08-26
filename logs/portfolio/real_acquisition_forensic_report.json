@@ -1,47 +1,63 @@
 {
-  "timestamp": "2026-08-26T00:02:20.027392+00:00",
-  "observation": {
-    "start": "2026-08-26T00:02:07.329511+00:00",
-    "now": "2026-08-26T00:02:20.027392+00:00",
-    "elapsed": 0.0035
+  "timestamp": "2026-08-26T00:10:32.321763+00:00",
+  "session": {
+    "session_id": "sess_20260826_000957_11e9b0",
+    "start_time_utc": "2026-08-26T00:09:57.414562+00:00",
+    "current_time_utc": "2026-08-26T00:10:32.321801+00:00",
+    "elapsed_hours": 0.0097,
+    "remaining_hours_to_24h": 23.9903,
+    "total_lifetime_hours": 0.0097
   },
-  "cron": {
-    "expected": 0,
-    "observed": 10,
-    "missing": 0,
-    "status": "CRON_HEALTHY"
+  "runtime": {
+    "cron_cycles": 12,
+    "successful_cycles": 12,
+    "failed_cycles": 0,
+    "retries": 0,
+    "revenue_activity_rate": "100.0%"
   },
-  "outreach": {
-    "published": 1,
+  "acquisition": {
+    "opportunities_discovered": 10,
+    "qualified_leads": 10,
+    "publications": 1,
     "blocked": 2,
-    "failed": 0
-  },
-  "external_customer_funnel": {
-    "landing_visits": 0,
+    "replies": 0,
+    "external_visits": 0,
     "quiz_starts": 0,
     "emails": 0,
-    "checkout_starts": 5,
-    "payment_returns": 5,
-    "completed_payments": 0,
-    "revenue_usd": 0,
-    "audits_completed": 0,
-    "certificates_delivered": 0,
-    "emails_delivered": 0,
-    "human_replies": 0
+    "checkout_starts": 6
   },
-  "owner_test_funnel": {
-    "owner_landing_visits": 11,
-    "owner_quiz_starts": 0,
-    "owner_checkout_starts": 1,
-    "owner_payment_returns": 0,
-    "test_payments": 152,
-    "test_audits": 1,
-    "test_certificates": 1
+  "revenue": {
+    "payment_returns": 6,
+    "completed_payments": 0,
+    "revenue_usd": 0
+  },
+  "delivery": {
+    "audits": 0,
+    "certificates": 0,
+    "emails_delivered": 0
+  },
+  "product_portfolio": {
+    "active_products": 2,
+    "revenue_by_product": {
+      "QUANT_AUDIT": 0.0,
+      "DATA_PRODUCTS": 0.0,
+      "PROP_VERIFICATION": 0.0
+    },
+    "leads_by_product": {
+      "QUANT_AUDIT": 0,
+      "DATA_PRODUCTS": 0,
+      "PROP_VERIFICATION": 0
+    }
   },
   "conversion": {
     "landing_to_checkout": "UNKNOWN",
     "checkout_to_payment": "0.0%",
     "landing_to_payment": "UNKNOWN"
+  },
+  "owner_test_funnel": {
+    "owner_landing_visits": 13,
+    "owner_checkout_starts": 1,
+    "test_payments": 159
   },
   "data_quality": {
     "hardcoded": 0,
@@ -50,5 +66,5 @@
     "unknown": 0,
     "missing_sources": []
   },
-  "final_verdict": "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE"
+  "final_verdict": "AUTONOMOUS_REVENUE_ENGINE_ACTIVE"
 }

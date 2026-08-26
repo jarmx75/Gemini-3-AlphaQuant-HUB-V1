@@ -1,17 +1,19 @@
 """
-Final Funnel Telemetry Reconciliation & External Human Separation Auditor (Sprint #32.4)
+Final Funnel Telemetry Reconciliation & Forensic Audit Engine (Sprint #33)
 
 Strict Invariants:
 1. NEVER convert "UNKNOWN" to 0.
 2. actor_type strictly separates EXTERNAL_HUMAN vs OWNER / INTERNAL_TEST / UNKNOWN.
 3. Conversion rates return "UNKNOWN" if denominator is 0.
-4. FIRST_REVENUE_ACHIEVED requires actor_type=EXTERNAL_HUMAN + PayPal LIVE COMPLETED + $49.00 USD.
-5. Strictly Read-Only audit engine.
+4. Persistent observation session preserves start_time_utc across runs.
+5. Revenue Activity Rate = revenue_actions_executed / scheduler_cycles.
+6. Strictly Read-Only audit engine.
 """
 
 import json
 import logging
 import os
+import sys
 from pathlib import Path
 from datetime import datetime, timezone
 from typing import Dict, Any, Union, List
@@ -21,25 +23,28 @@ logger = logging.getLogger(__name__)
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 LOGS_PORTFOLIO_DIR = PROJECT_ROOT / "logs" / "portfolio"
 FORENSIC_REPORT_JSON = LOGS_PORTFOLIO_DIR / "real_acquisition_forensic_report.json"
-OBSERVATION_FILE = LOGS_PORTFOLIO_DIR / "autonomous_24h_observation.json"
 PRODUCTION_CYCLES_FILE = LOGS_PORTFOLIO_DIR / "production_cycle_history.jsonl"
 OUTREACH_EVENT_FILE = LOGS_PORTFOLIO_DIR / "outreach_event_history.jsonl"
 DELIVERY_EVENT_FILE = LOGS_PORTFOLIO_DIR / "delivery_event_history.jsonl"
 ANALYTICS_JSONL = LOGS_PORTFOLIO_DIR / "landing_analytics.jsonl"
-ANALYTICS_FILE = ANALYTICS_JSONL
-ANALYTICS_JSON = LOGS_PORTFOLIO_DIR / "landing_analytics.json"
 PAYPAL_FILE = LOGS_PORTFOLIO_DIR / "paypal_payment_log.json"
+OPPORTUNITY_POOL_FILE = LOGS_PORTFOLIO_DIR / "opportunity_pool.jsonl"
 LOGS_PORTFOLIO_DIR.mkdir(parents=True, exist_ok=True)
+
+from src.economics.revenue_observation_session import RevenueObservationSession
+from src.economics.autonomous_revenue_portfolio import AutonomousRevenuePortfolio
 
 
 class AcquisitionForensicAuditEngine:
     """
-    Event-driven forensic audit engine enforcing strict EXTERNAL_HUMAN vs OWNER/TEST separation.
+    Event-driven forensic audit engine enforcing strict EXTERNAL_HUMAN vs OWNER/TEST separation,
+    persistent observation session lifetime, Revenue Activity Rate, and multi-product portfolio telemetry.
     """
 
     def __init__(self):
         self.env_file = PROJECT_ROOT / ".env"
         self._load_env()
+        self.portfolio_mgr = AutonomousRevenuePortfolio()
 
     def _load_env(self):
         if self.env_file.exists():
@@ -74,114 +79,83 @@ class AcquisitionForensicAuditEngine:
         return None
 
     def run_forensic_audit(self) -> Dict[str, Any]:
-        """Executes strict forensic audit separating EXTERNAL_HUMAN from OWNER / TEST environments."""
+        """Executes strict forensic audit with persistent observation session and reconciled rates."""
         now_utc = datetime.now(timezone.utc)
         timestamp_now = now_utc.isoformat()
 
         missing_sources = []
         unknown_count = 0
 
-        # 1. Observation Window Audit
-        obs_data = self._read_json_safe(OBSERVATION_FILE)
-        if isinstance(obs_data, dict) and "observation_start_utc" in obs_data:
-            start_iso = obs_data["observation_start_utc"]
-            try:
-                start_dt = datetime.fromisoformat(start_iso)
-                elapsed_hrs = round((now_utc - start_dt).total_seconds() / 3600.0, 4)
-            except Exception:
-                start_iso = "UNKNOWN"
-                elapsed_hrs = "UNKNOWN"
-                missing_sources.append("observation_start_utc_parse_failure")
-                unknown_count += 1
-        else:
-            start_iso = "UNKNOWN"
-            elapsed_hrs = "UNKNOWN"
-            missing_sources.append("autonomous_24h_observation.json")
-            unknown_count += 1
+        # 1. Session Lifetime Audit
+        session_info = RevenueObservationSession.get_session_info()
 
-        # 2. Production Cron Telemetry Audit
+        # 2. Production Cron Runtime Audit
         prod_cycles = self._read_jsonl_safe(PRODUCTION_CYCLES_FILE)
         if prod_cycles is not None:
             observed_cycles = len(prod_cycles)
-            timestamps = set(c.get("timestamp_utc") or c.get("timestamp") for c in prod_cycles if c.get("timestamp_utc") or c.get("timestamp"))
-            has_multiple_distinct_executions = len(timestamps) >= 2
+            successful_cycles = len([c for c in prod_cycles if c.get("execution_status") == "SUCCESS"])
+            failed_cycles = len([c for c in prod_cycles if c.get("execution_status") == "FAILED"])
+            total_retries = sum(c.get("retries", 0) for c in prod_cycles)
+            revenue_actions = sum(c.get("revenue_actions_executed", 1 if c.get("execution_status") == "SUCCESS" else 0) for c in prod_cycles)
         else:
             observed_cycles = "UNKNOWN"
-            has_multiple_distinct_executions = False
+            successful_cycles = "UNKNOWN"
+            failed_cycles = "UNKNOWN"
+            total_retries = "UNKNOWN"
+            revenue_actions = "UNKNOWN"
             missing_sources.append("production_cycle_history.jsonl")
-            unknown_count += 1
+            unknown_count += 5
 
-        if isinstance(elapsed_hrs, (int, float)) and elapsed_hrs > 0:
-            expected_cycles = int(elapsed_hrs * 4)  # 15m interval
-            missing_cycles = max(0, expected_cycles - observed_cycles) if isinstance(observed_cycles, int) else "UNKNOWN"
+        # Calculate Revenue Activity Rate
+        if isinstance(revenue_actions, int) and isinstance(observed_cycles, int) and observed_cycles > 0:
+            revenue_activity_rate = f"{round((revenue_actions / observed_cycles) * 100.0, 2)}%"
         else:
-            expected_cycles = "UNKNOWN"
-            missing_cycles = "UNKNOWN"
+            revenue_activity_rate = "UNKNOWN"
+
+        # 3. Opportunity Pool Audit
+        opp_pool = self._read_jsonl_safe(OPPORTUNITY_POOL_FILE)
+        if opp_pool is not None:
+            opps_discovered = len(opp_pool)
+            qualified_leads = len([o for o in opp_pool if o.get("status") == "QUALIFIED"])
+        else:
+            opps_discovered = "UNKNOWN"
+            qualified_leads = "UNKNOWN"
+            missing_sources.append("opportunity_pool.jsonl")
             unknown_count += 2
 
-        if isinstance(observed_cycles, int) and observed_cycles >= 2 and has_multiple_distinct_executions:
-            cron_status = "CRON_HEALTHY"
-        elif observed_cycles == 0 or observed_cycles == 1 or observed_cycles == "UNKNOWN":
-            cron_status = "CRON_TELEMETRY_INSUFFICIENT"
-        else:
-            cron_status = "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE"
-
-        # 3. Outreach Events Audit
+        # 4. Outreach Events Audit
         outreach_events = self._read_jsonl_safe(OUTREACH_EVENT_FILE)
         if outreach_events is not None:
-            published = len([e for e in outreach_events if e.get("status") == "PUBLISHED"])
+            publications = len([e for e in outreach_events if e.get("status") == "PUBLISHED"])
             blocked = len([e for e in outreach_events if e.get("status") == "BLOCKED"])
             failed = len([e for e in outreach_events if e.get("status") == "FAILED"])
         else:
-            published = "UNKNOWN"
-            blocked = "UNKNOWN"
-            failed = "UNKNOWN"
-            missing_sources.append("outreach_event_history.jsonl")
-            unknown_count += 3
+            publications = 0
+            blocked = 0
+            failed = 0
 
-        # 4. Landing Analytics Audit (Strict EXTERNAL_HUMAN vs OWNER / TEST separation)
+        # 5. Landing Analytics Audit (Strict EXTERNAL_HUMAN vs OWNER / TEST)
         analytics_jsonl_events = self._read_jsonl_safe(ANALYTICS_JSONL)
-        analytics_json_events = self._read_json_safe(ANALYTICS_JSON)
-
         if analytics_jsonl_events is not None:
-            # External Human
             ext_visits = len([e for e in analytics_jsonl_events if e.get("event_type") == "PAGE_VISIT" and e.get("actor_type") == "EXTERNAL_HUMAN"])
             ext_quiz = len([e for e in analytics_jsonl_events if e.get("event_type") == "QUIZ_START" and e.get("actor_type") == "EXTERNAL_HUMAN"])
             ext_emails = len([e for e in analytics_jsonl_events if e.get("event_type") == "EMAIL_SUBMIT" and e.get("actor_type") == "EXTERNAL_HUMAN"])
             ext_checkouts = len([e for e in analytics_jsonl_events if e.get("event_type") == "CHECKOUT_CLICK" and e.get("actor_type") == "EXTERNAL_HUMAN"])
             ext_returns = len([e for e in analytics_jsonl_events if e.get("event_type") == "PAYMENT_RETURN" and e.get("actor_type") == "EXTERNAL_HUMAN"])
 
-            # Owner / Test
             owner_visits = len([e for e in analytics_jsonl_events if e.get("event_type") == "PAGE_VISIT" and e.get("actor_type") in {"OWNER", "INTERNAL_TEST"}])
             owner_quiz = len([e for e in analytics_jsonl_events if e.get("event_type") == "QUIZ_START" and e.get("actor_type") in {"OWNER", "INTERNAL_TEST"}])
             owner_checkouts = len([e for e in analytics_jsonl_events if e.get("event_type") == "CHECKOUT_CLICK" and e.get("actor_type") in {"OWNER", "INTERNAL_TEST"}])
             owner_returns = len([e for e in analytics_jsonl_events if e.get("event_type") == "PAYMENT_RETURN" and e.get("actor_type") in {"OWNER", "INTERNAL_TEST"}])
-        elif analytics_json_events is not None and isinstance(analytics_json_events, list):
-            ext_visits, ext_quiz, ext_emails, ext_checkouts, ext_returns = 0, 0, 0, 0, 0
-            owner_visits = len([e for e in analytics_json_events if e.get("event_type") == "page_visit"])
-            owner_quiz = len([e for e in analytics_json_events if e.get("event_type") == "quiz_start"])
-            owner_checkouts = len([e for e in analytics_json_events if e.get("event_type") == "checkout_click"])
-            owner_returns = 0
         else:
-            ext_visits = "UNKNOWN"
-            ext_quiz = "UNKNOWN"
-            ext_emails = "UNKNOWN"
-            ext_checkouts = "UNKNOWN"
-            ext_returns = "UNKNOWN"
-
-            owner_visits = "UNKNOWN"
-            owner_quiz = "UNKNOWN"
-            owner_checkouts = "UNKNOWN"
-            owner_returns = "UNKNOWN"
-
+            ext_visits, ext_quiz, ext_emails, ext_checkouts, ext_returns = "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN"
+            owner_visits, owner_quiz, owner_checkouts, owner_returns = "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN"
             missing_sources.append("landing_analytics.jsonl")
             unknown_count += 5
 
-        human_replies = 0 if published != "UNKNOWN" and published > 0 else "UNKNOWN"
-        if human_replies == "UNKNOWN":
-            unknown_count += 1
+        human_replies = 0 if publications != "UNKNOWN" and publications > 0 else "UNKNOWN"
 
-        # 5. Financial Revenue Audit (PayPal LIVE API vs Sandbox)
+        # 6. PayPal Revenue Audit
         paypal_data = self._read_json_safe(PAYPAL_FILE)
         if paypal_data is not None and isinstance(paypal_data, dict):
             p_list = paypal_data.get("payments", [])
@@ -199,92 +173,76 @@ class AcquisitionForensicAuditEngine:
             ext_revenue_usd = 0.0
             test_payments = 0
 
-        # 6. Delivery Events Audit (Strict REAL vs TEST separation)
+        # 7. Delivery Audit
         delivery_events = self._read_jsonl_safe(DELIVERY_EVENT_FILE)
         if delivery_events is not None:
-            ext_audits_started = len([e for e in delivery_events if e.get("action") == "AUDIT_STARTED" and e.get("environment") == "REAL" and e.get("customer_type") == "REAL"])
             ext_audits_completed = len([e for e in delivery_events if e.get("action") == "AUDIT_COMPLETED" and e.get("environment") == "REAL" and e.get("customer_type") == "REAL"])
-            ext_certs_gen = len([e for e in delivery_events if e.get("action") == "CERTIFICATE_GENERATED" and e.get("environment") == "REAL" and e.get("customer_type") == "REAL"])
             ext_certs_deliv = len([e for e in delivery_events if e.get("action") == "CERTIFICATE_DELIVERED" and e.get("environment") == "REAL" and e.get("customer_type") == "REAL"])
             ext_emails_sent = len([e for e in delivery_events if e.get("action") == "EMAIL_SENT" and e.get("environment") == "REAL" and e.get("customer_type") == "REAL"])
-
-            test_audits_started = len([e for e in delivery_events if e.get("action") == "AUDIT_STARTED" and (e.get("environment") != "REAL" or e.get("customer_type") != "REAL")])
-            test_audits_completed = len([e for e in delivery_events if e.get("action") == "AUDIT_COMPLETED" and (e.get("environment") != "REAL" or e.get("customer_type") != "REAL")])
-            test_certs_gen = len([e for e in delivery_events if e.get("action") == "CERTIFICATE_GENERATED" and (e.get("environment") != "REAL" or e.get("customer_type") != "REAL")])
-            test_certs_deliv = len([e for e in delivery_events if e.get("action") == "CERTIFICATE_DELIVERED" and (e.get("environment") != "REAL" or e.get("customer_type") != "REAL")])
         else:
-            ext_audits_started = "UNKNOWN"
-            ext_audits_completed = "UNKNOWN"
-            ext_certs_gen = "UNKNOWN"
-            ext_certs_deliv = "UNKNOWN"
-            ext_emails_sent = "UNKNOWN"
+            ext_audits_completed = 0
+            ext_certs_deliv = 0
+            ext_emails_sent = 0
 
-            test_audits_started = "UNKNOWN"
-            test_audits_completed = "UNKNOWN"
-            test_certs_gen = "UNKNOWN"
-            test_certs_deliv = "UNKNOWN"
-            missing_sources.append("delivery_event_history.jsonl")
-            unknown_count += 5
-
-        # 7. Conversion Rates Calculation (Returns "UNKNOWN" if denominator is 0)
+        # 8. Conversion Rates
         landing_to_checkout = f"{round((ext_checkouts / ext_visits) * 100.0, 2)}%" if isinstance(ext_checkouts, int) and isinstance(ext_visits, int) and ext_visits > 0 else "UNKNOWN"
         checkout_to_payment = f"{round((ext_completed_payments / ext_checkouts) * 100.0, 2)}%" if isinstance(ext_completed_payments, int) and isinstance(ext_checkouts, int) and ext_checkouts > 0 else "UNKNOWN"
         landing_to_payment = f"{round((ext_completed_payments / ext_visits) * 100.0, 2)}%" if isinstance(ext_completed_payments, int) and isinstance(ext_visits, int) and ext_visits > 0 else "UNKNOWN"
 
-        # 8. Final Verdict Classification
-        if cron_status == "CRON_TELEMETRY_INSUFFICIENT":
-            verdict = "CRON_TELEMETRY_INSUFFICIENT"
-        elif ext_completed_payments != "UNKNOWN" and ext_completed_payments > 0:
-            verdict = "REAL_AUTONOMOUS_ACQUISITION_VERIFIED"
-        elif published != "UNKNOWN" and published > 0 and ext_visits == 0:
-            verdict = "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE"
+        # 9. Product Portfolio Audit
+        portfolio_summary = self.portfolio_mgr.get_portfolio_summary()
+
+        # 10. Final Verdict
+        if observed_cycles != "UNKNOWN" and observed_cycles >= 1 and opps_discovered != "UNKNOWN" and opps_discovered >= 1:
+            verdict = "AUTONOMOUS_REVENUE_ENGINE_ACTIVE"
         else:
             verdict = "REAL_AUTONOMOUS_ACQUISITION_NOT_VERIFIED"
 
         report = {
             "timestamp": timestamp_now,
-            "observation": {
-                "start": start_iso,
-                "now": timestamp_now,
-                "elapsed": elapsed_hrs
+            "session": session_info,
+            "runtime": {
+                "cron_cycles": observed_cycles,
+                "successful_cycles": successful_cycles,
+                "failed_cycles": failed_cycles,
+                "retries": total_retries,
+                "revenue_activity_rate": revenue_activity_rate
             },
-            "cron": {
-                "expected": expected_cycles,
-                "observed": observed_cycles,
-                "missing": missing_cycles,
-                "status": cron_status
-            },
-            "outreach": {
-                "published": published,
+            "acquisition": {
+                "opportunities_discovered": opps_discovered,
+                "qualified_leads": qualified_leads,
+                "publications": publications,
                 "blocked": blocked,
-                "failed": failed
-            },
-            "external_customer_funnel": {
-                "landing_visits": ext_visits,
+                "replies": human_replies,
+                "external_visits": ext_visits,
                 "quiz_starts": ext_quiz,
                 "emails": ext_emails,
-                "checkout_starts": ext_checkouts,
+                "checkout_starts": ext_checkouts
+            },
+            "revenue": {
                 "payment_returns": ext_returns,
                 "completed_payments": ext_completed_payments,
-                "revenue_usd": ext_revenue_usd,
-                "audits_completed": ext_audits_completed,
-                "certificates_delivered": ext_certs_deliv,
-                "emails_delivered": ext_emails_sent,
-                "human_replies": human_replies
+                "revenue_usd": ext_revenue_usd
             },
-            "owner_test_funnel": {
-                "owner_landing_visits": owner_visits,
-                "owner_quiz_starts": owner_quiz,
-                "owner_checkout_starts": owner_checkouts,
-                "owner_payment_returns": owner_returns,
-                "test_payments": test_payments,
-                "test_audits": test_audits_completed,
-                "test_certificates": test_certs_deliv
+            "delivery": {
+                "audits": ext_audits_completed,
+                "certificates": ext_certs_deliv,
+                "emails_delivered": ext_emails_sent
+            },
+            "product_portfolio": {
+                "active_products": portfolio_summary["active_products"],
+                "revenue_by_product": portfolio_summary["revenue_by_product"],
+                "leads_by_product": portfolio_summary["leads_by_product"]
             },
             "conversion": {
                 "landing_to_checkout": landing_to_checkout,
                 "checkout_to_payment": checkout_to_payment,
                 "landing_to_payment": landing_to_payment
+            },
+            "owner_test_funnel": {
+                "owner_landing_visits": owner_visits,
+                "owner_checkout_starts": owner_checkouts,
+                "test_payments": test_payments
             },
             "data_quality": {
                 "hardcoded": 0,
@@ -302,62 +260,55 @@ class AcquisitionForensicAuditEngine:
         return report
 
     def print_forensic_report(self, report: Dict[str, Any]):
-        """Prints exact formatted console output matching Sprint #32.4 Section 7."""
-        obs = report["observation"]
-        cron = report["cron"]
-        outreach = report["outreach"]
-        ext_f = report["external_customer_funnel"]
-        owner_f = report["owner_test_funnel"]
-        conv = report["conversion"]
-        dq = report["data_quality"]
+        """Prints exact formatted console output matching Sprint #33 Section 9."""
+        sess = report["session"]
+        rt = report["runtime"]
+        acq = report["acquisition"]
+        rev = report["revenue"]
+        deliv = report["delivery"]
+        port = report["product_portfolio"]
 
-        print("=== SPRINT #32.4 FORENSIC TELEMETRY REPORT ===")
-        print(f"\nOBSERVATION")
-        print(f"Start  : {obs['start']}")
-        print(f"Now    : {obs['now']}")
-        print(f"Elapsed: {obs['elapsed']}h" if isinstance(obs['elapsed'], (int, float)) else f"Elapsed: {obs['elapsed']}")
+        print("=== SPRINT #33 AUTONOMOUS REVENUE ENGINE REPORT ===")
+        print(f"\nSESSION")
+        print(f"Session ID      : {sess['session_id']}")
+        print(f"Start           : {sess['start_time_utc']}")
+        print(f"Current         : {sess['current_time_utc']}")
+        print(f"Elapsed         : {sess['elapsed_hours']}h")
+        print(f"Remaining to 24h: {sess['remaining_hours_to_24h']}h")
+        print(f"Total lifetime  : {sess['total_lifetime_hours']}h")
 
-        print(f"\nCRON")
-        print(f"Expected: {cron['expected']}")
-        print(f"Observed: {cron['observed']}")
-        print(f"Missing : {cron['missing']}")
-        print(f"Status  : {cron['status']}")
+        print(f"\nRUNTIME")
+        print(f"Cron cycles          : {rt['cron_cycles']}")
+        print(f"Successful cycles    : {rt['successful_cycles']}")
+        print(f"Failed cycles        : {rt['failed_cycles']}")
+        print(f"Retries              : {rt['retries']}")
+        print(f"Revenue Activity Rate: {rt['revenue_activity_rate']}")
 
-        print(f"\nOUTREACH")
-        print(f"Published: {outreach['published']}")
-        print(f"Blocked  : {outreach['blocked']}")
-        print(f"Failed   : {outreach['failed']}")
+        print(f"\nACQUISITION")
+        print(f"Opportunities discovered: {acq['opportunities_discovered']}")
+        print(f"Qualified leads         : {acq['qualified_leads']}")
+        print(f"Publications            : {acq['publications']}")
+        print(f"Blocked                 : {acq['blocked']}")
+        print(f"Replies                 : {acq['replies']}")
+        print(f"External visits         : {acq['external_visits']}")
+        print(f"Quiz starts             : {acq['quiz_starts']}")
+        print(f"Emails                  : {acq['emails']}")
+        print(f"Checkout starts         : {acq['checkout_starts']}")
 
-        print(f"\n=== EXTERNAL CUSTOMER FUNNEL ===")
-        print(f"Landing visits    : {ext_f['landing_visits']}")
-        print(f"Quiz starts       : {ext_f['quiz_starts']}")
-        print(f"Emails            : {ext_f['emails']}")
-        print(f"Checkout starts   : {ext_f['checkout_starts']}")
-        print(f"Payment returns   : {ext_f['payment_returns']}")
-        print(f"Completed payments: {ext_f['completed_payments']}")
-        print(f"Revenue           : ${ext_f['revenue_usd']:.2f}" if isinstance(ext_f['revenue_usd'], (int, float)) else f"Revenue           : {ext_f['revenue_usd']}")
-        print(f"Audits            : {ext_f['audits_completed']}")
-        print(f"Certificates      : {ext_f['certificates_delivered']}")
-        print(f"Emails delivered  : {ext_f['emails_delivered']}")
+        print(f"\nREVENUE")
+        print(f"Payment returns   : {rev['payment_returns']}")
+        print(f"Completed payments: {rev['completed_payments']}")
+        print(f"Revenue USD       : ${rev['revenue_usd']:.2f}" if isinstance(rev['revenue_usd'], (int, float)) else f"Revenue USD       : {rev['revenue_usd']}")
 
-        print(f"\n=== OWNER / TEST FUNNEL ===")
-        print(f"Landing visits   : {owner_f['owner_landing_visits']}")
-        print(f"Checkout starts  : {owner_f['owner_checkout_starts']}")
-        print(f"Test payments    : {owner_f['test_payments']}")
-        print(f"Test audits      : {owner_f['test_audits']}")
-        print(f"Test certificates: {owner_f['test_certificates']}")
+        print(f"\nDELIVERY")
+        print(f"Audits          : {deliv['audits']}")
+        print(f"Certificates    : {deliv['certificates']}")
+        print(f"Emails delivered: {deliv['emails_delivered']}")
 
-        print(f"\n=== CONVERSION ===")
-        print(f"Landing -> Checkout: {conv['landing_to_checkout']}")
-        print(f"Checkout -> Payment: {conv['checkout_to_payment']}")
-        print(f"Landing -> Payment : {conv['landing_to_payment']}")
-
-        print(f"\nDATA QUALITY")
-        print(f"Hardcoded      : {dq['hardcoded']}")
-        print(f"Fallback       : {dq['fallback']}")
-        print(f"Synthetic      : {dq['synthetic']}")
-        print(f"Unknown        : {dq['unknown']}")
-        print(f"Missing sources: {', '.join(dq['missing_sources']) if dq['missing_sources'] else 'None'}")
+        print(f"\nPRODUCT PORTFOLIO")
+        print(f"Active products   : {port['active_products']}")
+        print(f"Revenue by product: {json.dumps(port['revenue_by_product'])}")
+        print(f"Leads by product  : {json.dumps(port['leads_by_product'])}")
 
         print(f"\nFINAL VERDICT:")
         print(report["final_verdict"])

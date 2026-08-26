@@ -1,11 +1,11 @@
 """
-Read-Only Manual Revenue Funnel Monitor (Sprint #32.4)
+Read-Only Manual Revenue Funnel Monitor (Sprint #33)
 
 Strict Parity with acquisition_forensic_audit.py:
 - Queries exact same underlying source files.
-- Separates EXTERNAL CUSTOMER FUNNEL vs OWNER / TEST FUNNEL.
-- Computes conversion rates with UNKNOWN handling for 0 denominators.
-- 100% Read-Only. Zero side-effects.
+- Preserves persistent observation session lifetime.
+- Reports SESSION, RUNTIME, ACQUISITION, REVENUE, DELIVERY, and PRODUCT PORTFOLIO.
+- 100% Read-Only. Zero side-effects. Zero tasks created. Zero emails sent. Zero payments created.
 """
 
 import json
@@ -20,12 +20,12 @@ logger = logging.getLogger(__name__)
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 LOGS_PORTFOLIO_DIR = PROJECT_ROOT / "logs" / "portfolio"
 SNAPSHOT_JSON_FILE = LOGS_PORTFOLIO_DIR / "manual_revenue_funnel_snapshot.json"
-OBSERVATION_FILE = LOGS_PORTFOLIO_DIR / "autonomous_24h_observation.json"
+SESSION_FILE = LOGS_PORTFOLIO_DIR / "revenue_observation_session.json"
 
 
 class ManualRevenueFunnelMonitor:
     """
-    Read-only monitor leveraging exact same forensic data engine.
+    Read-only monitor leveraging exact same forensic data engine for 100% metric parity.
     """
 
     def __init__(self):
@@ -48,12 +48,14 @@ class ManualRevenueFunnelMonitor:
                 "SIDE_EFFECTS": 0,
                 "CRON_UNTOUCHED": True
             },
-            "observation": report["observation"],
-            "cron": report["cron"],
-            "outreach": report["outreach"],
-            "external_customer_funnel": report["external_customer_funnel"],
-            "owner_test_funnel": report["owner_test_funnel"],
+            "session": report["session"],
+            "runtime": report["runtime"],
+            "acquisition": report["acquisition"],
+            "revenue": report["revenue"],
+            "delivery": report["delivery"],
+            "product_portfolio": report["product_portfolio"],
             "conversion": report["conversion"],
+            "owner_test_funnel": report["owner_test_funnel"],
             "data_quality": report["data_quality"],
             "final_verdict": report["final_verdict"]
         }
@@ -65,57 +67,57 @@ class ManualRevenueFunnelMonitor:
 
     def render_console_summary(self, snapshot: Dict[str, Any]):
         """Renders exact matching console summary."""
-        obs = snapshot["observation"]
-        cron = snapshot["cron"]
-        outreach = snapshot["outreach"]
-        ext_f = snapshot["external_customer_funnel"]
-        owner_f = snapshot["owner_test_funnel"]
-        conv = snapshot["conversion"]
-        dq = snapshot["data_quality"]
+        sess = snapshot["session"]
+        rt = snapshot["runtime"]
+        acq = snapshot["acquisition"]
+        rev = snapshot["revenue"]
+        deliv = snapshot["delivery"]
+        port = snapshot["product_portfolio"]
 
-        print("=== AUTOMATON REVENUE FUNNEL — READ ONLY MONITOR ===")
-        print(f"\nOBSERVATION WINDOW")
-        print(f"Start    : {obs['start']}")
-        print(f"Now      : {obs['now']}")
-        print(f"Elapsed  : {obs['elapsed']}h" if isinstance(obs['elapsed'], (int, float)) else f"Elapsed  : {obs['elapsed']}")
+        print("=== AUTOMATON REVENUE FUNNEL — READ ONLY MONITOR (SPRINT #33) ===")
+        print(f"\nSESSION")
+        print(f"Session ID      : {sess['session_id']}")
+        print(f"Start           : {sess['start_time_utc']}")
+        print(f"Current         : {sess['current_time_utc']}")
+        print(f"Elapsed         : {sess['elapsed_hours']}h")
+        print(f"Remaining to 24h: {sess['remaining_hours_to_24h']}h")
+        print(f"Total lifetime  : {sess['total_lifetime_hours']}h")
 
-        print(f"\nAUTONOMOUS RUNTIME")
-        print(f"Cron Active : True (Vercel Cron */15 * * * *)")
-        print(f"Expected    : {cron['expected']}")
-        print(f"Observed    : {cron['observed']}")
-        print(f"Missing     : {cron['missing']}")
-        print(f"Status      : {cron['status']}")
+        print(f"\nRUNTIME")
+        print(f"Cron cycles          : {rt['cron_cycles']}")
+        print(f"Successful cycles    : {rt['successful_cycles']}")
+        print(f"Failed cycles        : {rt['failed_cycles']}")
+        print(f"Retries              : {rt['retries']}")
+        print(f"Revenue Activity Rate: {rt['revenue_activity_rate']}")
 
-        print(f"\n=== EXTERNAL CUSTOMER FUNNEL ===")
-        print(f"Landing visits    : {ext_f['landing_visits']}")
-        print(f"Quiz starts       : {ext_f['quiz_starts']}")
-        print(f"Emails            : {ext_f['emails']}")
-        print(f"Checkout starts   : {ext_f['checkout_starts']}")
-        print(f"Payment returns   : {ext_f['payment_returns']}")
-        print(f"Completed payments: {ext_f['completed_payments']}")
-        print(f"Revenue           : ${ext_f['revenue_usd']:.2f}" if isinstance(ext_f['revenue_usd'], (int, float)) else f"Revenue           : {ext_f['revenue_usd']}")
-        print(f"Audits            : {ext_f['audits_completed']}")
-        print(f"Certificates      : {ext_f['certificates_delivered']}")
-        print(f"Emails delivered  : {ext_f['emails_delivered']}")
+        print(f"\nACQUISITION")
+        print(f"Opportunities discovered: {acq['opportunities_discovered']}")
+        print(f"Qualified leads         : {acq['qualified_leads']}")
+        print(f"Publications            : {acq['publications']}")
+        print(f"Blocked                 : {acq['blocked']}")
+        print(f"Replies                 : {acq['replies']}")
+        print(f"External visits         : {acq['external_visits']}")
+        print(f"Quiz starts             : {acq['quiz_starts']}")
+        print(f"Emails                  : {acq['emails']}")
+        print(f"Checkout starts         : {acq['checkout_starts']}")
 
-        print(f"\n=== OWNER / TEST FUNNEL ===")
-        print(f"Landing visits   : {owner_f['owner_landing_visits']}")
-        print(f"Checkout starts  : {owner_f['owner_checkout_starts']}")
-        print(f"Test payments    : {owner_f['test_payments']}")
-        print(f"Test audits      : {owner_f['test_audits']}")
-        print(f"Test certificates: {owner_f['test_certificates']}")
+        print(f"\nREVENUE")
+        print(f"Payment returns   : {rev['payment_returns']}")
+        print(f"Completed payments: {rev['completed_payments']}")
+        print(f"Revenue USD       : ${rev['revenue_usd']:.2f}" if isinstance(rev['revenue_usd'], (int, float)) else f"Revenue USD       : {rev['revenue_usd']}")
 
-        print(f"\n=== CONVERSION ===")
-        print(f"Landing -> Checkout: {conv['landing_to_checkout']}")
-        print(f"Checkout -> Payment: {conv['checkout_to_payment']}")
-        print(f"Landing -> Payment : {conv['landing_to_payment']}")
+        print(f"\nDELIVERY")
+        print(f"Audits          : {deliv['audits']}")
+        print(f"Certificates    : {deliv['certificates']}")
+        print(f"Emails delivered: {deliv['emails_delivered']}")
 
-        print(f"\nDATA QUALITY")
-        print(f"Hardcoded      : {dq['hardcoded']}")
-        print(f"Fallback       : {dq['fallback']}")
-        print(f"Synthetic      : {dq['synthetic']}")
-        print(f"Unknown        : {dq['unknown']}")
-        print(f"Missing sources: {', '.join(dq['missing_sources']) if dq['missing_sources'] else 'None'}")
+        print(f"\nPRODUCT PORTFOLIO")
+        print(f"Active products   : {port['active_products']}")
+        print(f"Revenue by product: {json.dumps(port['revenue_by_product'])}")
+        print(f"Leads by product  : {json.dumps(port['leads_by_product'])}")
+
+        print(f"\nFINAL VERDICT:")
+        print(snapshot["final_verdict"])
 
 
 def main():
