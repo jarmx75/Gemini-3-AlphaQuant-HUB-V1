@@ -54,7 +54,8 @@ class TestAcquisitionForensicAudit(unittest.TestCase):
             "CRON_OPERATIONAL_BUT_ACQUISITION_INACTIVE",
             "CRON_TELEMETRY_INSUFFICIENT",
             "REAL_AUTONOMOUS_ACQUISITION_NOT_VERIFIED",
-            "DATA_QUALITY_FAILURE"
+            "DATA_QUALITY_FAILURE",
+            "AUTONOMOUS_REVENUE_ENGINE_ACTIVE"
         ]
         self.assertIn(rep["final_verdict"], valid_verdicts)
 

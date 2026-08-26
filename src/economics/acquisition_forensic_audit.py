@@ -208,6 +208,17 @@ class AcquisitionForensicAuditEngine:
                 "retries": total_retries,
                 "revenue_activity_rate": revenue_activity_rate
             },
+            "cron": {
+                "expected": "UNKNOWN" if session_info["elapsed_hours"] == 0 else int(session_info["elapsed_hours"] * 4),
+                "observed": observed_cycles,
+                "missing": 0 if isinstance(observed_cycles, int) else "UNKNOWN",
+                "status": "CRON_HEALTHY" if isinstance(observed_cycles, int) and observed_cycles >= 2 else "CRON_TELEMETRY_INSUFFICIENT"
+            },
+            "outreach": {
+                "published": publications,
+                "blocked": blocked,
+                "failed": failed
+            },
             "acquisition": {
                 "opportunities_discovered": opps_discovered,
                 "qualified_leads": qualified_leads,
@@ -228,6 +239,19 @@ class AcquisitionForensicAuditEngine:
                 "audits": ext_audits_completed,
                 "certificates": ext_certs_deliv,
                 "emails_delivered": ext_emails_sent
+            },
+            "external_customer_funnel": {
+                "landing_visits": ext_visits,
+                "quiz_starts": ext_quiz,
+                "emails": ext_emails,
+                "checkout_starts": ext_checkouts,
+                "payment_returns": ext_returns,
+                "completed_payments": ext_completed_payments,
+                "revenue_usd": ext_revenue_usd,
+                "audits_completed": ext_audits_completed,
+                "certificates_delivered": ext_certs_deliv,
+                "emails_delivered": ext_emails_sent,
+                "human_replies": human_replies
             },
             "product_portfolio": {
                 "active_products": portfolio_summary["active_products"],
