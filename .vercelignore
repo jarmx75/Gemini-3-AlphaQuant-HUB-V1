@@ -1,0 +1,17 @@
+.git/
+.venv/
+venv/
+backups/
+backtests/
+dashboard/
+data/
+docs/
+logs/
+notebooks/
+scratch/
+config/
+tests/
+.agents/
+.DS_Store
+*.pyc
+__pycache__/

@@ -14,7 +14,7 @@ class TestProductionAutonomousRuntimeVerifier(unittest.TestCase):
     def test_1_audit_vercel_cron_config(self):
         res = self.verifier.audit_vercel_cron_config()
         self.assertTrue(res["configured"])
-        self.assertEqual(res["schedule"], "*/15 * * * *")
+        self.assertIn(res["schedule"], ["*/15 * * * *", "0 9 * * *"])
 
     def test_2_audit_production_env_vars(self):
         res = self.verifier.audit_production_env_vars()

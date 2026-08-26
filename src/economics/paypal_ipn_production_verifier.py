@@ -31,7 +31,10 @@ def is_matching_txn_id(val1, val2):
 class PayPalIPNProductionVerifier:
 
     def __init__(self):
-        self.vercel_base_url = "https://automaton-quant-audit-api.vercel.app"
+        self.vercel_base_url = os.environ.get(
+            "VERCEL_BASE_URL",
+            "https://automaton-quant-audit-api-alpha-quant1.vercel.app"
+        )
         self.ipn_endpoint = f"{self.vercel_base_url}/api/ipn"
         self.test_payment_link = "https://www.paypal.com/ncp/payment/25GRGEEFTJ2QL"
         self.real_test_txn_id_redirect = "8WB32625PL331771"
