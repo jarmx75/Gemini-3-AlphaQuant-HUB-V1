@@ -8,8 +8,9 @@ import unittest
 from unittest.mock import patch, MagicMock
 from pathlib import Path
 
+import importlib.util
 from src.economics.paypal_ipn_production_verifier import PayPalIPNProductionVerifier
-from api import ipn, capture_order
+from api import ipn
 
 
 class TestSprint342IPNVerification(unittest.TestCase):
