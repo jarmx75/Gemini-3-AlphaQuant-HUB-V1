@@ -151,7 +151,7 @@ class PayPalPaymentGateway:
         records = self._load_payment_records()
         target = None
         for r in records["payments"]:
-            if r["payment_id"] == payment_id:
+            if isinstance(r, dict) and (r.get("payment_id") == payment_id or r.get("txn_id") == payment_id):
                 target = r
                 break
 
@@ -188,7 +188,7 @@ class PayPalPaymentGateway:
         """Updates pipeline state."""
         records = self._load_payment_records()
         for r in records["payments"]:
-            if r["payment_id"] == payment_id:
+            if isinstance(r, dict) and (r.get("payment_id") == payment_id or r.get("txn_id") == payment_id):
                 r["pipeline_state"] = new_state
                 self._save_payment_records(records)
                 return True
@@ -219,13 +219,25 @@ class PayPalPaymentGateway:
         self._save_payment_records(records)
 
     def _load_payment_records(self) -> Dict[str, Any]:
-        with open(PAYMENT_LOG_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
+        if not PAYMENT_LOG_FILE.exists():
+            return {"payments": [], "verified_count": 0, "total_live_revenue_usd": 0.0}
+        try:
+            with open(PAYMENT_LOG_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, list):
+                    return {"payments": data, "verified_count": len([x for x in data if isinstance(x, dict) and x.get("verified")]), "total_live_revenue_usd": 0.0}
+                elif isinstance(data, dict):
+                    if "payments" not in data:
+                        data["payments"] = []
+                    return data
+        except Exception:
+            pass
+        return {"payments": [], "verified_count": 0, "total_live_revenue_usd": 0.0}
 
     def _save_payment_records(self, records: Dict[str, Any]):
-        verified = [r for r in records["payments"] if r.get("verification_status") == "VERIFIED"]
+        verified = [r for r in records["payments"] if isinstance(r, dict) and r.get("verification_status") == "VERIFIED"]
         records["verified_count"] = len(verified)
-        records["total_live_revenue_usd"] = sum(r["amount_usd"] for r in verified if r["mode"] == "LIVE")
+        records["total_live_revenue_usd"] = sum(r.get("amount_usd", 0.0) for r in verified if isinstance(r, dict) and r.get("mode") == "LIVE")
         with open(PAYMENT_LOG_FILE, "w", encoding="utf-8") as f:
             json.dump(records, f, indent=2)
 

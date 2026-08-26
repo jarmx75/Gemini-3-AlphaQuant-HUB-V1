@@ -80,17 +80,22 @@ class handler(BaseHTTPRequestHandler):
                             print(f"[IPN WARNING] Handshake error: {net_err}")
 
             # Directories & files for logging
-            log_dir = os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
+            log_dir = os.environ.get('PAYPAL_LOG_DIR') or os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
             os.makedirs(log_dir, exist_ok=True)
             events_log_file = os.path.join(log_dir, 'paypal_ipn_events.jsonl')
             verified_pmt_file = os.path.join(log_dir, 'paypal_payment_log.json')
 
             # Check existing payments for primary txn_id idempotency
+            # Check existing payments for primary txn_id idempotency
             existing_pmts = []
             if os.path.exists(verified_pmt_file):
                 try:
                     with open(verified_pmt_file, 'r', encoding='utf-8') as f:
-                        existing_pmts = json.load(f)
+                        loaded = json.load(f)
+                        if isinstance(loaded, list):
+                            existing_pmts = loaded
+                        elif isinstance(loaded, dict) and loaded:
+                            existing_pmts = [loaded]
                 except Exception:
                     existing_pmts = []
 

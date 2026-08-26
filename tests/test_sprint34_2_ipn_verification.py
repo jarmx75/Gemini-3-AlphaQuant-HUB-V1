@@ -8,6 +8,8 @@ import unittest
 from unittest.mock import patch, MagicMock
 from pathlib import Path
 
+import tempfile
+import shutil
 import importlib.util
 from src.economics.paypal_ipn_production_verifier import PayPalIPNProductionVerifier
 from api import ipn
@@ -16,17 +18,34 @@ from api import ipn
 class TestSprint342IPNVerification(unittest.TestCase):
 
     def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.temp_payment_log = os.path.join(self.temp_dir, "paypal_payment_log.json")
+        self.temp_events_log = os.path.join(self.temp_dir, "paypal_ipn_events.jsonl")
+        
+        self.p1 = patch("src.economics.paypal_ipn_production_verifier.PAYMENT_LOG_FILE", Path(self.temp_payment_log))
+        self.p2 = patch("src.economics.paypal_ipn_production_verifier.EVENTS_LOG_FILE", Path(self.temp_events_log))
+        self.p3 = patch.dict(os.environ, {"PAYPAL_MODE": "SANDBOX", "PAYPAL_LOG_DIR": self.temp_dir})
+        self.p1.start()
+        self.p2.start()
+        self.p3.start()
+        
         self.verifier = PayPalIPNProductionVerifier()
-        self.root = Path(__file__).resolve().parent.parent
+
+    def tearDown(self):
+        self.p1.stop()
+        self.p2.stop()
+        self.p3.stop()
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
 
     def test_1_txn_id_primary_idempotency_key_deduplication(self):
         """Verify txn_id is enforced as primary key and duplicate IPNs yield DUPLICATE_IGNORED."""
+        raw_payload = "txn_id=TXN_REAL_1001&payment_status=Completed&mc_gross=49.00&mc_currency=USD&payer_email=test_cust@example.com"
+        raw_bytes = raw_payload.encode("utf-8")
+
         handler_instance = ipn.handler.__new__(ipn.handler)
-        handler_instance.headers = {"Content-Length": "75"}
-        
-        raw_payload = "txn_id=TXN_REAL_1001&payment_status=Completed&mc_gross=49.00&mc_currency=USD&payer_email=cust@example.com"
+        handler_instance.headers = {"Content-Length": str(len(raw_bytes))}
         handler_instance.rfile = MagicMock()
-        handler_instance.rfile.read.return_value = raw_payload.encode("utf-8")
+        handler_instance.rfile.read.return_value = raw_bytes
 
         mock_cm = MagicMock()
         mock_resp = MagicMock()
@@ -54,12 +73,13 @@ class TestSprint342IPNVerification(unittest.TestCase):
 
     def test_2_invalid_ipn_payload_rejection(self):
         """Verify INVALID IPN handshake response yields verified=False and REJECTED status."""
-        handler_instance = ipn.handler.__new__(ipn.handler)
-        handler_instance.headers = {"Content-Length": "60"}
-        
         raw_payload = "txn_id=TXN_INVALID_999&payment_status=Completed&mc_gross=49.00"
+        raw_bytes = raw_payload.encode("utf-8")
+
+        handler_instance = ipn.handler.__new__(ipn.handler)
+        handler_instance.headers = {"Content-Length": str(len(raw_bytes))}
         handler_instance.rfile = MagicMock()
-        handler_instance.rfile.read.return_value = raw_payload.encode("utf-8")
+        handler_instance.rfile.read.return_value = raw_bytes
 
         mock_cm = MagicMock()
         mock_resp = MagicMock()
@@ -95,10 +115,11 @@ class TestSprint342IPNVerification(unittest.TestCase):
             with patch("urllib.request.urlopen", return_value=mock_cm):
                 for amt, expected_pid in amounts_expected:
                     handler_instance = ipn.handler.__new__(ipn.handler)
-                    handler_instance.headers = {"Content-Length": "80"}
                     raw_payload = f"txn_id=TXN_AMT_{amt}&payment_status=Completed&mc_gross={amt}&mc_currency=USD&payer_email=test@quant.com"
+                    raw_bytes = raw_payload.encode("utf-8")
+                    handler_instance.headers = {"Content-Length": str(len(raw_bytes))}
                     handler_instance.rfile = MagicMock()
-                    handler_instance.rfile.read.return_value = raw_payload.encode("utf-8")
+                    handler_instance.rfile.read.return_value = raw_bytes
                     handler_instance.send_response = MagicMock()
                     handler_instance.send_header = MagicMock()
                     handler_instance.end_headers = MagicMock()
@@ -107,7 +128,7 @@ class TestSprint342IPNVerification(unittest.TestCase):
                     handler_instance.do_POST()
 
         # Inspect verified log file
-        log_file = self.root / "logs" / "portfolio" / "paypal_payment_log.json"
+        log_file = Path(self.temp_dir) / "paypal_payment_log.json"
         self.assertTrue(log_file.exists())
         with open(log_file, "r", encoding="utf-8") as f:
             pmts = json.load(f)
