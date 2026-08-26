@@ -256,7 +256,8 @@ class AcquisitionForensicAuditEngine:
             "product_portfolio": {
                 "active_products": portfolio_summary["active_products"],
                 "revenue_by_product": portfolio_summary["revenue_by_product"],
-                "leads_by_product": portfolio_summary["leads_by_product"]
+                "leads_by_product": portfolio_summary["leads_by_product"],
+                "products": portfolio_summary["products"]
             },
             "conversion": {
                 "landing_to_checkout": landing_to_checkout,

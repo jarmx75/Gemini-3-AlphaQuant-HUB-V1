@@ -25,6 +25,23 @@ class handler(BaseHTTPRequestHandler):
             return
 
         try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            body = {}
+            if content_length > 0:
+                raw_body = self.rfile.read(content_length).decode('utf-8')
+                try:
+                    body = json.loads(raw_body)
+                except Exception:
+                    body = {}
+
+            product_id = body.get('product_id', 'QUANT_AUDIT')
+            if product_id == 'QUANT_EXECUTION_REALITY_AUDIT':
+                amount_val = '79.00'
+                desc = 'Automaton Quant Execution Reality Audit ($79 USD)'
+            else:
+                amount_val = '49.00'
+                desc = 'Automaton Quant Audit Verification ($49 USD)'
+
             # 1. Get OAuth Token from PayPal LIVE
             auth_str = f"{client_id}:{client_secret}"
             b64_auth = base64.b64encode(auth_str.encode()).decode()
@@ -43,15 +60,15 @@ class handler(BaseHTTPRequestHandler):
                 token_data = json.loads(resp.read().decode())
                 access_token = token_data['access_token']
 
-            # 2. Create PayPal LIVE Order ($49.00 USD)
+            # 2. Create PayPal LIVE Order
             order_payload = json.dumps({
                 'intent': 'CAPTURE',
                 'purchase_units': [{
                     'amount': {
                         'currency_code': 'USD',
-                        'value': '49.00'
+                        'value': amount_val
                     },
-                    'description': 'Automaton Quant Audit Verification ($49 USD)'
+                    'description': desc
                 }],
                 'application_context': {
                     'brand_name': 'Automaton Quant Audit',

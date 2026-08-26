@@ -40,7 +40,7 @@ class AutonomousRevenuePortfolio:
         if not PORTFOLIO_STATE_FILE.exists():
             initial_state = {
                 "last_updated": datetime.now(timezone.utc).isoformat(),
-                "active_product_count": 3,
+                "active_product_count": 4,
                 "products": {
                     "QUANT_AUDIT": {
                         "product_id": "QUANT_AUDIT",
@@ -57,8 +57,27 @@ class AutonomousRevenuePortfolio:
                         "customers": 0,
                         "retention_rate": "UNKNOWN",
                         "status": "ACQUISITION",
-                        "effort_allocation_weight": 0.70,
+                        "effort_allocation_weight": 0.60,
                         "deployed_in_production": True
+                    },
+                    "QUANT_EXECUTION_REALITY_AUDIT": {
+                        "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+                        "name": "Quant Execution Reality Audit",
+                        "category": "EXECUTION_AUDIT",
+                        "price": 79.00,
+                        "margin": 0.92,
+                        "recurring": False,
+                        "automation_score": 92,
+                        "conversion_rate": "UNKNOWN",
+                        "revenue_usd": 0.0,
+                        "traffic_visits": 0,
+                        "qualified_leads": 0,
+                        "customers": 0,
+                        "retention_rate": "UNKNOWN",
+                        "status": "VALIDATING",
+                        "effort_allocation_weight": 0.20,
+                        "deployed_in_production": True,
+                        "validation_gate_passed": True
                     },
                     "DATA_PRODUCTS": {
                         "product_id": "DATA_PRODUCTS",
@@ -75,7 +94,7 @@ class AutonomousRevenuePortfolio:
                         "customers": 0,
                         "retention_rate": "UNKNOWN",
                         "status": "VALIDATION",
-                        "effort_allocation_weight": 0.20,
+                        "effort_allocation_weight": 0.10,
                         "deployed_in_production": True
                     },
                     "PROP_VERIFICATION": {
@@ -99,12 +118,58 @@ class AutonomousRevenuePortfolio:
                 }
             }
             self.save_portfolio(initial_state)
+        else:
+            # Ensure existing state contains QUANT_EXECUTION_REALITY_AUDIT
+            state = self.load_portfolio()
+            if "QUANT_EXECUTION_REALITY_AUDIT" not in state.get("products", {}):
+                state.setdefault("products", {})["QUANT_EXECUTION_REALITY_AUDIT"] = {
+                    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+                    "name": "Quant Execution Reality Audit",
+                    "category": "EXECUTION_AUDIT",
+                    "price": 79.00,
+                    "margin": 0.92,
+                    "recurring": False,
+                    "automation_score": 92,
+                    "conversion_rate": "UNKNOWN",
+                    "revenue_usd": 0.0,
+                    "traffic_visits": 0,
+                    "qualified_leads": 0,
+                    "customers": 0,
+                    "retention_rate": "UNKNOWN",
+                    "status": "VALIDATING",
+                    "effort_allocation_weight": 0.20,
+                    "deployed_in_production": True,
+                    "validation_gate_passed": True
+                }
+                state["active_product_count"] = len(state["products"])
+                self.save_portfolio(state)
 
     def load_portfolio(self) -> Dict[str, Any]:
         if PORTFOLIO_STATE_FILE.exists():
             try:
                 with open(PORTFOLIO_STATE_FILE, "r", encoding="utf-8") as f:
-                    return json.load(f)
+                    data = json.load(f)
+                    if "QUANT_EXECUTION_REALITY_AUDIT" not in data.get("products", {}):
+                        data.setdefault("products", {})["QUANT_EXECUTION_REALITY_AUDIT"] = {
+                            "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+                            "name": "Quant Execution Reality Audit",
+                            "category": "EXECUTION_AUDIT",
+                            "price": 79.00,
+                            "margin": 0.92,
+                            "recurring": False,
+                            "automation_score": 92,
+                            "conversion_rate": "UNKNOWN",
+                            "revenue_usd": 0.0,
+                            "traffic_visits": 0,
+                            "qualified_leads": 0,
+                            "customers": 0,
+                            "retention_rate": "UNKNOWN",
+                            "status": "VALIDATING",
+                            "effort_allocation_weight": 0.20,
+                            "deployed_in_production": True,
+                            "validation_gate_passed": True
+                        }
+                    return data
             except Exception:
                 pass
         return {"products": {}}

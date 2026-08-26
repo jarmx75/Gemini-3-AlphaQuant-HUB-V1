@@ -54,15 +54,21 @@ module.exports = async (req, res) => {
 
         const accessToken = tokenRes.data.access_token;
 
+        const productId = (req.body && req.body.product_id) ? req.body.product_id : 'QUANT_AUDIT';
+        const amountVal = (productId === 'QUANT_EXECUTION_REALITY_AUDIT') ? '79.00' : '49.00';
+        const descVal = (productId === 'QUANT_EXECUTION_REALITY_AUDIT')
+            ? 'Automaton Quant Execution Reality Audit ($79 USD)'
+            : 'Automaton Quant Audit Verification ($49 USD)';
+
         // 2. Create Order
         const orderPayload = JSON.stringify({
             intent: 'CAPTURE',
             purchase_units: [{
                 amount: {
                     currency_code: 'USD',
-                    value: '49.00'
+                    value: amountVal
                 },
-                description: 'Automaton Quant Audit Verification ($49 USD)'
+                description: descVal
             }],
             application_context: {
                 brand_name: 'Automaton Quant Audit',
