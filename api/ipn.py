@@ -1,5 +1,6 @@
 import os
 import json
+import base64
 import urllib.request
 import urllib.parse
 from datetime import datetime
@@ -8,6 +9,62 @@ from http.server import BaseHTTPRequestHandler
 PAYPAL_LIVE_IPN_URL = "https://ipnpb.paypal.com/cgi-bin/webscr"
 PAYPAL_LIVE_IPN_FALLBACK_URL = "https://www.paypal.com/cgi-bin/webscr"
 PAYPAL_SANDBOX_IPN_URL = "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr"
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+
+def _get_log_dir():
+    if os.environ.get('PAYPAL_LOG_DIR'):
+        d = os.environ['PAYPAL_LOG_DIR']
+        os.makedirs(d, exist_ok=True)
+        return d
+    local_dir = os.path.join(PROJECT_ROOT, 'logs', 'portfolio')
+    if not os.environ.get('VERCEL') and os.access(PROJECT_ROOT, os.W_OK):
+        os.makedirs(local_dir, exist_ok=True)
+        return local_dir
+    tmp_dir = '/tmp/logs/portfolio'
+    os.makedirs(tmp_dir, exist_ok=True)
+    return tmp_dir
+
+
+def _persist_to_github_storage(payment_records):
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if not token:
+        return
+    repo = os.environ.get("GITHUB_REPOSITORY", "jarmx75/Gemini-3-AlphaQuant-HUB-V1")
+    path = "logs/portfolio/paypal_payment_log.json"
+    url = f"https://api.github.com/repos/{repo}/contents/{path}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "User-Agent": "Automaton-Quant-Audit-IPN-Verifier",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    try:
+        content_str = json.dumps(payment_records, indent=2)
+        content_b64 = base64.b64encode(content_str.encode('utf-8')).decode('utf-8')
+        
+        sha = None
+        try:
+            req_get = urllib.request.Request(url, headers=headers, method="GET")
+            with urllib.request.urlopen(req_get, timeout=5) as resp:
+                data = json.loads(resp.read().decode('utf-8'))
+                sha = data.get("sha")
+        except Exception:
+            sha = None
+
+        put_payload = {
+            "message": "fix(ipn): persist verified PayPal payment evidence to repository storage",
+            "content": content_b64,
+            "branch": "main"
+        }
+        if sha:
+            put_payload["sha"] = sha
+
+        req_put = urllib.request.Request(url, data=json.dumps(put_payload).encode('utf-8'), headers=headers, method="PUT")
+        with urllib.request.urlopen(req_put, timeout=8) as resp_put:
+            pass
+    except Exception as e:
+        print(f"[IPN PERSISTENCE WARNING] GitHub storage sync error: {e}")
 
 
 def is_matching_txn_id(val1, val2):
@@ -102,17 +159,7 @@ class handler(BaseHTTPRequestHandler):
                 is_commercial = False
 
             # Directories & files for logging
-            if os.environ.get('PAYPAL_LOG_DIR'):
-                log_dir = os.environ['PAYPAL_LOG_DIR']
-            elif os.environ.get('VERCEL') or os.path.exists('/tmp'):
-                log_dir = '/tmp/logs/portfolio'
-            else:
-                log_dir = os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
-            try:
-                os.makedirs(log_dir, exist_ok=True)
-            except OSError:
-                log_dir = '/tmp/logs/portfolio'
-                os.makedirs(log_dir, exist_ok=True)
+            log_dir = _get_log_dir()
             events_log_file = os.path.join(log_dir, 'paypal_ipn_events.jsonl')
             verified_pmt_file = os.path.join(log_dir, 'paypal_payment_log.json')
 
@@ -154,6 +201,7 @@ class handler(BaseHTTPRequestHandler):
                     })
                     with open(verified_pmt_file, 'w', encoding='utf-8') as f:
                         json.dump(existing_pmts, f, indent=2)
+                    _persist_to_github_storage(existing_pmts)
 
             # Log to append-only jsonl stream
             raw_event_record = {

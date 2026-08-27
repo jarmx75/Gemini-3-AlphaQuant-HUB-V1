@@ -118,7 +118,10 @@ class TestSprint33AutonomousRevenueEngine(unittest.TestCase):
     def test_13_24h_observation_persistence(self):
         info = RevenueObservationSession.get_session_info()
         self.assertGreaterEqual(info["remaining_hours_to_24h"], 0.0)
-        self.assertEqual(round(info["elapsed_hours"] + info["remaining_hours_to_24h"], 2), 24.0)
+        if info["elapsed_hours"] <= 24.0:
+            self.assertEqual(round(info["elapsed_hours"] + info["remaining_hours_to_24h"], 2), 24.0)
+        else:
+            self.assertEqual(info["remaining_hours_to_24h"], 0.0)
 
 
 if __name__ == "__main__":
