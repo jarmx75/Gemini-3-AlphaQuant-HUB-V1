@@ -3,13 +3,16 @@
 venv/
 backups/
 backtests/
+caches/
+config/
 dashboard/
 data/
+datasets/
 docs/
 logs/
 notebooks/
 scratch/
-config/
+scripts/
 tests/
 .agents/
 .DS_Store
