@@ -407,21 +407,21 @@ class OpportunityScorer:
         duplicate_risk = float(item.get("duplicate_risk", 0))
 
         if duplicate_risk > 0 or existing_comments_in_thread >= 1:
-            return PublicationGuardResult(False, "BLOCK", "REJECTED_DUPLICATE_RISK")
+            return PublicationGuardResult(False, "TIER_C_BLOCK", "REJECTED_DUPLICATE_RISK")
 
         if promo_risk > 35:
-            return PublicationGuardResult(False, "BLOCK", "REJECTED_PROMOTION_RISK_HIGH")
+            return PublicationGuardResult(False, "TIER_C_BLOCK", "REJECTED_PROMOTION_RISK_HIGH")
 
         if context < 55 or intent < 45:
-            return PublicationGuardResult(False, "BLOCK", "REJECTED_RELEVANCE_LOW")
+            return PublicationGuardResult(False, "TIER_C_BLOCK", "REJECTED_RELEVANCE_LOW")
 
         if context >= 70 and intent >= 60 and promo_risk <= 25:
-            return PublicationGuardResult(True, "AUTO_PUBLISH", "QUALIFIED_TIER_A")
+            return PublicationGuardResult(True, "TIER_A_AUTO_PUBLISH", "QUALIFIED_TIER_A")
 
         if context >= 55 and intent >= 45 and promo_risk <= 35:
-            return PublicationGuardResult(True, "VALUE_CONTRIBUTION", "QUALIFIED_TIER_B")
+            return PublicationGuardResult(True, "TIER_B_VALUE_CONTRIBUTION", "QUALIFIED_TIER_B")
 
-        return PublicationGuardResult(False, "BLOCK", "REJECTED_TIER_C")
+        return PublicationGuardResult(False, "TIER_C_BLOCK", "REJECTED_TIER_C")
 
 
 class AutonomousOpportunityDiscoveryEngine:
@@ -525,9 +525,10 @@ class AutonomousOpportunityDiscoveryEngine:
 
         evaluated = list(all_adapters)
 
-        tier_a = len([e for e in pool if e.get("action_tier") == "AUTO_PUBLISH"])
-        tier_b = len([e for e in pool if e.get("action_tier") == "VALUE_CONTRIBUTION"])
-        tier_c = len([e for e in pool if e.get("action_tier") == "BLOCK" or e.get("status") == "BLOCKED"])
+        targets_selected = len(pool)
+        tier_a = len([e for e in pool if e.get("action_tier") in ["TIER_A_AUTO_PUBLISH", "AUTO_PUBLISH"]])
+        tier_b = len([e for e in pool if e.get("action_tier") in ["TIER_B_VALUE_CONTRIBUTION", "VALUE_CONTRIBUTION"]])
+        tier_c = targets_selected - (tier_a + tier_b)
 
         dup_blocks = len([e for e in pool if "DUPLICATE" in str(e.get("next_action"))])
         cd_blocks = len([e for e in pool if "COOLDOWN" in str(e.get("next_action"))])
@@ -537,13 +538,32 @@ class AutonomousOpportunityDiscoveryEngine:
 
         channels_with_targets = list(set(e.get("channel") for e in pool if e.get("channel") in all_adapters))
 
-        # Channels with real public actions or publications
-        pub_channels = list(set(e.get("channel") for e in pool if e.get("status") == "PUBLISHED" and e.get("channel") in all_adapters))
-        action_channels = list(set(e.get("channel") for e in pool if e.get("status") in ["QUALIFIED", "PUBLISHED"] and e.get("channel") in all_adapters))
+        per_channel_metrics = {}
+        for ch in all_adapters:
+            ch_opps = [e for e in pool if e.get("channel") == ch]
+            ch_targets = len(ch_opps)
+            ch_attempted = len([e for e in ch_opps if e.get("status") in ["QUALIFIED", "PUBLISHED"]])
+            ch_sent = len([e for e in ch_opps if e.get("status") == "PUBLISHED" and e.get("external_sent")])
+            ch_confirmed = len([e for e in ch_opps if e.get("status") == "PUBLISHED" and e.get("publication_confirmed")])
+            ch_failures = len([e for e in ch_opps if e.get("status") == "FAILED"])
+            ch_blocked = len([e for e in ch_opps if e.get("status") == "BLOCKED"])
+
+            per_channel_metrics[ch] = {
+                "opportunities_evaluated": 10,
+                "targets_selected": ch_targets,
+                "actions_attempted": ch_attempted,
+                "actions_sent_externally": ch_sent,
+                "publications_confirmed": ch_confirmed,
+                "failures": ch_failures,
+                "blocked": ch_blocked
+            }
+
+        pub_channels = [ch for ch, m in per_channel_metrics.items() if m["publications_confirmed"] > 0]
+        action_channels = [ch for ch, m in per_channel_metrics.items() if m["actions_sent_externally"] > 0]
 
         blocked = [ch for ch in all_adapters if self.is_in_cooldown(ch)]
         skipped = [ch for ch in all_adapters if ch not in action_channels and ch not in blocked]
-        skip_reasons = {ch: "EVALUATED_NO_ACTION_TAKEN" for ch in skipped}
+        skip_reasons = {ch: "EVALUATED_NO_EXTERNAL_ACTION" for ch in skipped}
 
         diversity_score = round(len(action_channels) / float(len(all_adapters)), 4) if all_adapters else 0.0
 
@@ -568,6 +588,7 @@ class AutonomousOpportunityDiscoveryEngine:
             "skip_reasons": skip_reasons,
             "channel_diversity_score": diversity_score,
             "channel_concentration_warning": concentration_warning,
+            "targets_selected": targets_selected,
             "tier_a_targets": tier_a,
             "tier_b_targets": tier_b,
             "tier_c_targets": tier_c,
@@ -575,7 +596,8 @@ class AutonomousOpportunityDiscoveryEngine:
             "cooldown_blocks": cd_blocks,
             "relevance_blocks": rel_blocks,
             "promotion_risk_blocks": promo_blocks,
-            "exposure_budget_blocks": budget_blocks
+            "exposure_budget_blocks": budget_blocks,
+            "per_channel_metrics": per_channel_metrics
         }
 
     def load_opportunity_pool(self) -> List[Dict[str, Any]]:

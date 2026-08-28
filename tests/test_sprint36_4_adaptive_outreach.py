@@ -39,13 +39,13 @@ class TestSprint364AdaptiveOutreach(unittest.TestCase):
         res_c = OpportunityScorer.evaluate_publication_guards(tier_c_opp)
 
         self.assertTrue(res_a.is_qual)
-        self.assertEqual(res_a.action_tier, "AUTO_PUBLISH")
+        self.assertEqual(res_a.action_tier, "TIER_A_AUTO_PUBLISH")
 
         self.assertTrue(res_b.is_qual)
-        self.assertEqual(res_b.action_tier, "VALUE_CONTRIBUTION")
+        self.assertEqual(res_b.action_tier, "TIER_B_VALUE_CONTRIBUTION")
 
         self.assertFalse(res_c.is_qual)
-        self.assertEqual(res_c.action_tier, "BLOCK")
+        self.assertEqual(res_c.action_tier, "TIER_C_BLOCK")
 
     def test_2_exposure_budget_enforcement(self):
         """Verify per-cycle and per-target exposure budgets are enforced."""

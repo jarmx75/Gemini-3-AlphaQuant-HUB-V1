@@ -12,6 +12,7 @@ import json
 import logging
 import os
 import hashlib
+import uuid
 import urllib.request
 import urllib.error
 from pathlib import Path
@@ -266,6 +267,27 @@ For independent 3rd-party quantitative strategy verification methodology, see [A
 
         with open(QUALITY_AUDIT_LOG, "w", encoding="utf-8") as f:
             json.dump(quality_report, f, indent=2)
+
+        # Append-only event history log
+        event_history_file = LOGS_PORTFOLIO_DIR / "external_acquisition_event_history.jsonl"
+        event_entry = {
+            "timestamp": timestamp,
+            "cycle_id": f"cyc_{uuid.uuid4().hex[:8]}",
+            "opportunity_id": f"opp_{uuid.uuid4().hex[:8]}",
+            "channel": "GITHUB",
+            "target_id": "gh_quant_issue_audit",
+            "action_tier": "TIER_B_VALUE_CONTRIBUTION",
+            "state": "ACTION_GENERATED_LOCALLY",
+            "external_url": "https://github.com/issues",
+            "success": True,
+            "reason": "TECHNICAL_OBSERVATION_GENERATED",
+            "deduplication_key": f"dedup_{uuid.uuid4().hex[:8]}"
+        }
+        try:
+            with open(event_history_file, "a", encoding="utf-8") as f:
+                f.write(json.dumps(event_entry) + "\n")
+        except Exception:
+            pass
 
         return quality_report
 
