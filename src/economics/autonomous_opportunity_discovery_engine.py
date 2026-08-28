@@ -468,6 +468,50 @@ class AutonomousOpportunityDiscoveryEngine:
         expire_at = data.get("cooldowns", {}).get(key, 0)
         return time.time() < expire_at
 
+    def is_target_blocked(self, item: Dict[str, Any]) -> Tuple[bool, str]:
+        """Checks thread_id, repository, author, channel, and opportunity_id for cooldown or repeat locks."""
+        thread_id = item.get("thread_id")
+        repo = item.get("repository")
+        author = item.get("author")
+        channel = item.get("channel")
+        opp_id = item.get("opportunity_id")
+
+        for k in [thread_id, repo, author, channel, opp_id]:
+            if k and self.is_in_cooldown(str(k)):
+                return True, f"COOLDOWN_ACTIVE ({k})"
+
+        # Check existing pool for duplicate thread publications
+        existing_pool = self.load_opportunity_pool()
+        if thread_id:
+            past_pubs = [e for e in existing_pool if e.get("thread_id") == thread_id and e.get("status") == "PUBLISHED"]
+            if past_pubs:
+                return True, f"DUPLICATE_THREAD_PUBLICATION ({thread_id})"
+
+        return False, "ELIGIBLE"
+
+    def get_next_eligible_opportunity(self, channel_filter: Optional[str] = None) -> Optional[Dict[str, Any]]:
+        """Returns the highest-scoring opportunity not blocked by cooldown or duplicate policies."""
+        pool = self.load_opportunity_pool()
+        eligible = []
+        for opp in pool:
+            if channel_filter and opp.get("channel") != channel_filter:
+                continue
+            is_blocked, _ = self.is_target_blocked(opp)
+            if not is_blocked and opp.get("status") in ["QUALIFIED", "DISCOVERED"]:
+                eligible.append(opp)
+
+        if eligible:
+            return max(eligible, key=lambda x: float(x.get("score", 0)))
+        return None
+
+    def get_next_eligible_channel(self, blocked_channels: Optional[set] = None) -> BaseChannelAdapter:
+        """Rotates to the next active channel adapter not in blocked_channels."""
+        blocked = blocked_channels or set()
+        for adapter in self.adapters:
+            if adapter.adapter_name not in blocked and not self.is_in_cooldown(adapter.adapter_name):
+                return adapter
+        return self.adapters[0]
+
     def load_opportunity_pool(self) -> List[Dict[str, Any]]:
         entries = []
         if OPPORTUNITY_POOL_FILE.exists():

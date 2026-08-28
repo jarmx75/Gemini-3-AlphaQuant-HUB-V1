@@ -32,10 +32,10 @@ class TestSprint361TelemetryInvariants(unittest.TestCase):
         report = pilot.run_single_cycle()
 
         # Delivery & revenue current cycle real metrics must NOT aggregate historical 114 test certificates
-        self.assertEqual(report["DELIVERY"]["real_audits_current_cycle"], 0)
-        self.assertEqual(report["DELIVERY"]["real_certificates_current_cycle"], 0)
-        self.assertEqual(report["DELIVERY"]["real_emails_delivered_current_cycle"], 0)
-        self.assertEqual(report["REVENUE"]["real_revenue_current_cycle"], 0.0)
+        self.assertEqual(report["DELIVERY"]["real_audits"], 0)
+        self.assertEqual(report["DELIVERY"]["real_certificates"], 0)
+        self.assertEqual(report["DELIVERY"]["real_emails_delivered"], 0)
+        self.assertEqual(report["REVENUE"]["real_revenue_usd"], 0.0)
 
         # Historical certificates must be isolated under HISTORICAL / INTERNAL
         self.assertGreaterEqual(report["HISTORICAL / INTERNAL"]["historical_certificates"], 100)
@@ -74,7 +74,7 @@ class TestSprint361TelemetryInvariants(unittest.TestCase):
         self.assertIn("SESSION", rep)
         self.assertIn("RUNTIME", rep)
         self.assertIn("STATUSES", rep)
-        self.assertEqual(rep["STATUSES"]["ENGINE_EXECUTION_STATUS"], "PASS")
+        self.assertEqual(rep["STATUSES"]["ENGINE_EXECUTION"], "PASS")
 
     def test_4_read_only_monitor_zero_side_effects(self):
         """Verify ManualRevenueFunnelMonitor creates zero side effects and enforces read-only mode."""
