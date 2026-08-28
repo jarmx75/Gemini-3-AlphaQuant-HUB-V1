@@ -88,7 +88,7 @@ class TestSprint362RotationAntiIdle(unittest.TestCase):
         rep = self.pilot.run_single_cycle()
         self.assertEqual(rep["RUNTIME"]["idle_cycles"], 0)
         self.assertFalse(rep["ANTI-IDLE"]["idle_cycle"])
-        self.assertEqual(rep["STATUSES"]["NO_IDLE_INVARIANT"], "PASS")
+        self.assertEqual(rep["STATUSES"]["NO_IDLE"], "PASS")
 
     def test_7_session_persistence(self):
         """Verify session_start_utc remains unchanged across multiple cycle executions."""

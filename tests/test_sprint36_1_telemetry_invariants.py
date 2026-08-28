@@ -35,7 +35,7 @@ class TestSprint361TelemetryInvariants(unittest.TestCase):
         self.assertEqual(report["DELIVERY"]["real_audits"], 0)
         self.assertEqual(report["DELIVERY"]["real_certificates"], 0)
         self.assertEqual(report["DELIVERY"]["real_emails_delivered"], 0)
-        self.assertEqual(report["REVENUE"]["real_revenue_usd"], 0.0)
+        self.assertEqual(report["REVENUE"]["revenue_usd"], 0.0)
 
         # Historical certificates must be isolated under HISTORICAL / INTERNAL
         self.assertGreaterEqual(report["HISTORICAL / INTERNAL"]["historical_certificates"], 100)

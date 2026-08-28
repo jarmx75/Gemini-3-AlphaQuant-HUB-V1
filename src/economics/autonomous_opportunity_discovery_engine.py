@@ -512,6 +512,40 @@ class AutonomousOpportunityDiscoveryEngine:
                 return adapter
         return self.adapters[0]
 
+    def evaluate_channel_rotation_telemetry(self) -> Dict[str, Any]:
+        """Calculates multi-channel rotation metrics, diversity score, and concentration warning."""
+        all_adapters = [a.adapter_name for a in self.adapters]
+        pool = self.load_opportunity_pool()
+
+        evaluated = list(all_adapters)
+        channel_counts = {}
+        for opp in pool:
+            ch = opp.get("channel", "UNKNOWN")
+            channel_counts[ch] = channel_counts.get(ch, 0) + 1
+
+        used = [ch for ch, cnt in channel_counts.items() if cnt > 0 and ch in all_adapters]
+        blocked = [ch for ch in all_adapters if self.is_in_cooldown(ch)]
+        skipped = [ch for ch in all_adapters if ch not in used and ch not in blocked]
+        skip_reasons = {ch: "NO_NEW_QUALIFIED_TARGETS" for ch in skipped}
+
+        total_opps = sum(channel_counts.values())
+        diversity_score = round(len(used) / float(len(all_adapters)), 4) if all_adapters else 0.0
+
+        max_channel_count = max(channel_counts.values()) if channel_counts else 0
+        concentration_warning = (max_channel_count / float(total_opps) > 0.70) if total_opps >= 10 else False
+
+        return {
+            "available_channels": all_adapters,
+            "evaluated_channels": evaluated,
+            "used_channels": used,
+            "blocked_channels": blocked,
+            "skipped_channels": skipped,
+            "skip_reasons": skip_reasons,
+            "channel_diversity_score": diversity_score,
+            "channel_concentration_warning": concentration_warning,
+            "channel_opportunity_counts": channel_counts
+        }
+
     def load_opportunity_pool(self) -> List[Dict[str, Any]]:
         entries = []
         if OPPORTUNITY_POOL_FILE.exists():
