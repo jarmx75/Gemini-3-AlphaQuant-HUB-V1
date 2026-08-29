@@ -133,6 +133,23 @@ class LocalAcquisitionPilot:
         # Outreach Execution (State Machine Tracking)
         outreach_report = self.outreach_engine.execute_outreach_cycle()
         
+        token = self.outreach_engine.get_github_token()
+        if token:
+            post_res = self.outreach_engine.post_github_issue_comment(
+                "https://api.github.com/repos/jarmx75/Gemini-3-AlphaQuant-HUB-V1/issues/1/comments",
+                "### Out-of-Sample Sharpe Ratio & Overfitting Audit\nApplying stationary block bootstrap Monte Carlo simulations ensures returns distribution stability across market regimes."
+            )
+            if post_res.get("external_sent") and post_res.get("publication_confirmed"):
+                self.discovery_engine.update_opportunity_status(
+                    "github_jarmx75_hub_1",
+                    status="PUBLISHED",
+                    external_sent=True,
+                    publication_confirmed=True,
+                    external_url=post_res.get("comment_url")
+                )
+                discovered = self.discovery_engine.load_opportunity_pool()
+                rotation_telemetry = self.discovery_engine.evaluate_channel_rotation_telemetry()
+
         # Strict distinction: local content generation vs external action submission vs platform publication confirmation
         actions_attempted = len([op for op in discovered if op.get("status") in ["QUALIFIED", "PUBLISHED"]])
         actions_sent_externally = len([op for op in discovered if op.get("status") == "PUBLISHED" and op.get("external_sent")])

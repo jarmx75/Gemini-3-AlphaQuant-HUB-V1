@@ -85,19 +85,27 @@ class TestSprint3642CapabilityValidation(unittest.TestCase):
         outreach_engine = RealOutreachExecutionEngine()
 
         # Case A: Without GITHUB_TOKEN -> ACTION_GENERATED_LOCALLY
-        with patch.dict(os.environ, {}, clear=True):
+        with patch.object(outreach_engine, "get_github_token", return_value=None):
             res = outreach_engine.post_github_issue_comment("https://api.github.com/repos/test/repo/issues/1/comments", "Test body")
             self.assertFalse(res["external_sent"])
             self.assertFalse(res["publication_confirmed"])
             self.assertEqual(res["state"], "ACTION_GENERATED_LOCALLY")
 
         # Case B: With GITHUB_TOKEN and successful API call -> PUBLICATION_CONFIRMED
-        with patch.dict(os.environ, {"GITHUB_TOKEN": "mock_token_123"}):
+        with patch.object(outreach_engine, "get_github_token", return_value="mock_token_123"):
             with patch("urllib.request.urlopen") as mock_urlopen:
                 mock_resp = MagicMock()
                 mock_resp.status = 201
-                mock_resp.read.return_value = b'{"html_url": "https://github.com/test/repo/issues/1#issuecomment-123"}'
-                mock_urlopen.return_value.__enter__.return_value = mock_resp
+                mock_resp.read.return_value = b'{"id": 123, "html_url": "https://github.com/test/repo/issues/1#issuecomment-123"}'
+                
+                mock_verify_resp = MagicMock()
+                mock_verify_resp.status = 200
+                mock_verify_resp.read.return_value = b'{"id": 123, "html_url": "https://github.com/test/repo/issues/1#issuecomment-123"}'
+
+                mock_urlopen.side_effect = [
+                    MagicMock(__enter__=MagicMock(return_value=mock_resp)),
+                    MagicMock(__enter__=MagicMock(return_value=mock_verify_resp))
+                ]
 
                 res = outreach_engine.post_github_issue_comment("https://api.github.com/repos/test/repo/issues/1/comments", "Test body")
                 self.assertTrue(res["external_sent"])
