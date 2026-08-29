@@ -41,6 +41,12 @@ COOLDOWN_REGISTRY_FILE = LOGS_PORTFOLIO_DIR / "cooldown_registry.json"
 class BaseChannelAdapter:
     """Standard abstract interface for all multi-channel discovery adapters."""
     adapter_name: str = "BASE_ADAPTER"
+    discovery_supported: bool = True
+    qualification_supported: bool = True
+    content_generation_supported: bool = True
+    automated_submission_supported: bool = False
+    publication_confirmation_supported: bool = False
+    capability_mode: str = "DISCOVERY_ONLY"
     discovery_capability: bool = True
     publication_capability: bool = False
     reply_capability: bool = False
@@ -54,9 +60,12 @@ class BaseChannelAdapter:
     def get_capabilities(self) -> Dict[str, Any]:
         return {
             "adapter_name": self.adapter_name,
-            "discovery_capability": self.discovery_capability,
-            "publication_capability": self.publication_capability,
-            "reply_capability": self.reply_capability,
+            "discovery_supported": self.discovery_supported,
+            "qualification_supported": self.qualification_supported,
+            "content_generation_supported": self.content_generation_supported,
+            "automated_submission_supported": self.automated_submission_supported,
+            "publication_confirmation_supported": self.publication_confirmation_supported,
+            "capability_mode": self.capability_mode,
             "rate_limit_per_hour": self.rate_limit_per_hour,
             "policy_constraints": self.policy_constraints,
             "authentication_state": self.authentication_state
@@ -66,6 +75,12 @@ class BaseChannelAdapter:
 class GitHubAdapter(BaseChannelAdapter):
     def __init__(self):
         self.adapter_name = "GITHUB"
+        self.discovery_supported = True
+        self.qualification_supported = True
+        self.content_generation_supported = True
+        self.automated_submission_supported = True
+        self.publication_confirmation_supported = True
+        self.capability_mode = "AUTOMATION_READY"
         self.discovery_capability = True
         self.publication_capability = True
         self.reply_capability = True
@@ -400,11 +415,17 @@ class OpportunityScorer:
         return round(score, 2)
 
     @staticmethod
-    def evaluate_publication_guards(item: Dict[str, Any], existing_comments_in_thread: int = 0) -> PublicationGuardResult:
+    def evaluate_publication_guards(item: Dict[str, Any], existing_comments_in_thread: int = 0, channel_adapter: Optional[Any] = None) -> PublicationGuardResult:
         context = float(item.get("context_score", 0))
         intent = float(item.get("intent_score", 0))
         promo_risk = float(item.get("promotion_risk", 100))
         duplicate_risk = float(item.get("duplicate_risk", 0))
+
+        auto_submit = False
+        if channel_adapter and getattr(channel_adapter, "automated_submission_supported", False):
+            auto_submit = True
+        elif item.get("channel") == "GITHUB":
+            auto_submit = True
 
         if duplicate_risk > 0 or existing_comments_in_thread >= 1:
             return PublicationGuardResult(False, "TIER_C_BLOCK", "REJECTED_DUPLICATE_RISK")
@@ -415,7 +436,7 @@ class OpportunityScorer:
         if context < 55 or intent < 45:
             return PublicationGuardResult(False, "TIER_C_BLOCK", "REJECTED_RELEVANCE_LOW")
 
-        if context >= 70 and intent >= 60 and promo_risk <= 25:
+        if context >= 70 and intent >= 60 and promo_risk <= 25 and auto_submit:
             return PublicationGuardResult(True, "TIER_A_AUTO_PUBLISH", "QUALIFIED_TIER_A")
 
         if context >= 55 and intent >= 45 and promo_risk <= 35:
@@ -542,16 +563,18 @@ class AutonomousOpportunityDiscoveryEngine:
         for ch in all_adapters:
             ch_opps = [e for e in pool if e.get("channel") == ch]
             ch_targets = len(ch_opps)
-            ch_attempted = len([e for e in ch_opps if e.get("status") in ["QUALIFIED", "PUBLISHED"]])
             ch_sent = len([e for e in ch_opps if e.get("status") == "PUBLISHED" and e.get("external_sent")])
             ch_confirmed = len([e for e in ch_opps if e.get("status") == "PUBLISHED" and e.get("publication_confirmed")])
             ch_failures = len([e for e in ch_opps if e.get("status") == "FAILED"])
             ch_blocked = len([e for e in ch_opps if e.get("status") == "BLOCKED"])
+            ch_local = len([e for e in ch_opps if e.get("status") in ["QUALIFIED", "DRAFT_HELD_FOR_REVIEW"] or (e.get("status") == "PUBLISHED" and not e.get("external_sent"))])
+            ch_attempted = ch_local + ch_sent + ch_failures + ch_blocked
 
             per_channel_metrics[ch] = {
                 "opportunities_evaluated": 10,
                 "targets_selected": ch_targets,
                 "actions_attempted": ch_attempted,
+                "actions_generated_locally": ch_local,
                 "actions_sent_externally": ch_sent,
                 "publications_confirmed": ch_confirmed,
                 "failures": ch_failures,
@@ -641,10 +664,22 @@ class AutonomousOpportunityDiscoveryEngine:
                     # Publication guard check
                     thread_id = item.get("thread_id", "")
                     thread_comments = len([e for e in existing_pool if e.get("thread_id") == thread_id and e.get("status") == "PUBLISHED"])
-                    res = OpportunityScorer.evaluate_publication_guards(item, existing_comments_in_thread=thread_comments)
+                    res = OpportunityScorer.evaluate_publication_guards(item, existing_comments_in_thread=thread_comments, channel_adapter=adapter)
                     is_qual, guard_reason = res[0], res[1]
 
-                    item["action_tier"] = getattr(res, "action_tier", "BLOCK")
+                    action_tier = getattr(res, "action_tier", "TIER_C_BLOCK")
+                    item["action_tier"] = action_tier
+                    item["tier"] = action_tier
+                    item["channel_capability"] = adapter.capability_mode
+                    item["rejection_reason"] = guard_reason if not is_qual else "NONE"
+
+                    if action_tier == "TIER_A_AUTO_PUBLISH":
+                        item["final_decision"] = "AUTO_PUBLISH"
+                    elif action_tier == "TIER_B_VALUE_CONTRIBUTION":
+                        item["final_decision"] = "VALUE_CONTRIBUTION"
+                    else:
+                        item["final_decision"] = "BLOCK"
+
                     if is_qual:
                         item["status"] = "QUALIFIED"
                         item["next_action"] = "CONTRIBUTE"

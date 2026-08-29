@@ -30,9 +30,9 @@ class TestSprint364AdaptiveOutreach(unittest.TestCase):
 
     def test_1_three_tier_action_classification(self):
         """Verify Tier A, Tier B, and Tier C assignment based on context, intent, and promo risk."""
-        tier_a_opp = {"context_score": 85, "intent_score": 80, "promotion_risk": 10, "duplicate_risk": 0}
-        tier_b_opp = {"context_score": 60, "intent_score": 50, "promotion_risk": 30, "duplicate_risk": 0}
-        tier_c_opp = {"context_score": 40, "intent_score": 30, "promotion_risk": 50, "duplicate_risk": 0}
+        tier_a_opp = {"channel": "GITHUB", "context_score": 85, "intent_score": 80, "promotion_risk": 10, "duplicate_risk": 0}
+        tier_b_opp = {"channel": "REDDIT", "context_score": 60, "intent_score": 50, "promotion_risk": 30, "duplicate_risk": 0}
+        tier_c_opp = {"channel": "REDDIT", "context_score": 40, "intent_score": 30, "promotion_risk": 50, "duplicate_risk": 0}
 
         res_a = OpportunityScorer.evaluate_publication_guards(tier_a_opp)
         res_b = OpportunityScorer.evaluate_publication_guards(tier_b_opp)

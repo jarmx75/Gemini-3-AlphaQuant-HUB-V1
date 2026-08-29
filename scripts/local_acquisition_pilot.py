@@ -278,6 +278,7 @@ class LocalAcquisitionPilot:
             },
             "ACTIONS": {
                 "actions_attempted": actions_attempted,
+                "actions_generated_locally": actions_attempted - (actions_sent_externally + action_failures + blocked_actions),
                 "actions_sent_externally": actions_sent_externally,
                 "publications_confirmed": publications_confirmed,
                 "action_failures": action_failures,
@@ -380,7 +381,8 @@ class LocalAcquisitionPilot:
                 "MULTICHANNEL_ACTIVITY": "PASS",
                 "MULTICHANNEL_ROTATION": "PASS",
                 "REAL_HUMAN_INTEREST": "PROVEN" if sess["human_replies_session"] > 0 else "PENDING",
-                "REAL_REVENUE": "PROVEN" if sess["real_revenue_session"] > 0.0 else "PENDING"
+                "REAL_REVENUE": "PROVEN" if sess["real_revenue_session"] > 0.0 else "PENDING",
+                "FINAL_VERDICT": "READY_FOR_24H_LOOP" if (telemetry_integrity_pass and self.state["failed_cycles"] == 0) else "NOT_READY_CRITICAL_ERROR"
             }
         }
 
@@ -392,7 +394,7 @@ class LocalAcquisitionPilot:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Local 15-Minute Acquisition Pilot Runner (Sprint #36.4.1)")
+    parser = argparse.ArgumentParser(description="Local 15-Minute Acquisition Pilot Runner (Sprint #36.4.2)")
     parser.add_argument("--once", action="store_true", help="Run a single 15-minute cycle and exit")
     parser.add_argument("--loop", action="store_true", help="Run continuously every 15 minutes")
     args = parser.parse_args()
@@ -412,7 +414,7 @@ def main():
             print("\n[PILOT STOPPED] State persisted safely. Next run will resume smoothly.")
     else:
         rep = pilot.run_single_cycle()
-        print("=== LOCAL ACQUISITION PILOT CYCLE REPORT (SPRINT #36.4.1) ===")
+        print("=== LOCAL ACQUISITION PILOT CYCLE REPORT (SPRINT #36.4.2) ===")
         print(json.dumps(rep, indent=2))
 
 
