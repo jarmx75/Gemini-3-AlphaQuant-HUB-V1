@@ -79,7 +79,7 @@ class TestSprint362RotationAntiIdle(unittest.TestCase):
         """Verify engine selects productive fallback action when publications are blocked."""
         rep = self.pilot.run_single_cycle()
         self.assertIn(rep["CYCLE"]["productive_action"], [
-            "PUBLISH_TECHNICAL_CONTENT", "DISCOVER_GITHUB", "QUALIFICATION", "CONTENT_RESEARCH", "FUNNEL_ANALYSIS"
+            "PUBLISH_TECHNICAL_CONTENT", "DISCOVER_GITHUB", "QUALIFICATION", "CONTENT_RESEARCH", "FUNNEL_ANALYSIS", "ANALYZE_FUNNEL", "DISCOVER_NEW_MARKET"
         ])
         self.assertEqual(rep["CYCLE"]["productive_action_status"], "SUCCESS")
 

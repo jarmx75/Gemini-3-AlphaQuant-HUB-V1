@@ -21,6 +21,9 @@ from typing import Dict, Any, Union, List
 logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 LOGS_PORTFOLIO_DIR = PROJECT_ROOT / "logs" / "portfolio"
 FORENSIC_REPORT_JSON = LOGS_PORTFOLIO_DIR / "real_acquisition_forensic_report.json"
 PRODUCTION_CYCLES_FILE = LOGS_PORTFOLIO_DIR / "production_cycle_history.jsonl"
@@ -155,23 +158,60 @@ class AcquisitionForensicAuditEngine:
 
         human_replies = 0 if publications != "UNKNOWN" and publications > 0 else "UNKNOWN"
 
-        # 6. PayPal Revenue Audit
+        # 6. PayPal Revenue Audit & Strict Metric Separation
         paypal_data = self._read_json_safe(PAYPAL_FILE)
-        if paypal_data is not None and isinstance(paypal_data, dict):
-            p_list = paypal_data.get("payments", [])
-            ext_completed_payments = len([
-                p for p in p_list
-                if p.get("status") == "COMPLETED" and p.get("mode") == "LIVE" and p.get("actor_type") == "EXTERNAL_HUMAN"
-            ])
-            ext_revenue_usd = sum(
-                p.get("amount_usd", 0.0) for p in p_list
-                if p.get("status") == "COMPLETED" and p.get("mode") == "LIVE" and p.get("actor_type") == "EXTERNAL_HUMAN"
-            )
-            test_payments = len([p for p in p_list if p.get("mode") != "LIVE" or p.get("actor_type") != "EXTERNAL_HUMAN"])
-        else:
-            ext_completed_payments = 0
-            ext_revenue_usd = 0.0
-            test_payments = 0
+        p_list = []
+        if paypal_data is not None:
+            if isinstance(paypal_data, dict):
+                p_list = paypal_data.get("payments", [])
+            elif isinstance(paypal_data, list):
+                p_list = paypal_data
+
+        verified_commercial_payments = 0
+        verified_commercial_revenue_usd = 0.0
+        historical_unverified_events = 0
+        internal_tests = 0
+        sandbox_events = 0
+        unknown_events = 0
+        rejected_events = 0
+
+        for p in p_list:
+            if not isinstance(p, dict):
+                unknown_events += 1
+                continue
+
+            pmt_source = p.get("source")
+            cust_id = str(p.get("customer_id", ""))
+            txn_id = str(p.get("txn_id", p.get("payment_id", "")))
+            is_ver = p.get("verified", False)
+            pmt_stat = str(p.get("payment_status", p.get("status", ""))).upper()
+            auth_ful = p.get("authorizes_fulfillment", False)
+            is_comm = p.get("is_commercial", True)
+            actor = str(p.get("actor_type", ""))
+            mode = str(p.get("mode", "LIVE")).upper()
+            idemp_stat = str(p.get("idempotency_status", ""))
+
+            if idemp_stat == "REJECTED":
+                rejected_events += 1
+
+            if cust_id.startswith("TEST_CUST_") or actor == "INTERNAL_TEST":
+                internal_tests += 1
+            elif cust_id.startswith("SANDBOX_BUYER_") or mode == "SANDBOX":
+                sandbox_events += 1
+            elif pmt_source in ["PAYPAL_IPN", "PAYPAL_WEBHOOK"] and is_ver and pmt_stat == "COMPLETED" and auth_ful and is_comm:
+                try:
+                    amt_val = float(p.get("amount", p.get("amount_usd", 0.0)))
+                except (ValueError, TypeError):
+                    amt_val = 0.0
+                verified_commercial_payments += 1
+                verified_commercial_revenue_usd += amt_val
+            elif not pmt_source or pmt_source not in ["PAYPAL_IPN", "PAYPAL_WEBHOOK"]:
+                historical_unverified_events += 1
+            else:
+                unknown_events += 1
+
+        ext_completed_payments = verified_commercial_payments
+        ext_revenue_usd = verified_commercial_revenue_usd
 
         # 7. Delivery Audit
         delivery_events = self._read_jsonl_safe(DELIVERY_EVENT_FILE)
@@ -189,14 +229,24 @@ class AcquisitionForensicAuditEngine:
         checkout_to_payment = f"{round((ext_completed_payments / ext_checkouts) * 100.0, 2)}%" if isinstance(ext_completed_payments, int) and isinstance(ext_checkouts, int) and ext_checkouts > 0 else "UNKNOWN"
         landing_to_payment = f"{round((ext_completed_payments / ext_visits) * 100.0, 2)}%" if isinstance(ext_completed_payments, int) and isinstance(ext_visits, int) and ext_visits > 0 else "UNKNOWN"
 
-        # 9. Product Portfolio Audit
-        portfolio_summary = self.portfolio_mgr.get_portfolio_summary()
+        # 9. Durable Storage Audit
+        from src.economics.durable_storage import get_durable_storage_engine
+        storage_engine = get_durable_storage_engine()
+        durable_status = storage_engine.get_storage_status()
 
-        # 10. Final Verdict
-        if observed_cycles != "UNKNOWN" and observed_cycles >= 1 and opps_discovered != "UNKNOWN" and opps_discovered >= 1:
-            verdict = "AUTONOMOUS_REVENUE_ENGINE_ACTIVE"
+        durable_conf = durable_status["durable_storage_configured"]
+        durable_health = durable_status["durable_storage_health"]
+        comm_ful_status = durable_status["commercial_fulfillment_status"]
+
+        if not durable_conf or durable_health not in ["HEALTHY", "CONFIGURED_LITE"]:
+            commercial_readiness = "NOT_READY"
+            verdict = "COMMERCIAL_FULFILLMENT_BLOCKED_STORAGE_NOT_CONFIGURED"
         else:
-            verdict = "REAL_AUTONOMOUS_ACQUISITION_NOT_VERIFIED"
+            commercial_readiness = "PARTIAL"
+            verdict = "COMMERCIAL_FULFILLMENT_PARTIAL_AWAITING_CONTROLLED_VALIDATION"
+
+        # 10. Product Portfolio Audit
+        portfolio_summary = self.portfolio_mgr.get_portfolio_summary()
 
         report = {
             "timestamp": timestamp_now,
@@ -233,8 +283,37 @@ class AcquisitionForensicAuditEngine:
             "revenue": {
                 "payment_returns": ext_returns,
                 "completed_payments": ext_completed_payments,
-                "revenue_usd": ext_revenue_usd
+                "revenue_usd": ext_revenue_usd,
+                "verified_commercial_payments": verified_commercial_payments,
+                "verified_commercial_revenue_usd": verified_commercial_revenue_usd
             },
+            "real_commercial_metrics": {
+                "verified_commercial_payments": verified_commercial_payments,
+                "verified_commercial_revenue_usd": verified_commercial_revenue_usd,
+                "real_customer_audits_completed": ext_audits_completed,
+                "real_customer_certificates_delivered": ext_certs_deliv,
+                "real_customer_emails_delivered": ext_emails_sent
+            },
+            "non_commercial_isolation": {
+                "historical_unverified_events": historical_unverified_events,
+                "internal_tests": internal_tests,
+                "sandbox_events": sandbox_events,
+                "unknown_events": unknown_events,
+                "rejected_events": rejected_events
+            },
+            "durable_storage": {
+                "durable_storage_provider": durable_status.get("durable_storage_provider", "NOT_CONFIGURED"),
+                "durable_storage_configured": durable_conf,
+                "durable_storage_health": durable_health,
+                "google_drive_folder_configured": durable_status.get("google_drive_folder_configured", False),
+                "commercial_fulfillment_status": comm_ful_status,
+                "uploads_blocked_storage_not_configured": 0 if durable_conf else 1,
+                "deliveries_blocked_storage_not_configured": 0 if durable_conf else 1,
+                "persisted_commercial_uploads": 0,
+                "persisted_commercial_reports": 0,
+                "persisted_commercial_certificates": 0
+            },
+            "COMMERCIAL_FULFILLMENT_READINESS": commercial_readiness,
             "delivery": {
                 "audits": ext_audits_completed,
                 "certificates": ext_certs_deliv,
@@ -267,7 +346,7 @@ class AcquisitionForensicAuditEngine:
             "owner_test_funnel": {
                 "owner_landing_visits": owner_visits,
                 "owner_checkout_starts": owner_checkouts,
-                "test_payments": test_payments
+                "test_payments": internal_tests + sandbox_events
             },
             "data_quality": {
                 "hardcoded": 0,

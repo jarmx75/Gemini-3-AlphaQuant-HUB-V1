@@ -10,14 +10,19 @@ Strict Parity with acquisition_forensic_audit.py:
 
 import json
 import logging
+import sys
 from pathlib import Path
 from datetime import datetime, timezone
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from typing import Dict, Any
 from src.economics.acquisition_forensic_audit import AcquisitionForensicAuditEngine
 
 logger = logging.getLogger(__name__)
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 LOGS_PORTFOLIO_DIR = PROJECT_ROOT / "logs" / "portfolio"
 SNAPSHOT_JSON_FILE = LOGS_PORTFOLIO_DIR / "manual_revenue_funnel_snapshot.json"
 SESSION_FILE = LOGS_PORTFOLIO_DIR / "revenue_observation_session.json"
@@ -54,6 +59,10 @@ class ManualRevenueFunnelMonitor:
             "outreach": report.get("outreach", {}),
             "acquisition": report["acquisition"],
             "revenue": report["revenue"],
+            "real_commercial_metrics": report.get("real_commercial_metrics", {}),
+            "non_commercial_isolation": report.get("non_commercial_isolation", {}),
+            "durable_storage": report.get("durable_storage", {}),
+            "COMMERCIAL_FULFILLMENT_READINESS": report.get("COMMERCIAL_FULFILLMENT_READINESS", "NOT_READY"),
             "delivery": report["delivery"],
             "external_customer_funnel": report.get("external_customer_funnel", {}),
             "product_portfolio": report["product_portfolio"],

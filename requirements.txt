@@ -1,3 +1,8 @@
 # Minimal serverless dependencies for Vercel Python runtime
 requests>=2.31.0
 python-dotenv>=1.0.0
+
+# Optional Google Drive Durable Storage Provider dependencies
+google-api-python-client>=2.100.0
+google-auth>=2.20.0
+

@@ -1,7 +1,9 @@
 # Secret Environment Files
 .env
 config/.env
-*.env
+.env.local
+.env.production
+!.env.example
 
 # Python Cache & Data
 __pycache__/
@@ -9,3 +11,5 @@ __pycache__/
 venv/
 .venv/
 .DS_Store
+.vercel
+

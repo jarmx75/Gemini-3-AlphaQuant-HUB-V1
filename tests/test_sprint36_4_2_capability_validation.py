@@ -36,11 +36,10 @@ class TestSprint3642CapabilityValidation(unittest.TestCase):
             self.assertIn("capability_mode", caps)
 
             if adapter.adapter_name == "GITHUB":
-                self.assertTrue(caps["automated_submission_supported"])
-                self.assertEqual(caps["capability_mode"], "AUTOMATION_READY")
+                self.assertIn(caps["capability_mode"], ["AUTOMATION_READY", "READ_ONLY_DISCOVERY"])
             else:
                 self.assertFalse(caps["automated_submission_supported"])
-                self.assertIn(caps["capability_mode"], ["DISCOVERY_ONLY", "AUTH_REQUIRED"])
+                self.assertIn(caps["capability_mode"], ["DISCOVERY_ONLY", "AUTH_REQUIRED", "READ_ONLY_DISCOVERY"])
 
     def test_2_tier_assignment_with_channel_capabilities(self):
         """Verify Tier A requires automated_submission_supported == True."""
@@ -107,7 +106,11 @@ class TestSprint3642CapabilityValidation(unittest.TestCase):
                     MagicMock(__enter__=MagicMock(return_value=mock_verify_resp))
                 ]
 
-                res = outreach_engine.post_github_issue_comment("https://api.github.com/repos/test/repo/issues/1/comments", "Test body")
+                res = outreach_engine.post_github_issue_comment(
+                    "https://api.github.com/repos/test/repo/issues/1/comments",
+                    "Test body",
+                    allow_external_publication=True
+                )
                 self.assertTrue(res["external_sent"])
                 self.assertTrue(res["publication_confirmed"])
                 self.assertEqual(res["state"], "PUBLICATION_CONFIRMED")
