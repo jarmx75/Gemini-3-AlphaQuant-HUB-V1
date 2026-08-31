@@ -55,9 +55,7 @@ class GoogleDriveOAuthStorageEngine:
             client_secret=self.client_secret,
             token_uri="https://oauth2.googleapis.com/token",
             scopes=[
-                'https://www.googleapis.com/auth/drive',
-                'https://www.googleapis.com/auth/drive.file',
-                'https://www.googleapis.com/auth/drive.readonly'
+                'https://www.googleapis.com/auth/drive.file'
             ]
         )
 

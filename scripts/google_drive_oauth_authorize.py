@@ -26,6 +26,28 @@ if str(PROJECT_ROOT) not in sys.path:
 REQUIRED_SCOPE = "https://www.googleapis.com/auth/drive.file"
 
 
+import subprocess
+
+def _set_vercel_env(var_name: str, var_val: str):
+    """Sets a Vercel Production environment variable safely without exposing value."""
+    if not var_val:
+        return
+    try:
+        res = subprocess.run(
+            ["npx", "vercel", "env", "add", var_name, "production", "--force"],
+            input=f"{var_val}\n",
+            text=True,
+            capture_output=True,
+            cwd=str(PROJECT_ROOT)
+        )
+        if res.returncode == 0:
+            print(f"[VERCEL CONFIG]: Variable {var_name} configurada con éxito en Vercel Production.")
+        else:
+            print(f"[VERCEL CONFIG WARNING]: No se pudo configurar {var_name}: {res.stderr}")
+    except Exception as e:
+        print(f"[VERCEL CONFIG ERROR]: {e}")
+
+
 def authorize():
     """Runs local OAuth 2.0 InstalledAppFlow to obtain refresh token."""
     client_id = os.environ.get("GOOGLE_OAUTH_CLIENT_ID", "").strip()
@@ -84,13 +106,13 @@ def authorize():
         print("2. Permiso concedido: drive.file (Acceso restringido)")
         print("3. Refresh token obtenido: SI")
         print("-------------------------------------------------------")
-        print("INSTRUCCIONES DE SEGURIDAD (IMPORTANTE):")
-        print("- NO guardes este token en ningún archivo del proyecto.")
-        print("- NO compartas este token en chats, GitHub ni capturas de pantalla.")
-        print("- Copia el valor de abajo y pégalo directamente en Vercel Production:")
-        print("  Variable: GOOGLE_OAUTH_REFRESH_TOKEN\n")
-        print("GOOGLE_OAUTH_REFRESH_TOKEN:")
-        print(refresh_token)
+        print("Configurando automáticamente Vercel Production...\n")
+
+        _set_vercel_env("GOOGLE_OAUTH_CLIENT_ID", client_id)
+        _set_vercel_env("GOOGLE_OAUTH_CLIENT_SECRET", client_secret)
+        _set_vercel_env("GOOGLE_OAUTH_REFRESH_TOKEN", refresh_token)
+        _set_vercel_env("DURABLE_STORAGE_PROVIDER", "GOOGLE_DRIVE_OAUTH")
+
         print("\n=======================================================\n")
 
     except ImportError:
@@ -104,3 +126,4 @@ def authorize():
 
 if __name__ == "__main__":
     authorize()
+
