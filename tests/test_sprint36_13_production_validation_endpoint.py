@@ -267,9 +267,9 @@ class TestSprint3613ProductionValidationEndpoint(unittest.TestCase):
                 validation_module.handler.do_POST(dummy)
                 self.assertEqual(dummy.response_status, 503)
                 res = json.loads(dummy.wfile.getvalue().decode('utf-8'))
-                self.assertEqual(res["error"], "INTERNAL_VALIDATION_FAILED")
+                self.assertEqual(res["error"], "STORAGE_WRITE_FAILED_UNKNOWN")
                 self.assertEqual(res["detail"], "STORAGE_WRITE_FAILED")
-                self.assertNotIn("Google Drive API connection lost", res.get("message", ""))
+                self.assertEqual(res["idempotency_status"], "FAILED_BEFORE_WRITE")
 
     def test_14_idempotency_prevents_duplicate_creation(self):
         """Verify submitting the same internal_test_run_id twice returns ALREADY_COMPLETED without duplicating objects."""
@@ -320,6 +320,68 @@ class TestSprint3613ProductionValidationEndpoint(unittest.TestCase):
             res = json.loads(dummy.wfile.getvalue().decode('utf-8'))
             self.assertEqual(res["error"], "PREVIOUS_ATTEMPT_UNKNOWN")
             self.assertEqual(res["idempotency_status"], "PREVIOUS_ATTEMPT_UNKNOWN")
+
+    def test_16_write_permission_denied_mapped_safely(self):
+        """Verify GOOGLE_DRIVE_WRITE_PERMISSION_DENIED is returned safely as HTTP 503."""
+        body = json.dumps({"confirm_internal_test": True, "internal_test_run_id": "run_perm_303"}).encode('utf-8')
+        dummy = DummyHTTPHandler(
+            headers={"Content-Length": str(len(body)), "X-Internal-Test-Token": "VALID_TOKEN"},
+            body_bytes=body
+        )
+        mock_storage = MagicMock()
+        mock_storage.is_configured.return_value = True
+        mock_storage.health_check.return_value = "HEALTHY"
+        mock_storage.store_upload.side_effect = RuntimeError("GOOGLE_DRIVE_WRITE_PERMISSION_DENIED: Service account lacks Editor write permission.")
+
+        with patch.dict(os.environ, {"INTERNAL_STORAGE_VALIDATION_TOKEN": "VALID_TOKEN"}):
+            with patch("src.economics.durable_storage.get_durable_storage_engine", return_value=mock_storage):
+                validation_module.handler.do_POST(dummy)
+                self.assertEqual(dummy.response_status, 503)
+                res = json.loads(dummy.wfile.getvalue().decode('utf-8'))
+                self.assertEqual(res["error"], "GOOGLE_DRIVE_WRITE_PERMISSION_DENIED")
+                self.assertEqual(res["idempotency_status"], "FAILED_BEFORE_WRITE")
+
+    def test_17_authentication_failed_mapped_safely(self):
+        """Verify GOOGLE_DRIVE_AUTHENTICATION_FAILED is returned safely as HTTP 503."""
+        body = json.dumps({"confirm_internal_test": True, "internal_test_run_id": "run_auth_404"}).encode('utf-8')
+        dummy = DummyHTTPHandler(
+            headers={"Content-Length": str(len(body)), "X-Internal-Test-Token": "VALID_TOKEN"},
+            body_bytes=body
+        )
+        mock_storage = MagicMock()
+        mock_storage.is_configured.return_value = True
+        mock_storage.health_check.return_value = "HEALTHY"
+        mock_storage.store_upload.side_effect = RuntimeError("GOOGLE_DRIVE_AUTHENTICATION_FAILED: Credentials invalid.")
+
+        with patch.dict(os.environ, {"INTERNAL_STORAGE_VALIDATION_TOKEN": "VALID_TOKEN"}):
+            with patch("src.economics.durable_storage.get_durable_storage_engine", return_value=mock_storage):
+                validation_module.handler.do_POST(dummy)
+                self.assertEqual(dummy.response_status, 503)
+                res = json.loads(dummy.wfile.getvalue().decode('utf-8'))
+                self.assertEqual(res["error"], "GOOGLE_DRIVE_AUTHENTICATION_FAILED")
+                self.assertEqual(res["idempotency_status"], "FAILED_BEFORE_WRITE")
+
+    def test_18_partial_failure_sets_previous_attempt_unknown(self):
+        """Verify failure after starting first object write sets idempotency_status = PREVIOUS_ATTEMPT_UNKNOWN."""
+        body = json.dumps({"confirm_internal_test": True, "internal_test_run_id": "run_partial_505"}).encode('utf-8')
+        dummy = DummyHTTPHandler(
+            headers={"Content-Length": str(len(body)), "X-Internal-Test-Token": "VALID_TOKEN"},
+            body_bytes=body
+        )
+        mock_storage = MagicMock()
+        mock_storage.is_configured.return_value = True
+        mock_storage.health_check.return_value = "HEALTHY"
+        mock_storage.store_upload.return_value = {"storage_reference": "gdrive://internal-tests/f1"}
+        mock_storage.store_report.side_effect = RuntimeError("GOOGLE_DRIVE_UPLOAD_API_ERROR: Network broken")
+
+        with patch.dict(os.environ, {"INTERNAL_STORAGE_VALIDATION_TOKEN": "VALID_TOKEN"}):
+            with patch("src.economics.durable_storage.get_durable_storage_engine", return_value=mock_storage):
+                validation_module.handler.do_POST(dummy)
+                self.assertEqual(dummy.response_status, 503)
+                res = json.loads(dummy.wfile.getvalue().decode('utf-8'))
+                self.assertEqual(res["error"], "GOOGLE_DRIVE_UPLOAD_API_ERROR")
+                self.assertEqual(res["idempotency_status"], "PREVIOUS_ATTEMPT_UNKNOWN")
+                self.assertEqual(res["objects_created_before_failure"], 1)
 
 
 if __name__ == "__main__":

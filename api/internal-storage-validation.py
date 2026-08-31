@@ -223,10 +223,12 @@ class handler(BaseHTTPRequestHandler):
         if active_run_id:
             IDEMPOTENCY_CACHE[active_run_id] = {"state": "IN_PROGRESS", "timestamp": now_utc}
 
+        objects_created_count = 0
         try:
             # Object 1: Safe CSV Upload
             test_csv = b"timestamp,return\n2026-08-01,0.012\n2026-08-02,0.008\n2026-08-03,-0.004"
             upload_meta = storage_engine.store_upload(test_prefix, test_csv, "test_strategy.csv")
+            objects_created_count += 1
 
             # Object 2: TEST_ONLY Report
             report_data = {
@@ -236,6 +238,7 @@ class handler(BaseHTTPRequestHandler):
                 "timestamp": now_utc
             }
             report_meta = storage_engine.store_report(test_prefix, report_data)
+            objects_created_count += 1
 
             # Object 3: TEST_ONLY Certificate
             cert_data = {
@@ -245,6 +248,7 @@ class handler(BaseHTTPRequestHandler):
                 "timestamp": now_utc
             }
             cert_meta = storage_engine.store_certificate(test_prefix, cert_data)
+            objects_created_count += 1
 
             # Mark idempotency completed
             if active_run_id:
@@ -274,14 +278,32 @@ class handler(BaseHTTPRequestHandler):
                 "timestamp_utc": now_utc
             })
         except Exception as write_err:
-            logger.error(f"[STORAGE WRITE ERROR]: {write_err}")
+            err_str = str(write_err)
+            logger.error(f"[STORAGE WRITE ERROR]: {err_str}")
+
+            # Classify specific error code
+            error_code = "STORAGE_WRITE_FAILED_UNKNOWN"
+            for code in [
+                "GOOGLE_DRIVE_WRITE_PERMISSION_DENIED",
+                "GOOGLE_DRIVE_AUTHENTICATION_FAILED",
+                "GOOGLE_DRIVE_UPLOAD_API_ERROR",
+                "GOOGLE_DRIVE_DEPENDENCY_ERROR",
+                "GOOGLE_DRIVE_FOLDER_WRITE_ERROR"
+            ]:
+                if code in err_str:
+                    error_code = code
+                    break
+
+            idempotency_status = "FAILED_BEFORE_WRITE" if objects_created_count == 0 else "PREVIOUS_ATTEMPT_UNKNOWN"
             if active_run_id:
-                IDEMPOTENCY_CACHE[active_run_id] = {"state": "UNKNOWN", "timestamp": now_utc}
+                IDEMPOTENCY_CACHE[active_run_id] = {"state": idempotency_status, "timestamp": now_utc}
+
             _send_json_response(self, 503, {
-                "error": "INTERNAL_VALIDATION_FAILED",
+                "error": error_code,
                 "detail": "STORAGE_WRITE_FAILED",
                 "message": "Storage write operation failed safely without creating invalid objects.",
-                "idempotency_status": "PREVIOUS_ATTEMPT_UNKNOWN",
+                "idempotency_status": idempotency_status,
+                "objects_created_before_failure": objects_created_count,
                 "evidence_classification": "NOT_VALIDATED",
                 "commercial_fulfillment_readiness": "PARTIAL"
             })

@@ -181,7 +181,11 @@ class GoogleDriveStorageEngine:
             from io import BytesIO
 
             creds_dict = self._parse_service_account_credentials()
-            scopes = ['https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/drive.readonly']
+            scopes = [
+                'https://www.googleapis.com/auth/drive',
+                'https://www.googleapis.com/auth/drive.file',
+                'https://www.googleapis.com/auth/drive.readonly'
+            ]
             credentials = service_account.Credentials.from_service_account_info(creds_dict, scopes=scopes)
             drive_service = build('drive', 'v3', credentials=credentials)
 
@@ -189,7 +193,7 @@ class GoogleDriveStorageEngine:
                 'name': object_name,
                 'parents': [self.folder_id]
             }
-            media = MediaIoBaseUpload(BytesIO(data), mimetype='application/octet-stream', resumable=True)
+            media = MediaIoBaseUpload(BytesIO(data), mimetype='application/octet-stream', resumable=False)
             
             # Upload file directly into private folder
             drive_file = drive_service.files().create(
@@ -201,8 +205,21 @@ class GoogleDriveStorageEngine:
             drive_file_id = drive_file.get('id', f"gfile_{uuid.uuid4().hex[:12]}")
             storage_ref = f"gdrive://{self.folder_id[:8]}.../{drive_file_id}"
         except ImportError:
-            drive_file_id = f"gfile_simulated_{uuid.uuid4().hex[:12]}"
-            storage_ref = f"gdrive_simulated://{self.folder_id[:8]}.../{drive_file_id}"
+            raise RuntimeError("GOOGLE_DRIVE_DEPENDENCY_ERROR: Required google-api-python-client dependency is missing.")
+        except Exception as err:
+            err_msg = str(err).lower()
+            err_type = type(err).__name__
+            if "httperror" in err_type.lower() or "http" in err_msg or "403" in err_msg or "permission" in err_msg:
+                if "403" in err_msg or "permission" in err_msg or "accessnotconfigured" in err_msg:
+                    raise RuntimeError("GOOGLE_DRIVE_WRITE_PERMISSION_DENIED: Service account lacks Editor write permission on target Google Drive folder.")
+                elif "401" in err_msg or "unauthorized" in err_msg or "invalid_grant" in err_msg:
+                    raise RuntimeError("GOOGLE_DRIVE_AUTHENTICATION_FAILED: Service account credentials invalid or unauthorized.")
+                elif "404" in err_msg or "notfound" in err_msg:
+                    raise RuntimeError("GOOGLE_DRIVE_FOLDER_WRITE_ERROR: Target Google Drive folder ID not found or unreachable for writing.")
+                raise RuntimeError(f"GOOGLE_DRIVE_UPLOAD_API_ERROR: Google Drive API upload failed ({type(err).__name__}).")
+            elif "credential" in err_msg or "auth" in err_msg:
+                raise RuntimeError("GOOGLE_DRIVE_AUTHENTICATION_FAILED: Service account authentication failed.")
+            raise RuntimeError(f"STORAGE_WRITE_FAILED_UNKNOWN: Storage write encountered an unclassified error ({type(err).__name__}).")
 
         return {
             "success": True,
