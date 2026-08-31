@@ -13,3 +13,6 @@ venv/
 .DS_Store
 .vercel
 
+.env*
+client_secret_*.json
+

@@ -383,6 +383,46 @@ class TestSprint3613ProductionValidationEndpoint(unittest.TestCase):
                 self.assertEqual(res["idempotency_status"], "PREVIOUS_ATTEMPT_UNKNOWN")
                 self.assertEqual(res["objects_created_before_failure"], 1)
 
+    def test_19_case_insensitive_header_uppercase(self):
+        """Verify X-Internal-Test-Token (uppercase) accepts valid token."""
+        body = json.dumps({"confirm_internal_test": True}).encode('utf-8')
+        dummy = DummyHTTPHandler(
+            headers={"Content-Length": str(len(body)), "X-Internal-Test-Token": "VALID_TOKEN"},
+            body_bytes=body
+        )
+        mock_storage = self._setup_mock_engine(MagicMock())
+        with patch.dict(os.environ, {"INTERNAL_STORAGE_VALIDATION_TOKEN": "VALID_TOKEN"}):
+            with patch("src.economics.durable_storage.get_durable_storage_engine", return_value=mock_storage):
+                validation_module.handler.do_POST(dummy)
+                self.assertEqual(dummy.response_status, 200)
+
+    def test_20_case_insensitive_header_lowercase(self):
+        """Verify x-internal-test-token (lowercase as passed by Vercel) accepts valid token."""
+        body = json.dumps({"confirm_internal_test": True}).encode('utf-8')
+        dummy = DummyHTTPHandler(
+            headers={"content-length": str(len(body)), "x-internal-test-token": "VALID_TOKEN"},
+            body_bytes=body
+        )
+        mock_storage = self._setup_mock_engine(MagicMock())
+        with patch.dict(os.environ, {"INTERNAL_STORAGE_VALIDATION_TOKEN": "VALID_TOKEN"}):
+            with patch("src.economics.durable_storage.get_durable_storage_engine", return_value=mock_storage):
+                validation_module.handler.do_POST(dummy)
+                self.assertEqual(dummy.response_status, 200)
+
+    def test_21_case_insensitive_header_mixedcase(self):
+        """Verify x-InTeRnAl-tEsT-tOkEn (mixed case) accepts valid token."""
+        body = json.dumps({"confirm_internal_test": True}).encode('utf-8')
+        dummy = DummyHTTPHandler(
+            headers={"Content-Length": str(len(body)), "x-InTeRnAl-tEsT-tOkEn": "VALID_TOKEN"},
+            body_bytes=body
+        )
+        mock_storage = self._setup_mock_engine(MagicMock())
+        with patch.dict(os.environ, {"INTERNAL_STORAGE_VALIDATION_TOKEN": "VALID_TOKEN"}):
+            with patch("src.economics.durable_storage.get_durable_storage_engine", return_value=mock_storage):
+                validation_module.handler.do_POST(dummy)
+                self.assertEqual(dummy.response_status, 200)
+
 
 if __name__ == "__main__":
     unittest.main()
+

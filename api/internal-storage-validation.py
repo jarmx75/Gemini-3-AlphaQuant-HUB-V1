@@ -61,15 +61,15 @@ def _get_header_val(headers, name: str) -> str:
     """Case-insensitive header value extractor supporting both HTTPMessage and dict."""
     if not headers:
         return ""
+    name_lower = name.lower()
+    if hasattr(headers, "items"):
+        for k, v in headers.items():
+            if str(k).lower() == name_lower:
+                return str(v).strip()
     if hasattr(headers, "get"):
-        val = headers.get(name, None)
+        val = headers.get(name, None) or headers.get(name_lower, None)
         if val is not None:
             return str(val).strip()
-    if isinstance(headers, dict):
-        name_lower = name.lower()
-        for k, v in headers.items():
-            if k.lower() == name_lower:
-                return str(v).strip()
     return ""
 
 
