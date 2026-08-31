@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 # Allowed Providers
-ALLOWED_PROVIDERS = {"CLOUDFLARE_R2", "AWS_S3", "BACKBLAZE_B2", "DIGITALOCEAN_SPACES", "MINIO", "S3_COMPATIBLE", "GOOGLE_DRIVE"}
+ALLOWED_PROVIDERS = {"CLOUDFLARE_R2", "AWS_S3", "BACKBLAZE_B2", "DIGITALOCEAN_SPACES", "MINIO", "S3_COMPATIBLE", "GOOGLE_DRIVE", "GOOGLE_DRIVE_OAUTH"}
 PLACEHOLDER_VALUES = {"REDACTED", "YOUR_KEY", "YOUR_SECRET", "YOUR_ENDPOINT", "YOUR_BUCKET", "YOUR_REGION", ""}
 
 
@@ -238,6 +238,9 @@ def get_durable_storage_engine(env_override: Optional[Dict[str, str]] = None) ->
     if provider == "GOOGLE_DRIVE":
         from src.economics.google_drive_storage import get_google_drive_storage_engine
         return get_google_drive_storage_engine(env_override)
+    elif provider == "GOOGLE_DRIVE_OAUTH":
+        from src.economics.google_drive_oauth_storage import GoogleDriveOAuthStorageEngine
+        return GoogleDriveOAuthStorageEngine()
 
     global _storage_engine_instance
     if env_override is not None:
