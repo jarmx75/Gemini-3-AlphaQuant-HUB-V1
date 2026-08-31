@@ -43,6 +43,10 @@ class GoogleDriveStorageEngine:
         return val
 
     @property
+    def provider(self) -> str:
+        return "GOOGLE_DRIVE"
+
+    @property
     def folder_id(self) -> str:
         return self._get_var("GOOGLE_DRIVE_FOLDER_ID")
 
@@ -137,7 +141,13 @@ class GoogleDriveStorageEngine:
         Generates safe, sanitized, non-predictable Google Drive file name.
         Prevents path traversal and isolates files by case_id.
         """
-        sanitized_case = re.sub(r'[^a-zA-Z0-9_\-]', '', case_id) or f"case_{uuid.uuid4().hex[:8]}"
+        prefix = ""
+        clean_case = case_id
+        if case_id.startswith("internal-tests/"):
+            prefix = "internal-tests/"
+            clean_case = case_id[15:]
+
+        sanitized_case = re.sub(r'[^a-zA-Z0-9_\-]', '', clean_case) or f"case_{uuid.uuid4().hex[:8]}"
         sanitized_type = re.sub(r'[^a-zA-Z0-9_\-]', '', file_type) or "data"
 
         ext = ".data"
@@ -147,7 +157,7 @@ class GoogleDriveStorageEngine:
                 ext = raw_ext
 
         random_suffix = uuid.uuid4().hex[:12]
-        return f"{sanitized_case}_{sanitized_type}_{random_suffix}{ext}"
+        return f"{prefix}{sanitized_case}_{sanitized_type}_{random_suffix}{ext}"
 
     def store_upload(self, case_id: str, data: bytes, raw_filename: str = "") -> Dict[str, Any]:
         """
@@ -171,7 +181,7 @@ class GoogleDriveStorageEngine:
             from io import BytesIO
 
             creds_dict = self._parse_service_account_credentials()
-            scopes = ['https://www.googleapis.com/auth/drive.file']
+            scopes = ['https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/drive.readonly']
             credentials = service_account.Credentials.from_service_account_info(creds_dict, scopes=scopes)
             drive_service = build('drive', 'v3', credentials=credentials)
 

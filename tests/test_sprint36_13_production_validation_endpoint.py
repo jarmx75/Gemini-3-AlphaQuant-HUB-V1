@@ -37,7 +37,7 @@ from src.economics.controlled_internal_test_runner import ControlledInternalTest
 from src.economics.acquisition_forensic_audit import AcquisitionForensicAuditEngine
 
 
-class DummyHTTPHandler:
+class DummyHTTPHandler(validation_module.handler):
     """Mock HTTP handler for testing BaseHTTPRequestHandler methods."""
 
     def __init__(self, headers=None, body_bytes=b""):
@@ -249,6 +249,77 @@ class TestSprint3613ProductionValidationEndpoint(unittest.TestCase):
     def test_12_zero_external_publication_attempts(self):
         """Verify zero external publication attempts are made during test execution."""
         self.assertIsNone(os.environ.get("ALLOW_EXTERNAL_PUBLICATION"))
+
+    def test_13_unhandled_exception_returns_safe_json(self):
+        """Verify an unhandled exception during upload returns safe JSON response, not generic HTTP 500 crash."""
+        body = json.dumps({"confirm_internal_test": True}).encode('utf-8')
+        dummy = DummyHTTPHandler(
+            headers={"Content-Length": str(len(body)), "X-Internal-Test-Token": "VALID_TOKEN"},
+            body_bytes=body
+        )
+        mock_storage = MagicMock()
+        mock_storage.is_configured.return_value = True
+        mock_storage.health_check.return_value = "HEALTHY"
+        mock_storage.store_upload.side_effect = RuntimeError("Google Drive API connection lost")
+
+        with patch.dict(os.environ, {"INTERNAL_STORAGE_VALIDATION_TOKEN": "VALID_TOKEN"}):
+            with patch("src.economics.durable_storage.get_durable_storage_engine", return_value=mock_storage):
+                validation_module.handler.do_POST(dummy)
+                self.assertEqual(dummy.response_status, 503)
+                res = json.loads(dummy.wfile.getvalue().decode('utf-8'))
+                self.assertEqual(res["error"], "INTERNAL_VALIDATION_FAILED")
+                self.assertEqual(res["detail"], "STORAGE_WRITE_FAILED")
+                self.assertNotIn("Google Drive API connection lost", res.get("message", ""))
+
+    def test_14_idempotency_prevents_duplicate_creation(self):
+        """Verify submitting the same internal_test_run_id twice returns ALREADY_COMPLETED without duplicating objects."""
+        body = json.dumps({"confirm_internal_test": True, "internal_test_run_id": "run_idempotent_101"}).encode('utf-8')
+
+        mock_storage = MagicMock()
+        mock_storage.is_configured.return_value = True
+        mock_storage.health_check.return_value = "HEALTHY"
+        mock_storage.provider = "GOOGLE_DRIVE"
+        mock_storage.store_upload.return_value = {"storage_reference": "gdrive://internal-tests/f1"}
+        mock_storage.store_report.return_value = {"storage_reference": "gdrive://internal-tests/r1"}
+        mock_storage.store_certificate.return_value = {"storage_reference": "gdrive://internal-tests/c1"}
+
+        with patch.dict(os.environ, {"INTERNAL_STORAGE_VALIDATION_TOKEN": "VALID_TOKEN"}):
+            with patch("src.economics.durable_storage.get_durable_storage_engine", return_value=mock_storage):
+                # First run
+                dummy1 = DummyHTTPHandler(
+                    headers={"Content-Length": str(len(body)), "X-Internal-Test-Token": "VALID_TOKEN"},
+                    body_bytes=body
+                )
+                validation_module.handler.do_POST(dummy1)
+                self.assertEqual(dummy1.response_status, 200)
+
+                # Second run with same run_id
+                dummy2 = DummyHTTPHandler(
+                    headers={"Content-Length": str(len(body)), "X-Internal-Test-Token": "VALID_TOKEN"},
+                    body_bytes=body
+                )
+                validation_module.handler.do_POST(dummy2)
+                self.assertEqual(dummy2.response_status, 200)
+                res2 = json.loads(dummy2.wfile.getvalue().decode('utf-8'))
+                self.assertEqual(res2["idempotency_status"], "ALREADY_COMPLETED")
+                self.assertEqual(res2["objects_created_count"], 0)
+
+    def test_15_previous_attempt_unknown_blocks_rewrite(self):
+        """Verify state PREVIOUS_ATTEMPT_UNKNOWN blocks automatic re-write."""
+        validation_module.IDEMPOTENCY_CACHE["run_unknown_202"] = {"state": "UNKNOWN"}
+
+        body = json.dumps({"confirm_internal_test": True, "internal_test_run_id": "run_unknown_202"}).encode('utf-8')
+        dummy = DummyHTTPHandler(
+            headers={"Content-Length": str(len(body)), "X-Internal-Test-Token": "VALID_TOKEN"},
+            body_bytes=body
+        )
+
+        with patch.dict(os.environ, {"INTERNAL_STORAGE_VALIDATION_TOKEN": "VALID_TOKEN"}):
+            validation_module.handler.do_POST(dummy)
+            self.assertEqual(dummy.response_status, 503)
+            res = json.loads(dummy.wfile.getvalue().decode('utf-8'))
+            self.assertEqual(res["error"], "PREVIOUS_ATTEMPT_UNKNOWN")
+            self.assertEqual(res["idempotency_status"], "PREVIOUS_ATTEMPT_UNKNOWN")
 
 
 if __name__ == "__main__":
