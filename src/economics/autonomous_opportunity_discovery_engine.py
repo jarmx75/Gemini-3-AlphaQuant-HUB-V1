@@ -18,9 +18,11 @@ import uuid
 import hashlib
 from pathlib import Path
 from datetime import datetime, timezone
-from typing import Dict, Any, List, Optional, Tuple
+from typing import List, Dict, Any, Optional, Tuple
+from src.economics.self_identity_config import SelfIdentityConfig
 
 logger = logging.getLogger(__name__)
+
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
@@ -93,61 +95,256 @@ def get_github_token() -> Optional[str]:
 
 
 class GitHubAdapter(BaseChannelAdapter):
+    """
+    Real Read-Only GitHub Search API Discovery Adapter.
+    Performs HTTP GET requests to https://api.github.com/search/issues to discover
+    recent, open third-party quantitative issues.
+    Executes ZERO POST/PUT/DELETE requests.
+    """
+
+    QUERY_ROTATION = [
+        "backtest overfitting",
+        "lookahead bias",
+        "overfitting trading strategy",
+        "Sharpe ratio out of sample",
+        "slippage backtest",
+        "walk forward optimization"
+    ]
+
     def __init__(self):
         self.adapter_name = "GITHUB"
         self.discovery_supported = True
         self.qualification_supported = True
         self.content_generation_supported = True
-        self.automated_submission_supported = True
-        self.publication_confirmation_supported = True
-        self.capability_mode = "AUTOMATION_READY"
-        self.discovery_capability = True
-        self.publication_capability = True
-        self.reply_capability = True
-        self.rate_limit_per_hour = 30
-        self.policy_constraints = ["MAX_1_COMMENT_PER_ISSUE", "NO_SPAM", "TECHNICAL_RELEVANCE_ONLY"]
-        self.authentication_state = "AUTHENTICATED"
+        self.automated_submission_supported = False  # Strict read-only discovery
+        self.publication_confirmation_supported = False
+        self.capability_mode = "READ_ONLY_DISCOVERY"
+    MAX_API_REQUESTS_PER_RUN = 3
+    MAX_RESULTS_PER_REQUEST = 30
+    MAX_VERIFIED_PROSPECTS_PER_RUN = 10
 
-    def discover_opportunities(self) -> List[Dict[str, Any]]:
-        get_github_token()
-        return [
-            {
-                "channel": "GITHUB",
-                "category": "TECHNICAL_QUESTION",
-                "source_url": "https://github.com/jarmx75/Gemini-3-AlphaQuant-HUB-V1/issues/1",
-                "context": "User reporting severe Sharpe ratio degradation after OOS split in Python strategy engine",
-                "thread_id": "github_jarmx75_hub_1",
-                "repository": "jarmx75/Gemini-3-AlphaQuant-HUB-V1",
-                "issue_number": 1,
-                "comments_url": "https://api.github.com/repos/jarmx75/Gemini-3-AlphaQuant-HUB-V1/issues/1/comments",
-                "author": "jarmx75",
-                "context_score": 92,
-                "intent_score": 88,
-                "commercial_score": 85,
-                "promotion_risk": 10,
-                "channel_score": 90,
-                "time_to_revenue": 80,
-                "automation_score": 95,
-                "competition_score": 15
-            },
-            {
-                "channel": "GITHUB",
-                "category": "REPOS",
-                "source_url": "https://github.com/stat-arb/pairs-trading-engine/issues/42",
-                "context": "Question on statistical arbitrage cointegration test stability across market regimes",
-                "thread_id": "github_stat_arb_42",
-                "repository": "stat-arb/pairs-trading-engine",
-                "author": "quant_researcher_x",
-                "context_score": 85,
-                "intent_score": 78,
-                "commercial_score": 80,
-                "promotion_risk": 15,
-                "channel_score": 88,
-                "time_to_revenue": 70,
-                "automation_score": 90,
-                "competition_score": 20
+    def __init__(self):
+        self.adapter_name = "GITHUB"
+        self.discovery_supported = True
+        self.qualification_supported = True
+        self.content_generation_supported = True
+        self.automated_submission_supported = False  # Strict read-only discovery
+        self.publication_confirmation_supported = False
+        self.capability_mode = "READ_ONLY_DISCOVERY"
+        self.discovery_capability = True
+        self.publication_capability = False
+        self.reply_capability = False
+        self.rate_limit_per_hour = 30
+        self.policy_constraints = ["READ_ONLY_GET_ONLY", "NO_AUTOMATED_PUBLICATION", "SELF_TARGET_EXCLUSION"]
+        self.authentication_state = "AUTHENTICATED" if get_github_token() else "ANONYMOUS_READ"
+
+        self.telemetry = {
+            "github_live_search_enabled": True,
+            "github_api_requests_made_current_cycle": 0,
+            "github_api_results_received_current_cycle": 0,
+            "github_http_200_responses_current_cycle": 0,
+            "github_external_sources_verified_current_cycle": 0,
+            "github_drafts_created_current_cycle": 0,
+            "github_api_error_current_cycle": None,
+            "github_api_rate_limit_status_current_cycle": {"remaining": 60, "limit": 60, "reset": None},
+            "github_self_targets_blocked": 0,
+            "github_duplicates_blocked": 0,
+            "github_low_relevance_blocked": 0,
+            "github_api_requests_made_total": 0,
+            "github_api_results_received_total": 0
+        }
+
+    def reset_current_cycle_telemetry(self):
+        self.telemetry["github_api_requests_made_current_cycle"] = 0
+        self.telemetry["github_api_results_received_current_cycle"] = 0
+        self.telemetry["github_http_200_responses_current_cycle"] = 0
+        self.telemetry["github_external_sources_verified_current_cycle"] = 0
+        self.telemetry["github_drafts_created_current_cycle"] = 0
+        self.telemetry["github_api_error_current_cycle"] = None
+        self.telemetry["github_api_rate_limit_status_current_cycle"] = {"remaining": 60, "limit": 60, "reset": None}
+
+    def discover_opportunities(self, max_queries: int = 1, max_per_query: int = 30) -> List[Dict[str, Any]]:
+        """
+        Executes HTTP GET queries to https://api.github.com/search/issues.
+        Applies hard caps: max 3 requests per run, max 30 items per request, max 10 verified prospects.
+        """
+        import urllib.request
+        import urllib.parse
+
+        self.reset_current_cycle_telemetry()
+        max_queries = min(max_queries, self.MAX_API_REQUESTS_PER_RUN)
+        max_per_query = min(max_per_query, self.MAX_RESULTS_PER_REQUEST)
+
+        token = get_github_token()
+        self.authentication_state = "AUTHENTICATED" if token else "ANONYMOUS_READ"
+
+        opportunities = []
+        now_utc = datetime.now(timezone.utc).isoformat()
+        
+        query_idx = self.telemetry["github_api_requests_made_total"] % len(self.QUERY_ROTATION)
+        query_term = self.QUERY_ROTATION[query_idx]
+
+        encoded_query = urllib.parse.quote(f'is:issue is:open type:issue "{query_term}"')
+        api_endpoint = f"https://api.github.com/search/issues?q={encoded_query}&sort=created&order=desc&per_page={max_per_query}"
+
+        headers = {
+            "User-Agent": "Trading-Autonomous-System-Audit-Engine/1.0",
+            "Accept": "application/vnd.github.v3+json"
+        }
+        if token:
+            headers["Authorization"] = f"token {token}"
+
+        req = urllib.request.Request(api_endpoint, headers=headers, method="GET")
+        self.telemetry["github_api_requests_made_current_cycle"] += 1
+        self.telemetry["github_api_requests_made_total"] += 1
+
+        try:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                rem = resp.headers.get("X-RateLimit-Remaining")
+                lim = resp.headers.get("X-RateLimit-Limit")
+                reset = resp.headers.get("X-RateLimit-Reset")
+                rate_status = {
+                    "remaining": int(rem) if rem and rem.isdigit() else "UNKNOWN",
+                    "limit": int(lim) if lim and lim.isdigit() else "UNKNOWN",
+                    "reset": reset,
+                    "http_status": resp.status
+                }
+                self.telemetry["github_api_rate_limit_status_current_cycle"] = rate_status
+
+                if resp.status == 200:
+                    self.telemetry["github_http_200_responses_current_cycle"] += 1
+                    raw_data = resp.read().decode("utf-8")
+                    data = json.loads(raw_data)
+                    items = data.get("items", [])
+                    self.telemetry["github_api_results_received_current_cycle"] = len(items)
+                    self.telemetry["github_api_results_received_total"] += len(items)
+
+                    for item in items:
+                        if self.telemetry["github_external_sources_verified_current_cycle"] >= self.MAX_VERIFIED_PROSPECTS_PER_RUN:
+                            break
+                        cand = self._parse_github_issue_item(item, query_term, now_utc)
+                        if cand:
+                            opportunities.append(cand)
+        except urllib.error.HTTPError as e:
+            err_msg = f"HTTPError {e.code}: {e.reason}"
+            self.telemetry["github_api_error_current_cycle"] = err_msg
+            logger.warning(f"GitHub Search API HTTPError {e.code} for query '{query_term}': {e}")
+            status_label = "RATE_LIMITED" if e.code in [403, 429] else ("UNAUTHORIZED" if e.code == 401 else f"HTTP_{e.code}")
+            self.telemetry["github_api_rate_limit_status_current_cycle"] = {
+                "status": status_label,
+                "http_code": e.code,
+                "reason": e.reason
             }
-        ]
+        except Exception as e:
+            err_msg = str(e)
+            self.telemetry["github_api_error_current_cycle"] = err_msg
+            self.telemetry["github_api_rate_limit_status_current_cycle"] = {
+                "status": "NETWORK_ERROR",
+                "reason": err_msg
+            }
+            logger.warning(f"GitHub Search API Exception for query '{query_term}': {e}")
+
+        # Mandatory Invariant Enforcement: If HTTP 200 was not received, 0 verified external sources
+        if self.telemetry["github_http_200_responses_current_cycle"] == 0:
+            self.telemetry["github_external_sources_verified_current_cycle"] = 0
+            self.telemetry["github_drafts_created_current_cycle"] = 0
+            return []
+
+        return opportunities
+
+    def _parse_github_issue_item(self, item: Dict[str, Any], query_term: str, now_utc: str) -> Optional[Dict[str, Any]]:
+        """Parses a single issue item from GitHub API GET response into structured candidate opportunity."""
+        html_url = item.get("html_url", "")
+        repo_url = item.get("repository_url", "")
+        issue_number = item.get("number", 0)
+        title = item.get("title", "")
+        body = item.get("body", "") or ""
+        author = item.get("user", {}).get("login", "")
+
+        repo_full_name = ""
+        if "/repos/" in repo_url:
+            repo_full_name = repo_url.split("/repos/")[-1]
+
+        target_identifier = f"github_{repo_full_name.replace('/', '_')}_{issue_number}" if repo_full_name else f"github_issue_{issue_number}"
+
+        candidate = {
+            "channel": "GITHUB",
+            "category": "TECHNICAL_QUESTION",
+            "source_url": html_url,
+            "target_identifier": target_identifier,
+            "repository": repo_full_name,
+            "issue_number": issue_number,
+            "comments_url": item.get("comments_url", ""),
+            "author": author,
+            "context": f"{title} | {body[:200]}",
+            "source_trust_classification": "VERIFIED_EXTERNAL_SOURCE",
+            "is_live_api_verified": True,
+            "verification_proof": {
+                "github_api_endpoint": "https://api.github.com/search/issues",
+                "fetched_at_utc": now_utc,
+                "repository_full_name": repo_full_name,
+                "issue_number": issue_number,
+                "html_url": html_url,
+                "api_url": item.get("url", ""),
+                "issue_created_at": item.get("created_at"),
+                "issue_updated_at": item.get("updated_at"),
+                "query_term": query_term,
+                "http_status": 200,
+                "source_trust_classification": "VERIFIED_EXTERNAL_SOURCE"
+            }
+        }
+
+        scores = self._score_issue_relevance(title, body)
+        candidate.update(scores)
+
+        is_self, self_reason, ownership = SelfIdentityConfig.is_self_target(candidate)
+        if is_self:
+            candidate["self_target_flag"] = True
+            candidate["ownership_classification"] = "SELF"
+            candidate["prospect_status"] = "BLOCKED_SELF_TARGET"
+            candidate["source_trust_classification"] = "INTERNAL_OR_SELF"
+            self.telemetry["github_self_targets_blocked"] += 1
+            return candidate
+
+        candidate["self_target_flag"] = False
+        candidate["ownership_classification"] = "THIRD_PARTY"
+
+        if candidate["context_score"] < 50 or candidate["intent_score"] < 40:
+            candidate["prospect_status"] = "BLOCKED_LOW_RELEVANCE"
+            self.telemetry["github_low_relevance_blocked"] += 1
+            return candidate
+
+        self.telemetry["github_external_sources_verified_current_cycle"] += 1
+        return candidate
+
+    def _score_issue_relevance(self, title: str, body: str) -> Dict[str, int]:
+        """Dynamically computes context, intent, and promo risk scores for GitHub issue."""
+        text = f"{title} {body}".lower()
+        context_score = 30
+        intent_score = 30
+        promo_risk = 10
+
+        if any(w in text for w in ["overfitting", "backtest", "sharpe", "lookahead", "out-of-sample", "walk forward", "quant"]):
+            context_score += 45
+        if any(w in text for w in ["slippage", "transaction costs", "market impact", "friction", "cointegration", "model", "trading"]):
+            context_score += 25
+
+        if any(w in text for w in ["how to", "issue", "bug", "wrong", "degradation", "failed", "error", "problem", "audit", "research"]):
+            intent_score += 40
+
+        if any(w in text for w in ["buy now", "100% win rate", "guaranteed profit", "telegram", "discord link"]):
+            promo_risk += 70
+
+        return {
+            "context_score": min(context_score, 100),
+            "intent_score": min(intent_score, 100),
+            "commercial_score": 75,
+            "promotion_risk": min(promo_risk, 100),
+            "channel_score": 90,
+            "time_to_revenue": 70,
+            "automation_score": 95,
+            "competition_score": 15
+        }
 
 
 class RedditAdapter(BaseChannelAdapter):
@@ -468,14 +665,19 @@ class OpportunityScorer:
         return PublicationGuardResult(False, "TIER_C_BLOCK", "REJECTED_TIER_C")
 
 
+from src.economics.prospect_pipeline_engine import ProspectPipelineEngine
+
+
 class AutonomousOpportunityDiscoveryEngine:
     """
     Continuous Opportunity Discovery Engine.
     Queries all 9 channel adapters, scores candidate opportunities,
-    enforces cooldown rules, and persists entries into opportunity_pool.jsonl.
+    enforces cooldown rules, prospect pipeline filtering (self-targeting & deduplication),
+    and persists entries into opportunity_pool.jsonl.
     """
 
     def __init__(self):
+        self.prospect_engine = ProspectPipelineEngine()
         self.adapters: List[BaseChannelAdapter] = [
             GitHubAdapter(),
             RedditAdapter(),
@@ -654,7 +856,20 @@ class AutonomousOpportunityDiscoveryEngine:
                     for line in f:
                         line = line.strip()
                         if line:
-                            entries.append(json.loads(line))
+                            opp = json.loads(line)
+                            is_self, _, _ = SelfIdentityConfig.is_self_target(opp)
+                            if is_self:
+                                opp["self_target_flag"] = True
+                                opp["ownership_classification"] = "SELF"
+                                opp["prospect_status"] = "BLOCKED_SELF_TARGET"
+                                opp["status"] = "BLOCKED"
+                                opp["action_tier"] = "TIER_C_BLOCK"
+                                opp["tier"] = "TIER_C_BLOCK"
+                            elif not opp.get("prospect_status"):
+                                opp["prospect_status"] = "BLOCKED_TEMPLATE_OR_SYNTHETIC"
+                                opp["source_trust_classification"] = "TEMPLATE_OR_SYNTHETIC"
+                                opp["status"] = "BLOCKED"
+                            entries.append(opp)
             except Exception:
                 pass
         return entries
@@ -676,12 +891,13 @@ class AutonomousOpportunityDiscoveryEngine:
                     f.write(json.dumps(opp) + "\n")
 
     def discover_all_opportunities(self) -> List[Dict[str, Any]]:
-        """Queries all adapters, calculates OpportunityScore, and persists new entries."""
+        """Queries all adapters, calculates OpportunityScore, runs prospect pipeline, and persists new entries."""
         now_utc = datetime.now(timezone.utc).isoformat()
         new_opportunities = []
 
         existing_pool = self.load_opportunity_pool()
         existing_urls = set(e.get("source_url") for e in existing_pool if e.get("source_url"))
+        history_state = self.prospect_engine.load_processed_targets_history()
 
         for adapter in self.adapters:
             try:
@@ -691,40 +907,47 @@ class AutonomousOpportunityDiscoveryEngine:
                     if source_url in existing_urls:
                         continue
 
+                    # Process candidate through Prospect Pipeline (self-target, deduplication, local draft)
+                    prospect_rec, draft_rec = self.prospect_engine.process_candidate_opportunity(item, history_state)
+
                     score = OpportunityScorer.calculate_score(item)
                     item["score"] = score
-                    item["opportunity_id"] = f"opp_{uuid.uuid4().hex[:8]}"
+                    item["opportunity_id"] = prospect_rec.get("prospect_id", f"opp_{uuid.uuid4().hex[:8]}")
                     item["timestamp"] = now_utc
-                    item["status"] = "DISCOVERED"
-                    item["next_action"] = "QUALIFY"
-                    item["last_action"] = "DISCOVER"
-                    item["cooldown_until"] = None
+                    item["ownership_classification"] = prospect_rec.get("ownership_classification", "THIRD_PARTY")
+                    item["self_target_flag"] = prospect_rec.get("self_target_flag", False)
+                    item["duplicate_flag"] = prospect_rec.get("duplicate_flag", False)
+                    item["duplicate_reason"] = prospect_rec.get("duplicate_reason")
+                    item["prospect_status"] = prospect_rec.get("status")
 
-                    # Publication guard check
-                    thread_id = item.get("thread_id", "")
-                    thread_comments = len([e for e in existing_pool if e.get("thread_id") == thread_id and e.get("status") == "PUBLISHED"])
-                    res = OpportunityScorer.evaluate_publication_guards(item, existing_comments_in_thread=thread_comments, channel_adapter=adapter)
-                    is_qual, guard_reason = res[0], res[1]
-
-                    action_tier = getattr(res, "action_tier", "TIER_C_BLOCK")
-                    item["action_tier"] = action_tier
-                    item["tier"] = action_tier
-                    item["channel_capability"] = adapter.capability_mode
-                    item["rejection_reason"] = guard_reason if not is_qual else "NONE"
-
-                    if action_tier == "TIER_A_AUTO_PUBLISH":
-                        item["final_decision"] = "AUTO_PUBLISH"
-                    elif action_tier == "TIER_B_VALUE_CONTRIBUTION":
-                        item["final_decision"] = "VALUE_CONTRIBUTION"
-                    else:
+                    if prospect_rec.get("status") == "BLOCKED_SELF_TARGET":
+                        item["status"] = "BLOCKED"
+                        item["next_action"] = "BLOCKED_SELF_TARGET"
+                        item["rejection_reason"] = "BLOCKED_SELF_TARGET"
+                        item["action_tier"] = "TIER_C_BLOCK"
+                        item["tier"] = "TIER_C_BLOCK"
                         item["final_decision"] = "BLOCK"
-
-                    if is_qual:
+                    elif prospect_rec.get("status") == "BLOCKED_DUPLICATE":
+                        item["status"] = "BLOCKED"
+                        item["next_action"] = "BLOCKED_DUPLICATE"
+                        item["rejection_reason"] = "BLOCKED_DUPLICATE"
+                        item["action_tier"] = "TIER_C_BLOCK"
+                        item["tier"] = "TIER_C_BLOCK"
+                        item["final_decision"] = "BLOCK"
+                    elif prospect_rec.get("status") in ["ELIGIBLE_FOR_DRAFT", "DRAFT_CREATED"]:
                         item["status"] = "QUALIFIED"
-                        item["next_action"] = "CONTRIBUTE"
+                        item["next_action"] = "PENDING_HUMAN_APPROVAL"
+                        item["action_tier"] = "TIER_B_VALUE_CONTRIBUTION"
+                        item["tier"] = "TIER_B_VALUE_CONTRIBUTION"
+                        item["final_decision"] = "VALUE_CONTRIBUTION"
+                        item["rejection_reason"] = "NONE"
                     else:
                         item["status"] = "BLOCKED"
-                        item["next_action"] = guard_reason
+                        item["next_action"] = prospect_rec.get("status", "BLOCKED")
+                        item["rejection_reason"] = prospect_rec.get("status", "BLOCKED")
+                        item["action_tier"] = "TIER_C_BLOCK"
+                        item["tier"] = "TIER_C_BLOCK"
+                        item["final_decision"] = "BLOCK"
 
                     new_opportunities.append(item)
                     existing_urls.add(source_url)
