@@ -1,4 +1,9 @@
 {
+  "version": 2,
+  "builds": [
+    { "src": "api/**/*.py", "use": "@vercel/python" },
+    { "src": "public/**/*", "use": "@vercel/static" }
+  ],
   "crons": [
     {
       "path": "/api/revenue-scheduler",
@@ -16,12 +21,11 @@
       ]
     }
   ],
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/success", "destination": "/success.html" },
-    { "source": "/cancel", "destination": "/cancel.html" },
-    { "source": "/sample", "destination": "/sample.html" }
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/success", "dest": "/public/success.html" },
+    { "src": "/cancel", "dest": "/public/cancel.html" },
+    { "src": "/sample", "dest": "/public/sample.html" },
+    { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
-
-
