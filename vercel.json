@@ -15,11 +15,5 @@
         { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Order-ID" }
       ]
     }
-  ],
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/success", "destination": "/success.html" },
-    { "source": "/cancel", "destination": "/cancel.html" },
-    { "source": "/sample", "destination": "/sample.html" }
   ]
 }

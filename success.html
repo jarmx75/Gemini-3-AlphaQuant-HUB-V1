@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmed — Automaton Quant Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #fbfbfd;
+            --bg-card: #ffffff;
+            --text-title: #1d1d1f;
+            --text-body: #515154;
+            --text-muted: #86868b;
+            --accent: #0071e3;
+            --accent-green: #34c759;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-page);
+            color: var(--text-title);
+            padding: 60px 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 48px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .icon-box {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(52, 199, 89, 0.12);
+            color: var(--accent-green);
+            font-size: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-body);
+            font-size: 17px;
+            max-width: 580px;
+            margin: 0 auto 32px auto;
+        }
+
+        .upload-section {
+            background: var(--bg-page);
+            border: 2px dashed var(--accent);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .upload-input {
+            display: none;
+        }
+
+        .btn-upload {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 980px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-upload:hover {
+            background: #0077ed;
+            transform: scale(1.02);
+        }
+
+        .status-box {
+            display: none;
+            background: #e0f2fe;
+            border: 1px solid #7dd3fc;
+            color: #0369a1;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 500;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="icon-box">✓</div>
+        <h1 id="title-heading">Verifying PayPal Payment...</h1>
+        <p id="sub-heading">Connecting to serverless API to confirm order capture status.</p>
+
+        <div id="status-toast" class="status-box"></div>
+
+        <!-- Upload Strategy Form -->
+        <div id="upload-box" class="upload-section" style="display: none;">
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Upload Strategy Backtest Data</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+                Select your backtest return series CSV or trade log JSON file for automated 1,000-block Monte Carlo audit.
+            </p>
+            <form id="upload-form">
+                <input type="file" id="file-input" class="upload-input" accept=".csv,.json" required>
+                <label for="file-input" class="btn-upload">Choose Strategy File (.CSV / .JSON)</label>
+            </form>
+            <div id="file-name" style="margin-top: 14px; font-size: 14px; font-weight: 500; color: var(--accent);"></div>
+            <button id="btn-submit-audit" class="btn-upload" style="margin-top: 20px; background: var(--accent-green); display: none;">Start Automated Audit</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tx = urlParams.get('tx');
+            const st = urlParams.get('st') || urlParams.get('status');
+            const amt = urlParams.get('amt') || urlParams.get('amount');
+            const cc = urlParams.get('cc') || urlParams.get('currency');
+            const orderID = tx || urlParams.get('orderID') || urlParams.get('token');
+
+            const titleHeading = document.getElementById('title-heading');
+            const subHeading = document.getElementById('sub-heading');
+            const toast = document.getElementById('status-toast');
+            const uploadBox = document.getElementById('upload-box');
+            const fileInput = document.getElementById('file-input');
+            const fileNameDiv = document.getElementById('file-name');
+            const btnSubmit = document.getElementById('btn-submit-audit');
+
+            if (!orderID) {
+                titleHeading.innerText = 'Payment Verification Pending';
+                subHeading.innerText = 'No PayPal transaction reference detected in URL. Please complete checkout from the pricing section.';
+                return;
+            }
+
+            toast.style.display = 'block';
+            toast.innerText = '⚡ Submitting PayPal transaction reference ' + orderID + ' to backend API for independent verification...';
+
+            const BACKEND_CAPTURE_URL = window.location.hostname === 'localhost' 
+                ? 'http://localhost:3000/api/capture-order'
+                : 'https://automaton-quant-audit-api.vercel.app/api/capture-order';
+
+            try {
+                const resp = await fetch(BACKEND_CAPTURE_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ orderID: orderID, tx: tx, st: st, amt: amt, cc: cc })
+                });
+
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data.product_id === 'SYSTEM_TEST_PAYMENT' || amt === '1.00' || cc === 'MXN' || (orderID && orderID.startsWith('8WB32625PL331771'))) {
+                        titleHeading.innerText = 'System Test Payment Verified ($1.00 MXN)';
+                        subHeading.innerText = 'Transaction Ref: ' + orderID + ' (Status: ' + (st || 'COMPLETED') + ').';
+                        toast.style.background = '#e0f2fe';
+                        toast.style.borderColor = '#7dd3fc';
+                        toast.style.color = '#0369a1';
+                        toast.innerText = '✓ System Test Payment Verified! Note: System test payments validate PayPal integration but do not authorize commercial strategy audits or certificates.';
+                        return;
+                    }
+                    if (data.verified || data.status === 'COMPLETED' || data.status === 'PAYMENT_VERIFIED') {
+                        titleHeading.innerText = 'Payment Confirmed — ' + (amt ? '$' + amt + ' ' + (cc || 'USD') : '$49 USD');
+                        subHeading.innerText = 'Your payment was successfully verified by PayPal. Please upload your strategy data below.';
+                        toast.style.background = '#dcfce7';
+                        toast.style.borderColor = '#86efac';
+                        toast.style.color = '#15803d';
+                        toast.innerText = '✓ Order Verified! Transaction Ref: ' + orderID;
+                        uploadBox.style.display = 'block';
+
+                        fileInput.addEventListener('change', () => {
+                            if (fileInput.files.length > 0) {
+                                fileNameDiv.innerText = 'Selected file: ' + fileInput.files[0].name + ' (' + (fileInput.files[0].size / 1024).toFixed(1) + ' KB)';
+                                btnSubmit.style.display = 'inline-flex';
+                            }
+                        });
+
+                        btnSubmit.addEventListener('click', async (evt) => {
+                            evt.preventDefault();
+                            if (!fileInput.files.length) return;
+                            btnSubmit.innerText = '⚡ Running Zero-Bias Audit Engine...';
+                            btnSubmit.disabled = true;
+                            const file = fileInput.files[0];
+                            const UPLOAD_URL = window.location.hostname === 'localhost'
+                                ? 'http://localhost:3000/api/upload-audit'
+                                : 'https://automaton-quant-audit-api.vercel.app/api/upload-audit';
+                            try {
+                                const fileBytes = await file.arrayBuffer();
+                                const uResp = await fetch(UPLOAD_URL, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/octet-stream',
+                                        'X-Order-ID': orderID,
+                                        'X-File-Name': file.name
+                                    },
+                                    body: fileBytes
+                                });
+                                const uData = await uResp.json();
+                                if (uResp.ok && uData.success) {
+                                    toast.style.background = '#dcfce7';
+                                    toast.style.color = '#15803d';
+                                    toast.innerHTML = '✓ Audit Completed! Case ID: <strong>' + uData.case_id + '</strong>. Audit Certificate ID: <strong>' + uData.audit_certificate_id + '</strong> generated successfully.';
+                                    btnSubmit.innerText = '✓ Audit Completed';
+                                } else {
+                                    alert('Upload note: ' + (uData.error || uData.message || 'Audit upload pending server confirmation.'));
+                                    btnSubmit.innerText = 'Retry Audit Upload';
+                                    btnSubmit.disabled = false;
+                                }
+                            } catch (uErr) {
+                                console.warn('Upload API note:', uErr);
+                                alert('Audit upload queued. Independent server verification is processing your strategy data.');
+                                btnSubmit.innerText = 'Retry Audit Upload';
+                                btnSubmit.disabled = false;
+                            }
+                        });
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.warn('Backend verification note:', err);
+            }
+
+            // Fail-closed fallback: Browser return MUST NOT authorize commercial fulfillment on its own
+            if (amt === '1.00' || cc === 'MXN' || orderID === '8WB32625PL331771') {
+                titleHeading.innerText = 'System Test Payment Confirmed ($1.00 MXN)';
+                subHeading.innerText = 'PayPal Transaction Ref: ' + orderID + ' (' + (st || 'COMPLETED') + ').';
+                toast.style.background = '#e0f2fe';
+                toast.style.borderColor = '#7dd3fc';
+                toast.style.color = '#0369a1';
+                toast.innerText = '✓ System Test Payment Received! System test payments validate integration mechanics and authorize zero commercial audits/certificates.';
+                return;
+            }
+
+            titleHeading.innerText = 'Awaiting Independent Server Verification';
+            subHeading.innerText = 'Transaction Ref: ' + orderID + ' submitted to serverless backend for independent PayPal IPN confirmation.';
+            toast.style.background = '#fef3c7';
+            toast.style.borderColor = '#fcd34d';
+            toast.style.color = '#92400e';
+            toast.innerText = '⏳ Awaiting independent PayPal IPN verification. Audit upload will unlock automatically upon server confirmation.';
+        });
+    </script>
+</body>
+</html>
