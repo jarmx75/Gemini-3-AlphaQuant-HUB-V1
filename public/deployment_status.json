@@ -1,0 +1,11 @@
+{
+  "public_url": "docs/public_landing/index.html",
+  "provider": "LOCAL_PACKAGE_READY_FOR_VERCEL_NETLIFY",
+  "https": true,
+  "sample_url": "docs/public_landing/sample.html",
+  "checkout_url": "https://www.paypal.com/checkoutnow",
+  "verified": false,
+  "verified_http_status": null,
+  "status": "AWAITING_HOSTING_AUTHORIZATION",
+  "timestamp": "2026-08-22T13:43:35"
+}

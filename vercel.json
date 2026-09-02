@@ -17,15 +17,11 @@
     }
   ],
   "rewrites": [
-
-    { "source": "/", "destination": "/docs/public_landing/index.html" },
-    { "source": "/index.html", "destination": "/docs/public_landing/index.html" },
-    { "source": "/success", "destination": "/docs/public_landing/success.html" },
-    { "source": "/success.html", "destination": "/docs/public_landing/success.html" },
-    { "source": "/cancel", "destination": "/docs/public_landing/cancel.html" },
-    { "source": "/cancel.html", "destination": "/docs/public_landing/cancel.html" },
-    { "source": "/sample", "destination": "/docs/public_landing/sample.html" },
-    { "source": "/sample.html", "destination": "/docs/public_landing/sample.html" }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/success", "destination": "/success.html" },
+    { "source": "/cancel", "destination": "/cancel.html" },
+    { "source": "/sample", "destination": "/sample.html" }
   ]
 }
+
 
