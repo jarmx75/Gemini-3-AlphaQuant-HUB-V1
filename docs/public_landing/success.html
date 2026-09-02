@@ -138,102 +138,36 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const tx = urlParams.get('tx');
-            const st = urlParams.get('st') || urlParams.get('status');
-            const amt = urlParams.get('amt') || urlParams.get('amount');
-            const cc = urlParams.get('cc') || urlParams.get('currency');
-            const orderID = tx || urlParams.get('orderID') || urlParams.get('token');
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const transactionId = params.get('tx') || params.get('txn_id') ||
+                                  params.get('order_id') || params.get('orderID') ||
+                                  params.get('token');
+            const status = (params.get('st') || params.get('status') || '').toLowerCase();
+            const amount = params.get('amt') || params.get('amount') || null;
+            const currency = params.get('cc') || params.get('currency') || null;
 
             const titleHeading = document.getElementById('title-heading');
             const subHeading = document.getElementById('sub-heading');
             const toast = document.getElementById('status-toast');
-            const uploadBox = document.getElementById('upload-box');
-            const fileInput = document.getElementById('file-input');
-            const fileNameDiv = document.getElementById('file-name');
-            const btnSubmit = document.getElementById('btn-submit-audit');
 
-            if (!orderID) {
-                titleHeading.innerText = 'Payment Verification Pending';
-                subHeading.innerText = 'No PayPal transaction reference detected in URL. Please complete checkout from the pricing section.';
-                return;
-            }
+            const isLikelyPaid = Boolean(transactionId && (['completed', 'success', 'processed'].includes(status) || status === ''));
 
-            toast.style.display = 'block';
-            toast.innerText = '⚡ Submitting PayPal transaction reference ' + orderID + ' to backend API for independent verification...';
-
-            const BACKEND_CAPTURE_URL = window.location.hostname === 'localhost' 
-                ? 'http://localhost:3000/api/capture-order'
-                : 'https://automaton-quant-audit-api-alpha-quant1.vercel.app/api/capture-order';
-
-            try {
-                const resp = await fetch(BACKEND_CAPTURE_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ orderID: orderID, tx: tx, st: st, amt: amt, cc: cc })
-                });
-
-                if (resp.ok) {
-                    const data = await resp.json();
-                    if (data.product_id === 'SYSTEM_TEST_PAYMENT' || amt === '1.00' || cc === 'MXN' || (orderID && orderID.startsWith('8WB32625PL331771'))) {
-                        titleHeading.innerText = 'System Test Payment Verified ($1.00 MXN)';
-                        subHeading.innerText = 'Transaction Ref: ' + orderID + ' (Status: ' + (st || 'COMPLETED') + ').';
-                        toast.style.background = '#e0f2fe';
-                        toast.style.borderColor = '#7dd3fc';
-                        toast.style.color = '#0369a1';
-                        toast.innerText = '✓ System Test Payment Verified! Note: System test payments validate PayPal integration but do not authorize commercial strategy audits or certificates.';
-                        return;
-                    }
-                    if (data.verified || data.status === 'COMPLETED' || data.status === 'PAYMENT_VERIFIED') {
-                        titleHeading.innerText = 'Payment Confirmed — ' + (amt ? '$' + amt + ' ' + (cc || 'USD') : '$49 USD');
-                        subHeading.innerText = 'Your payment was successfully verified by PayPal. Please upload your strategy data below.';
-                        toast.style.background = '#dcfce7';
-                        toast.style.borderColor = '#86efac';
-                        toast.style.color = '#15803d';
-                        toast.innerText = '✓ Order Verified! Transaction Ref: ' + orderID;
-                        uploadBox.style.display = 'block';
-
-                        fileInput.addEventListener('change', () => {
-                            if (fileInput.files.length > 0) {
-                                fileNameDiv.innerText = 'Selected file: ' + fileInput.files[0].name + ' (' + (fileInput.files[0].size / 1024).toFixed(1) + ' KB)';
-                                btnSubmit.style.display = 'inline-flex';
-                            }
-                        });
-
-                        btnSubmit.addEventListener('click', () => {
-                            btnSubmit.innerText = '⚡ Running Zero-Bias Audit Engine...';
-                            btnSubmit.disabled = true;
-                            setTimeout(() => {
-                                alert('Strategy data uploaded successfully! Audit certificate will be generated and delivered.');
-                                window.location.href = 'sample.html';
-                            }, 2000);
-                        });
-                        return;
-                    }
-                }
-            } catch (err) {
-                console.warn('Backend verification note:', err);
-            }
-
-            // Fail-closed fallback: Browser return MUST NOT authorize commercial fulfillment on its own
-            if (amt === '1.00' || cc === 'MXN' || orderID === '8WB32625PL331771') {
-                titleHeading.innerText = 'System Test Payment Confirmed ($1.00 MXN)';
-                subHeading.innerText = 'PayPal Transaction Ref: ' + orderID + ' (' + (st || 'COMPLETED') + ').';
+            if (isLikelyPaid) {
+                titleHeading.innerText = 'Pago Recibido — En Verificación';
+                subHeading.innerText = 'Transacción PayPal: ' + transactionId + (amount ? ' (' + '$' + amount + ' ' + (currency || 'USD') + ')' : '') + '. Tu certificado o reporte de auditoría llegará a tu correo en los próximos minutos tras la verificación automática del servidor.';
+                toast.style.display = 'block';
                 toast.style.background = '#e0f2fe';
                 toast.style.borderColor = '#7dd3fc';
                 toast.style.color = '#0369a1';
-                toast.innerText = '✓ System Test Payment Received! System test payments validate integration mechanics and authorize zero commercial audits/certificates.';
-                return;
+                toast.innerText = '✓ Pago recibido. Tu certificado llegará a tu correo en los próximos minutos tras la verificación automática (Ref: ' + transactionId + ').';
+            } else {
+                titleHeading.innerText = 'Payment Verification Pending';
+                subHeading.innerText = 'No PayPal transaction reference detected in URL parameters. Please complete checkout from the pricing section.';
+                toast.style.display = 'none';
             }
-
-            titleHeading.innerText = 'Awaiting Independent Server Verification';
-            subHeading.innerText = 'Transaction Ref: ' + orderID + ' submitted to serverless backend for independent PayPal IPN confirmation.';
-            toast.style.background = '#fef3c7';
-            toast.style.borderColor = '#fcd34d';
-            toast.style.color = '#92400e';
-            toast.innerText = '⏳ Awaiting independent PayPal IPN verification. Audit upload will unlock automatically upon server confirmation.';
         });
     </script>
+
 </body>
 </html>
