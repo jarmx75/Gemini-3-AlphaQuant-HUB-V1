@@ -32,7 +32,14 @@ def _set_vercel_env(var_name: str, var_val: str):
     """Sets a Vercel Production environment variable safely without exposing value."""
     if not var_val:
         return
+
+    # MANDATORY SAFETY GUARD: Require explicit ALLOW_PROD_ENV_WRITE=true
+    if os.environ.get("ALLOW_PROD_ENV_WRITE", "").lower() not in ("true", "1"):
+        print(f"[VERCEL CONFIG SKIPPED]: Production write disabled for {var_name} (ALLOW_PROD_ENV_WRITE != true).")
+        return
+
     try:
+        subprocess.run(["npx", "vercel", "env", "rm", var_name, "production", "-y"], capture_output=True, cwd=str(PROJECT_ROOT))
         res = subprocess.run(
             ["npx", "vercel", "env", "add", var_name, "production", "--force"],
             input=f"{var_val}\n",
@@ -46,6 +53,7 @@ def _set_vercel_env(var_name: str, var_val: str):
             print(f"[VERCEL CONFIG WARNING]: No se pudo configurar {var_name}: {res.stderr}")
     except Exception as e:
         print(f"[VERCEL CONFIG ERROR]: {e}")
+
 
 
 def authorize():
@@ -107,6 +115,21 @@ def authorize():
         print("3. Refresh token obtenido: SI")
         print("-------------------------------------------------------")
         print("Configurando automáticamente Vercel Production...\n")
+
+        try:
+            from googleapiclient.discovery import build
+            drive_service = build('drive', 'v3', credentials=creds)
+            folder_metadata = {
+                'name': 'Automaton Quant Audit - App Private Storage',
+                'mimeType': 'application/vnd.google-apps.folder'
+            }
+            folder = drive_service.files().create(body=folder_metadata, fields='id, name').execute()
+            folder_id = folder.get('id', '')
+            if folder_id:
+                _set_vercel_env("GOOGLE_DRIVE_FOLDER_ID", folder_id)
+                print(f"[DRIVE FOLDER]: Carpeta privada de la app creada y configurada en Vercel.")
+        except Exception as folder_err:
+            print(f"[DRIVE FOLDER WARNING]: {folder_err}")
 
         _set_vercel_env("GOOGLE_OAUTH_CLIENT_ID", client_id)
         _set_vercel_env("GOOGLE_OAUTH_CLIENT_SECRET", client_secret)

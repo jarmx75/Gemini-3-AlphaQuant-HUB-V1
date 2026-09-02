@@ -66,7 +66,9 @@ class TestSprint3615OAuthAuthorizationTool(unittest.TestCase):
                 "google_auth_oauthlib": MagicMock(),
                 "google_auth_oauthlib.flow": MagicMock(InstalledAppFlow=mock_flow_class)
             }):
-                auth_tool.authorize()
+                with patch.object(auth_tool, "_set_vercel_env", MagicMock()):
+                    auth_tool.authorize()
+
 
         # Check no token file was created in project root or scripts dir
         self.assertFalse((PROJECT_ROOT / "token.json").exists())
