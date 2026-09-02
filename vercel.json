@@ -1,9 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "api/**/*.py", "use": "@vercel/python" },
-    { "src": "public/**/*", "use": "@vercel/static" }
-  ],
+  "outputDirectory": "docs/public_landing",
   "crons": [
     {
       "path": "/api/revenue-scheduler",
@@ -20,12 +16,5 @@
         { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Order-ID" }
       ]
     }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/success", "dest": "/public/success.html" },
-    { "src": "/cancel", "dest": "/public/cancel.html" },
-    { "src": "/sample", "dest": "/public/sample.html" },
-    { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
