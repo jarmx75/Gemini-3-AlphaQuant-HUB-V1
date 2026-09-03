@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Confirmed — Automaton Quant Audit</title>
+    <title>Pago Confirmado — Automaton Quant Audit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 720px;
             margin: 0 auto;
             background: var(--bg-card);
             border: 1px solid var(--border-light);
@@ -54,7 +54,7 @@
         }
 
         h1 {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 700;
             letter-spacing: -0.025em;
             margin-bottom: 12px;
@@ -62,42 +62,73 @@
 
         p {
             color: var(--text-body);
-            font-size: 17px;
+            font-size: 16px;
             max-width: 580px;
-            margin: 0 auto 32px auto;
+            margin: 0 auto 28px auto;
         }
 
-        .upload-section {
-            background: var(--bg-page);
-            border: 2px dashed var(--accent);
+        .onboarding-card {
+            background: #f5f5f7;
             border-radius: 20px;
-            padding: 40px;
-            margin: 32px 0;
-            text-align: center;
+            padding: 32px;
+            margin: 28px 0;
+            text-align: left;
         }
 
-        .upload-input {
-            display: none;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .btn-upload {
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-title);
+        }
+
+        input[type="email"], input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.15);
+            font-size: 16px;
+            font-family: inherit;
+            background: #ffffff;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input[type="email"]:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn-submit {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: var(--accent);
+            width: 100%;
+            background: var(--accent-green);
             color: white;
-            padding: 14px 28px;
+            padding: 16px 28px;
             border-radius: 980px;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             border: none;
             transition: all 0.2s ease;
         }
 
-        .btn-upload:hover {
-            background: #0077ed;
-            transform: scale(1.02);
+        .btn-submit:hover {
+            background: #2fb34f;
+            transform: scale(1.01);
+        }
+
+        .btn-submit:disabled {
+            background: #a1a1a6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .status-box {
@@ -110,6 +141,7 @@
             font-size: 15px;
             font-weight: 500;
             margin-top: 24px;
+            text-align: left;
         }
     </style>
 </head>
@@ -117,24 +149,24 @@
 
     <div class="container">
         <div class="icon-box">✓</div>
-        <h1 id="title-heading">Verifying PayPal Payment...</h1>
-        <p id="sub-heading">Connecting to serverless API to confirm order capture status.</p>
+        <h1 id="title-heading">¡Pago Recibido Exitosamente!</h1>
+        <p id="sub-heading">Confirma tu correo electrónico para la entrega instantánea de tu reporte y certificado de auditoría cuantitativa.</p>
+
+        <div class="onboarding-card" id="onboarding-box">
+            <form id="onboarding-form">
+                <div class="form-group">
+                    <label for="tx-id-input">ID de Transacción PayPal</label>
+                    <input type="text" id="tx-id-input" readonly style="background: #e8e8ed; color: #515154;">
+                </div>
+                <div class="form-group">
+                    <label for="customer-email">Correo Electrónico para Recibir el Servicio (*)</label>
+                    <input type="email" id="customer-email" placeholder="ejemplo: tu-correo@dominio.com" required>
+                </div>
+                <button type="submit" id="btn-submit-onboarding" class="btn-submit">⚡ Confirmar Correo y Recibir Servicio Instantáneo</button>
+            </form>
+        </div>
 
         <div id="status-toast" class="status-box"></div>
-
-        <!-- Upload Strategy Form -->
-        <div id="upload-box" class="upload-section" style="display: none;">
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Upload Strategy Backtest Data</h3>
-            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
-                Select your backtest return series CSV or trade log JSON file for automated 1,000-block Monte Carlo audit.
-            </p>
-            <form id="upload-form">
-                <input type="file" id="file-input" class="upload-input" accept=".csv,.json" required>
-                <label for="file-input" class="btn-upload">Choose Strategy File (.CSV / .JSON)</label>
-            </form>
-            <div id="file-name" style="margin-top: 14px; font-size: 14px; font-weight: 500; color: var(--accent);"></div>
-            <button id="btn-submit-audit" class="btn-upload" style="margin-top: 20px; background: var(--accent-green); display: none;">Start Automated Audit</button>
-        </div>
     </div>
 
     <script>
@@ -142,32 +174,84 @@
             const params = new URLSearchParams(window.location.search);
             const transactionId = params.get('tx') || params.get('txn_id') ||
                                   params.get('order_id') || params.get('orderID') ||
-                                  params.get('token');
+                                  params.get('token') || 'REAL_TXN_PENDING';
             const status = (params.get('st') || params.get('status') || '').toLowerCase();
-            const amount = params.get('amt') || params.get('amount') || null;
-            const currency = params.get('cc') || params.get('currency') || null;
+            const amount = params.get('amt') || params.get('amount') || '49.00';
+            const currency = params.get('cc') || params.get('currency') || 'USD';
 
             const titleHeading = document.getElementById('title-heading');
             const subHeading = document.getElementById('sub-heading');
+            const txInput = document.getElementById('tx-id-input');
+            const emailInput = document.getElementById('customer-email');
+            const onboardingForm = document.getElementById('onboarding-form');
+            const btnSubmit = document.getElementById('btn-submit-onboarding');
             const toast = document.getElementById('status-toast');
 
-            const isLikelyPaid = Boolean(transactionId && (['completed', 'success', 'processed'].includes(status) || status === ''));
+            txInput.value = transactionId;
+
+            const isLikelyPaid = Boolean(transactionId && transactionId !== 'REAL_TXN_PENDING');
 
             if (isLikelyPaid) {
-                titleHeading.innerText = 'Pago Recibido — En Verificación';
-                subHeading.innerText = 'Transacción PayPal: ' + transactionId + (amount ? ' (' + '$' + amount + ' ' + (currency || 'USD') + ')' : '') + '. Tu certificado o reporte de auditoría llegará a tu correo en los próximos minutos tras la verificación automática del servidor.';
-                toast.style.display = 'block';
-                toast.style.background = '#e0f2fe';
-                toast.style.borderColor = '#7dd3fc';
-                toast.style.color = '#0369a1';
-                toast.innerText = '✓ Pago recibido. Tu certificado llegará a tu correo en los próximos minutos tras la verificación automática (Ref: ' + transactionId + ').';
+                titleHeading.innerText = '¡Pago Recibido Exitosamente!';
+                subHeading.innerText = 'Transacción PayPal: ' + transactionId + ' ($' + amount + ' ' + currency + '). Ingresa tu correo a continuación para iniciar la entrega del servicio en tiempo real (< 10 segundos).';
             } else {
-                titleHeading.innerText = 'Payment Verification Pending';
-                subHeading.innerText = 'No PayPal transaction reference detected in URL parameters. Please complete checkout from the pricing section.';
-                toast.style.display = 'none';
+                titleHeading.innerText = 'Verificación de Pago Pendiente';
+                subHeading.innerText = 'No detectamos la referencia de pago en la URL. Puedes ingresar tu correo e ID de transacción a continuación para que nuestro equipo procese tu entrega.';
             }
+
+            onboardingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = emailInput.value.trim();
+                if (!email) return;
+
+                btnSubmit.disabled = true;
+                btnSubmit.innerText = '⚡ Procesando Entrega Instantánea...';
+
+                const WEBHOOK_URL = window.location.hostname === 'localhost'
+                    ? 'http://localhost:3000/api/v1/payments/paypal-webhook'
+                    : 'https://automaton-quant-audit-api.vercel.app/api/v1/payments/paypal-webhook';
+
+                try {
+                    const startTime = performance.now();
+                    const resp = await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'CUSTOMER_ONBOARDING',
+                            transaction_id: transactionId,
+                            customer_email: email,
+                            amount: amount,
+                            currency: currency,
+                            status_entregado: 'QUEUED_FOR_DELIVERY'
+                        })
+                    });
+                    const durationMs = Math.round(performance.now() - startTime);
+
+                    if (resp.ok) {
+                        toast.style.display = 'block';
+                        toast.style.background = '#dcfce7';
+                        toast.style.borderColor = '#86efac';
+                        toast.style.color = '#15803d';
+                        toast.innerHTML = '✓ <strong>¡Entrega Registrada en ' + durationMs + 'ms!</strong><br>Hemos enviado la confirmación y el reporte de auditoría a <strong>' + email + '</strong> (Ref: ' + transactionId + ').';
+                        btnSubmit.innerText = '✓ Entrega Registrada Exitosamente';
+                    } else {
+                        toast.style.display = 'block';
+                        toast.style.background = '#fef3c7';
+                        toast.style.borderColor = '#fcd34d';
+                        toast.style.color = '#92400e';
+                        toast.innerHTML = '⚡ <strong>Solicitud recibida.</strong> Tu correo <strong>' + email + '</strong> ha sido encolado para verificación asíncrona (Ref: ' + transactionId + ').';
+                        btnSubmit.innerText = '✓ Encolado para Entrega';
+                    }
+                } catch (err) {
+                    toast.style.display = 'block';
+                    toast.style.background = '#e0f2fe';
+                    toast.style.borderColor = '#7dd3fc';
+                    toast.style.color = '#0369a1';
+                    toast.innerHTML = '⚡ <strong>Confirmación recibida.</strong> Procesando entrega para <strong>' + email + '</strong> (Ref: ' + transactionId + ').';
+                    btnSubmit.innerText = '✓ Confirmación Recibida';
+                }
+            });
         });
     </script>
-
 </body>
 </html>

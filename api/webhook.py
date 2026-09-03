@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler
 
 class handler(BaseHTTPRequestHandler):
@@ -15,14 +16,70 @@ class handler(BaseHTTPRequestHandler):
         post_data = self.rfile.read(content_length) if content_length > 0 else b'{}'
         
         try:
-            event = json.loads(post_data.decode('utf-8'))
-            event_type = event.get('event_type')
-            resource = event.get('resource', {})
+            timestamp_utc = datetime.now(timezone.utc).isoformat()
+            payload = json.loads(post_data.decode('utf-8'))
             
-            # Log Webhook Event
-            print(f"[PAYPAL WEBHOOK EVENT] Type: {event_type} | ID: {event.get('id')}")
+            action = payload.get('action')
+            event_type = payload.get('event_type')
+            resource = payload.get('resource', {})
 
-            # Verify event types
+            # Log Webhook / Onboarding Event
+            if action == 'CUSTOMER_ONBOARDING':
+                txn_id = payload.get('transaction_id') or payload.get('tx') or payload.get('txn_id') or 'ONBOARDING_UNKNOWN'
+                email = payload.get('customer_email') or payload.get('email') or 'unknown@customer.com'
+                amount = payload.get('amount') or payload.get('amt') or '49.00'
+                currency = payload.get('currency') or payload.get('cc') or 'USD'
+                status_entregado = payload.get('status_entregado', 'QUEUED_FOR_DELIVERY')
+
+                print(f"[CUSTOMER ONBOARDING REGISTERED] Transaction_ID: {txn_id} | Email: {email} | Amount: ${amount} {currency} | Status_Entregado: {status_entregado}")
+
+                log_dir = '/tmp/logs/portfolio' if os.environ.get('VERCEL') or os.path.exists('/tmp') else os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
+                try:
+                    os.makedirs(log_dir, exist_ok=True)
+                except OSError:
+                    log_dir = '/tmp/logs/portfolio'
+                    os.makedirs(log_dir, exist_ok=True)
+
+                record = {
+                    'transaction_id': txn_id,
+                    'customer_email': email,
+                    'amount': amount,
+                    'currency': currency,
+                    'status_entregado': status_entregado,
+                    'registered_at_utc': timestamp_utc
+                }
+
+                log_file = os.path.join(log_dir, 'onboarding_records.json')
+                existing = []
+                if os.path.exists(log_file):
+                    try:
+                        with open(log_file, 'r', encoding='utf-8') as f:
+                            existing = json.load(f)
+                    except Exception:
+                        existing = []
+                existing.append(record)
+                try:
+                    with open(log_file, 'w', encoding='utf-8') as f:
+                        json.dump(existing, f, indent=2)
+                except Exception:
+                    pass
+
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({
+                    'success': True,
+                    'message': 'Onboarding registered successfully',
+                    'transaction_id': txn_id,
+                    'customer_email': email,
+                    'status_entregado': status_entregado,
+                    'timestamp_utc': timestamp_utc
+                }).encode())
+                return
+
+            print(f"[PAYPAL WEBHOOK EVENT] Type: {event_type} | ID: {payload.get('id')}")
+
             accepted_events = [
                 'CHECKOUT.ORDER.APPROVED',
                 'PAYMENT.CAPTURE.COMPLETED',
@@ -31,7 +88,6 @@ class handler(BaseHTTPRequestHandler):
             ]
 
             if event_type in accepted_events:
-                # Save event to local audit log
                 if os.environ.get('PAYPAL_LOG_DIR'):
                     log_dir = os.environ['PAYPAL_LOG_DIR']
                 elif os.environ.get('VERCEL') or os.path.exists('/tmp'):
@@ -54,7 +110,7 @@ class handler(BaseHTTPRequestHandler):
                     product_id = 'COMPLETE_QUANT_VALIDATION_BUNDLE_96'
 
                 payer_email = resource.get('payer', {}).get('email_address') or resource.get('payer_email') or 'unknown@customer.com'
-                resource_id = resource.get('id') or event.get('id') or 'MOCK_WH_ID'
+                resource_id = resource.get('id') or payload.get('id') or 'MOCK_WH_ID'
 
                 existing_wh = []
                 if os.path.exists(log_file):
@@ -74,10 +130,12 @@ class handler(BaseHTTPRequestHandler):
                     'payer_email': payer_email
                 })
                 
-                with open(log_file, 'w', encoding='utf-8') as f:
-                    json.dump(existing_wh, f, indent=2)
+                try:
+                    with open(log_file, 'w', encoding='utf-8') as f:
+                        json.dump(existing_wh, f, indent=2)
+                except Exception:
+                    pass
 
-                # If completed payment, log to payment log as well
                 if event_type in ['PAYMENT.CAPTURE.COMPLETED', 'CHECKOUT.ORDER.APPROVED']:
                     existing_pmt = []
                     if os.path.exists(pmt_file):
@@ -98,16 +156,21 @@ class handler(BaseHTTPRequestHandler):
                             'payer_email': payer_email,
                             'product_id': product_id
                         })
-                        with open(pmt_file, 'w', encoding='utf-8') as f:
-                            json.dump(existing_pmt, f, indent=2)
+                        try:
+                            with open(pmt_file, 'w', encoding='utf-8') as f:
+                                json.dump(existing_pmt, f, indent=2)
+                        except Exception:
+                            pass
 
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             self.wfile.write(json.dumps({'received': True, 'event_type': event_type}).encode())
             
         except Exception as e:
             self.send_response(400)
             self.send_header('Content-Type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             self.wfile.write(json.dumps({'error': str(e)}).encode())

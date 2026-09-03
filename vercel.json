@@ -18,8 +18,12 @@
   ],
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
+    { "source": "/checkout/success", "destination": "/success.html" },
+    { "source": "/checkout/success.html", "destination": "/success.html" },
     { "source": "/success", "destination": "/success.html" },
     { "source": "/cancel", "destination": "/cancel.html" },
-    { "source": "/sample", "destination": "/sample.html" }
+    { "source": "/sample", "destination": "/sample.html" },
+    { "source": "/api/v1/payments/paypal-webhook", "destination": "/api/webhook" }
   ]
 }
+
