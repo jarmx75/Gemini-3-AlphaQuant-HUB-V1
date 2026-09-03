@@ -1,0 +1,128 @@
+[
+  {
+    "event_type": "PAYMENT_CONFIRMED",
+    "recipient": "sandbox_customer@quant.com",
+    "subject": "Payment Confirmed: Automaton Quant Audit ($49 USD)",
+    "status": "LOGGED_LOCAL",
+    "timestamp": "2026-08-23T20:28:59.920080",
+    "payload": {
+      "order_id": "PAYPAL-LIVE-963639",
+      "amount": "49.00 USD"
+    }
+  },
+  {
+    "event_type": "DATA_RECEIVED",
+    "recipient": "sandbox_customer@quant.com",
+    "subject": "Strategy Data Received: Audit Processing Started",
+    "status": "LOGGED_LOCAL",
+    "timestamp": "2026-08-23T20:28:59.920567",
+    "payload": {
+      "order_id": "PAYPAL-LIVE-963639",
+      "amount": "49.00 USD"
+    }
+  },
+  {
+    "event_type": "AUDIT_STARTED",
+    "recipient": "sandbox_customer@quant.com",
+    "subject": "Quant Audit Engine Execution Initiated",
+    "status": "LOGGED_LOCAL",
+    "timestamp": "2026-08-23T20:28:59.920751",
+    "payload": {
+      "order_id": "PAYPAL-LIVE-963639",
+      "amount": "49.00 USD"
+    }
+  },
+  {
+    "event_type": "AUDIT_COMPLETED",
+    "recipient": "sandbox_customer@quant.com",
+    "subject": "Quant Audit Engine Execution Completed",
+    "status": "LOGGED_LOCAL",
+    "timestamp": "2026-08-23T20:28:59.920923",
+    "payload": {
+      "order_id": "PAYPAL-LIVE-963639",
+      "amount": "49.00 USD"
+    }
+  },
+  {
+    "event_type": "CERTIFICATE_GENERATED",
+    "recipient": "sandbox_customer@quant.com",
+    "subject": "Your Quant Audit Certificate Has Been Generated",
+    "status": "LOGGED_LOCAL",
+    "timestamp": "2026-08-23T20:28:59.921109",
+    "payload": {
+      "order_id": "PAYPAL-LIVE-963639",
+      "amount": "49.00 USD"
+    }
+  },
+  {
+    "event_type": "CERTIFICATE_DELIVERED",
+    "recipient": "sandbox_customer@quant.com",
+    "subject": "Automaton Quant Audit Certificate Delivery",
+    "status": "LOGGED_LOCAL",
+    "timestamp": "2026-08-23T20:28:59.921290",
+    "payload": {
+      "order_id": "PAYPAL-LIVE-963639",
+      "amount": "49.00 USD"
+    }
+  },
+  {
+    "event_type": "AUDIT_COMPLETED",
+    "recipient": "delivered@resend.dev",
+    "subject": "Your Automaton Quant Audit is ready",
+    "status": "LOGGED_LOCAL",
+    "message_id": null,
+    "timestamp": "2026-08-24T02:17:50.943838",
+    "payload": {
+      "customer_name": "Test Quant Trader",
+      "cert_id": "CERT-LIVE-948210",
+      "sharpe": "1.84",
+      "max_drawdown": "12.5%",
+      "pbo_score": "12.5%"
+    }
+  },
+  {
+    "event_type": "AUDIT_COMPLETED",
+    "recipient": "delivered@resend.dev",
+    "subject": "Your Automaton Quant Audit is ready",
+    "status": "FALLBACK_LOGGED (name 'urllib' is not defined)",
+    "message_id": null,
+    "timestamp": "2026-08-24T02:18:01.621559",
+    "payload": {
+      "customer_name": "Test Quant Trader",
+      "cert_id": "CERT-LIVE-948210",
+      "sharpe": "1.84",
+      "max_drawdown": "12.5%",
+      "pbo_score": "12.5%"
+    }
+  },
+  {
+    "event_type": "AUDIT_COMPLETED",
+    "recipient": "delivered@resend.dev",
+    "subject": "Your Automaton Quant Audit is ready",
+    "status": "SENT_RESEND_API (Message ID: d192508b-9a29-4af1-9848-b5034254de54)",
+    "message_id": "d192508b-9a29-4af1-9848-b5034254de54",
+    "timestamp": "2026-08-24T02:18:12.206189",
+    "payload": {
+      "customer_name": "Test Quant Trader",
+      "cert_id": "CERT-LIVE-948210",
+      "sharpe": "1.84",
+      "max_drawdown": "12.5%",
+      "pbo_score": "12.5%"
+    }
+  },
+  {
+    "event_type": "AUDIT_COMPLETED",
+    "recipient": "delivered@resend.dev",
+    "subject": "Your Automaton Quant Audit is ready",
+    "status": "SENT_RESEND_API (Message ID: ec8e5f22-a9df-4e19-a594-50fadaa9be8e)",
+    "message_id": "ec8e5f22-a9df-4e19-a594-50fadaa9be8e",
+    "timestamp": "2026-08-24T02:18:17.693281",
+    "payload": {
+      "customer_name": "Controlled Test Trader",
+      "cert_id": "CERT-LIVE-C659F50F",
+      "sharpe": "-0.77",
+      "max_drawdown": "84.92%",
+      "pbo_score": "51.7%"
+    }
+  }
+]

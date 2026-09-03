@@ -209,7 +209,7 @@ For independent 3rd-party quantitative strategy verification methodology, see [A
             pass
         return None
 
-    def execute_outreach_cycle(self) -> Dict[str, Any]:
+    def execute_outreach_cycle(self, allow_external_publication: bool = False) -> Dict[str, Any]:
         """Executes quality-controlled outreach cycle with duplicate protection and relevance gates."""
         timestamp = datetime.now(datetime.UTC).isoformat() if hasattr(datetime, 'UTC') else datetime.utcnow().isoformat()
 
@@ -266,7 +266,10 @@ For independent 3rd-party quantitative strategy verification methodology, see [A
             "duplicates_removed": duplicates_removed,
             "irrelevant_comments_found": irrelevant_removed,
             "irrelevant_comments_removed": irrelevant_removed,
+            "irrelevant_removed": irrelevant_removed,
             "comments_kept": comments_kept,
+            "raw_issues_searched": len(raw_issues),
+            "published_count": published_count,
             "future_publications_blocked": future_publications_blocked,
             "average_context_score": 85.0,
             "average_promotion_score": 15.0,
@@ -289,21 +292,24 @@ For independent 3rd-party quantitative strategy verification methodology, see [A
         event_history_file = LOGS_PORTFOLIO_DIR / "external_acquisition_event_history.jsonl"
         token = self.get_github_token()
         
-        # Real GitHub comment execution if token available
+        # Real GitHub comment execution if token available AND external publication explicitly allowed
         external_sent = False
         pub_confirmed = False
         comment_url = None
         state = "ACTION_GENERATED_LOCALLY"
+        reason = "EXTERNAL_PUBLICATION_REQUIRES_EXPLICIT_APPROVAL"
 
-        if token:
+        if token and allow_external_publication:
             post_res = self.post_github_issue_comment(
                 "https://api.github.com/repos/jarmx75/Gemini-3-AlphaQuant-HUB-V1/issues/1/comments",
-                "### Out-of-Sample Sharpe Ratio & Overfitting Audit\nApplying stationary block bootstrap Monte Carlo simulations ensures returns distribution stability across market regimes."
+                "### Out-of-Sample Sharpe Ratio & Overfitting Audit\nApplying stationary block bootstrap Monte Carlo simulations ensures returns distribution stability across market regimes.",
+                allow_external_publication=True
             )
             external_sent = post_res.get("external_sent", False)
             pub_confirmed = post_res.get("publication_confirmed", False)
             comment_url = post_res.get("comment_url")
             state = post_res.get("state", "ACTION_GENERATED_LOCALLY")
+            reason = post_res.get("reason", "GITHUB_API_PUBLIC_COMMENT_CONFIRMED" if pub_confirmed else "TECHNICAL_OBSERVATION_GENERATED")
 
         event_entry = {
             "timestamp": timestamp,
@@ -317,7 +323,7 @@ For independent 3rd-party quantitative strategy verification methodology, see [A
             "publication_confirmed": pub_confirmed,
             "external_url": comment_url or "https://github.com/jarmx75/Gemini-3-AlphaQuant-HUB-V1/issues/1",
             "success": True,
-            "reason": "GITHUB_API_PUBLIC_COMMENT_CONFIRMED" if pub_confirmed else "TECHNICAL_OBSERVATION_GENERATED",
+            "reason": reason,
             "deduplication_key": f"dedup_{uuid.uuid4().hex[:8]}"
         }
         try:
@@ -328,8 +334,16 @@ For independent 3rd-party quantitative strategy verification methodology, see [A
 
         return quality_report
 
-    def post_github_issue_comment(self, comments_url: str, body: str) -> Dict[str, Any]:
-        """Posts comment via GitHub API when GITHUB_TOKEN is available, or returns local action."""
+    def post_github_issue_comment(self, comments_url: str, body: str, allow_external_publication: bool = False) -> Dict[str, Any]:
+        """Posts comment via GitHub API when GITHUB_TOKEN is available and explicit publication flag is enabled."""
+        if not allow_external_publication:
+            return {
+                "external_sent": False,
+                "publication_confirmed": False,
+                "state": "ACTION_GENERATED_LOCALLY",
+                "comment_url": None,
+                "reason": "EXTERNAL_PUBLICATION_REQUIRES_EXPLICIT_APPROVAL"
+            }
         token = self.get_github_token()
         if not token:
             return {

@@ -3,6 +3,19 @@ import json
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler
 
+def _get_log_dir():
+    if os.environ.get('PAYPAL_LOG_DIR'):
+        d = os.environ['PAYPAL_LOG_DIR']
+        os.makedirs(d, exist_ok=True)
+        return d
+    if os.environ.get('VERCEL') or os.path.exists('/tmp'):
+        d = '/tmp/logs/portfolio'
+        os.makedirs(d, exist_ok=True)
+        return d
+    d = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio'))
+    os.makedirs(d, exist_ok=True)
+    return d
+
 class handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
         self.send_response(200)
@@ -23,22 +36,37 @@ class handler(BaseHTTPRequestHandler):
             event_type = payload.get('event_type')
             resource = payload.get('resource', {})
 
-            # Log Webhook / Onboarding Event
+            log_dir = _get_log_dir()
+            onboarding_file = os.path.join(log_dir, 'onboarding_records.json')
+            pmt_file = os.path.join(log_dir, 'paypal_payment_log.json')
+            log_file = os.path.join(log_dir, 'paypal_webhooks.json')
+
+            # 1. HANDLE CUSTOMER ONBOARDING EMAIL REGISTRATION FROM FRONTEND
             if action == 'CUSTOMER_ONBOARDING':
-                txn_id = payload.get('transaction_id') or payload.get('tx') or payload.get('txn_id') or 'ONBOARDING_UNKNOWN'
-                email = payload.get('customer_email') or payload.get('email') or 'unknown@customer.com'
-                amount = payload.get('amount') or payload.get('amt') or '49.00'
-                currency = payload.get('currency') or payload.get('cc') or 'USD'
-                status_entregado = payload.get('status_entregado', 'QUEUED_FOR_DELIVERY')
+                txn_id = str(payload.get('transaction_id') or payload.get('tx') or payload.get('txn_id') or 'ONBOARDING_UNKNOWN').strip()
+                email = str(payload.get('customer_email') or payload.get('email') or 'unknown@customer.com').strip()
+                amount = str(payload.get('amount') or payload.get('amt') or '49.00').strip()
+                currency = str(payload.get('currency') or payload.get('cc') or 'USD').strip()
 
-                print(f"[CUSTOMER ONBOARDING REGISTERED] Transaction_ID: {txn_id} | Email: {email} | Amount: ${amount} {currency} | Status_Entregado: {status_entregado}")
+                # Check if verified payment already exists in payment ledger (reconciliation check)
+                existing_pmts = []
+                if os.path.exists(pmt_file):
+                    try:
+                        with open(pmt_file, 'r', encoding='utf-8') as f:
+                            loaded = json.load(f)
+                            existing_pmts = loaded if isinstance(loaded, list) else loaded.get('payments', [])
+                    except Exception:
+                        existing_pmts = []
 
-                log_dir = '/tmp/logs/portfolio' if os.environ.get('VERCEL') or os.path.exists('/tmp') else os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
-                try:
-                    os.makedirs(log_dir, exist_ok=True)
-                except OSError:
-                    log_dir = '/tmp/logs/portfolio'
-                    os.makedirs(log_dir, exist_ok=True)
+                is_verified_payment = any(
+                    isinstance(p, dict) and p.get('verified') is True and str(p.get('txn_id', '')).strip() == txn_id
+                    for p in existing_pmts
+                )
+
+                # Strictly enforce fail-closed invariant: PAYMENT_RETURN != PAYMENT_COMPLETED
+                status_entregado = 'VERIFIED_MATCHED_FULFILLMENT_AUTHORIZED' if is_verified_payment else 'PENDING_VERIFICATION'
+
+                print(f"[ONBOARDING REGISTERED]: Transaction_ID={txn_id} | Email={email} | Verified_Payment={is_verified_payment} | Status_Entregado={status_entregado}")
 
                 record = {
                     'transaction_id': txn_id,
@@ -46,21 +74,22 @@ class handler(BaseHTTPRequestHandler):
                     'amount': amount,
                     'currency': currency,
                     'status_entregado': status_entregado,
+                    'is_verified_payment': is_verified_payment,
                     'registered_at_utc': timestamp_utc
                 }
 
-                log_file = os.path.join(log_dir, 'onboarding_records.json')
-                existing = []
-                if os.path.exists(log_file):
+                existing_onboarding = []
+                if os.path.exists(onboarding_file):
                     try:
-                        with open(log_file, 'r', encoding='utf-8') as f:
-                            existing = json.load(f)
+                        with open(onboarding_file, 'r', encoding='utf-8') as f:
+                            existing_onboarding = json.load(f)
                     except Exception:
-                        existing = []
-                existing.append(record)
+                        existing_onboarding = []
+
+                existing_onboarding.append(record)
                 try:
-                    with open(log_file, 'w', encoding='utf-8') as f:
-                        json.dump(existing, f, indent=2)
+                    with open(onboarding_file, 'w', encoding='utf-8') as f:
+                        json.dump(existing_onboarding, f, indent=2)
                 except Exception:
                     pass
 
@@ -70,14 +99,16 @@ class handler(BaseHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(json.dumps({
                     'success': True,
-                    'message': 'Onboarding registered successfully',
+                    'message': 'Onboarding registered cleanly in PENDING_VERIFICATION state',
                     'transaction_id': txn_id,
                     'customer_email': email,
                     'status_entregado': status_entregado,
+                    'reconciled': is_verified_payment,
                     'timestamp_utc': timestamp_utc
                 }).encode())
                 return
 
+            # 2. HANDLE PAYPAL ASYNCHRONOUS WEBHOOK EVENTS
             print(f"[PAYPAL WEBHOOK EVENT] Type: {event_type} | ID: {payload.get('id')}")
 
             accepted_events = [
@@ -88,20 +119,6 @@ class handler(BaseHTTPRequestHandler):
             ]
 
             if event_type in accepted_events:
-                if os.environ.get('PAYPAL_LOG_DIR'):
-                    log_dir = os.environ['PAYPAL_LOG_DIR']
-                elif os.environ.get('VERCEL') or os.path.exists('/tmp'):
-                    log_dir = '/tmp/logs/portfolio'
-                else:
-                    log_dir = os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio')
-                try:
-                    os.makedirs(log_dir, exist_ok=True)
-                except OSError:
-                    log_dir = '/tmp/logs/portfolio'
-                    os.makedirs(log_dir, exist_ok=True)
-                log_file = os.path.join(log_dir, 'paypal_webhooks.json')
-                pmt_file = os.path.join(log_dir, 'paypal_payment_log.json')
-                
                 amount_val = resource.get('amount', {}).get('value') or '0.00'
                 product_id = 'QUANT_AUDIT_49'
                 if str(amount_val).strip() in ['79.00', '79']:
@@ -110,7 +127,7 @@ class handler(BaseHTTPRequestHandler):
                     product_id = 'COMPLETE_QUANT_VALIDATION_BUNDLE_96'
 
                 payer_email = resource.get('payer', {}).get('email_address') or resource.get('payer_email') or 'unknown@customer.com'
-                resource_id = resource.get('id') or payload.get('id') or 'MOCK_WH_ID'
+                resource_id = str(resource.get('id') or payload.get('id') or 'MOCK_WH_ID').strip()
 
                 existing_wh = []
                 if os.path.exists(log_file):
@@ -154,13 +171,33 @@ class handler(BaseHTTPRequestHandler):
                             'amount': amount_val,
                             'currency': resource.get('amount', {}).get('currency_code', 'USD'),
                             'payer_email': payer_email,
-                            'product_id': product_id
+                            'product_id': product_id,
+                            'timestamp_utc': timestamp_utc
                         })
                         try:
                             with open(pmt_file, 'w', encoding='utf-8') as f:
                                 json.dump(existing_pmt, f, indent=2)
                         except Exception:
                             pass
+
+                    # RECONCILIATION: Check if an onboarding record was waiting for this txn_id
+                    if os.path.exists(onboarding_file):
+                        try:
+                            with open(onboarding_file, 'r', encoding='utf-8') as f:
+                                onboarding_list = json.load(f)
+                            updated = False
+                            for rec in onboarding_list:
+                                if isinstance(rec, dict) and rec.get('transaction_id') == resource_id:
+                                    rec['status_entregado'] = 'VERIFIED_MATCHED_FULFILLMENT_AUTHORIZED'
+                                    rec['is_verified_payment'] = True
+                                    rec['reconciled_at_utc'] = timestamp_utc
+                                    updated = True
+                            if updated:
+                                with open(onboarding_file, 'w', encoding='utf-8') as f:
+                                    json.dump(onboarding_list, f, indent=2)
+                                print(f"[RECONCILIATION SUCCESS]: Transaction_ID={resource_id} matched with pending onboarding lead! Fulfillment Authorized.")
+                        except Exception as rec_err:
+                            print(f"[RECONCILIATION ERROR]: {rec_err}")
 
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')

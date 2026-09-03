@@ -4,7 +4,7 @@
     "single_source_of_truth": true,
     "usd_mxn_rate": 20.0,
     "risk_free_rate": 0.02,
-    "sample_days": 1098,
+    "sample_days": 1103,
     "current_alpha_sources_count": 2,
     "disclaimer": "ALL FIGURES DYNAMICALLY CALCULATED FROM REPRODUCIBLE HISTORICAL DATA. MODELLED / NOT GUARANTEED."
   },
@@ -45,7 +45,7 @@
     "strategies_metrics": {
       "Pairs_Stat_Arb_Base": {
         "annualized_return_pct": -1.01,
-        "annualized_volatility_pct": 5.56,
+        "annualized_volatility_pct": 5.55,
         "max_drawdown_pct": 11.28,
         "sharpe_ratio": -0.54,
         "sortino_ratio": -0.24,
@@ -54,7 +54,7 @@
       },
       "Pairs_W90_Z2.5_S3.5_H24": {
         "annualized_return_pct": -1.01,
-        "annualized_volatility_pct": 5.56,
+        "annualized_volatility_pct": 5.55,
         "max_drawdown_pct": 11.28,
         "sharpe_ratio": -0.54,
         "sortino_ratio": -0.24,
@@ -63,7 +63,7 @@
       },
       "Pairs_W90_Z2.4_S3.5_H24": {
         "annualized_return_pct": -0.08,
-        "annualized_volatility_pct": 6.76,
+        "annualized_volatility_pct": 6.74,
         "max_drawdown_pct": 13.45,
         "sharpe_ratio": -0.31,
         "sortino_ratio": -0.16,
@@ -71,22 +71,22 @@
         "cvar_95_pct": 12.6
       },
       "TSMOM_1D_M1_N21": {
-        "annualized_return_pct": 11.08,
-        "annualized_volatility_pct": 10.92,
+        "annualized_return_pct": 11.16,
+        "annualized_volatility_pct": 10.9,
         "max_drawdown_pct": 12.43,
-        "sharpe_ratio": 0.83,
-        "sortino_ratio": 1.1,
-        "var_95_pct": 16.81,
-        "cvar_95_pct": 26.73
+        "sharpe_ratio": 0.84,
+        "sortino_ratio": 1.11,
+        "var_95_pct": 16.76,
+        "cvar_95_pct": 26.55
       },
       "TSMOM_1D_M2_N63": {
         "annualized_return_pct": 10.34,
-        "annualized_volatility_pct": 11.29,
+        "annualized_volatility_pct": 11.27,
         "max_drawdown_pct": 20.01,
         "sharpe_ratio": 0.74,
         "sortino_ratio": 0.94,
-        "var_95_pct": 18.23,
-        "cvar_95_pct": 27.54
+        "var_95_pct": 18.21,
+        "cvar_95_pct": 27.37
       }
     },
     "correlation_matrix_5x5": {
@@ -132,30 +132,30 @@
     "alpha_sources_metrics": {
       "ALPHA_SOURCE_01_CRYPTO_MEAN_REVERSION": {
         "annualized_return_pct": -0.7,
-        "annualized_volatility_pct": 5.69,
+        "annualized_volatility_pct": 5.67,
         "max_drawdown_pct": 11.67,
         "sharpe_ratio": -0.48,
         "sortino_ratio": -0.23,
-        "var_95_pct": 0.88,
-        "cvar_95_pct": 11.76
+        "var_95_pct": 0.85,
+        "cvar_95_pct": 10.08
       },
       "ALPHA_SOURCE_02_EQUITY_TREND": {
-        "annualized_return_pct": 10.71,
-        "annualized_volatility_pct": 10.41,
+        "annualized_return_pct": 10.75,
+        "annualized_volatility_pct": 10.39,
         "max_drawdown_pct": 13.12,
         "sharpe_ratio": 0.84,
-        "sortino_ratio": 1.09,
-        "var_95_pct": 16.46,
-        "cvar_95_pct": 25.7
+        "sortino_ratio": 1.1,
+        "var_95_pct": 16.45,
+        "cvar_95_pct": 25.53
       },
       "PORTFOLIO_COMBINED": {
-        "annualized_return_pct": 5.0,
-        "annualized_volatility_pct": 6.05,
+        "annualized_return_pct": 5.03,
+        "annualized_volatility_pct": 6.04,
         "max_drawdown_pct": 8.52,
         "sharpe_ratio": 0.5,
         "sortino_ratio": 0.66,
-        "var_95_pct": 10.03,
-        "cvar_95_pct": 14.71
+        "var_95_pct": 9.99,
+        "cvar_95_pct": 14.62
       }
     },
     "correlation_matrix_2x2": {
@@ -173,9 +173,9 @@
   "capital_scaling_table": {
     "$10,000 USD": {
       "capital_usd": 10000,
-      "expected_annual_pnl_usd": 500.0,
-      "expected_monthly_pnl_usd": 41.67,
-      "expected_monthly_pnl_mxn": 833.33,
+      "expected_annual_pnl_usd": 503.0,
+      "expected_monthly_pnl_usd": 41.92,
+      "expected_monthly_pnl_mxn": 838.33,
       "worst_historical_month_usd": -449.24,
       "historical_max_dd_usd": 852.0,
       "historical_max_dd_pct": 8.52,
@@ -187,9 +187,9 @@
     },
     "$25,000 USD": {
       "capital_usd": 25000,
-      "expected_annual_pnl_usd": 1250.0,
-      "expected_monthly_pnl_usd": 104.17,
-      "expected_monthly_pnl_mxn": 2083.33,
+      "expected_annual_pnl_usd": 1257.5,
+      "expected_monthly_pnl_usd": 104.79,
+      "expected_monthly_pnl_mxn": 2095.83,
       "worst_historical_month_usd": -1123.1,
       "historical_max_dd_usd": 2130.0,
       "historical_max_dd_pct": 8.52,
@@ -201,9 +201,9 @@
     },
     "$50,000 USD": {
       "capital_usd": 50000,
-      "expected_annual_pnl_usd": 2500.0,
-      "expected_monthly_pnl_usd": 208.33,
-      "expected_monthly_pnl_mxn": 4166.67,
+      "expected_annual_pnl_usd": 2515.0,
+      "expected_monthly_pnl_usd": 209.58,
+      "expected_monthly_pnl_mxn": 4191.67,
       "worst_historical_month_usd": -2246.2,
       "historical_max_dd_usd": 4260.0,
       "historical_max_dd_pct": 8.52,
@@ -215,9 +215,9 @@
     },
     "$100,000 USD": {
       "capital_usd": 100000,
-      "expected_annual_pnl_usd": 5000.0,
-      "expected_monthly_pnl_usd": 416.67,
-      "expected_monthly_pnl_mxn": 8333.33,
+      "expected_annual_pnl_usd": 5030.0,
+      "expected_monthly_pnl_usd": 419.17,
+      "expected_monthly_pnl_mxn": 8383.33,
       "worst_historical_month_usd": -4492.41,
       "historical_max_dd_usd": 8520.0,
       "historical_max_dd_pct": 8.52,
@@ -229,9 +229,9 @@
     },
     "$250,000 USD": {
       "capital_usd": 250000,
-      "expected_annual_pnl_usd": 12500.0,
-      "expected_monthly_pnl_usd": 1041.67,
-      "expected_monthly_pnl_mxn": 20833.33,
+      "expected_annual_pnl_usd": 12575.0,
+      "expected_monthly_pnl_usd": 1047.92,
+      "expected_monthly_pnl_mxn": 20958.33,
       "worst_historical_month_usd": -11231.02,
       "historical_max_dd_usd": 21300.0,
       "historical_max_dd_pct": 8.52,
@@ -243,9 +243,9 @@
     },
     "$500,000 USD": {
       "capital_usd": 500000,
-      "expected_annual_pnl_usd": 25000.0,
-      "expected_monthly_pnl_usd": 2083.33,
-      "expected_monthly_pnl_mxn": 41666.67,
+      "expected_annual_pnl_usd": 25150.0,
+      "expected_monthly_pnl_usd": 2095.83,
+      "expected_monthly_pnl_mxn": 41916.67,
       "worst_historical_month_usd": -22462.05,
       "historical_max_dd_usd": 42600.0,
       "historical_max_dd_pct": 8.52,
@@ -260,37 +260,37 @@
     "5,000 MXN / month": {
       "target_monthly_income_mxn": 5000,
       "target_monthly_income_usd": 250.0,
-      "required_capital_usd": 60000.0,
-      "required_capital_mxn": 1200000.0,
+      "required_capital_usd": 59642.15,
+      "required_capital_mxn": 1192842.94,
       "modelled_annual_pnl_usd": 3000.0,
-      "modelled_max_dd_usd": 5112.0,
+      "modelled_max_dd_usd": 5081.51,
       "disclaimer": "MODELLED / NOT GUARANTEED"
     },
     "20,000 MXN / month": {
       "target_monthly_income_mxn": 20000,
       "target_monthly_income_usd": 1000.0,
-      "required_capital_usd": 240000.0,
-      "required_capital_mxn": 4800000.0,
+      "required_capital_usd": 238568.59,
+      "required_capital_mxn": 4771371.77,
       "modelled_annual_pnl_usd": 12000.0,
-      "modelled_max_dd_usd": 20448.0,
+      "modelled_max_dd_usd": 20326.04,
       "disclaimer": "MODELLED / NOT GUARANTEED"
     },
     "50,000 MXN / month": {
       "target_monthly_income_mxn": 50000,
       "target_monthly_income_usd": 2500.0,
-      "required_capital_usd": 600000.0,
-      "required_capital_mxn": 12000000.0,
+      "required_capital_usd": 596421.47,
+      "required_capital_mxn": 11928429.42,
       "modelled_annual_pnl_usd": 30000.0,
-      "modelled_max_dd_usd": 51120.0,
+      "modelled_max_dd_usd": 50815.11,
       "disclaimer": "MODELLED / NOT GUARANTEED"
     },
     "100,000 MXN / month": {
       "target_monthly_income_mxn": 100000,
       "target_monthly_income_usd": 5000.0,
-      "required_capital_usd": 1200000.0,
-      "required_capital_mxn": 24000000.0,
+      "required_capital_usd": 1192842.94,
+      "required_capital_mxn": 23856858.85,
       "modelled_annual_pnl_usd": 60000.0,
-      "modelled_max_dd_usd": 102240.0,
+      "modelled_max_dd_usd": 101630.22,
       "disclaimer": "MODELLED / NOT GUARANTEED"
     }
   }

@@ -1,6 +1,6 @@
 {
-  "last_heartbeat": "2026-08-23 02:52:19 UTC",
-  "last_market_timestamp": "2026-08-23 02:00:00 UTC",
+  "last_heartbeat": "2026-09-02 00:28:46 UTC",
+  "last_market_timestamp": "N/A",
   "strategies_loaded": [
     "Pairs_Stat_Arb_Base",
     "Pairs_W90_Z2.5_S3.5_H24",
@@ -20,8 +20,8 @@
     "Pairs_W90_Z2.5_S3.5_H24": null,
     "Pairs_W90_Z2.4_S3.5_H24": null
   },
-  "last_error": "Fetch klines error (BTCUSDT): HTTPSConnectionPool(host='testnet.binancefuture.com', port=443): Read timed out. (read timeout=None)",
-  "runner_pid": 17780,
+  "last_error": null,
+  "runner_pid": 32770,
   "status": "RUNNING_FORWARD_PAPER",
   "watchdog_status": "OK",
   "paper_balance": 5000.0

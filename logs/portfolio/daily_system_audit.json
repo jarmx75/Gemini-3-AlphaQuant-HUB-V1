@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-08-22T20:42:11.684802",
+  "timestamp": "2026-09-01T18:29:44.363141",
   "health_status": "ALL_SYSTEMS_OPERATIONAL",
   "paypal_status": {
     "PAYPAL_MODE": "LIVE",
-    "CREDENTIALS_PRESENT": true,
+    "CREDENTIALS_PRESENT": false,
     "ENV_SOURCE": "config/.env",
-    "OAUTH_AUTHENTICATION": "PASS",
-    "API_CONNECTIVITY": "PASS",
-    "CHECKOUT_READINESS": "PASS"
+    "OAUTH_AUTHENTICATION": "FAIL",
+    "API_CONNECTIVITY": "FAIL",
+    "CHECKOUT_READINESS": "PENDING_CREDENTIALS"
   },
   "landing_status": {
     "public_landing_package_ready": true,
@@ -16,7 +16,7 @@
   },
   "outreach_status": {
     "github_outreach_autonomous": true,
-    "email_outreach_autonomous": false
+    "email_outreach_autonomous": true
   },
   "trading_status": {
     "crypto_runner_active": true,

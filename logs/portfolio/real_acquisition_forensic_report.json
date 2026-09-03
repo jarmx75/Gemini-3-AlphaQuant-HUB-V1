@@ -1,52 +1,244 @@
 {
-  "timestamp": "2026-08-26T00:10:32.321763+00:00",
+  "timestamp": "2026-09-02T00:29:44.320971+00:00",
   "session": {
     "session_id": "sess_20260826_000957_11e9b0",
     "start_time_utc": "2026-08-26T00:09:57.414562+00:00",
-    "current_time_utc": "2026-08-26T00:10:32.321801+00:00",
-    "elapsed_hours": 0.0097,
-    "remaining_hours_to_24h": 23.9903,
-    "total_lifetime_hours": 0.0097
+    "current_time_utc": "2026-09-02T00:29:44.321032+00:00",
+    "elapsed_hours": 168.3297,
+    "remaining_hours_to_24h": 0.0,
+    "total_lifetime_hours": 168.3297
   },
   "runtime": {
-    "cron_cycles": 12,
-    "successful_cycles": 12,
+    "cron_cycles": 77,
+    "successful_cycles": 77,
     "failed_cycles": 0,
     "retries": 0,
     "revenue_activity_rate": "100.0%"
   },
+  "cron": {
+    "expected": 673,
+    "observed": 77,
+    "missing": 0,
+    "status": "CRON_HEALTHY"
+  },
+  "outreach": {
+    "published": 1,
+    "blocked": 2,
+    "failed": 0
+  },
   "acquisition": {
-    "opportunities_discovered": 10,
-    "qualified_leads": 10,
+    "opportunities_discovered": 364,
+    "qualified_leads": 72,
     "publications": 1,
     "blocked": 2,
     "replies": 0,
     "external_visits": 0,
     "quiz_starts": 0,
     "emails": 0,
-    "checkout_starts": 6
+    "checkout_starts": 71
   },
   "revenue": {
-    "payment_returns": 6,
+    "payment_returns": 71,
     "completed_payments": 0,
-    "revenue_usd": 0
+    "revenue_usd": 0.0,
+    "verified_commercial_payments": 0,
+    "verified_commercial_revenue_usd": 0.0
   },
+  "real_commercial_metrics": {
+    "verified_commercial_payments": 0,
+    "verified_commercial_revenue_usd": 0.0,
+    "real_customer_audits_completed": 0,
+    "real_customer_certificates_delivered": 0,
+    "real_customer_emails_delivered": 0
+  },
+  "non_commercial_isolation": {
+    "historical_unverified_events": 1,
+    "internal_tests": 174,
+    "sandbox_events": 232,
+    "unknown_events": 0,
+    "rejected_events": 0
+  },
+  "durable_storage": {
+    "durable_storage_provider": "NOT_CONFIGURED",
+    "durable_storage_configured": false,
+    "durable_storage_health": "FAIL_CLOSED",
+    "google_drive_folder_configured": false,
+    "commercial_fulfillment_status": "BLOCKED_STORAGE_NOT_CONFIGURED",
+    "uploads_blocked_storage_not_configured": 1,
+    "deliveries_blocked_storage_not_configured": 1,
+    "persisted_commercial_uploads": 0,
+    "persisted_commercial_reports": 0,
+    "persisted_commercial_certificates": 0
+  },
+  "COMMERCIAL_FULFILLMENT_READINESS": "NOT_READY",
   "delivery": {
     "audits": 0,
     "certificates": 0,
     "emails_delivered": 0
   },
+  "external_customer_funnel": {
+    "landing_visits": 0,
+    "quiz_starts": 0,
+    "emails": 0,
+    "checkout_starts": 71,
+    "payment_returns": 71,
+    "completed_payments": 0,
+    "revenue_usd": 0.0,
+    "audits_completed": 0,
+    "certificates_delivered": 0,
+    "emails_delivered": 0,
+    "human_replies": 0
+  },
   "product_portfolio": {
-    "active_products": 2,
+    "active_products": 3,
     "revenue_by_product": {
       "QUANT_AUDIT": 0.0,
       "DATA_PRODUCTS": 0.0,
-      "PROP_VERIFICATION": 0.0
+      "PROP_VERIFICATION": 0.0,
+      "QUANT_EXECUTION_REALITY_AUDIT": 0.0,
+      "QUANT_AUDIT_49": 0.0,
+      "QUANT_EXECUTION_REALITY_AUDIT_79": 0.0,
+      "COMPLETE_QUANT_VALIDATION_BUNDLE_96": 0.0
     },
     "leads_by_product": {
       "QUANT_AUDIT": 0,
       "DATA_PRODUCTS": 0,
-      "PROP_VERIFICATION": 0
+      "PROP_VERIFICATION": 0,
+      "QUANT_EXECUTION_REALITY_AUDIT": 0,
+      "QUANT_AUDIT_49": 0,
+      "QUANT_EXECUTION_REALITY_AUDIT_79": 0,
+      "COMPLETE_QUANT_VALIDATION_BUNDLE_96": 0
+    },
+    "products": {
+      "QUANT_AUDIT": {
+        "product_id": "QUANT_AUDIT",
+        "name": "Quant Audit Micro-SaaS",
+        "category": "SAAS_AUDIT",
+        "price": 49.0,
+        "margin": 0.95,
+        "recurring": false,
+        "automation_score": 95,
+        "conversion_rate": "UNKNOWN",
+        "revenue_usd": 0.0,
+        "traffic_visits": 0,
+        "qualified_leads": 0,
+        "customers": 0,
+        "retention_rate": "UNKNOWN",
+        "status": "ACQUISITION",
+        "effort_allocation_weight": 0.7,
+        "deployed_in_production": true
+      },
+      "DATA_PRODUCTS": {
+        "product_id": "DATA_PRODUCTS",
+        "name": "Crypto Orderflow Datasets",
+        "category": "DATA_FEED",
+        "price": 29.0,
+        "margin": 0.9,
+        "recurring": true,
+        "automation_score": 90,
+        "conversion_rate": "UNKNOWN",
+        "revenue_usd": 0.0,
+        "traffic_visits": 0,
+        "qualified_leads": 0,
+        "customers": 0,
+        "retention_rate": "UNKNOWN",
+        "status": "VALIDATION",
+        "effort_allocation_weight": 0.2,
+        "deployed_in_production": true
+      },
+      "PROP_VERIFICATION": {
+        "product_id": "PROP_VERIFICATION",
+        "name": "Institutional Alpha Verification",
+        "category": "ENTERPRISE_AUDIT",
+        "price": 299.0,
+        "margin": 0.85,
+        "recurring": false,
+        "automation_score": 80,
+        "conversion_rate": "UNKNOWN",
+        "revenue_usd": 0.0,
+        "traffic_visits": 0,
+        "qualified_leads": 0,
+        "customers": 0,
+        "retention_rate": "UNKNOWN",
+        "status": "DISCOVERY",
+        "effort_allocation_weight": 0.1,
+        "deployed_in_production": false
+      },
+      "QUANT_EXECUTION_REALITY_AUDIT": {
+        "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+        "name": "Quant Execution Reality Audit",
+        "category": "EXECUTION_AUDIT",
+        "price": 79.0,
+        "margin": 0.92,
+        "recurring": false,
+        "automation_score": 92,
+        "conversion_rate": "UNKNOWN",
+        "revenue_usd": 0.0,
+        "traffic_visits": 0,
+        "qualified_leads": 0,
+        "customers": 0,
+        "retention_rate": "UNKNOWN",
+        "status": "VALIDATING",
+        "effort_allocation_weight": 0.2,
+        "deployed_in_production": true,
+        "validation_gate_passed": true
+      },
+      "QUANT_AUDIT_49": {
+        "product_id": "QUANT_AUDIT",
+        "name": "Quant Audit Micro-SaaS",
+        "category": "SAAS_AUDIT",
+        "price": 49.0,
+        "margin": 0.95,
+        "recurring": false,
+        "automation_score": 95,
+        "conversion_rate": "UNKNOWN",
+        "revenue_usd": 0.0,
+        "traffic_visits": 0,
+        "qualified_leads": 0,
+        "customers": 0,
+        "retention_rate": "UNKNOWN",
+        "status": "ACQUISITION",
+        "effort_allocation_weight": 0.7,
+        "deployed_in_production": true
+      },
+      "QUANT_EXECUTION_REALITY_AUDIT_79": {
+        "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+        "name": "Quant Execution Reality Audit",
+        "category": "EXECUTION_AUDIT",
+        "price": 79.0,
+        "margin": 0.92,
+        "recurring": false,
+        "automation_score": 92,
+        "conversion_rate": "UNKNOWN",
+        "revenue_usd": 0.0,
+        "traffic_visits": 0,
+        "qualified_leads": 0,
+        "customers": 0,
+        "retention_rate": "UNKNOWN",
+        "status": "VALIDATING",
+        "effort_allocation_weight": 0.2,
+        "deployed_in_production": true,
+        "validation_gate_passed": true
+      },
+      "COMPLETE_QUANT_VALIDATION_BUNDLE_96": {
+        "product_id": "COMPLETE_QUANT_VALIDATION_BUNDLE_96",
+        "name": "Complete Quant Validation Bundle ($96)",
+        "category": "FULL_BUNDLE",
+        "price": 96.0,
+        "margin": 0.94,
+        "recurring": false,
+        "automation_score": 95,
+        "conversion_rate": "UNKNOWN",
+        "revenue_usd": 0.0,
+        "traffic_visits": 0,
+        "qualified_leads": 0,
+        "customers": 0,
+        "retention_rate": "UNKNOWN",
+        "status": "VALIDATING",
+        "effort_allocation_weight": 0.2,
+        "deployed_in_production": true,
+        "paypal_link": "https://www.paypal.com/ncp/payment/2Y3RX97HNWXY6"
+      }
     }
   },
   "conversion": {
@@ -55,9 +247,9 @@
     "landing_to_payment": "UNKNOWN"
   },
   "owner_test_funnel": {
-    "owner_landing_visits": 13,
+    "owner_landing_visits": 143,
     "owner_checkout_starts": 1,
-    "test_payments": 159
+    "test_payments": 406
   },
   "data_quality": {
     "hardcoded": 0,
@@ -66,5 +258,5 @@
     "unknown": 0,
     "missing_sources": []
   },
-  "final_verdict": "AUTONOMOUS_REVENUE_ENGINE_ACTIVE"
+  "final_verdict": "COMMERCIAL_FULFILLMENT_BLOCKED_STORAGE_NOT_CONFIGURED"
 }

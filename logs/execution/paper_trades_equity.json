@@ -2,147 +2,167 @@
   "market": "US_EQUITY_ETF",
   "broker": "ALPACA_PAPER_MOCK",
   "environment": "DRY_RUN",
-  "total_trades": 14,
+  "total_trades": 16,
   "trades": [
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "SPY",
       "side": "BUY",
-      "qty": 26.5605,
-      "price": 764.6699829101562,
-      "notional": 20310.0,
+      "qty": 23.1603,
+      "price": 772.010009765625,
+      "notional": 17880.0,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "QQQ",
       "side": "BUY",
-      "qty": 16.3733,
-      "price": 709.6901245117188,
-      "notional": 11620.0,
+      "qty": 13.6758,
+      "price": 719.52001953125,
+      "notional": 9840.0,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "IWM",
       "side": "BUY",
-      "qty": 57.1744,
-      "price": 298.55999755859375,
-      "notional": 17070.0,
+      "qty": 45.0624,
+      "price": 300.25,
+      "notional": 13530.0,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "XLF",
       "side": "BUY",
-      "qty": 399.9653,
-      "price": 57.60499954223633,
-      "notional": 23040.0,
+      "qty": 346.4648,
+      "price": 58.130001068115234,
+      "notional": 20140.0,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "XLK",
       "side": "BUY",
-      "qty": 43.3947,
-      "price": 182.0500030517578,
-      "notional": 7900.0,
+      "qty": 36.7363,
+      "price": 187.8249969482422,
+      "notional": 6900.0,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "XLE",
       "side": "BUY",
-      "qty": 157.6193,
-      "price": 64.01499938964844,
-      "notional": 10090.0,
+      "qty": 115.469,
+      "price": 62.614200592041016,
+      "notional": 7230.0,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M1_N21",
       "symbol": "GLD",
       "side": "BUY",
-      "qty": 23.6452,
-      "price": 421.6499938964844,
-      "notional": 9970.0,
+      "qty": 16.7773,
+      "price": 422.0,
+      "notional": 7080.0,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M1_N21",
+      "symbol": "TLT",
+      "side": "BUY",
+      "qty": 209.5754,
+      "price": 83.0250015258789,
+      "notional": 17400.0,
+      "status": "FILLED",
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "QQQ",
       "side": "SELL",
-      "qty": 16.3733,
-      "price": 709.6901245117188,
-      "notional": -11619.97,
+      "qty": 13.6758,
+      "price": 719.52001953125,
+      "notional": -9840.01,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "XLK",
+      "side": "SELL",
+      "qty": 36.7363,
+      "price": 187.8249969482422,
+      "notional": -6900.0,
+      "status": "FILLED",
+      "timestamp": "2026-09-02T00:28:40Z"
+    },
+    {
+      "strategy_id": "TSMOM_1D_M2_N63",
+      "symbol": "TLT",
+      "side": "SELL",
+      "qty": 209.5754,
+      "price": 83.0250015258789,
+      "notional": -17400.0,
+      "status": "FILLED",
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "SPY",
       "side": "BUY",
-      "qty": 3.4676,
-      "price": 764.6699829101562,
-      "notional": 2651.6,
+      "qty": 9.1968,
+      "price": 772.010009765625,
+      "notional": 7100.02,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "IWM",
       "side": "BUY",
-      "qty": 7.4844,
-      "price": 298.55999755859375,
-      "notional": 2234.56,
+      "qty": 23.3258,
+      "price": 300.25,
+      "notional": 7003.58,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "XLF",
       "side": "BUY",
-      "qty": 33.6777,
-      "price": 57.60499954223633,
-      "notional": 1940.0,
+      "qty": 83.2617,
+      "price": 58.130001068115234,
+      "notional": 4840.0,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
-    },
-    {
-      "strategy_id": "TSMOM_1D_M2_N63",
-      "symbol": "XLK",
-      "side": "BUY",
-      "qty": 5.6185,
-      "price": 182.0500030517578,
-      "notional": 1022.85,
-      "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "XLE",
       "side": "BUY",
-      "qty": 20.4776,
-      "price": 64.01499938964844,
-      "notional": 1310.87,
+      "qty": 59.9099,
+      "price": 62.614200592041016,
+      "notional": 3751.21,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     },
     {
       "strategy_id": "TSMOM_1D_M2_N63",
       "symbol": "GLD",
       "side": "BUY",
-      "qty": 3.0854,
-      "price": 421.6499938964844,
-      "notional": 1300.98,
+      "qty": 8.6763,
+      "price": 422.0,
+      "notional": 3661.38,
       "status": "FILLED",
-      "timestamp": "2026-08-23T02:41:59Z"
+      "timestamp": "2026-09-02T00:28:40Z"
     }
   ]
 }

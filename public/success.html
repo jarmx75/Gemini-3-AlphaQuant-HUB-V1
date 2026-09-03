@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pago Confirmado — Automaton Quant Audit</title>
+    <title>Confirmación de Registro — Automaton Quant Audit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -149,20 +149,20 @@
 
     <div class="container">
         <div class="icon-box">✓</div>
-        <h1 id="title-heading">¡Pago Recibido Exitosamente!</h1>
-        <p id="sub-heading">Confirma tu correo electrónico para la entrega instantánea de tu reporte y certificado de auditoría cuantitativa.</p>
+        <h1 id="title-heading">Registro de Retorno PayPal</h1>
+        <p id="sub-heading">Confirma tu correo electrónico para vincular tu referencia de pago con la entrega de tu reporte de auditoría.</p>
 
         <div class="onboarding-card" id="onboarding-box">
             <form id="onboarding-form">
                 <div class="form-group">
-                    <label for="tx-id-input">ID de Transacción PayPal</label>
+                    <label for="tx-id-input">Referencia de Transacción PayPal</label>
                     <input type="text" id="tx-id-input" readonly style="background: #e8e8ed; color: #515154;">
                 </div>
                 <div class="form-group">
                     <label for="customer-email">Correo Electrónico para Recibir el Servicio (*)</label>
                     <input type="email" id="customer-email" placeholder="ejemplo: tu-correo@dominio.com" required>
                 </div>
-                <button type="submit" id="btn-submit-onboarding" class="btn-submit">⚡ Confirmar Correo y Recibir Servicio Instantáneo</button>
+                <button type="submit" id="btn-submit-onboarding" class="btn-submit">⚡ Registrar Correo para Recibir Servicio</button>
             </form>
         </div>
 
@@ -192,11 +192,11 @@
             const isLikelyPaid = Boolean(transactionId && transactionId !== 'REAL_TXN_PENDING');
 
             if (isLikelyPaid) {
-                titleHeading.innerText = '¡Pago Recibido Exitosamente!';
-                subHeading.innerText = 'Transacción PayPal: ' + transactionId + ' ($' + amount + ' ' + currency + '). Ingresa tu correo a continuación para iniciar la entrega del servicio en tiempo real (< 10 segundos).';
+                titleHeading.innerText = 'Retorno de Pago PayPal';
+                subHeading.innerText = 'Referencia detectada: ' + transactionId + ' ($' + amount + ' ' + currency + '). Registra tu correo a continuación. La entrega del certificado se iniciará automáticamente una vez verificado el postback oficial de PayPal.';
             } else {
                 titleHeading.innerText = 'Verificación de Pago Pendiente';
-                subHeading.innerText = 'No detectamos la referencia de pago en la URL. Puedes ingresar tu correo e ID de transacción a continuación para que nuestro equipo procese tu entrega.';
+                subHeading.innerText = 'No detectamos la referencia de pago en la URL. Puedes ingresar tu correo e ID de transacción a continuación para registro.';
             }
 
             onboardingForm.addEventListener('submit', async (e) => {
@@ -205,14 +205,13 @@
                 if (!email) return;
 
                 btnSubmit.disabled = true;
-                btnSubmit.innerText = '⚡ Procesando Entrega Instantánea...';
+                btnSubmit.innerText = '⚡ Registrando Solicitud...';
 
                 const WEBHOOK_URL = window.location.hostname === 'localhost'
-                    ? 'http://localhost:3000/api/v1/payments/paypal-webhook'
-                    : 'https://automaton-quant-audit-api.vercel.app/api/v1/payments/paypal-webhook';
+                    ? 'http://localhost:3000/api/webhook'
+                    : 'https://automaton-quant-audit-api.vercel.app/api/webhook';
 
                 try {
-                    const startTime = performance.now();
                     const resp = await fetch(WEBHOOK_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -221,34 +220,41 @@
                             transaction_id: transactionId,
                             customer_email: email,
                             amount: amount,
-                            currency: currency,
-                            status_entregado: 'QUEUED_FOR_DELIVERY'
+                            currency: currency
                         })
                     });
-                    const durationMs = Math.round(performance.now() - startTime);
+                    const data = await resp.json();
 
                     if (resp.ok) {
                         toast.style.display = 'block';
-                        toast.style.background = '#dcfce7';
-                        toast.style.borderColor = '#86efac';
-                        toast.style.color = '#15803d';
-                        toast.innerHTML = '✓ <strong>¡Entrega Registrada en ' + durationMs + 'ms!</strong><br>Hemos enviado la confirmación y el reporte de auditoría a <strong>' + email + '</strong> (Ref: ' + transactionId + ').';
-                        btnSubmit.innerText = '✓ Entrega Registrada Exitosamente';
+                        if (data.status_entregado === 'VERIFIED_MATCHED_FULFILLMENT_AUTHORIZED') {
+                            toast.style.background = '#dcfce7';
+                            toast.style.borderColor = '#86efac';
+                            toast.style.color = '#15803d';
+                            toast.innerHTML = '✓ <strong>¡Pago Verificado y Servicio Autorizado!</strong><br>El reporte y certificado han sido enviados a <strong>' + email + '</strong> (Ref: ' + transactionId + ').';
+                            btnSubmit.innerText = '✓ Servicio Entregado';
+                        } else {
+                            toast.style.background = '#e0f2fe';
+                            toast.style.borderColor = '#7dd3fc';
+                            toast.style.color = '#0369a1';
+                            toast.innerHTML = '⏳ <strong>Correo Registrado (Estado: PENDING_VERIFICATION).</strong><br>Tu correo <strong>' + email + '</strong> fue vinculado a la referencia ' + transactionId + '. El servicio se enviará en cuanto PayPal complete la verificación del postback.';
+                            btnSubmit.innerText = '✓ Correo Registrado en Espera de IPN';
+                        }
                     } else {
                         toast.style.display = 'block';
                         toast.style.background = '#fef3c7';
                         toast.style.borderColor = '#fcd34d';
                         toast.style.color = '#92400e';
-                        toast.innerHTML = '⚡ <strong>Solicitud recibida.</strong> Tu correo <strong>' + email + '</strong> ha sido encolado para verificación asíncrona (Ref: ' + transactionId + ').';
-                        btnSubmit.innerText = '✓ Encolado para Entrega';
+                        toast.innerHTML = '⚡ Solicitud registrada para verificación asíncrona.';
+                        btnSubmit.innerText = '✓ Registrado';
                     }
                 } catch (err) {
                     toast.style.display = 'block';
                     toast.style.background = '#e0f2fe';
                     toast.style.borderColor = '#7dd3fc';
                     toast.style.color = '#0369a1';
-                    toast.innerHTML = '⚡ <strong>Confirmación recibida.</strong> Procesando entrega para <strong>' + email + '</strong> (Ref: ' + transactionId + ').';
-                    btnSubmit.innerText = '✓ Confirmación Recibida';
+                    toast.innerHTML = '⚡ Registro capturado.';
+                    btnSubmit.innerText = '✓ Registrado';
                 }
             });
         });

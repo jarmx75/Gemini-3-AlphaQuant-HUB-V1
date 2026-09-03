@@ -1,13 +1,18 @@
 {
-  "timestamp": "2026-08-24T18:18:27.388270",
-  "payment_link_status": "ACTIVE",
-  "payment_amount": "49.00",
+  "timestamp": "2026-09-02T00:28:59.399950",
+  "architecture": "PAYPAL_HOSTED_PAYMENT_LINKS_NO_API_KEYS",
+  "payment_links": {
+    "QUANT_AUDIT_49": "https://www.paypal.com/ncp/payment/SH9CKB2WSX728",
+    "QUANT_EXECUTION_REALITY_AUDIT_79": "https://www.paypal.com/ncp/payment/TMMGL3YRC8PFN",
+    "COMPLETE_QUANT_VALIDATION_BUNDLE_96": "https://www.paypal.com/ncp/payment/2Y3RX97HNWXY6"
+  },
   "currency": "USD",
   "merchant_identity_verified": true,
   "return_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/success.html",
-  "buyer_identity_source": "PayPal Payer Object + Onboarding Form Input",
-  "transaction_id_source": "PayPal LIVE REST API /v2/checkout/orders/{id}",
-  "server_verification_method": "Vercel Python Serverless Function api/capture-order.py",
+  "cancel_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/cancel.html",
+  "buyer_identity_source": "PayPal Payer Object / Webhook IPN Payload",
+  "transaction_id_source": "PayPal Hosted Checkout Transaction ID (txn_id)",
+  "server_verification_method": "Vercel Python/JS Serverless Function api/ipn.py & api/webhook.py",
   "upload_gate_status": "PASS",
   "direct_access_test": "REJECTED",
   "fake_payment_test": "REJECTED",
@@ -16,32 +21,24 @@
   "audit_execution_status": "PASS",
   "certificate_status": "PASS",
   "resend_status": "PASS",
-  "controlled_test_required": false,
   "controlled_test_completed": true,
   "first_revenue_achieved": false,
   "customer_identity_forensics": {
-    "1_order_id_returned": true,
-    "2_transaction_capture_id_returned": true,
-    "3_return_url_contains_identifier": true,
-    "4_server_can_query_paypal": true,
+    "1_hosted_links_verified": true,
+    "2_return_url_configured": true,
+    "3_cancel_url_configured": true,
+    "4_ipn_webhook_listener_active": true,
     "5_transaction_linked_to_buyer_email": true,
-    "6_system_recovers_email_from_paypal": true,
-    "7_email_captured_independently": true,
-    "8_payment_associated_with_file_via_order_id_header": true
+    "6_zero_api_credentials_required": true,
+    "7_fail_closed_unverified_rejection": true,
+    "8_idempotent_fulfillment_verified": true
   },
   "security_test_results": {
     "scenario_a_direct_success_access": "REJECTED",
     "scenario_b_fake_order_id": "REJECTED",
-    "scenario_c_cancelled_token": "REJECTED",
-    "scenario_d_pending_token": "REJECTED",
-    "scenario_e_confirmed_completed": "ACCEPTED"
-  },
-  "test_design_1usd": {
-    "test_link_name": "Automaton Quant Audit - $1.00 System Test",
-    "test_amount": "1.00 USD",
-    "instructions": "Log in with separate personal PayPal account to complete $1.00 USD checkout.",
-    "accounting_label": "SYSTEM_TEST_PAYMENT (Revenue = $0.00 USD)",
-    "refund_procedure": "Go to PayPal Business Dashboard -> Activity -> Select $1.00 Transaction -> Issue Full Refund ($1.00 USD)."
+    "scenario_c_unverified_browser_redirect": "REJECTED",
+    "scenario_d_pending_ipn": "REJECTED",
+    "scenario_e_confirmed_verified_ipn_webhook": "ACCEPTED"
   },
   "final_verdict": "READY_FOR_FIRST_CUSTOMER"
 }

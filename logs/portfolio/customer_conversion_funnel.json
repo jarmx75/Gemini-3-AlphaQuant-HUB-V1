@@ -151,10 +151,619 @@
           "evidence": {
             "score": 95
           }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-24T23:42:09.167840",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-24T23:43:33.449794",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T00:04:59.748023",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T00:05:22.834502",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T00:09:58.824840",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T00:14:59.468006",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T17:06:33.410671",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T17:10:41.514946",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T17:14:44.388680",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T17:20:28.842426",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T23:52:41.381895",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T23:53:02.144908",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T23:54:48.148293",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T23:55:12.073054",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T23:56:10.929236",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-25T23:59:31.653499",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T00:00:52.724112",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T00:02:09.720340",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T00:10:21.428122",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T00:11:42.485256",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T00:13:22.394716",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T01:53:40.279643",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T01:54:09.901528",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T05:33:50.010726",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T05:34:20.366441",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T05:41:09.863795",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T05:41:32.489468",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T05:42:03.085590",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T05:44:14.413001",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T05:44:56.109755",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T05:45:31.984417",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T06:05:44.278765",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T06:20:28.806341",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T16:03:44.802319",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T16:53:58.423657",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T22:48:39.770717",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T22:49:50.414229",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T23:03:14.429765",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T23:03:42.091575",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T23:04:28.796345",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T23:05:24.403277",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T23:13:14.040027",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T23:13:41.586721",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-26T23:14:08.647477",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-27T15:34:30.667915",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-27T15:35:07.189601",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-27T15:46:38.776033",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-27T15:54:03.135081",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-27T16:04:55.474427",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T01:39:27.813939",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T01:48:09.640171",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T01:48:44.662331",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T01:54:37.786796",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T01:55:10.883019",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T01:59:19.455209",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T02:00:05.797277",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T02:00:39.113279",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T02:04:31.297294",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-28T02:05:06.719181",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-29T00:44:44.287302",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-29T00:45:24.166347",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-29T01:08:05.732668",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-29T01:09:23.029850",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T17:35:24.678397",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T17:36:15.587154",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T17:49:49.999267",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T17:53:45.992392",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T17:56:39.913554",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T17:59:50.479582",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T20:30:00.556774",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T20:34:10.278191",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T20:46:40.924412",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T20:48:06.822606",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T20:50:36.195540",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T20:51:53.509044",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T20:59:30.150060",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T21:04:19.516763",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T21:05:30.743629",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T21:48:46.945245",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-30T23:03:35.556313",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-31T02:42:41.434793",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-31T02:49:47.472799",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-31T03:40:19.653420",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-08-31T18:35:39.700508",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-09-01T02:40:19.488023",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-09-01T02:42:14.324221",
+          "evidence": {
+            "score": 95
+          }
+        },
+        {
+          "status": "QUALIFIED",
+          "timestamp": "2026-09-02T00:28:44.488901",
+          "evidence": {
+            "score": 95
+          }
         }
       ],
       "created_at": "2026-08-24T02:38:21.017310",
-      "updated_at": "2026-08-24T02:38:21.017310",
+      "updated_at": "2026-09-02T00:28:44.488901",
       "evidence": {
         "score": 95
       }
@@ -180,16 +789,1408 @@
               "price": "$49 USD"
             }
           }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-24T23:42:09.168516",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-24T23:42:09.168404",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-24T23:43:33.451176",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-24T23:43:33.451053",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T00:04:59.748758",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T00:04:59.748640",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T00:05:22.835438",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T00:05:22.835259",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T00:09:58.825721",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T00:09:58.825582",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T00:14:59.468770",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T00:14:59.468637",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T17:06:33.411803",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T17:06:33.411669",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T17:10:41.516155",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T17:10:41.515965",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T17:14:44.389684",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T17:14:44.389538",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T17:20:28.843595",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T17:20:28.843437",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T23:52:41.383038",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T23:52:41.382880",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T23:53:02.145878",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T23:53:02.145715",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T23:54:48.149623",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T23:54:48.149409",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T23:55:12.074272",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T23:55:12.074094",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T23:56:10.930776",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T23:56:10.930395",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-25T23:59:31.654620",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-25T23:59:31.654432",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T00:00:52.725316",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T00:00:52.725107",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T00:02:09.721572",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T00:02:09.721347",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T00:10:21.429442",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T00:10:21.429222",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T00:11:42.486478",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T00:11:42.486279",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T00:13:22.396248",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T00:13:22.396003",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T01:53:40.280936",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T01:53:40.280727",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T01:54:09.902916",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T01:54:09.902700",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T05:33:50.012112",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T05:33:50.011893",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T05:34:20.367908",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T05:34:20.367648",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T05:41:09.865241",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T05:41:09.865013",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T05:41:32.490971",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T05:41:32.490728",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T05:42:03.087107",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T05:42:03.086867",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T05:44:14.414743",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T05:44:14.414478",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T05:44:56.111367",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T05:44:56.111097",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T05:45:31.986068",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T05:45:31.985815",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T06:05:44.280671",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T06:05:44.280402",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T06:20:28.808059",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T06:20:28.807797",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T16:03:44.804311",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T16:03:44.804008",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T16:53:58.425426",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T16:53:58.425160",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T22:48:39.772568",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T22:48:39.772273",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T22:49:50.416213",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T22:49:50.415919",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T23:03:14.432017",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T23:03:14.431698",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T23:03:42.093516",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T23:03:42.093214",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T23:04:28.798264",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T23:04:28.797965",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T23:05:24.405290",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T23:05:24.404971",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T23:13:14.042049",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T23:13:14.041731",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T23:13:41.588873",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T23:13:41.588520",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-26T23:14:08.649533",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-26T23:14:08.649219",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-27T15:34:30.670165",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-27T15:34:30.669830",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-27T15:35:07.209540",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-27T15:35:07.208426",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-27T15:46:38.778891",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-27T15:46:38.778532",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-27T15:54:03.137330",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-27T15:54:03.136958",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-27T16:04:55.476675",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-27T16:04:55.476333",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T01:39:27.816385",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T01:39:27.816023",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T01:48:09.642536",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T01:48:09.642189",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T01:48:44.664747",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T01:48:44.664379",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T01:54:37.789206",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T01:54:37.788834",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T01:55:10.885434",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T01:55:10.885066",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T01:59:19.457686",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T01:59:19.457318",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T02:00:05.799815",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T02:00:05.799432",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T02:00:39.115789",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T02:00:39.115409",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T02:04:31.299856",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T02:04:31.299470",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-28T02:05:06.721780",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-28T02:05:06.721388",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-29T00:44:44.290091",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-29T00:44:44.289659",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-29T00:45:24.169235",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-29T00:45:24.168785",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-29T01:08:05.735537",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-29T01:08:05.735127",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-29T01:09:23.032633",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-29T01:09:23.032203",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T17:35:24.681319",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T17:35:24.680885",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T17:36:15.590013",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T17:36:15.589579",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T17:49:50.002298",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T17:49:50.001861",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T17:53:45.995378",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T17:53:45.994904",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T17:56:39.916628",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T17:56:39.916159",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T17:59:50.482599",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T17:59:50.482139",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T20:30:00.559883",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T20:30:00.559417",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T20:34:10.281346",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T20:34:10.280860",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T20:46:40.928012",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T20:46:40.927422",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T20:48:06.825913",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T20:48:06.825448",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T20:50:36.198648",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T20:50:36.198186",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T20:51:53.512242",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T20:51:53.511757",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T20:59:30.153300",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T20:59:30.152802",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T21:04:19.519962",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T21:04:19.519491",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T21:05:30.746918",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T21:05:30.746423",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T21:48:46.948614",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T21:48:46.948132",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-30T23:03:35.559853",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-30T23:03:35.559346",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-31T02:42:41.438334",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-31T02:42:41.437825",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-31T02:49:47.476189",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-31T02:49:47.475682",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-31T03:40:19.657252",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-31T03:40:19.656700",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-08-31T18:35:39.704052",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-08-31T18:35:39.703531",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-09-01T02:40:19.491899",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-09-01T02:40:19.491369",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-09-01T02:42:14.327874",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-09-01T02:42:14.327348",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
+        },
+        {
+          "status": "CONTENT_GENERATED",
+          "timestamp": "2026-09-02T00:28:44.492935",
+          "evidence": {
+            "draft_contribution": {
+              "lead_id": "lead_test_02",
+              "channel": "GitHub",
+              "status": "DRAFT",
+              "timestamp": "2026-09-02T00:28:44.492362",
+              "headline": "Technical Analysis: Audit tools query...",
+              "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
+              "price": "$49 USD"
+            }
+          }
         }
       ],
       "created_at": "2026-08-24T02:38:21.017993",
-      "updated_at": "2026-08-24T02:38:21.017993",
+      "updated_at": "2026-09-02T00:28:44.492935",
       "evidence": {
         "draft_contribution": {
           "lead_id": "lead_test_02",
           "channel": "GitHub",
           "status": "DRAFT",
-          "timestamp": "2026-08-24T02:38:21.017888",
+          "timestamp": "2026-09-02T00:28:44.492362",
           "headline": "Technical Analysis: Audit tools query...",
           "body": "Interesting quantitative question. One critical aspect worth verifying before committing real capital to a high Sharpe backtest is whether the return distribution survives:\n\n1. Timestamp Alignment Check: Ensuring signals on bar t strictly execute on bar t+1 open.\n2. Friction Stress Testing: Deducting institutional spread & fee schedules (16 bps roundtrip for crypto futures, 9 bps for equities).\n3. Probability of Backtest Overfitting (PBO): Applying 1,000-block bootstrap resampling to evaluate out-of-sample drawdown decay.\n\nWe built an independent quantitative audit workflow for this exact evaluation:\nhttps://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",
           "landing_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/",

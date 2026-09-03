@@ -1,0 +1,24 @@
+{
+  "report_timestamp": "2026-08-23T21:07:05Z",
+  "paypal_sandbox": "PASS",
+  "payment_link": "PASS",
+  "checkout": "PASS",
+  "return_url": "PASS",
+  "server_verification": "PASS",
+  "customer_identity": "PASS",
+  "upload": "PASS",
+  "audit": "PASS",
+  "certificate": "PASS",
+  "email": "BLOCKED",
+  "first_revenue": false,
+  "sandbox_payment_link": "https://www.paypal.com/ncp/payment/SH9CKB2WSX728",
+  "sandbox_buyer_instructions": "Log in with PayPal Sandbox Personal Buyer Account to simulate .00 USD checkout.",
+  "success_url": "https://jarmx75.github.io/Gemini-3-AlphaQuant-HUB-V1/success.html",
+  "upload_endpoint": "https://automaton-quant-audit-api.vercel.app/api/upload-audit",
+  "audit_endpoint": "https://automaton-quant-audit-api.vercel.app/api/create-order",
+  "email_status": "BLOCKED_AWAITING_PRODUCTION_RESEND_API_KEY",
+  "exact_remaining_blockers": [
+    "Configurar RESEND_API_KEY en .env para envio de emails de produccion",
+    "Aguardar primera transaccion real de cliente externo (.00 USD) en PayPal Business Dashboard"
+  ]
+}

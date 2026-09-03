@@ -14,13 +14,13 @@
 
 ## 2. Métricas del Portafolio Combinado (50/50 Risk Budget)
 
-- **Retorno Anualizado**: **5.0%**
-- **Volatilidad Anualizada**: **6.05%**
+- **Retorno Anualizado**: **5.03%**
+- **Volatilidad Anualizada**: **6.04%**
 - **Max Drawdown Realizado**: **8.52%**
 - **Sharpe Ratio (Rf=2%)**: **0.5**
 - **Sortino Ratio**: **0.66**
-- **VaR 95%**: **10.03%**
-- **CVaR 95%**: **14.71%**
+- **VaR 95%**: **9.99%**
+- **CVaR 95%**: **14.62%**
 
 ---
 

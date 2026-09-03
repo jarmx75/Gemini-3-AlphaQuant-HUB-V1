@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-26T16:17:46.604733",
+  "timestamp": "2026-09-02T00:29:08.620752",
   "IPN_PRODUCTION_CONFIGURED": true,
   "IPN_REAL_EVENT_RECEIVED": false,
   "IPN_VERIFIED": false,
@@ -30,7 +30,7 @@
     "GITHUB_CONNECTION": "PASS",
     "PROJECT_CREATED": "FAIL",
     "PRODUCTION_DEPLOYMENT": "FAIL",
-    "PRODUCTION_URL": "https://automaton-quant-audit-api.vercel.app",
+    "PRODUCTION_URL": "https://automaton-quant-audit-api-alpha-quant1.vercel.app",
     "API_IPN": "FAIL",
     "API_WEBHOOK": "FAIL",
     "API_ANALYTICS": "FAIL",
@@ -46,32 +46,32 @@
   },
   "endpoint_probe_results": {
     "/api/ipn": {
-      "url": "https://automaton-quant-audit-api.vercel.app/api/ipn",
+      "url": "https://automaton-quant-audit-api-alpha-quant1.vercel.app/api/ipn",
       "http_code": 404,
       "status": "HTTP_404_NOT_FOUND"
     },
     "/api/webhook": {
-      "url": "https://automaton-quant-audit-api.vercel.app/api/webhook",
+      "url": "https://automaton-quant-audit-api-alpha-quant1.vercel.app/api/webhook",
       "http_code": 404,
       "status": "HTTP_404_NOT_FOUND"
     },
     "/api/analytics": {
-      "url": "https://automaton-quant-audit-api.vercel.app/api/analytics",
+      "url": "https://automaton-quant-audit-api-alpha-quant1.vercel.app/api/analytics",
       "http_code": 404,
       "status": "HTTP_404_NOT_FOUND"
     },
     "/api/revenue-scheduler": {
-      "url": "https://automaton-quant-audit-api.vercel.app/api/revenue-scheduler",
+      "url": "https://automaton-quant-audit-api-alpha-quant1.vercel.app/api/revenue-scheduler",
       "http_code": 404,
       "status": "HTTP_404_NOT_FOUND"
     },
     "/api/upload-audit": {
-      "url": "https://automaton-quant-audit-api.vercel.app/api/upload-audit",
+      "url": "https://automaton-quant-audit-api-alpha-quant1.vercel.app/api/upload-audit",
       "http_code": 404,
       "status": "HTTP_404_NOT_FOUND"
     },
     "/api/capture-order": {
-      "url": "https://automaton-quant-audit-api.vercel.app/api/capture-order",
+      "url": "https://automaton-quant-audit-api-alpha-quant1.vercel.app/api/capture-order",
       "http_code": 404,
       "status": "HTTP_404_NOT_FOUND"
     }
@@ -85,16 +85,16 @@
     "product_mapping_status": "MAPPED_49_79_96_AND_SYSTEM_TEST",
     "fulfillment_gate_status": "FAIL_CLOSED_LOCKED",
     "real_payment_evidence": "NONE_REAL_CUSTOMER_PENDING",
-    "number_of_production_ipns_received": 1,
+    "number_of_production_ipns_received": 0,
     "number_of_verified_commercial_payments": 0,
-    "number_of_rejected_ipns": 1,
+    "number_of_rejected_ipns": 0,
     "number_of_duplicate_ipns": 0,
     "number_of_audits_authorized_by_verified_payments": 0,
     "number_of_certificates_delivered": 0
   },
   "evidence_sources": {
     "IPN_PRODUCTION_CONFIGURED": "api/ipn.py & https://ipnpb.paypal.com/cgi-bin/webscr",
-    "IPN_REAL_EVENT_RECEIVED": "logs/portfolio/paypal_ipn_events.jsonl (Total: 1, Real Customer: 0)",
+    "IPN_REAL_EVENT_RECEIVED": "logs/portfolio/paypal_ipn_events.jsonl (Total: 0, Real Customer: 0)",
     "REAL_TEST_TXN_ID": "Real PayPal Return URL (tx=8WB32625PL331771)",
     "REAL_TEST_TXN_ID_MERCHANT": "Merchant Email Receipt (txn_id=8WB32625PL3317718)",
     "TEST_PAYMENT_STATUS": "PayPal Return URL & Receipt (st=COMPLETED)",

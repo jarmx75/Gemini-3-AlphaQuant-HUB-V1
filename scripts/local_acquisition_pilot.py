@@ -44,7 +44,9 @@ from src.economics.outreach_execution_engine import RealOutreachExecutionEngine
 
 class LocalAcquisitionPilot:
 
-    def __init__(self):
+    def __init__(self, allow_external_publication: bool = False):
+        self.allow_external_publication = allow_external_publication
+        self.operating_mode = "EXTERNAL_PUBLICATION_ALLOWED" if allow_external_publication else "DISCOVERY_AND_DRAFT_ONLY"
         self.session_info = RevenueObservationSession.get_session_info()
         self.discovery_engine = AutonomousOpportunityDiscoveryEngine()
         self.orchestrator = AutonomousRevenueOrchestrator()
@@ -131,13 +133,14 @@ class LocalAcquisitionPilot:
         tier_c_targets = rotation_telemetry.get("tier_c_targets", targets_selected - (tier_a_targets + tier_b_targets))
 
         # Outreach Execution (State Machine Tracking)
-        outreach_report = self.outreach_engine.execute_outreach_cycle()
+        outreach_report = self.outreach_engine.execute_outreach_cycle(allow_external_publication=self.allow_external_publication)
         
         token = self.outreach_engine.get_github_token()
-        if token:
+        if token and self.allow_external_publication:
             post_res = self.outreach_engine.post_github_issue_comment(
                 "https://api.github.com/repos/jarmx75/Gemini-3-AlphaQuant-HUB-V1/issues/1/comments",
-                "### Out-of-Sample Sharpe Ratio & Overfitting Audit\nApplying stationary block bootstrap Monte Carlo simulations ensures returns distribution stability across market regimes."
+                "### Out-of-Sample Sharpe Ratio & Overfitting Audit\nApplying stationary block bootstrap Monte Carlo simulations ensures returns distribution stability across market regimes.",
+                allow_external_publication=True
             )
             if post_res.get("external_sent") and post_res.get("publication_confirmed"):
                 self.discovery_engine.update_opportunity_status(
@@ -152,8 +155,12 @@ class LocalAcquisitionPilot:
 
         # Strict distinction: local content generation vs external action submission vs platform publication confirmation
         actions_attempted = len([op for op in discovered if op.get("status") in ["QUALIFIED", "PUBLISHED"]])
-        actions_sent_externally = len([op for op in discovered if op.get("status") == "PUBLISHED" and op.get("external_sent")])
-        publications_confirmed = len([op for op in discovered if op.get("status") == "PUBLISHED" and op.get("publication_confirmed")])
+        if self.allow_external_publication:
+            actions_sent_externally = len([op for op in discovered if op.get("status") == "PUBLISHED" and op.get("external_sent")])
+            publications_confirmed = len([op for op in discovered if op.get("status") == "PUBLISHED" and op.get("publication_confirmed")])
+        else:
+            actions_sent_externally = 0
+            publications_confirmed = 0
         action_failures = len([op for op in discovered if op.get("status") == "FAILED"])
         blocked_actions = len([op for op in discovered if op.get("status") == "BLOCKED"])
 
@@ -240,15 +247,21 @@ class LocalAcquisitionPilot:
         self.state["last_cycle_timestamp"] = timestamp
 
         prev_snap = self.state.get("previous_cycle_snapshot") or {}
+        sess = self.state["session_totals"]
         delta_metrics = {
-            "opportunities_evaluated_delta": opps_evaluated - prev_snap.get("opportunities_evaluated_current_cycle", 0),
-            "targets_selected_delta": targets_selected - prev_snap.get("targets_selected_current_cycle", 0),
-            "actions_sent_externally_delta": actions_sent_externally - prev_snap.get("actions_sent_externally_current_cycle", 0),
-            "real_landing_visits_delta": real_visits_current - prev_snap.get("real_landing_visits_current_cycle", 0),
-            "real_revenue_delta": round(real_revenue_current - prev_snap.get("real_revenue_current_cycle", 0.0), 2)
+            "opportunities_evaluated_delta": sess["opportunities_evaluated_session"] - prev_snap.get("opportunities_evaluated_session", 0),
+            "targets_selected_delta": sess["targets_selected_session"] - prev_snap.get("targets_selected_session", 0),
+            "actions_sent_externally_delta": sess["actions_sent_externally_session"] - prev_snap.get("actions_sent_externally_session", 0),
+            "real_landing_visits_delta": sess["real_landing_visits_session"] - prev_snap.get("real_landing_visits_session", 0),
+            "real_revenue_delta": round(sess["real_revenue_session"] - prev_snap.get("real_revenue_session", 0.0), 2)
         }
 
         self.state["previous_cycle_snapshot"] = {
+            "opportunities_evaluated_session": sess["opportunities_evaluated_session"],
+            "targets_selected_session": sess["targets_selected_session"],
+            "actions_sent_externally_session": sess["actions_sent_externally_session"],
+            "real_landing_visits_session": sess["real_landing_visits_session"],
+            "real_revenue_session": sess["real_revenue_session"],
             "opportunities_evaluated_current_cycle": opps_evaluated,
             "targets_selected_current_cycle": targets_selected,
             "actions_sent_externally_current_cycle": actions_sent_externally,
@@ -265,10 +278,70 @@ class LocalAcquisitionPilot:
 
         telemetry_integrity_pass = inv_tier_accounting and inv_actions_order and inv_channel_actions and inv_channel_pubs
 
-        # Assemble Sprint #36.4.1 Report Schema
+        pipeline_telemetry = self.discovery_engine.prospect_engine.evaluate_pipeline_telemetry()
+        
+        cycle_discovered = len(discovered)
+        cycle_blocked_self = len([op for op in discovered if op.get("self_target_flag") or op.get("prospect_status") == "BLOCKED_SELF_TARGET"])
+        cycle_blocked_dup = len([op for op in discovered if (op.get("duplicate_flag") or op.get("prospect_status") == "BLOCKED_DUPLICATE") and not (op.get("self_target_flag") or op.get("prospect_status") == "BLOCKED_SELF_TARGET")])
+        cycle_template_synth = len([op for op in discovered if (op.get("prospect_status") == "BLOCKED_TEMPLATE_OR_SYNTHETIC" or op.get("source_trust_classification") == "TEMPLATE_OR_SYNTHETIC") and not (op.get("self_target_flag") or op.get("prospect_status") == "BLOCKED_SELF_TARGET" or op.get("duplicate_flag") or op.get("prospect_status") == "BLOCKED_DUPLICATE")])
+        cycle_pending_verif = len([op for op in discovered if op.get("prospect_status") == "PENDING_SOURCE_VERIFICATION"])
+        cycle_eligible = len([op for op in discovered if op.get("prospect_status") in ["ELIGIBLE_FOR_DRAFT", "DRAFT_CREATED"] and not (op.get("self_target_flag") or op.get("prospect_status") == "BLOCKED_SELF_TARGET" or op.get("duplicate_flag") or op.get("prospect_status") == "BLOCKED_DUPLICATE")])
+        cycle_low_relev = len([op for op in discovered if op.get("prospect_status") == "BLOCKED_LOW_RELEVANCE"])
+        cycle_drafts_created = len([op for op in discovered if op.get("prospect_status") in ["ELIGIBLE_FOR_DRAFT", "DRAFT_CREATED"] and op.get("source_trust_classification") == "VERIFIED_EXTERNAL_SOURCE"])
+
+        gh_adapter = next((a for a in self.discovery_engine.adapters if a.adapter_name == "GITHUB"), None)
+        gh_telemetry = getattr(gh_adapter, "telemetry", {}) if gh_adapter else {}
+
+        http_200_count = gh_telemetry.get("github_http_200_responses_current_cycle", 0)
+
+        # MANDATORY INVARIANT: If HTTP 200 responses count == 0, current cycle verified sources and drafts MUST be 0
+        if http_200_count == 0:
+            verified_sources_current = 0
+            drafts_created_current = 0
+            eligible_current = 0
+        else:
+            verified_sources_current = gh_telemetry.get("github_external_sources_verified_current_cycle", 0)
+            drafts_created_current = cycle_drafts_created
+            eligible_current = cycle_eligible
+
         report = {
             "timestamp": timestamp,
             "cycle_id": cycle_id,
+            "OPERATING_MODE": self.operating_mode,
+            "EXTERNAL_PUBLICATION_ATTEMPTED": False if not self.allow_external_publication else (actions_sent_externally > 0),
+            "OUTREACH_SAFETY": {
+                "operating_mode": self.operating_mode,
+                "allow_external_publication": self.allow_external_publication,
+                "external_publication_allowed": self.allow_external_publication,
+                "external_publication_attempted": False if not self.allow_external_publication else (actions_sent_externally > 0),
+                "block_reason": None if self.allow_external_publication else "EXTERNAL_PUBLICATION_REQUIRES_EXPLICIT_APPROVAL"
+            },
+            "PROSPECT_PIPELINE": {
+                "prospects_discovered": cycle_discovered,
+                "prospects_eligible": eligible_current,
+                "blocked_self_target": cycle_blocked_self,
+                "blocked_duplicate": cycle_blocked_dup,
+                "pending_source_verification": cycle_pending_verif,
+                "template_or_synthetic": cycle_template_synth,
+                "internal_or_self": cycle_blocked_self,
+                "local_drafts_created": drafts_created_current,
+                "valid_human_approvable_drafts": pipeline_telemetry.get("local_drafts_created", 0),
+                "invalidated_drafts_historical": pipeline_telemetry.get("invalidated_drafts", 0),
+                "github_live_search_enabled": gh_telemetry.get("github_live_search_enabled", True),
+                "github_api_requests_made_current_cycle": gh_telemetry.get("github_api_requests_made_current_cycle", 0),
+                "github_api_results_received_current_cycle": gh_telemetry.get("github_api_results_received_current_cycle", 0),
+                "github_http_200_responses_current_cycle": http_200_count,
+                "github_external_sources_verified_current_cycle": verified_sources_current,
+                "github_drafts_created_current_cycle": drafts_created_current,
+                "github_api_error_current_cycle": gh_telemetry.get("github_api_error_current_cycle", None),
+                "github_api_rate_limit_status_current_cycle": gh_telemetry.get("github_api_rate_limit_status_current_cycle", {}),
+                "github_self_targets_blocked": gh_telemetry.get("github_self_targets_blocked", 0),
+                "github_duplicates_blocked": gh_telemetry.get("github_duplicates_blocked", 0),
+                "github_low_relevance_blocked": cycle_low_relev,
+                "human_approval_required": True,
+                "external_publications": 0 if not self.allow_external_publication else publications_confirmed,
+                "external_publication_attempted": False if not self.allow_external_publication else (actions_sent_externally > 0)
+            },
             "SESSION": {
                 "session_id": self.state["session_id"],
                 "session_start_utc": self.state["session_start_utc"],
@@ -414,9 +487,10 @@ def main():
     parser = argparse.ArgumentParser(description="Local 15-Minute Acquisition Pilot Runner (Sprint #36.4.2)")
     parser.add_argument("--once", action="store_true", help="Run a single 15-minute cycle and exit")
     parser.add_argument("--loop", action="store_true", help="Run continuously every 15 minutes")
+    parser.add_argument("--allow-external-publication", action="store_true", help="Explicitly enable real external automated publication/outreach")
     args = parser.parse_args()
 
-    pilot = LocalAcquisitionPilot()
+    pilot = LocalAcquisitionPilot(allow_external_publication=args.allow_external_publication)
 
     if args.loop:
         print("=== STARTING CONTINUOUS 15-MINUTE LOCAL ACQUISITION PILOT (CTRL+C TO STOP) ===")

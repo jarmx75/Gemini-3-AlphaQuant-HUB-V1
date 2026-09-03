@@ -1,0 +1,1444 @@
+[
+  {
+    "cert_id": "CERT-LIVE-257F7C67",
+    "order_id": "PAYPAL-LIVE-595667",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-23T21:06:58.193147",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-257F7C67.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-97B6E3F7",
+    "order_id": "PAYPAL-LIVE-653331",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-23T21:07:02.285216",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-97B6E3F7.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-2FA6C8F5",
+    "order_id": "PAYPAL-LIVE-630075",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-23T21:07:27.287642",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-2FA6C8F5.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-4A4E641F",
+    "order_id": "PAYPAL-LIVE-466594",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-23T21:28:49.072682",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-4A4E641F.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-E85076DE",
+    "order_id": "PAYPAL-LIVE-879168",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-23T21:29:10.880605",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-E85076DE.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-C659F50F",
+    "order_id": "PAYPAL-LIVE-171175",
+    "customer_email": "delivered@resend.dev",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T02:18:17.663499",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-C659F50F.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-2BFE0299",
+    "order_id": "PAYPAL-LIVE-488305",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T02:18:38.139644",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-2BFE0299.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-44F915C2",
+    "order_id": "PAYPAL-LIVE-016947",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T02:22:19.253472",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-44F915C2.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-3504DE27",
+    "order_id": "PAYPAL-LIVE-028452",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T02:38:25.612123",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-3504DE27.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-8483268C",
+    "order_id": "PAYPAL-LIVE-204669",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T18:02:41.433667",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-8483268C.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-969F2189",
+    "order_id": "PAYPAL-LIVE-007239",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T18:05:39.572448",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-969F2189.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-86DD3F36",
+    "order_id": "PAYPAL-LIVE-581120",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T18:08:02.461039",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-86DD3F36.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-5B3AF877",
+    "order_id": "PAYPAL-LIVE-981201",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T18:18:27.408250",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-5B3AF877.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-250B6337",
+    "order_id": "PAYPAL-LIVE-269442",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T18:28:18.474183",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-250B6337.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-FF1E854E",
+    "order_id": "PAYPAL-LIVE-491352",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T23:33:38.682501",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-FF1E854E.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-38E45BEA",
+    "order_id": "PAYPAL-LIVE-634264",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T23:34:04.989109",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-38E45BEA.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-57171179",
+    "order_id": "PAYPAL-LIVE-292825",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T23:42:14.909313",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-57171179.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-AFAE4A8D",
+    "order_id": "PAYPAL-LIVE-521044",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T23:43:01.027148",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-AFAE4A8D.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-F7958334",
+    "order_id": "PAYPAL-LIVE-051111",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T23:43:18.757914",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-F7958334.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-8A1A3C88",
+    "order_id": "PAYPAL-LIVE-066717",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-24T23:43:39.431074",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-8A1A3C88.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-916F56D0",
+    "order_id": "PAYPAL-LIVE-992875",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T00:05:05.118719",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-916F56D0.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-3DA92D45",
+    "order_id": "PAYPAL-LIVE-448347",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T00:05:28.154251",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-3DA92D45.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-B029EFAC",
+    "order_id": "PAYPAL-LIVE-814575",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T00:10:04.154760",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-B029EFAC.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-786C8F17",
+    "order_id": "PAYPAL-LIVE-533156",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T00:15:04.638678",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-786C8F17.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-D18C5E4E",
+    "order_id": "PAYPAL-LIVE-173145",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T17:06:38.628515",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-D18C5E4E.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-5E3ACC30",
+    "order_id": "PAYPAL-LIVE-516146",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T17:10:46.829400",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-5E3ACC30.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-F783A530",
+    "order_id": "PAYPAL-LIVE-702247",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T17:14:49.801840",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-F783A530.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-F05FBD52",
+    "order_id": "PAYPAL-LIVE-900257",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T17:20:34.013012",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-F05FBD52.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-F642508F",
+    "order_id": "PAYPAL-LIVE-369261",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T23:52:46.695478",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-F642508F.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-1E2BFE99",
+    "order_id": "PAYPAL-LIVE-044250",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T23:53:07.458487",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-1E2BFE99.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-971A7FA2",
+    "order_id": "PAYPAL-LIVE-955454",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T23:54:53.305896",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-971A7FA2.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-43AF89F6",
+    "order_id": "PAYPAL-LIVE-235898",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T23:55:17.525844",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-43AF89F6.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-47B77317",
+    "order_id": "PAYPAL-LIVE-143143",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T23:56:16.218808",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-47B77317.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-F7419737",
+    "order_id": "PAYPAL-LIVE-911011",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-25T23:59:36.724259",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-F7419737.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-E4E3EFC3",
+    "order_id": "PAYPAL-LIVE-835009",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T00:00:57.850088",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-E4E3EFC3.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-22CF70B8",
+    "order_id": "PAYPAL-LIVE-967837",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T00:02:14.798751",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-22CF70B8.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-C33CE65C",
+    "order_id": "PAYPAL-LIVE-171873",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T00:10:26.686310",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-C33CE65C.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-07F24270",
+    "order_id": "PAYPAL-LIVE-362250",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T00:11:47.793362",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-07F24270.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-96A23C7F",
+    "order_id": "PAYPAL-LIVE-915791",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T00:13:27.697232",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-96A23C7F.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-D6F00116",
+    "order_id": "PAYPAL-LIVE-478605",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T01:53:45.355725",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-D6F00116.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-E4646718",
+    "order_id": "PAYPAL-LIVE-547073",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T01:54:15.101733",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-E4646718.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-0624C466",
+    "order_id": "PAYPAL-LIVE-380274",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T05:33:55.300981",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-0624C466.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-6CAD03D8",
+    "order_id": "PAYPAL-LIVE-561053",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T05:34:25.538737",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-6CAD03D8.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-36090BB4",
+    "order_id": "PAYPAL-LIVE-621703",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T05:41:14.927856",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-36090BB4.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-2A79D6E8",
+    "order_id": "PAYPAL-LIVE-567459",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T05:41:37.559106",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-2A79D6E8.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-0AFC12C5",
+    "order_id": "PAYPAL-LIVE-662279",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T05:42:08.456779",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-0AFC12C5.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-E8F23B91",
+    "order_id": "PAYPAL-LIVE-286041",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T05:45:37.189371",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-E8F23B91.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-368AFA2F",
+    "order_id": "PAYPAL-LIVE-852956",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T06:05:49.595233",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-368AFA2F.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-B5082D4C",
+    "order_id": "PAYPAL-LIVE-964918",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T06:20:35.551590",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-B5082D4C.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-CBA8C547",
+    "order_id": "PAYPAL-LIVE-725893",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T16:03:50.472844",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-CBA8C547.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-1C9BCF4B",
+    "order_id": "PAYPAL-LIVE-955035",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T16:54:03.703899",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-1C9BCF4B.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-617ECDB4",
+    "order_id": "PAYPAL-LIVE-127071",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T22:48:45.044125",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-617ECDB4.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-D5DF5F31",
+    "order_id": "PAYPAL-LIVE-651677",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T22:49:55.628536",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-D5DF5F31.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-DDE03221",
+    "order_id": "PAYPAL-LIVE-870631",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T23:03:19.768110",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-DDE03221.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-C0ED7A82",
+    "order_id": "PAYPAL-LIVE-308335",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T23:03:47.319665",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-C0ED7A82.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-58D61E97",
+    "order_id": "PAYPAL-LIVE-093992",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T23:04:34.036272",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-58D61E97.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-EF317303",
+    "order_id": "PAYPAL-LIVE-040599",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T23:05:29.717086",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-EF317303.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-BDCB535A",
+    "order_id": "PAYPAL-LIVE-231065",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T23:13:19.259159",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-BDCB535A.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-FF2499A6",
+    "order_id": "PAYPAL-LIVE-062138",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T23:13:46.893368",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-FF2499A6.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-FED4D5B5",
+    "order_id": "PAYPAL-LIVE-472247",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-26T23:14:13.950520",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-FED4D5B5.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-C4D58E07",
+    "order_id": "PAYPAL-LIVE-999611",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-27T15:34:36.072004",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-C4D58E07.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-D3D8DFEB",
+    "order_id": "PAYPAL-LIVE-868152",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-27T15:35:12.482883",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-D3D8DFEB.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-2AA73054",
+    "order_id": "PAYPAL-LIVE-796641",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-27T15:46:44.216834",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-2AA73054.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-76583D02",
+    "order_id": "PAYPAL-LIVE-603759",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-27T15:54:08.534110",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-76583D02.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-05BCF24A",
+    "order_id": "PAYPAL-LIVE-034531",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-27T16:05:00.789796",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-05BCF24A.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-0929180C",
+    "order_id": "PAYPAL-LIVE-358263",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T01:39:33.242285",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-0929180C.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-A0602969",
+    "order_id": "PAYPAL-LIVE-771039",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T01:48:14.917667",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-A0602969.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-6B596217",
+    "order_id": "PAYPAL-LIVE-234774",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T01:48:49.937665",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-6B596217.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-392EC6AC",
+    "order_id": "PAYPAL-LIVE-178331",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T01:54:42.957598",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-392EC6AC.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-4BE99B74",
+    "order_id": "PAYPAL-LIVE-404550",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T01:55:16.250069",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-4BE99B74.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-DDE3331F",
+    "order_id": "PAYPAL-LIVE-729748",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T01:59:24.966805",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-DDE3331F.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-A4DFF9C2",
+    "order_id": "PAYPAL-LIVE-385186",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T02:00:11.035313",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-A4DFF9C2.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-E6DCE398",
+    "order_id": "PAYPAL-LIVE-663201",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T02:00:44.277132",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-E6DCE398.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-3DD35DEC",
+    "order_id": "PAYPAL-LIVE-527013",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T02:04:36.550743",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-3DD35DEC.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-6DEF04BA",
+    "order_id": "PAYPAL-LIVE-471817",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-28T02:05:11.915871",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-6DEF04BA.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-B562FE83",
+    "order_id": "PAYPAL-LIVE-463818",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-29T00:44:49.674611",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-B562FE83.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-52FFAD39",
+    "order_id": "PAYPAL-LIVE-084061",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-29T00:45:29.319080",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-52FFAD39.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-86F5073B",
+    "order_id": "PAYPAL-LIVE-687748",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-29T01:08:13.150559",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-86F5073B.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-58EF13BD",
+    "order_id": "PAYPAL-LIVE-987223",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-29T01:09:29.522137",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-58EF13BD.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-6C14F0D6",
+    "order_id": "PAYPAL-LIVE-217799",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T17:35:30.064421",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-6C14F0D6.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-A9ACFDBF",
+    "order_id": "PAYPAL-LIVE-309409",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T17:36:21.176184",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-A9ACFDBF.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-0BB21568",
+    "order_id": "PAYPAL-LIVE-142124",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T17:49:55.483168",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-0BB21568.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-92BAD57F",
+    "order_id": "PAYPAL-LIVE-321269",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T17:53:51.404550",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-92BAD57F.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-8CCA4D8F",
+    "order_id": "PAYPAL-LIVE-783079",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T17:56:45.053468",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-8CCA4D8F.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-C2A1CBDB",
+    "order_id": "PAYPAL-LIVE-023721",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T17:59:55.910481",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-C2A1CBDB.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-A1AA946B",
+    "order_id": "PAYPAL-LIVE-372410",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T20:30:05.995989",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-A1AA946B.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-BF9D9425",
+    "order_id": "PAYPAL-LIVE-111137",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T20:34:15.609524",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-BF9D9425.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-E8AD925C",
+    "order_id": "PAYPAL-LIVE-135911",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T20:46:46.316900",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-E8AD925C.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-A091917C",
+    "order_id": "PAYPAL-LIVE-928282",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T20:48:12.399036",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-A091917C.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-DFA52C53",
+    "order_id": "PAYPAL-LIVE-042430",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T20:50:41.584058",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-DFA52C53.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-CD02ECBC",
+    "order_id": "PAYPAL-LIVE-765929",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T20:51:58.878962",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-CD02ECBC.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-9F72C7C9",
+    "order_id": "PAYPAL-LIVE-616498",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T20:59:35.576797",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-9F72C7C9.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-EAB1E8C1",
+    "order_id": "PAYPAL-LIVE-213528",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T21:04:24.864117",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-EAB1E8C1.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-9F505353",
+    "order_id": "PAYPAL-LIVE-853396",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T21:05:36.160428",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-9F505353.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-1E058126",
+    "order_id": "PAYPAL-LIVE-091995",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T21:48:52.898338",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-1E058126.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-D494CF91",
+    "order_id": "PAYPAL-LIVE-000530",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-30T23:03:41.069694",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-D494CF91.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-F7FD318B",
+    "order_id": "PAYPAL-LIVE-090911",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-31T02:42:47.022694",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-F7FD318B.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-7374BE65",
+    "order_id": "PAYPAL-LIVE-682411",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-31T02:49:53.133401",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-7374BE65.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-BE42BA0B",
+    "order_id": "PAYPAL-LIVE-769007",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-31T03:40:25.046395",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-BE42BA0B.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-5FB5058C",
+    "order_id": "PAYPAL-LIVE-809677",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-08-31T18:35:45.806442",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-5FB5058C.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-4EDEADC4",
+    "order_id": "PAYPAL-LIVE-707075",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-09-01T02:40:24.851581",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-4EDEADC4.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-B730CD3C",
+    "order_id": "PAYPAL-LIVE-876134",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-09-01T02:42:19.835672",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-B730CD3C.md"
+  },
+  {
+    "cert_id": "CERT-LIVE-10E339DF",
+    "order_id": "PAYPAL-LIVE-866027",
+    "customer_email": "buyer_06@quant.com",
+    "status": "AUDIT_COMPLETED",
+    "timestamp": "2026-09-02T00:28:50.310570",
+    "metrics": {
+      "sharpe": -0.77,
+      "max_drawdown_pct": 84.92,
+      "pbo_score_pct": 51.7,
+      "lookahead_bias": "0.00%"
+    },
+    "cert_file_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-LIVE-10E339DF.md"
+  }
+]

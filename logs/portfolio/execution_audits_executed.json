@@ -1,0 +1,3842 @@
+[
+  {
+    "timestamp": "2026-08-26T01:53:50.627767+00:00",
+    "certificate_id": "CERT-EXEC-F1E2E5F7",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-F1E2E5F7.md"
+  },
+  {
+    "timestamp": "2026-08-26T01:53:50.628904+00:00",
+    "certificate_id": "CERT-EXEC-FC7D1026",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-FC7D1026.md"
+  },
+  {
+    "timestamp": "2026-08-26T01:54:20.647966+00:00",
+    "certificate_id": "CERT-EXEC-F734A9C7",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-F734A9C7.md"
+  },
+  {
+    "timestamp": "2026-08-26T01:54:20.649235+00:00",
+    "certificate_id": "CERT-EXEC-7A158798",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-7A158798.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:34:02.106216+00:00",
+    "certificate_id": "CERT-EXEC-020621C6",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-020621C6.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:34:02.108609+00:00",
+    "certificate_id": "CERT-EXEC-4FFD026A",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-4FFD026A.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:34:32.184493+00:00",
+    "certificate_id": "CERT-EXEC-904EEF3E",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-904EEF3E.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:34:32.186789+00:00",
+    "certificate_id": "CERT-EXEC-1B6B2FD9",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-1B6B2FD9.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:41:21.629141+00:00",
+    "certificate_id": "CERT-EXEC-E7CED5D9",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-E7CED5D9.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:41:21.630670+00:00",
+    "certificate_id": "CERT-EXEC-4DF4325E",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-4DF4325E.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:41:44.537001+00:00",
+    "certificate_id": "CERT-EXEC-5122A130",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-5122A130.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:41:44.540347+00:00",
+    "certificate_id": "CERT-EXEC-A3D369BE",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-A3D369BE.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:42:15.613313+00:00",
+    "certificate_id": "CERT-EXEC-CED53558",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-CED53558.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:42:15.616081+00:00",
+    "certificate_id": "CERT-EXEC-90A8EA76",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-90A8EA76.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:44:26.518820+00:00",
+    "certificate_id": "CERT-EXEC-90DBD840",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-90DBD840.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:44:26.520713+00:00",
+    "certificate_id": "CERT-EXEC-C016630A",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-C016630A.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:45:08.294702+00:00",
+    "certificate_id": "CERT-EXEC-39BEBA7C",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-39BEBA7C.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:45:08.296540+00:00",
+    "certificate_id": "CERT-EXEC-121E4BF2",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-121E4BF2.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:45:44.336776+00:00",
+    "certificate_id": "CERT-EXEC-0CBBA4F1",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-0CBBA4F1.md"
+  },
+  {
+    "timestamp": "2026-08-26T05:45:44.338704+00:00",
+    "certificate_id": "CERT-EXEC-8E45CD7B",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-8E45CD7B.md"
+  },
+  {
+    "timestamp": "2026-08-26T06:05:57.032101+00:00",
+    "certificate_id": "CERT-EXEC-BD0978C7",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-BD0978C7.md"
+  },
+  {
+    "timestamp": "2026-08-26T06:05:57.035802+00:00",
+    "certificate_id": "CERT-EXEC-26C5B033",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-26C5B033.md"
+  },
+  {
+    "timestamp": "2026-08-26T06:20:45.340006+00:00",
+    "certificate_id": "CERT-EXEC-131B75C0",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-131B75C0.md"
+  },
+  {
+    "timestamp": "2026-08-26T06:20:45.344119+00:00",
+    "certificate_id": "CERT-EXEC-DE4770C6",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-DE4770C6.md"
+  },
+  {
+    "timestamp": "2026-08-26T16:04:00.731894+00:00",
+    "certificate_id": "CERT-EXEC-7C1D0726",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-7C1D0726.md"
+  },
+  {
+    "timestamp": "2026-08-26T16:04:00.736381+00:00",
+    "certificate_id": "CERT-EXEC-5BA68A9C",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-5BA68A9C.md"
+  },
+  {
+    "timestamp": "2026-08-26T16:54:13.142785+00:00",
+    "certificate_id": "CERT-EXEC-6E94F34B",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-6E94F34B.md"
+  },
+  {
+    "timestamp": "2026-08-26T16:54:13.147363+00:00",
+    "certificate_id": "CERT-EXEC-0DDE615B",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-0DDE615B.md"
+  },
+  {
+    "timestamp": "2026-08-26T22:49:01.850826+00:00",
+    "certificate_id": "CERT-EXEC-2EF8678A",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-2EF8678A.md"
+  },
+  {
+    "timestamp": "2026-08-26T22:49:01.855089+00:00",
+    "certificate_id": "CERT-EXEC-ED1A257A",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-ED1A257A.md"
+  },
+  {
+    "timestamp": "2026-08-26T22:50:08.470402+00:00",
+    "certificate_id": "CERT-EXEC-03394DAD",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-03394DAD.md"
+  },
+  {
+    "timestamp": "2026-08-26T22:50:08.474035+00:00",
+    "certificate_id": "CERT-EXEC-F29C153D",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-F29C153D.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:04:43.891689+00:00",
+    "certificate_id": "CERT-EXEC-DDD7967D",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-DDD7967D.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:04:43.894853+00:00",
+    "certificate_id": "CERT-EXEC-EFB711A5",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-EFB711A5.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:05:39.194152+00:00",
+    "certificate_id": "CERT-EXEC-F8503459",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-F8503459.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:05:39.197717+00:00",
+    "certificate_id": "CERT-EXEC-1C91B343",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-1C91B343.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:13:29.745444+00:00",
+    "certificate_id": "CERT-EXEC-48FFDDD5",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-48FFDDD5.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:13:29.749156+00:00",
+    "certificate_id": "CERT-EXEC-9AA4CB3F",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-9AA4CB3F.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:13:55.750905+00:00",
+    "certificate_id": "CERT-EXEC-8885331A",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-8885331A.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:13:55.756332+00:00",
+    "certificate_id": "CERT-EXEC-3BDC6D7C",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-3BDC6D7C.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:14:24.924479+00:00",
+    "certificate_id": "CERT-EXEC-9BF9A16B",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-9BF9A16B.md"
+  },
+  {
+    "timestamp": "2026-08-26T23:14:24.928388+00:00",
+    "certificate_id": "CERT-EXEC-AFAEB8E9",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-AFAEB8E9.md"
+  },
+  {
+    "timestamp": "2026-08-27T15:34:45.898734+00:00",
+    "certificate_id": "CERT-EXEC-8A74299C",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-8A74299C.md"
+  },
+  {
+    "timestamp": "2026-08-27T15:34:45.902878+00:00",
+    "certificate_id": "CERT-EXEC-C5F455CB",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-C5F455CB.md"
+  },
+  {
+    "timestamp": "2026-08-27T15:35:21.841364+00:00",
+    "certificate_id": "CERT-EXEC-46E1910B",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-46E1910B.md"
+  },
+  {
+    "timestamp": "2026-08-27T15:35:21.845327+00:00",
+    "certificate_id": "CERT-EXEC-4428CB49",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-4428CB49.md"
+  },
+  {
+    "timestamp": "2026-08-27T15:46:56.678096+00:00",
+    "certificate_id": "CERT-EXEC-35F42C3B",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-35F42C3B.md"
+  },
+  {
+    "timestamp": "2026-08-27T15:46:56.681367+00:00",
+    "certificate_id": "CERT-EXEC-1B1E9DA1",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-1B1E9DA1.md"
+  },
+  {
+    "timestamp": "2026-08-27T15:54:18.415924+00:00",
+    "certificate_id": "CERT-EXEC-A61444C5",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-A61444C5.md"
+  },
+  {
+    "timestamp": "2026-08-27T15:54:18.420976+00:00",
+    "certificate_id": "CERT-EXEC-E297A0FB",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-E297A0FB.md"
+  },
+  {
+    "timestamp": "2026-08-27T16:05:14.005116+00:00",
+    "certificate_id": "CERT-EXEC-9251C375",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-9251C375.md"
+  },
+  {
+    "timestamp": "2026-08-27T16:05:14.009585+00:00",
+    "certificate_id": "CERT-EXEC-778EFA54",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-778EFA54.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:39:47.687856+00:00",
+    "certificate_id": "CERT-EXEC-AEFAF3A6",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-AEFAF3A6.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:39:47.693813+00:00",
+    "certificate_id": "CERT-EXEC-3B05B4A2",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-3B05B4A2.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:48:28.413849+00:00",
+    "certificate_id": "CERT-EXEC-0D65247A",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-0D65247A.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:48:28.418584+00:00",
+    "certificate_id": "CERT-EXEC-612DF990",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-612DF990.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:48:58.925976+00:00",
+    "certificate_id": "CERT-EXEC-027802E6",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-027802E6.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:48:58.930560+00:00",
+    "certificate_id": "CERT-EXEC-F089ED9D",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-F089ED9D.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:54:52.932824+00:00",
+    "certificate_id": "CERT-EXEC-690F61C4",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-690F61C4.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:54:52.937732+00:00",
+    "certificate_id": "CERT-EXEC-5DA81EC4",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-5DA81EC4.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:55:24.916962+00:00",
+    "certificate_id": "CERT-EXEC-6FAF9228",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-6FAF9228.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:55:24.921863+00:00",
+    "certificate_id": "CERT-EXEC-FA91F725",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-FA91F725.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:59:34.933484+00:00",
+    "certificate_id": "CERT-EXEC-747DF340",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-747DF340.md"
+  },
+  {
+    "timestamp": "2026-08-28T01:59:34.937499+00:00",
+    "certificate_id": "CERT-EXEC-7D145356",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-7D145356.md"
+  },
+  {
+    "timestamp": "2026-08-28T02:00:20.234063+00:00",
+    "certificate_id": "CERT-EXEC-DBC2DEDD",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-DBC2DEDD.md"
+  },
+  {
+    "timestamp": "2026-08-28T02:00:20.240069+00:00",
+    "certificate_id": "CERT-EXEC-56031B5E",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-56031B5E.md"
+  },
+  {
+    "timestamp": "2026-08-28T02:00:53.350483+00:00",
+    "certificate_id": "CERT-EXEC-61FCA824",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-61FCA824.md"
+  },
+  {
+    "timestamp": "2026-08-28T02:00:53.354339+00:00",
+    "certificate_id": "CERT-EXEC-D36694EF",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-D36694EF.md"
+  },
+  {
+    "timestamp": "2026-08-28T02:04:46.222693+00:00",
+    "certificate_id": "CERT-EXEC-CDC782BF",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-CDC782BF.md"
+  },
+  {
+    "timestamp": "2026-08-28T02:04:46.227520+00:00",
+    "certificate_id": "CERT-EXEC-9E57893E",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-9E57893E.md"
+  },
+  {
+    "timestamp": "2026-08-28T02:05:21.468118+00:00",
+    "certificate_id": "CERT-EXEC-C7406C12",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-C7406C12.md"
+  },
+  {
+    "timestamp": "2026-08-28T02:05:21.472639+00:00",
+    "certificate_id": "CERT-EXEC-DE718797",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-DE718797.md"
+  },
+  {
+    "timestamp": "2026-08-29T00:45:05.284764+00:00",
+    "certificate_id": "CERT-EXEC-C3822949",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-C3822949.md"
+  },
+  {
+    "timestamp": "2026-08-29T00:45:05.289409+00:00",
+    "certificate_id": "CERT-EXEC-0FFC0ED6",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-0FFC0ED6.md"
+  },
+  {
+    "timestamp": "2026-08-29T00:45:38.080012+00:00",
+    "certificate_id": "CERT-EXEC-8AA8D910",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-8AA8D910.md"
+  },
+  {
+    "timestamp": "2026-08-29T00:45:38.086053+00:00",
+    "certificate_id": "CERT-EXEC-3D222896",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-3D222896.md"
+  },
+  {
+    "timestamp": "2026-08-29T01:08:26.788604+00:00",
+    "certificate_id": "CERT-EXEC-F80EC8B9",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-F80EC8B9.md"
+  },
+  {
+    "timestamp": "2026-08-29T01:08:26.794682+00:00",
+    "certificate_id": "CERT-EXEC-CC657865",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-CC657865.md"
+  },
+  {
+    "timestamp": "2026-08-29T01:09:38.585943+00:00",
+    "certificate_id": "CERT-EXEC-1E1A13EC",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-1E1A13EC.md"
+  },
+  {
+    "timestamp": "2026-08-29T01:09:38.590420+00:00",
+    "certificate_id": "CERT-EXEC-40FDB081",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-40FDB081.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:35:44.857270+00:00",
+    "certificate_id": "CERT-EXEC-609A4732",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-609A4732.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:35:44.863498+00:00",
+    "certificate_id": "CERT-EXEC-7308BBE5",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-7308BBE5.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:36:31.042012+00:00",
+    "certificate_id": "CERT-EXEC-9D590885",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-9D590885.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:36:31.047581+00:00",
+    "certificate_id": "CERT-EXEC-5328E4A5",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-5328E4A5.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:50:09.326398+00:00",
+    "certificate_id": "CERT-EXEC-4768CF12",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-4768CF12.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:50:09.332723+00:00",
+    "certificate_id": "CERT-EXEC-D30C52A1",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-D30C52A1.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:54:01.501362+00:00",
+    "certificate_id": "CERT-EXEC-A16DC4F0",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-A16DC4F0.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:54:01.506784+00:00",
+    "certificate_id": "CERT-EXEC-E21D1531",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-E21D1531.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:56:54.599469+00:00",
+    "certificate_id": "CERT-EXEC-F1D4D997",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-F1D4D997.md"
+  },
+  {
+    "timestamp": "2026-08-30T17:56:54.605544+00:00",
+    "certificate_id": "CERT-EXEC-65E9BBB4",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-65E9BBB4.md"
+  },
+  {
+    "timestamp": "2026-08-30T18:00:05.681414+00:00",
+    "certificate_id": "CERT-EXEC-55510A0E",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-55510A0E.md"
+  },
+  {
+    "timestamp": "2026-08-30T18:00:05.687631+00:00",
+    "certificate_id": "CERT-EXEC-C390BAA1",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-C390BAA1.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:30:20.241887+00:00",
+    "certificate_id": "CERT-EXEC-AEA0970F",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-AEA0970F.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:30:20.248340+00:00",
+    "certificate_id": "CERT-EXEC-4E893175",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-4E893175.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:34:26.598738+00:00",
+    "certificate_id": "CERT-EXEC-DB550529",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-DB550529.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:34:26.605238+00:00",
+    "certificate_id": "CERT-EXEC-1948E905",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-1948E905.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:47:00.812585+00:00",
+    "certificate_id": "CERT-EXEC-305739CF",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-305739CF.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:47:00.819431+00:00",
+    "certificate_id": "CERT-EXEC-325E0C42",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-325E0C42.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:48:23.572358+00:00",
+    "certificate_id": "CERT-EXEC-925900F8",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-925900F8.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:48:23.577768+00:00",
+    "certificate_id": "CERT-EXEC-A992E667",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-A992E667.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:50:52.751462+00:00",
+    "certificate_id": "CERT-EXEC-6848719B",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-6848719B.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:50:52.759251+00:00",
+    "certificate_id": "CERT-EXEC-C6073ECB",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-C6073ECB.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:52:10.077642+00:00",
+    "certificate_id": "CERT-EXEC-C87E3132",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-C87E3132.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:52:10.085229+00:00",
+    "certificate_id": "CERT-EXEC-1B9E0B4A",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-1B9E0B4A.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:59:46.819482+00:00",
+    "certificate_id": "CERT-EXEC-DF10E1EC",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-DF10E1EC.md"
+  },
+  {
+    "timestamp": "2026-08-30T20:59:46.827130+00:00",
+    "certificate_id": "CERT-EXEC-46B3B625",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-46B3B625.md"
+  },
+  {
+    "timestamp": "2026-08-30T21:04:35.837610+00:00",
+    "certificate_id": "CERT-EXEC-3191766A",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-3191766A.md"
+  },
+  {
+    "timestamp": "2026-08-30T21:04:35.845323+00:00",
+    "certificate_id": "CERT-EXEC-52FB458D",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-52FB458D.md"
+  },
+  {
+    "timestamp": "2026-08-30T21:05:46.774828+00:00",
+    "certificate_id": "CERT-EXEC-CEADD138",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-CEADD138.md"
+  },
+  {
+    "timestamp": "2026-08-30T21:05:46.782334+00:00",
+    "certificate_id": "CERT-EXEC-41376991",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-41376991.md"
+  },
+  {
+    "timestamp": "2026-08-30T21:49:07.818703+00:00",
+    "certificate_id": "CERT-EXEC-EA5AAFF1",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-EA5AAFF1.md"
+  },
+  {
+    "timestamp": "2026-08-30T21:49:07.826236+00:00",
+    "certificate_id": "CERT-EXEC-3A21489D",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-3A21489D.md"
+  },
+  {
+    "timestamp": "2026-08-30T23:03:53.153542+00:00",
+    "certificate_id": "CERT-EXEC-1C699072",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-1C699072.md"
+  },
+  {
+    "timestamp": "2026-08-30T23:03:53.161187+00:00",
+    "certificate_id": "CERT-EXEC-5844704A",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-5844704A.md"
+  },
+  {
+    "timestamp": "2026-08-31T02:43:05.765441+00:00",
+    "certificate_id": "CERT-EXEC-0E5F08EA",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-0E5F08EA.md"
+  },
+  {
+    "timestamp": "2026-08-31T02:43:05.773876+00:00",
+    "certificate_id": "CERT-EXEC-84C09403",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-84C09403.md"
+  },
+  {
+    "timestamp": "2026-08-31T02:50:10.587388+00:00",
+    "certificate_id": "CERT-EXEC-B55A14DC",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-B55A14DC.md"
+  },
+  {
+    "timestamp": "2026-08-31T02:50:10.593621+00:00",
+    "certificate_id": "CERT-EXEC-FF775DC3",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-FF775DC3.md"
+  },
+  {
+    "timestamp": "2026-08-31T03:40:41.723107+00:00",
+    "certificate_id": "CERT-EXEC-74955795",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-74955795.md"
+  },
+  {
+    "timestamp": "2026-08-31T03:40:41.730595+00:00",
+    "certificate_id": "CERT-EXEC-AC3F91C0",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-AC3F91C0.md"
+  },
+  {
+    "timestamp": "2026-08-31T18:35:59.737602+00:00",
+    "certificate_id": "CERT-EXEC-61DCF9A6",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-61DCF9A6.md"
+  },
+  {
+    "timestamp": "2026-08-31T18:35:59.745994+00:00",
+    "certificate_id": "CERT-EXEC-D75CA86B",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-D75CA86B.md"
+  },
+  {
+    "timestamp": "2026-09-01T02:40:40.335376+00:00",
+    "certificate_id": "CERT-EXEC-C7D5D408",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-C7D5D408.md"
+  },
+  {
+    "timestamp": "2026-09-01T02:40:40.343204+00:00",
+    "certificate_id": "CERT-EXEC-2E044862",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-2E044862.md"
+  },
+  {
+    "timestamp": "2026-09-01T02:42:30.864082+00:00",
+    "certificate_id": "CERT-EXEC-12287FAA",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-12287FAA.md"
+  },
+  {
+    "timestamp": "2026-09-01T02:42:30.870593+00:00",
+    "certificate_id": "CERT-EXEC-A1519F8D",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-A1519F8D.md"
+  },
+  {
+    "timestamp": "2026-09-02T00:29:08.627257+00:00",
+    "certificate_id": "CERT-EXEC-14A68C99",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Unit Test Execution Strategy",
+    "capital_usd": 10000.0,
+    "trades_count": 100,
+    "baseline": {
+      "return_pct": 30.0,
+      "sharpe": 2.5,
+      "max_drawdown_pct": 5.0
+    },
+    "execution_adjusted": {
+      "return_pct": 26.75,
+      "sharpe": 2.23,
+      "max_drawdown_pct": 5.43,
+      "execution_degradation_ratio": 0.1083
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 75.0,
+      "slippage_cost_usd": 50.0,
+      "commission_cost_usd": 200.0,
+      "total_friction_usd": 325.0,
+      "total_friction_pct": 3.25
+    },
+    "verdict": "REALITY_SURVIVOR",
+    "verdict_description": "Robust execution survival (<15% decay). Strategy retains >85% of backtest alpha after real costs.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-14A68C99.md"
+  },
+  {
+    "timestamp": "2026-09-02T00:29:08.636558+00:00",
+    "certificate_id": "CERT-EXEC-383D1217",
+    "product_id": "QUANT_EXECUTION_REALITY_AUDIT",
+    "price_usd": 79.0,
+    "strategy_name": "Cert Generation Test",
+    "capital_usd": 10000.0,
+    "trades_count": 120,
+    "baseline": {
+      "return_pct": 34.5,
+      "sharpe": 2.15,
+      "max_drawdown_pct": 8.4
+    },
+    "execution_adjusted": {
+      "return_pct": 28.65,
+      "sharpe": 1.79,
+      "max_drawdown_pct": 9.54,
+      "execution_degradation_ratio": 0.1696
+    },
+    "friction_breakdown": {
+      "spread_cost_usd": 105.0,
+      "slippage_cost_usd": 120.0,
+      "commission_cost_usd": 360.0,
+      "total_friction_usd": 585.0,
+      "total_friction_pct": 5.85
+    },
+    "verdict": "EXECUTION_FRAGILE",
+    "verdict_description": "Moderate execution decay (15%-35%). Strategy retains positive return but experiences Sharpe compression.",
+    "certificate_path": "/Users/jorgeatilano/Desktop/DEVIN/trading-autonomous-system/logs/portfolio/certificates/CERT-EXEC-383D1217.md"
+  }
+]
