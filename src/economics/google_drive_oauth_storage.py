@@ -203,3 +203,9 @@ class GoogleDriveOAuthStorageEngine:
         """Uploads JSON certificate into private personal Google Drive folder."""
         raw_bytes = json.dumps(cert_data, indent=2).encode('utf-8')
         return self.store_upload(case_id, raw_bytes, "audit_certificate.json")
+
+    def store_payment_log(self, payment_records: list) -> Dict[str, Any]:
+        """Uploads/updates paypal_payment_log.json into private personal Google Drive folder."""
+        raw_bytes = json.dumps(payment_records, indent=2).encode('utf-8')
+        return self.store_upload("payment-ledger", raw_bytes, "paypal_payment_log.json")
+

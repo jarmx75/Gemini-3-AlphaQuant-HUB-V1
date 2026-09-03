@@ -3,6 +3,9 @@ import json
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler
 
+import base64
+import urllib.request
+
 def _get_log_dir():
     if os.environ.get('PAYPAL_LOG_DIR'):
         d = os.environ['PAYPAL_LOG_DIR']
@@ -15,6 +18,56 @@ def _get_log_dir():
     d = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'logs', 'portfolio'))
     os.makedirs(d, exist_ok=True)
     return d
+
+def _persist_to_github_storage(payment_records):
+    try:
+        from src.economics.google_drive_oauth_storage import GoogleDriveOAuthStorageEngine
+        drive_engine = GoogleDriveOAuthStorageEngine()
+        if drive_engine.is_configured():
+            res = drive_engine.store_payment_log(payment_records)
+            print(f"[WEBHOOK GOOGLE DRIVE PERSISTENCE SUCCESS]: Stored payment log to Drive (File ID: {res.get('drive_file_id')})")
+    except Exception as drive_err:
+        print(f"[WEBHOOK GOOGLE DRIVE PERSISTENCE NOTICE]: {drive_err}")
+
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if not token:
+        print("[WEBHOOK PERSISTENCE NOTICE] GITHUB_TOKEN environment variable is missing in Vercel. GitHub repo sync skipped.")
+        return
+    repo = os.environ.get("GITHUB_REPOSITORY", "jarmx75/Gemini-3-AlphaQuant-HUB-V1")
+    path = "logs/portfolio/paypal_payment_log.json"
+    url = f"https://api.github.com/repos/{repo}/contents/{path}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "User-Agent": "Automaton-Quant-Audit-IPN-Verifier",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    try:
+        content_str = json.dumps(payment_records, indent=2)
+        content_b64 = base64.b64encode(content_str.encode('utf-8')).decode('utf-8')
+        
+        sha = None
+        try:
+            req_get = urllib.request.Request(url, headers=headers, method="GET")
+            with urllib.request.urlopen(req_get, timeout=5) as resp:
+                data = json.loads(resp.read().decode('utf-8'))
+                sha = data.get("sha")
+        except Exception:
+            sha = None
+
+        put_payload = {
+            "message": "fix(webhook): persist verified PayPal payment evidence to repository storage",
+            "content": content_b64,
+            "branch": "main"
+        }
+        if sha:
+            put_payload["sha"] = sha
+
+        req_put = urllib.request.Request(url, data=json.dumps(put_payload).encode('utf-8'), headers=headers, method="PUT")
+        with urllib.request.urlopen(req_put, timeout=8) as resp_put:
+            print("[WEBHOOK PERSISTENCE SUCCESS] Successfully committed verified PayPal payment log to GitHub repo.")
+    except Exception as e:
+        print(f"[WEBHOOK PERSISTENCE WARNING] GitHub storage sync error: {e}")
+
 
 class handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
@@ -177,8 +230,10 @@ class handler(BaseHTTPRequestHandler):
                         try:
                             with open(pmt_file, 'w', encoding='utf-8') as f:
                                 json.dump(existing_pmt, f, indent=2)
+                            _persist_to_github_storage(existing_pmt)
                         except Exception:
                             pass
+
 
                     # RECONCILIATION: Check if an onboarding record was waiting for this txn_id
                     if os.path.exists(onboarding_file):

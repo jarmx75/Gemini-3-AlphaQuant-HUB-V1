@@ -28,9 +28,20 @@ def _get_log_dir():
 
 
 def _persist_to_github_storage(payment_records):
+    # 1. Attempt Google Drive OAuth storage persistence
+    try:
+        from src.economics.google_drive_oauth_storage import GoogleDriveOAuthStorageEngine
+        drive_engine = GoogleDriveOAuthStorageEngine()
+        if drive_engine.is_configured():
+            res = drive_engine.store_payment_log(payment_records)
+            print(f"[IPN GOOGLE DRIVE PERSISTENCE SUCCESS]: Stored payment log to Drive (File ID: {res.get('drive_file_id')})")
+    except Exception as drive_err:
+        print(f"[IPN GOOGLE DRIVE PERSISTENCE NOTICE]: {drive_err}")
+
+    # 2. Attempt GitHub API persistence
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     if not token:
-        print("[IPN PERSISTENCE NOTICE] GITHUB_TOKEN environment variable is missing in Vercel. Remote repo sync skipped.")
+        print("[IPN PERSISTENCE NOTICE] GITHUB_TOKEN environment variable is missing in Vercel. GitHub repo sync skipped.")
         return
     repo = os.environ.get("GITHUB_REPOSITORY", "jarmx75/Gemini-3-AlphaQuant-HUB-V1")
     path = "logs/portfolio/paypal_payment_log.json"
@@ -66,6 +77,7 @@ def _persist_to_github_storage(payment_records):
             print("[IPN PERSISTENCE SUCCESS] Successfully committed verified PayPal payment log to GitHub repo.")
     except Exception as e:
         print(f"[IPN PERSISTENCE WARNING] GitHub storage sync error: {e}")
+
 
 
 
